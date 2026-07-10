@@ -39,7 +39,7 @@ fi
 : "${DRY_RUN:=0}"
 : "${GTSM:=gtsm}"
 : "${CORPUS_JSONL:=.gtsm-cache/datasets/tools-iuc-corpus.jsonl}"
-: "${DATASET_MANIFEST:=config/dataset.manifest.json}"
+: "${DATASET_MANIFEST:=.config/dataset.manifest.json}"
 : "${GPU_DEVICES:=0,1,2,3}"
 : "${NUM_PROCESSES:=4}"
 : "${STATUS_INTERVAL_SECONDS:=30}"
