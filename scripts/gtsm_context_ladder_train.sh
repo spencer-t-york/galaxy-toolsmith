@@ -286,7 +286,7 @@ assert_no_training_processes() {
 
 gpus_are_idle() {
   local gpu_query
-  if ! gpu_query="$(nvidia_smi_retry --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader,nounits)"; then
+  if ! gpu_query="$(nvidia_smi_retry -i "$GPU_DEVICES" --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader,nounits)"; then
     local plain
     plain="$(nvidia_smi_retry)" || return 1
     printf '%s\n' "$plain" >&2
@@ -307,7 +307,7 @@ gpus_are_idle() {
   done <<< "$gpu_query"
   if is_true "$GPU_REQUIRE_NO_COMPUTE_APPS"; then
     local compute_apps
-    if ! compute_apps="$(nvidia_smi_retry --query-compute-apps=pid,gpu_bus_id,used_memory,process_name --format=csv,noheader)"; then
+    if ! compute_apps="$(nvidia_smi_retry -i "$GPU_DEVICES" --query-compute-apps=pid,gpu_bus_id,used_memory,process_name --format=csv,noheader)"; then
       return 1
     fi
     compute_apps="$(printf '%s\n' "$compute_apps" | sed '/^[[:space:]]*$/d')"
