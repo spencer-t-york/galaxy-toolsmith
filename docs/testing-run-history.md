@@ -1,6 +1,32 @@
 # Environment
 ```bash
+cd /data/home/yorks7/git/galaxy-toolsmith
 
+# 1) checkout the exact code version
+git fetch --all --tags
+git checkout "$(cat env-capture/git-commit.txt)"
+
+# 2) recreate conda env from explicit lock
+conda create -y -p .conda/gtsm-repro --file env-capture/gtsm.explicit.txt
+
+# 3) install pip-layer packages exactly
+.conda/gtsm-repro/bin/python -m pip install -r env-capture/gtsm.pip-freeze.txt
+
+# 4) validate environment health
+.conda/gtsm-repro/bin/python -m pip check
+```
+Then use it:
+```bash
+source .conda/gtsm-repro/bin/activate
+gtsm --help
+```
+Check equivalence checks vs original:
+```bash
+conda list --prefix .conda/gtsm-repro --explicit > /tmp/repro.explicit.txt
+diff -u env-capture/gtsm.explicit.txt /tmp/repro.explicit.txt || true
+
+.conda/gtsm-repro/bin/python -m pip freeze --all > /tmp/repro.pip-freeze.txt
+diff -u env-capture/gtsm.pip-freeze.txt /tmp/repro.pip-freeze.txt || true
 ```
 
 # Corpus Extraction
@@ -308,6 +334,25 @@ scripts/gtsm_context_ladder_train.sh launch
 
 
 # Benchmarking Process
+Run the following:
+```
+tmux new-session -s session-name
+```
+```
+conda activate "$PWD/.conda/gtsm"
+cd /data/home/yorks7/git/galaxy-toolsmith
+export VARIANT_ID="tools-iuc-devstral-24b-mixed-all-filtered-8192-ddp-qwen-lora-sharding-sidecars-fixtures-20260727"
+export ENV="/data/home/yorks7/git/galaxy-toolsmith/.conda/gtsm-unsloth-export"
+export LLAMA_CPP_DIR="/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/llama.cpp"
+export EXPORT_QUANTIZATIONS="q4_k_m"
+export OLLAMA_MODEL_NAME="gtsm-${VARIANT_ID}-q4"
+export OLLAMA_CREATE=0
+```
+```
+bash scripts/gtsm_llama_cpp_gguf.sh status
+bash scripts/gtsm_llama_cpp_gguf.sh finalize
+```
+
 ## Qwen 2.5 Coder Instruct (7B)
 ### Base Model
 Command
@@ -442,6 +487,25 @@ Output: `fsdp0811.summary.json`
 
 
 # Promotion Process
+Run the following:
+```
+tmux new-session -s session-name
+```
+```
+conda activate "$PWD/.conda/gtsm"
+cd /data/home/yorks7/git/galaxy-toolsmith
+export VARIANT_ID="tools-iuc-devstral-24b-mixed-all-filtered-8192-ddp-qwen-lora-sharding-sidecars-fixtures-20260727"
+export ENV="/data/home/yorks7/git/galaxy-toolsmith/.conda/gtsm-unsloth-export"
+export LLAMA_CPP_DIR="/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/llama.cpp"
+export EXPORT_QUANTIZATIONS="q4_k_m"
+export OLLAMA_MODEL_NAME="gtsm-${VARIANT_ID}-q4"
+export OLLAMA_CREATE=0
+```
+```
+bash scripts/gtsm_llama_cpp_gguf.sh status
+bash scripts/gtsm_llama_cpp_gguf.sh finalize
+```
+
 ## DDP
 ### Qwen 2.5 Coder (DDP / 1GPU) vs Qwen Base
 ```json
