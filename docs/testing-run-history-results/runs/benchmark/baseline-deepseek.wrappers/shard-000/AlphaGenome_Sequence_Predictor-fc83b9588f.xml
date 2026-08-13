@@ -1,0 +1,86 @@
+<tool id="alphagenome_sequence_predictor" name="AlphaGenome Sequence Predictor" version="0.1.0" profile="25.0">
+  <description>Predict regulatory tracks from DNA sequences using AlphaGenome's API</description>
+  <requirements>
+    <requirement type="package">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        alphagenome_sequence_predictor.py
+        --fasta $input_fasta
+        --api_key $api_key
+        --output_mode $output_mode
+        --window_size $window_size
+        --bin_size $bin_size
+        --output $output_file
+    </command>
+  <inputs>
+    <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" />
+    <param name="api_key" type="text" label="AlphaGenome API Key" hidden="true" />
+    <param name="output_mode" type="select" label="Output mode">
+      <option value="summary">Summary (one row per sequence)</option>
+      <option value="binned">Binned (spatial resolution)</option>
+    </param>
+    <param name="window_size" type="integer" label="Prediction window size" default="16384" />
+    <param name="bin_size" type="integer" label="Bin size (binned mode only)" default="128" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Prediction results" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_fasta">test.fasta</param>
+      <param name="api_key">test_key</param>
+      <param name="output_mode">summary</param>
+      <output name="output_file">
+        <has_text>sequence_id</has_text>
+        <has_text>mean_signal</has_text>
+        <has_text>max_signal</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AlphaGenome Sequence Predictor
+
+        Predicts regulatory tracks from raw DNA sequence using AlphaGenome's
+        `predict_sequence()` API. No genomic coordinates needed — designed for
+        synthetic biology sequences, designed regulatory elements, and
+        non-reference assemblies.
+
+        ## What it does
+
+        For each sequence in the input FASTA file:
+
+        1. Pads short sequences with N bases (centered) or center-trims long sequences
+           to fit the prediction window size
+        2. Calls `predict_sequence()` for selected output types
+        3. Computes summary statistics over the actual sequence content (excluding N padding)
+        4. Reports per-track values in tabular format
+
+        ## Sequence handling
+
+        - Sequences **shorter** than the window size are N-padded (centered)
+        - Sequences **longer** than the window are center-trimmed to fit
+        - Sequences **equal** to the window size are used as-is
+
+        For typical synbio applications, the 16 KB window is recommended.
+
+        ## Output modes
+
+        - **Summary**: One row per sequence x track with mean and max signal
+        - **Binned**: Divides each sequence into fixed-width bins (default 128bp) and
+          reports mean signal per bin for spatial resolution
+
+        ## Use cases
+
+        - Evaluate designed promoter/enhancer sequences
+        - Predict splicing of synthetic gene constructs
+        - Characterize regulatory elements from non-reference genomes
+        - Compare predicted activity of sequence variants in synthetic biology
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

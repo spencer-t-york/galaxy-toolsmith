@@ -1,0 +1,92 @@
+<tool id="adapterremoval_remove_adapter_sequences" name="AdapterRemoval: remove adapter sequences" version="2.3.4">
+  <description>Remove adapter sequences from high-throughput sequencing data</description>
+  <macros>
+    <token name="@VERSION@">2.3.4</token>
+    <param name="adapter1" type="data" format="txt" label="Adapter sequence 1" />
+    <param name="adapter2" type="data" format="txt" label="Adapter sequence 2" optional="true" />
+    <param name="minalignmentlength" type="integer" value="36" label="Minimum alignment length" />
+    <param name="minquality" type="float" value="20" label="Minimum quality" />
+    <param name="window_size" type="integer" value="4" label="Window size" />
+    <param name="trim5p" type="integer" value="0" label="Trim 5' by" />
+    <param name="trim3p" type="integer" value="0" label="Trim 3' by" />
+    <param name="collapse" type="boolean" checked="false" label="Collapse reads" />
+    <param name="deterministic" type="boolean" checked="false" label="Deterministic collapse" />
+    <param name="interleaved_output" type="boolean" checked="false" label="Interleaved output" />
+    <param name="minlength" type="integer" value="0" label="Minimum read length" />
+    <param name="maxlength" type="integer" value="0" label="Maximum read length" />
+    <param name="maxns" type="integer" value="0" label="Maximum number of Ns" />
+    <param name="quality_trimming" type="boolean" checked="false" label="Quality trimming" />
+    <param name="phred_scale" type="select" label="PHRED scale">
+      <option value="auto">Auto-detect</option>
+      <option value="33">Illumina 1.8+</option>
+      <option value="64">Illumina 1.3+</option>
+    </param>
+  </macros>
+  <requirements>
+    <requirement type="package" version="@VERSION@">adapterremoval</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        AdapterRemoval --input $input --outputprefix $output_prefix --adapter1 $adapter1 --adapter2 $adapter2 --minalignmentlength $minalignmentlength --minquality $minquality --window-size $window_size --trim5p $trim5p --trim3p $trim3p --collapse $collapse --deterministic $deterministic --interleaved $interleaved_output --minlength $minlength --maxlength $maxlength --maxns $maxns --quality-trim $quality_trimming --phred-scale $phred_scale
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fastq" label="Input FASTQ file" />
+    <param name="adapter_sequences" type="data" format="tabular" label="Adapter sequences" optional="true" />
+  </inputs>
+  <outputs>
+    <collection name="output_files" type="list" label="Output files">
+      <element name="settings" type="data" format="txt" label="Settings" />
+      <element name="truncated" type="data" format="fastq" label="Truncated reads" />
+      <element name="forward_truncated" type="data" format="fastq" label="Forward truncated reads" />
+      <element name="reverse_truncated" type="data" format="fastq" label="Reverse truncated reads" />
+      <element name="interleaved_truncated" type="data" format="fastq" label="Interleaved truncated reads" />
+      <element name="singleton_truncated" type="data" format="fastq" label="Singleton truncated reads" />
+      <element name="collapsed" type="data" format="fastq" label="Collapsed reads" />
+      <element name="collapsed_truncated" type="data" format="fastq" label="Collapsed truncated reads" />
+      <element name="discarded" type="data" format="fastq" label="Discarded reads" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.fastq" />
+      <param name="adapter1" value="adapters.txt" />
+      <output_collection name="output_files">
+        <element name="settings" file="settings.txt" />
+        <element name="truncated" file="truncated.fastq" />
+        <element name="forward_truncated" file="forward_truncated.fastq" />
+        <element name="reverse_truncated" file="reverse_truncated.fastq" />
+        <element name="interleaved_truncated" file="interleaved_truncated.fastq" />
+        <element name="singleton_truncated" file="singleton_truncated.fastq" />
+        <element name="collapsed" file="collapsed.fastq" />
+        <element name="collapsed_truncated" file="collapsed_truncated.fastq" />
+        <element name="discarded" file="discarded.fastq" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+# AdapterRemoval
+
+AdapterRemoval searches for and removes adapter sequences from high-throughput sequencing data and optionally trims low quality bases from the 3' end of reads following adapter removal. This tool can analyze both single-end and paired-end data and can be used to merge overlapping paired-end reads into longer consensus sequences. The tool can also construct a consensus adapter sequence for paired-end reads.
+
+## Inputs
+- **Input FASTQ file**: The input FASTQ file containing the sequencing data.
+- **Adapter sequences**: A tabular file containing adapter sequences. The first two columns of each line should correspond to values passed to `--adapter1` and `--adapter2`. Lines starting with `#` are ignored.
+
+## Outputs
+- **Settings**: A file containing information on the parameters used in the run as well as overall statistics on the reads after trimming.
+- **Truncated reads**: Files containing trimmed single-end reads.
+- **Forward truncated reads**: Files containing trimmed mate1 reads.
+- **Reverse truncated reads**: Files containing trimmed mate2 reads.
+- **Interleaved truncated reads**: Files containing trimmed mate 2 reads when `--interleaved-output` is not enabled.
+- **Singleton truncated reads**: Files containing trimmed paired reads for which the mate has been discarded.
+- **Collapsed reads**: If `--collapsed` is set, contains overlapping mate-pairs which have been merged into a single read (PE mode) or reads for which the adapter was identified by a minimum overlap, indicating that the entire template molecule is present. This does not include which have subsequently been trimmed due to low-quality or ambiguous nucleotides.
+- **Collapsed truncated reads**: Collapsed reads (see `--outputcollapsed`) which were trimmed due the presence of low-quality or ambiguous nucleotides.
+- **Discarded reads**: Files containing reads discarded due to the `--minlength`, `--maxlength` or `--maxns` options.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,36 @@
+<tool id="ampvis2_core_community_analysis" name="ampvis2 core community analysis" version="0.1.0" profile="25.0">
+  <description>Investigate core community plots in ampvis2</description>
+  <requirements>
+    <requirement type="package" version="1.0.0">R</requirement>
+    <requirement type="package" version="1.0.0">ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e 'library(ampvis2); amp_core(input_rds, metadata_list, output_file = "${output}", normalise = ${normalize})'
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="metadata_list" type="data" format="txt" label="Metadata List" />
+    <boolean name="normalize" checked="true" truevalue="TRUE" falsevalue="FALSE" label="Normalize Abundances" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="Core Community Plot" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="ampvis2_sample.rds" />
+      <param name="metadata_list" value="ampvis2_metadata.txt" />
+      <param name="normalize" value="false" />
+      <output name="output" file="ampvis2_core_plot.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Investigate core community plots in ampvis2. Normalizes abundances by default.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

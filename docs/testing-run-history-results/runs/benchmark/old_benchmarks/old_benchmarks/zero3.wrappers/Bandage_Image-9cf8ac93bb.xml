@@ -1,0 +1,60 @@
+<tool id="bandage_image" name="Bandage Image" version="2022.09+galaxy0" profile="22.05">
+  <description>generate an image file of the graph visualisation</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">bandage</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2022.09">iuc_bandage</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+Bandage image '$input_gfa' '$output_png'
+    </command>
+  <inputs>
+    <param argument="-s" type="integer" value="400" min="100" max="10000" label="Size of the image" />
+    <param argument="-o" type="data" format="gfa" label="Input GFA file" />
+  </inputs>
+  <outputs>
+    <data name="output_png" format="png" label="${tool.name} on ${on_string}: PNG image" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_gfa" ftype="gfa" value="graph.gfa" />
+      <output name="output_png" ftype="png" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+*THE NEW BANDAGE: As of version 2022.09, the Bandage tool is now built on `Bandage-NG &lt;https://github.com/asl/BandageNG&gt;`_. This fork of the original Bandage is better maintained with additional features and performance upgrades.*
+
+
+
+**Bandage Overview**
+
+Bandage is a GUI program that allows users to interact with the assembly graphs made by de novo assemblers such as Velvet, SPAdes, MEGAHIT and others.
+De novo assembly graphs contain not only assembled contigs but also the connections between those contigs, which were previously not easily accessible. Bandage visualises assembly graphs, with connections, using graph layout algorithms. Nodes in the drawn graph, which represent contigs, can be automatically labelled with their ID, length or depth. Users can interact with the graph by moving, labelling and colouring nodes. Sequence information can also be extracted directly from the graph viewer. By displaying connections between contigs, Bandage opens up new possibilities for analysing and improving de novo assemblies that are not possible by looking at contigs alone.
+
+Bandage works with Graphical Fragment Assembly (GFA) files. For more information about this file format, see here_
+
+.. _here: https://gfa-spec.github.io/GFA-spec/GFA2.html
+
+
+**Command Documentation**
+
+``Bandage image`` will generate an image file of the graph visualisation.
+
+.. image:: $PATH_TO_IMAGES/bandage_graph.png
+   :alt: example bandage plot
+
+Underlying software source documentation:
+- bandage_ng BandageNG-2022.09/README.md: [![GitHub Downloads](https://img.shields.io/github/downloads/asl/BandageNG/total.svg?style=social&amp;logo=github&amp;label=Download)](https://github.com/asl/BandageNG/releases) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asl/BandageNG/build-test?label=checks) # &lt;img src="http://rrwick.github.io/Bandage/images/logo.png" alt="Bandage" width="115" height="115" align="middle"&gt;Bandage-NG ## IMPORTANT: This is a fork of original Bandage repo. It may contain new features, new bugs and otherwise be not compatible with the Bandage by Ryan Wick. The documentation, instructions, etc. might be incomplete, missed and inaccurate as well ## Table of Contents * [Intro](https://github.com/asl/BandageNG#intro) * [Help](https://github.com/asl/BandageNG#help) * [Pre-built binaries](https://github.com/asl/BandageNG#pre-built-binaries)
+- bandage_ng BandageNG-2022.09/README.md: # &lt;img src="http://rrwick.github.io/Bandage/images/logo.png" alt="Bandage" width="115" height="115" align="middle"&gt;Bandage-NG ## IMPORTANT: This is a fork of original Bandage repo. It may contain new features, new bugs and otherwise be not compatible with the Bandage by Ryan Wick. The documentation, instructions, etc. might be incomplete, missed and inaccurate as well ## Table of Contents * [Intro](https://github.com/asl/BandageNG#intro) * [Help](https://github.com/asl/BandageNG#help) * [Pre-built binaries](https://github.com/asl/BandageNG#pre-built-binaries) * [Building from source](https://github.com/asl/BandageNG#building-from-source) * [Contributing](https://github.com/asl/BandageNG#contributing)
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz671</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

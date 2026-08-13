@@ -1,0 +1,107 @@
+<tool id="alphagenome_variant_scorer" name="AlphaGenome Variant Scorer" version="0.6.1+galaxy0" profile="21.05">
+  <description>server-side gene-level aggregation with spatial masking and empirical quantile normalization</description>
+  <macros />
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        python '$__tool_directory__/alphagenome_variant_scorer.py'
+            --variant_id '$variant_id'
+            --scored_interval '$scored_interval'
+            --gene_id '$gene_id'
+            --gene_name '$gene_name'
+            --gene_type '$gene_type'
+            --gene_strand '$gene_strand'
+            --output_type '$output_type'
+            --variant_scorer '$variant_scorer'
+            --track_name '$track_name'
+            --raw_score '$raw_score'
+            --quantile_score '$quantile_score'
+            --output '$output'
+    </command>
+  <inputs>
+    <param name="variant_id" type="text" label="Variant ID" help="chr:pos:ref&gt;alt" value="chr1:1000000:A&gt;T" />
+    <param name="scored_interval" type="text" label="Scored Interval" help="Genomic interval used for scoring" value="chr1:999999-1000001" />
+    <param name="gene_id" type="text" label="Gene ID" help="Ensembl gene ID" value="ENSG00000139618" />
+    <param name="gene_name" type="text" label="Gene Name" help="Gene symbol" value="BRCA1" />
+    <param name="gene_type" type="text" label="Gene Type" help="protein_coding, lncRNA, etc." value="protein_coding" />
+    <param name="gene_strand" type="text" label="Gene Strand" help="+/-" value="+" />
+    <param name="output_type" type="text" label="Output Type" help="RNA_SEQ, ATAC, etc." value="RNA_SEQ" />
+    <param name="variant_scorer" type="text" label="Variant Scorer" help="scorer name" value="RECOMMEND" />
+    <param name="track_name" type="text" label="Track Name" help="specific track" value="RNA_SEQ" />
+    <param name="raw_score" type="text" label="Raw Score" help="raw effect score" value="0.0" />
+    <param name="quantile_score" type="text" label="Quantile Score" help="empirical quantile (0-1)" value="0.0" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: AlphaGenome Variant Scorer" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="variant_id" value="chr1:1000000:A&gt;T" />
+      <param name="scored_interval" value="chr1:999999-1000001" />
+      <param name="gene_id" value="ENSG00000139618" />
+      <param name="gene_name" value="BRCA1" />
+      <param name="gene_type" value="protein_coding" />
+      <param name="gene_strand" value="+" />
+      <param name="output_type" value="RNA_SEQ" />
+      <param name="variant_scorer" value="RECOMMEND" />
+      <param name="track_name" value="RNA_SEQ" />
+      <param name="raw_score" value="0.0" />
+      <param name="quantile_score" value="0.0" />
+      <output name="output" file="output.tabular" ftype="tabular" />
+    </test>
+  </tests>
+  <help>
+**AlphaGenome Variant Scorer**
+
+Scores genetic variants using AlphaGenome's ``score_variant()`` API, which
+performs server-side gene-level aggregation with spatial masking and empirical
+quantile normalization. Returns structured per-gene, per-track scores.
+
+-----
+
+**What it does**
+
+For each variant the tool:
+
+1. Creates a prediction window centered on the variant
+2. Calls ``score_variant()`` with selected scorers from ``RECOMMENDED_VARIANT_SCORERS``
+3. Converts structured AnnData results to tabular format using ``tidy_scores()``
+- ``variant_id`` — chr:pos:ref&gt;alt
+- ``scored_interval`` — genomic interval used for scoring
+- ``gene_id`` — Ensembl gene ID
+- ``gene_name`` — gene symbol
+- ``gene_type`` — protein_coding, lncRNA, etc.
+- ``gene_strand`` — +/-
+- ``output_type`` — RNA_SEQ, ATAC, etc.
+- ``variant_scorer`` — scorer name
+- ``track_name`` — specific track
+- ``raw_score`` — raw effect score
+- ``quantile_score`` — empirical quantile (0-1)
+- **Expression**: RNA_SEQ, RNA_SEQ_ACTIVE
+- **Chromatin**: ATAC, DNASE, ATAC_ACTIVE, DNASE_ACTIVE
+- **Transcription**: CAGE, PROCAP, CAGE_ACTIVE, PROCAP_ACTIVE
+- **TF/Histone**: CHIP_TF, CHIP_HISTONE, CHIP_TF_ACTIVE, CHIP_HISTONE_ACTIVE
+- **Splicing**: SPLICE_SITES, SPLICE_SITE_USAGE, SPLICE_JUNCTIONS
+- **Other**: CONTACT_MAPS, POLYADENYLATION
+4. Outputs one row per variant x gene x track x scorer combination
+
+[Toolsmith note: help text was shortened for prompting; use the preserved usage/options/examples as source of truth.]
+    </help>
+  <citations>
+    <citation type="bibtex">
+@misc{githubalphagenome,
+  author = {Svensson, V.},
+  year = {2023},
+  title = {AlphaGenome},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/viktor Svensson/alphagenome},
+}</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,52 @@
+<tool id="trimn" name="TrimN" version="0.1.0+galaxy0" profile="22.05">
+  <description>removes fake cut sites and trims Ns</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">trimns</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.1.0">trimns</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+python3 '$__tool_directory__/remove_fake_cut_sites_DNAnexus.py' 
+'$input_fasta' 
+'$output_fasta' 
+&gt; '$output_log'
+    </command>
+  <inputs>
+    <param name="input_fasta" type="data" format="fasta" label="Input FASTA" />
+  </inputs>
+  <outputs>
+    <data name="output_fasta" format="fasta" label="${tool.name} on ${on_string}: trimmed FASTA" />
+    <data name="output_log" format="txt" label="${tool.name} on ${on_string}: log" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_fasta" value="example.fasta" />
+      <output name="output_fasta" ftype="fasta" compare="sim_size" />
+      <output name="output_log" ftype="txt" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+.. class:: infomark
+
+**What it does**
+
+TrimNs is part of the VGP pipeline, and is made of a series of python scripts which trim off large stretches of N bases and to
+remove fake cut sites that sometimes get inserted at the end of bionano hybrid scaffolds.
+
+Underlying software source documentation:
+- trimns_vgp vgp-assembly-01ae8b83dbbc4ba77f8d6cd289999211e642e143/pipeline/bionano/trimNs/README.md: ## Details of each script ### remove_fake_cut_sites_DNAnexus.py This script removes the spurious BioNano cut sites that are inserted into gaps in some assemblies, replacing them with Ns. ``` Usage: python3 remove_fake_cut_sites_DNAnexus.py &lt;input.fa&gt; &lt;output.fa&gt; &lt;output.log&gt; ```
+- trimns_vgp vgp-assembly-01ae8b83dbbc4ba77f8d6cd289999211e642e143/pipeline/bionano/trimNs/README.md: into gaps in some assemblies, replacing them with Ns. ``` Usage: python3 remove_fake_cut_sites_DNAnexus.py &lt;input.fa&gt; &lt;output.fa&gt; &lt;output.log&gt; ``` Where: * `input.fa` is the input FASTA file * `output.fa` is the output with any cut sites in the middle of a run of
+- trimns_vgp vgp-assembly-01ae8b83dbbc4ba77f8d6cd289999211e642e143/pipeline/bionano/trimNs/README.md: ### trim_Ns_DNAnexus.py This identifies runs of Ns near the ends of sequences (despite the name of the script, it only identifies these regions; it does not actually trim them). More specifically, it identifies runs of Ns that are *directly* at the ends of scaffolds, but it also removes runs of Ns that are very near the ends of scaffolds (it looks at the 5 kb window at each end of the scaffold, and if more than 3 kb of that is Ns, it slides the
+- trimns_vgp vgp-assembly-01ae8b83dbbc4ba77f8d6cd289999211e642e143/pipeline/bionano/trimNs/README.md: takes this into account. ``` Usage: python3 trim_Ns_DNAnexus.py &lt;input.fa&gt; &lt;output.list&gt; ``` Where: * `input.fa` is the input FASTA file * `output.list` is a record of the locations for trimming
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz005</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

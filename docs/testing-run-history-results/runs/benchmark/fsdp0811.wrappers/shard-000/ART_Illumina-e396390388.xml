@@ -1,0 +1,165 @@
+<tool id="art_illumina" name="ART Illumina" version="2.5.8+galaxy0" profile="21.05">
+  <description>Simulate Illumina sequencing reads</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">art</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.5.8">art</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        #if $input_type == "fasta":
+            ln -s '$input_fasta' input.fa &amp;&amp;
+        #else:
+            ln -s '$input_fasta' input.fa.gz &amp;&amp;
+        #end if
+        art_illumina
+            -i input.fa
+            -l $read_length
+            -o output
+            -p $pairing
+            -m $insert_size
+            -s $insert_size_std
+            -f $coverage
+            -q $quality
+            -a $adapter
+            -n $adapter_length
+            -r $adapter_mismatch
+            -t \${GALAXY_SLOTS:-1}
+            -x $seed
+            -e $error_rate
+            -u $unpaired
+            -c $circular
+            -C $circular
+            -M $mismatches
+            -R $read_group
+            -T $tag
+            -G $gap
+            -g $gap_std
+            -S $seed
+            -N $n_base
+            -Q $q_base
+            -B $base
+            -D $dimer
+            -E $error
+            -F $flowcell
+            -H $hetero
+            -K $kmer
+            -L $length
+            -O $offset
+            -P $polymerase
+            -W $window
+            -Y $yield
+            -Z $zlib
+            -h
+    </command>
+  <inputs>
+    <param name="input_type" type="select" label="Input type" help="Select the type of input file you have">
+      <option value="fasta">FASTA</option>
+      <option value="fastq">FASTQ</option>
+    </param>
+    <param name="input_fasta" type="data" format="fasta,fastq" label="Input file" help="Select the input file to use for the simulation" />
+    <param name="read_length" type="integer" value="100" label="Read length" help="The length of the reads to generate" />
+    <param name="pairing" type="select" label="Pairing" help="Select the type of reads to generate">
+      <option value="SE">Single-end</option>
+      <option value="PE">Paired-end</option>
+      <option value="MP">Mate-pair</option>
+      <option value="AM">Amplicon</option>
+    </param>
+    <param name="insert_size" type="integer" value="200" label="Insert size" help="The insert size for paired-end or mate-pair reads" />
+    <param name="insert_size_std" type="integer" value="20" label="Insert size standard deviation" help="The standard deviation of the insert size for paired-end or mate-pair reads" />
+    <param name="coverage" type="float" value="10" label="Coverage" help="The coverage of the reads" />
+    <param name="quality" type="integer" value="20" label="Quality" help="The quality of the reads" />
+    <param name="adapter" type="text" value="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC" label="Adapter" help="The adapter sequence to use" />
+    <param name="adapter_length" type="integer" value="10" label="Adapter length" help="The length of the adapter sequence to use" />
+    <param name="adapter_mismatch" type="integer" value="1" label="Adapter mismatch" help="The number of mismatches allowed in the adapter sequence" />
+    <param name="seed" type="integer" value="0" label="Seed" help="The seed for the random number generator" />
+    <param name="error_rate" type="float" value="0.001" label="Error rate" help="The error rate for the reads" />
+    <param name="unpaired" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Unpaired" help="Generate unpaired reads" />
+    <param name="circular" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Circular" help="Generate circular reads" />
+    <param name="mismatches" type="integer" value="0" label="Mismatches" help="The number of mismatches to allow" />
+    <param name="read_group" type="text" value="0" label="Read group" help="The read group to use" />
+    <param name="tag" type="text" value="0" label="Tag" help="The tag to use" />
+    <param name="gap" type="integer" value="0" label="Gap" help="The gap to use" />
+    <param name="gap_std" type="integer" value="0" label="Gap standard deviation" help="The standard deviation of the gap to use" />
+    <param name="n_base" type="integer" value="0" label="N base" help="The number of N bases to use" />
+    <param name="q_base" type="integer" value="0" label="Q base" help="The Q base to use" />
+    <param name="base" type="integer" value="0" label="Base" help="The base to use" />
+    <param name="dimer" type="integer" value="0" label="Dimer" help="The dimer to use" />
+    <param name="error" type="integer" value="0" label="Error" help="The error to use" />
+    <param name="flowcell" type="integer" value="0" label="Flowcell" help="The flowcell to use" />
+    <param name="hetero" type="integer" value="0" label="Hetero" help="The hetero to use" />
+    <param name="kmer" type="integer" value="0" label="Kmer" help="The kmer to use" />
+    <param name="length" type="integer" value="0" label="Length" help="The length to use" />
+    <param name="offset" type="integer" value="0" label="Offset" help="The offset to use" />
+    <param name="polymerase" type="integer" value="0" label="Polymerase" help="The polymerase to use" />
+    <param name="window" type="integer" value="0" label="Window" help="The window to use" />
+    <param name="yield" type="integer" value="0" label="Yield" help="The yield to use" />
+    <param name="zlib" type="integer" value="0" label="Zlib" help="The zlib to use" />
+  </inputs>
+  <outputs>
+    <data name="output" format="fastq" label="${tool.name} on ${on_string}: Output" from_work_dir="output.fastq" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_type" value="fasta" />
+      <param name="input_fasta" value="input.fa" />
+      <param name="read_length" value="100" />
+      <param name="pairing" value="SE" />
+      <param name="insert_size" value="200" />
+      <param name="insert_size_std" value="20" />
+      <param name="coverage" value="10" />
+      <param name="quality" value="20" />
+      <param name="adapter" value="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC" />
+      <param name="adapter_length" value="10" />
+      <param name="adapter_mismatch" value="1" />
+      <param name="seed" value="0" />
+      <param name="error_rate" value="0.001" />
+      <param name="unpaired" value="0" />
+      <param name="circular" value="0" />
+      <param name="mismatches" value="0" />
+      <param name="read_group" value="0" />
+      <param name="tag" value="0" />
+      <param name="gap" value="0" />
+      <param name="gap_std" value="0" />
+      <param name="n_base" value="0" />
+      <param name="q_base" value="0" />
+      <param name="base" value="0" />
+      <param name="dimer" value="0" />
+      <param name="error" value="0" />
+      <param name="flowcell" value="0" />
+      <param name="hetero" value="0" />
+      <param name="kmer" value="0" />
+      <param name="length" value="0" />
+      <param name="offset" value="0" />
+      <param name="polymerase" value="0" />
+      <param name="window" value="0" />
+      <param name="yield" value="0" />
+      <param name="zlib" value="0" />
+      <output name="output" file="output.fastq" ftype="fastq" />
+    </test>
+  </tests>
+  <help>
+Art Illumina Simulator
+======================
+
+ART (art_Illumina Q version) is a simulation program to generate sequence read
+data of Illumina sequencers. ART generates reads according to the empirical
+read quality profile summarized from large real read data. ART has been using
+for testing or benchmarking a variety of methods or tools for next-generation
+sequencing data analysis, including read alignment, de novo assembly, detection
+of SNP, CNV, or other structure variation.
+
+art_Illumina can generate single-end, paired-end,  mate-pair reads, and
+amplicon sequencing simulation of Illumina sequencing platform. Its outputs
+include FASTQ read, ALN and/or SAM alignment files.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btr388</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

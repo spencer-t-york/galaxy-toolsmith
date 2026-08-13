@@ -1,0 +1,34 @@
+<tool id="ampvis2_otu_network_plot" name="ampvis2 OTU network plot" version="0.1.0" profile="25.0">
+  <description>Generates network plot of taxa and samples.</description>
+  <requirements>
+    <requirement type="package" version="1.0">R</requirement>
+    <requirement type="package" version="1.0">ggnet2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e "library(ampvis2); library(ggnet2); amp_otu_network(input_rds, metadata_list, output_file = '${output_file}')"
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="metadata_list" type="data" format="txt" label="Metadata List" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="html" label="OTU Network Plot" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="example.rds" />
+      <param name="metadata_list" value="example_metadata.txt" />
+      <output name="output_file" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Generates network plot of taxa and samples using the `amp_otu_network` function from the ampvis2 package.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

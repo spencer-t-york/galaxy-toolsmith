@@ -1,0 +1,40 @@
+<tool id="abricate" name="ABRicate" version="0.1.0" profile="25.0">
+  <description>Identify antibiotic resistance genes in sequences</description>
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abricate $input_file -db $database &gt; $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="fasta,genbank" label="Input FASTA or GenBank file" />
+    <param name="database" type="select" label="Database">
+      <option value="card">CARD</option>
+      <option value="ncbi">NCBI</option>
+      <option value="resfinder">ResFinder</option>
+      <option value="plasmidfinder">PlasmidFinder</option>
+      <option value="virulencefinder">VirulenceFinder</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="ABRicate output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="example.fa" />
+      <param name="database" value="resfinder" />
+      <output name="output_file" file="abricate_resfinder_output.tab" />
+    </test>
+  </tests>
+  <help format="markdown">
+        ABRicate identifies antibiotic resistance genes in sequences.
+        Choose the appropriate database for analysis.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

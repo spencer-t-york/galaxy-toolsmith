@@ -1,0 +1,56 @@
+<tool id="art_illumina" name="ART Illumina" version="0.1.0" profile="25.0">
+    <description>Simulate Illumina sequencing reads</description>
+    <requirements>
+        <requirement type="package" version="454">art_profiler_454</requirement>
+        <requirement type="package" version="illumina">art_profiler_illumina</requirement>
+    </requirements>
+    <command detect_errors="aggressive"><![CDATA[
+        art_illumina -i $input -o $output_prefix --reads $reads --len $length --mflen $mean_fragment_length --sdlen $std_dev_fragment_length --qual $quality --seqtype $seqtype --out $output_prefix
+    ]]></command>
+    <inputs>
+        <param name="input" type="directory" label="Input directory containing FASTQ files"/>
+        <param name="output_prefix" type="text" label="Output prefix"/>
+        <param name="reads" type="select" label="Reads type">
+            <option value="single">Single-end</option>
+            <option value="paired">Paired-end</option>
+            <option value="matepair">Mate-pair</option>
+        </param>
+        <param name="length" type="integer" label="Read length" min="1"/>
+        <param name="mean_fragment_length" type="float" label="Mean fragment length" min="1"/>
+        <param name="std_dev_fragment_length" type="float" label="Standard deviation of fragment length" min="0"/>
+        <param name="quality" type="float" label="Quality score" min="0" max="40"/>
+        <param name="seqtype" type="select" label="Sequence type">
+            <option value="DNA">DNA</option>
+            <option value="RNA">RNA</option>
+        </param>
+    </inputs>
+    <outputs>
+        <collection name="output_reads" type="list" label="Output reads">
+            <element name="forward_read" path="$output_prefix"_1.fq.gz" type="fastq"/>
+            <element name="reverse_read" path="$output_prefix"_2.fq.gz" type="fastq"/>
+        </collection>
+        <element name="alignment_file" path="$output_prefix".sam type="tabular"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="input" value="sample_input"/>
+            <param name="output_prefix" value="test_output"/>
+            <param name="reads" value="paired"/>
+            <param name="length" value="150"/>
+            <param name="mean_fragment_length" value="300"/>
+            <param name="std_dev_fragment_length" value="50"/>
+            <param name="quality" value="30"/>
+            <param name="seqtype" value="DNA"/>
+            <output_collection name="output_reads" type="list">
+                <element name="forward_read" file="test_output_1.fq.gz" checksum="sha1sum_of_test_output_1.fq.gz"/>
+                <element name="reverse_read" file="test_output_2.fq.gz" checksum="sha1sum_of_test_output_2.fq.gz"/>
+            </output_collection>
+            <output name="alignment_file" file="test_output.sam" checksum="sha1sum_of_test_output.sam"/>
+        </test>
+    </tests>
+    <help format="markdown"><![CDATA[
+# ART Illumina Simulator
+
+Simulates Illumina sequencing reads based on input FASTQ files.
+    ]]></help>
+</tool>

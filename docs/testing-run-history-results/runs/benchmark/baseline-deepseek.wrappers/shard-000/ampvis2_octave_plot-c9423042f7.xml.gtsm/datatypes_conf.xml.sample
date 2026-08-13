@@ -1,0 +1,6 @@
+<datatypes>
+  <!-- Review these placeholders before installing into a Galaxy instance. -->
+  <datatype extension="${format}" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="ampvis2" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="list" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+</datatypes>

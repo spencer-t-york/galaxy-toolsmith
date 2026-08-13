@@ -1,0 +1,58 @@
+<tool id="ampligone" name="AmpliGone" version="0.1.0" profile="25.0">
+  <description>Trim primers from NGS reads using BED coordinates</description>
+  <requirements>
+    <requirement type="package">ampligone</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        ampligone -i $input1 -b $bed_file -t $amplicon_type -o $output1
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="fastq,bam" label="Input reads" />
+    <param name="bed_file" type="data" format="bed" label="Primer coordinates" />
+    <param name="amplicon_type" type="select" label="Amplicon type">
+      <option value="end-to-end">End-to-end</option>
+      <option value="end-to-mid">End-to-mid</option>
+      <option value="fragmented">Fragmented</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output1" format="fastq" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="test_input.fastq" />
+      <param name="bed_file" value="test_primers.bed" />
+      <param name="amplicon_type" value="end-to-end" />
+      <output name="output1" file="test_output.fastq">
+        <has_text>Trimmed reads</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AmpliGone
+        
+        Trims primer sequences from NGS reads based on BED coordinates. Works with FASTQ and BAM inputs.
+        
+        ## Input Requirements
+        
+        - Input reads: FASTQ or BAM formatted file
+        - Primer coordinates: BED file with primer locations
+        - Amplicon type: Select from end-to-end, end-to-mid, or fragmented
+        
+        ## Output
+        
+        Cleaned reads in FASTQ format.
+        
+        ## Links
+        
+        - [Official Repository](https://github.com/RIVM-bioinformatics/AmpliGone)
+        - [User Guide](https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/)
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

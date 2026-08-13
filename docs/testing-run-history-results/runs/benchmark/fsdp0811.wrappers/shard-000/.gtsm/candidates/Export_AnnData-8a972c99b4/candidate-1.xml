@@ -1,0 +1,114 @@
+<tool id="export_anndata" name="Export AnnData" version="0.1.0">
+  <description>to tabular files</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        python '$__tool_directory__/export.py'
+        --input '$input'
+        --output '$output'
+        --obs '$obs'
+        --var '$var'
+        --layers '$layers'
+        --obsm '$obsm'
+        --varm '$varm'
+        --uns '$uns'
+        --dtype '$dtype'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="h5ad" label="AnnData dataset" help="AnnData dataset to export" />
+    <param name="obs" type="select" label="Observations" help="Observations to export">
+      <option value="all" selected="true">All</option>
+      <option value="none">None</option>
+    </param>
+    <param name="var" type="select" label="Variables" help="Variables to export">
+      <option value="all" selected="true">All</option>
+      <option value="none">None</option>
+    </param>
+    <param name="layers" type="select" label="Layers" help="Layers to export">
+      <option value="all" selected="true">All</option>
+      <option value="none">None</option>
+    </param>
+    <param name="obsm" type="select" label="Observation metadata" help="Observation metadata to export">
+      <option value="all" selected="true">All</option>
+      <option value="none">None</option>
+    </param>
+    <param name="varm" type="select" label="Variable metadata" help="Variable metadata to export">
+      <option value="all" selected="true">All</option>
+      <option value="none">None</option>
+    </param>
+    <param name="uns" type="select" label="Unstructured annotations" help="Unstructured annotations to export">
+      <option value="all" selected="true">All</option>
+      <option value="none">None</option>
+    </param>
+    <param name="dtype" type="select" label="Data type" help="Data type to use for the exported data">
+      <option value="float32" selected="true">Float32</option>
+      <option value="float64">Float64</option>
+      <option value="int32">Int32</option>
+      <option value="int64">Int64</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: Tabular files" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="input.h5ad" />
+      <param name="obs" value="all" />
+      <param name="var" value="all" />
+      <param name="layers" value="all" />
+      <param name="obsm" value="all" />
+      <param name="varm" value="all" />
+      <param name="uns" value="all" />
+      <param name="dtype" value="float32" />
+      <output name="output" file="output.tabular" ftype="tabular" lines_diff="2" />
+    </test>
+  </tests>
+  <help>
+This tool exports an AnnData dataset to a tabular files (`write_csvs method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html&gt;`__)
+
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy &lt;https://github.com/theislab/scanpy&gt;`__, for which it was initially developed.
+
+AnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.
+
+.. image:: https://falexwolf.de/img/scanpy/anndata.svg
+
+
+AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics
+of statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics
+and machine learning packages in Python (statsmodels, scikit-learn).
+
+More details on the `AnnData documentation
+&lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html&gt;`__
+
+
+**Loom data**
+
+Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+
+.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png
+
+
+Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes
+and cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).
+    </help>
+  <citations>
+    <citation type="bibtex">
+            @misc{githubanndata,
+            author = {Theis, F. and Wolf, F. and Hafemeister, C. and Buettner, F. and Saeys, Y. and Haghverdi, L. and Buettner, F. and Trillinger, C. and Luebb, J. and Reinius, B. and others},
+            year = {2017},
+            title = {anndata},
+            publisher = {GitHub},
+            journal = {GitHub repository},
+            url = {https://github.com/scverse/anndata},
+        }</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

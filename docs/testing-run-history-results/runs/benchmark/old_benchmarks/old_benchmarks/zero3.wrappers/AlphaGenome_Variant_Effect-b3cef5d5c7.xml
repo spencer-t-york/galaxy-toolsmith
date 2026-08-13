@@ -1,0 +1,114 @@
+<tool id="alphagenome_variant_effect" name="AlphaGenome Variant Effect" version="0.6.1+galaxy0">
+  <description>Predicts effects of genetic variants</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">alphagenome</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+python '$__tool_directory__/alphagenome_variant_effect.py'
+--input_vcf '${vcf}'
+--output_html '${html_out}'
+--organism '${organism}'
+--tissue '${tissue}'
+--context_size ${context_size}
+--max_lfc ${max_lfc}
+    </command>
+  <inputs>
+    <param argument="--input_vcf" type="data" format="vcf" label="Input VCF" />
+    <param argument="--organism" type="select" label="Organism">
+      <option value="hg38">Human (hg38)</option>
+      <option value="mm10">Mouse (mm10)</option>
+    </param>
+    <param argument="--tissue" type="text" label="Tissue/cell type context" optional="true" help="Common ontology terms: UBERON:0001157, UBERON:0002107, UBERON:0000955, CL:0000746, CL:0000540." />
+    <param argument="--context_size" type="integer" min="16" max="1024" step="16" label="Context size" help="Larger windows capture more genomic context but cost more compute.">
+      <option value="16">16 KB</option>
+      <option value="128">128 KB</option>
+      <option value="512">512 KB</option>
+      <option value="1024" selected="true">1 MB</option>
+    </param>
+    <param argument="--max_lfc" type="float" value="10" label="Max LFC" help="RNA-seq max absolute log-fold-change" />
+  </inputs>
+  <outputs>
+    <data name="html_out" format="html" label="${tool.name} on ${on_string}: Predicted Effects" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="vcf" value="variants.vcf" />
+      <param name="organism" value="hg38" />
+      <param name="context_size" value="128" />
+      <param name="max_lfc" value="10" />
+      <output name="html_out" ftype="html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**AlphaGenome Variant Effect Predictor**
+
+Scores genetic variants using Google DeepMind's AlphaGenome model via
+``predict_variant()``. For each variant in the input VCF, the tool predicts
+reference and alternate genomic tracks and computes a max absolute
+log-fold-change (LFC) score for each selected output type.
+
+-----
+
+**What it does**
+
+For each variant the tool:
+
+1. Creates a prediction window centered on the variant
+2. Calls AlphaGenome ``predict_variant()`` to get reference and alternate track predictions
+3. Computes max absolute log2(alt / ref) across the track as an effect score
+4. Annotates the VCF INFO field with per-type scores and an overall max
+
+-----
+
+**Output INFO fields**
+
+- ``AG_RNA_LFC`` — RNA-seq max absolute log-fold-change
+- ``AG_ATAC_LFC`` — ATAC-seq max absolute log-fold-change
+- ``AG_SPLICE_LFC`` — Splice sites max absolute log-fold-change
+- ``AG_MAX_EFFECT`` — Overall max across all selected types
+
+(Additional fields appear for each selected output type.)
+
+
+**Organisms**
+
+- **Human (hg38)** — Homo sapiens
+- **Mouse (mm10)** — Mus musculus
+
+No reference genome file is needed; the API handles sequence context internally.
+
+
+**Ontology terms**
+
+Optional tissue/cell type context for predictions. Common terms:
+
+- ``UBERON:0001157`` — Peyer's patch
+- ``UBERON:0002107`` — Liver
+- ``UBERON:0000955`` — Brain
+- ``CL:0000746`` — Cardiac muscle cell
+- ``CL:0000540`` — Neuron
+
+
+**Prediction window sizes**
+
+Larger windows capture more genomic context but cost more compute:
+
+- **16 KB** — Fast, minimal context
+- **128 KB** — Good for most variants
+- **512 KB** — Extended regulatory context
+- **1 MB** — Maximum context (default, recommended)
+
+    </help>
+  <citations>
+    <citation type="doi">10.1101/2022.01.11.475620</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

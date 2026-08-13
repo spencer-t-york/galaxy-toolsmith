@@ -1,0 +1,55 @@
+<tool id="ampvis2_rank_abundance_plot" name="ampvis2 rank abundance plot" version="0.1.0" profile="25.0">
+  <description>Generates a rank abundance curve using ampvis2</description>
+  <requirements>
+    <requirement type="package">ampvis2</requirement>
+    <requirement type="package">ggplot2</requirement>
+    <requirement type="package">reshape2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla $TOOL_DIRECTORY/ampvis2_rankabundance.R \
+            --input_rds $input_rds \
+            --metadata $metadata \
+            --output_plot $output_plot \
+            --format $format
+    </command>
+  <inputs>
+    <data name="input_rds" format="rds" label="Ampvis2 RDS dataset" optional="true" default="true">
+      <description>ampvis2 RDS dataset (e.g., from ampvis2: load)</description>
+    </data>
+    <data name="metadata" format="metadata" label="Metadata list" optional="true" default="true">
+      <description>Metadata list (e.g., from ampvis2: load)</description>
+    </data>
+  </inputs>
+  <outputs>
+    <data name="output_plot" format="pdf">
+      <description>Rank abundance plot</description>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <has_size name="output_plot" size="1" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # ampvis2 rank abundance plot
+        
+        Generates a rank abundance curve (rank abundance vs cumulative read abundance),
+        optionally with standard deviation from mean intervals.
+        
+        ## Input
+        
+        - Ampvis2 RDS dataset (e.g., from ampvis2: load)
+        - Metadata list (e.g., from ampvis2: load)
+        
+        ## Output
+        
+        - Rank abundance plot in PDF or PNG format
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

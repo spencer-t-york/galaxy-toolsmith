@@ -1,0 +1,110 @@
+<tool id="alphagenome_sequence_predictor" name="AlphaGenome Sequence Predictor" version="0.1.0+galaxy0" profile="23.09">
+  <description>Predict regulatory tracks from raw DNA sequence</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">alphagenome</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <version_command>python3 -m alphagenome_sequence_predictor --version</version_command>
+  <command detect_errors="exit_code">
+        python3 -m alphagenome_sequence_predictor
+            --input_sequences '$sequences'
+            --window_size $window_size
+            --output_mode $output_mode
+            --output_file $output
+    </command>
+  <inputs>
+    <param name="sequences" type="data" format="fasta" label="Input sequences" />
+    <param argument="--window_size" type="integer" value="16384" min="1" label="Prediction window size" />
+    <param argument="--output_mode" type="select" label="Output mode">
+      <option value="summary">Summary</option>
+      <option value="binned">Binned</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: Predicted Regulatory Tracks" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="sequences" value="example.fa" />
+      <param name="window_size" value="16384" />
+      <param name="output_mode" value="summary" />
+      <output name="output" file="predicted_tracks_summary.tsv" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**AlphaGenome Sequence Predictor**
+
+Predicts regulatory tracks from raw DNA sequence using AlphaGenome's
+``predict_sequence()`` API. No genomic coordinates needed — designed for
+synthetic biology sequences, designed regulatory elements, and
+non-reference assemblies.
+
+-----
+
+**What it does**
+
+For each sequence in the input FASTA file:
+
+1. Pads short sequences with N bases (centered) or center-trims long sequences
+   to fit the prediction window size
+2. Calls ``predict_sequence()`` for selected output types
+3. Computes summary statistics over the actual sequence content (excluding N padding)
+4. Reports per-track values in tabular format
+
+-----
+
+**Sequence handling**
+
+- Sequences **shorter** than the window size are N-padded (centered). The model
+  still makes predictions, and statistics are computed only over the real content.
+- Sequences **longer** than the window are center-trimmed to fit.
+- Sequences **equal** to the window size are used as-is.
+
+For typical synbio applications (promoters, enhancers, etc.), the 16 KB window
+is recommended as sequences are usually short.
+
+
+**Output modes**
+
+- **Summary**: One row per sequence x track with mean and max signal.
+- **Binned**: Divides each sequence into fixed-width bins (default 128bp) and
+  reports mean signal per bin for spatial resolution.
+
+
+**Output columns — summary mode**
+
+- ``sequence_id`` — FASTA header ID
+- ``sequence_length`` — original sequence length before padding/trimming
+- ``output_type`` — RNA_SEQ, ATAC, etc.
+- ``track_name`` — specific experimental track
+- ``ontology_curie`` — tissue/cell type ontology term
+- ``mean_signal`` — mean predicted signal
+- ``max_signal`` — maximum predicted signal
+
+**Output columns — binned mode**
+
+- ``sequence_id`` — FASTA header ID
+- ``bin_start``, ``bin_end`` — bin coordinates within the sequence
+- ``output_type``, ``track_name``, ``ontology_curie`` — as above
+- ``mean_signal`` — mean predicted signal in the bin
+
+
+**Use cases**
+
+- Evaluate designed promoter/enhancer sequences
+- Predict splicing of synthetic gene constructs
+- Characterize regulatory elements from non-reference genomes
+- Compare predicted activity of sequence variants in synthetic biology
+    </help>
+  <citations>
+    <citation type="doi">10.1101/2023.07.11.548600</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

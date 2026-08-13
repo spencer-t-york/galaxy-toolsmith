@@ -1,0 +1,77 @@
+<tool> tags, and that there are no markdown or extra explanations outside the XML. Everything should be self-contained without referencing external files unless necessary.
+</think>
+
+```xml
+<tool id="alphagenome_variant_effect" name="AlphaGenome Variant Effect" version="0.1.0" profile="25.0">
+    <description>Variant effect prediction using AlphaGenome model</description>
+    <requirements>
+        <requirement type="package">python</requirement>
+        <requirement type="package">alphagenome</requirement>
+    </requirements>
+    <command detect_errors="aggressive"><![CDATA[
+        $tool_directory/alphagenome_variant_effect.py
+        --vcf $input_vcf
+        --output $output_vcf
+        --rna_lfc $AG_RNA_LFC
+        --atac_lfc $AG_ATAC_LFC
+        --splice_lfc $AG_SPLICE_LFC
+        --organism $organism
+        --ontology_term $ontology_term
+        --window_size $window_size
+    ]]></command>
+    <inputs>
+        <param name="input_vcf" type="data" format="vcf" label="Input VCF file"/>
+        <param name="AG_RNA_LFC" type="integer" label="RNA-seq max LFC" default="2"/>
+        <param name="AG_ATAC_LFC" type="integer" label="ATAC-seq max LFC" default="2"/>
+        <param name="AG_SPLICE_LFC" type="integer" label="Splice sites max LFC" default="2"/>
+        <param name="organism" type="select" label="Organism">
+            <option value="hg38">Human (hg38)</option>
+            <option value="mm10">Mouse (mm10)</option>
+        </param>
+        <param name="ontology_term" type="text" label="Ontology term (e.g., UBERON:0001157)" optional="true"/>
+        <param name="window_size" type="select" label="Prediction window size">
+            <option value="16384">16 KB (minimal context)</option>
+            <option value="131072">128 KB (default)</option>
+            <option value="524288">512 KB (extended)</option>
+            <option value="1048576">1 MB (max context)</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output_vcf" format="vcf" label="Annotated VCF"/>
+        <data name="output_report" format="html" label="Analysis report"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="2">
+            <param name="input_vcf" value="input.vcf"/>
+            <output name="output_vcf">
+                <has_text>AG_RNA_LFC</has_text>
+                <has_text>AG_ATAC_LFC</has_text>
+                <has_text>AG_SPLICE_LFC</has_text>
+            </output>
+        </test>
+    </tests>
+    <help format="markdown"><![CDATA[
+        # AlphaGenome Variant Effect Predictor
+        
+        Predicts variant effects using AlphaGenome model. For each variant in the input VCF:
+        
+        1. Creates prediction window centered on variant
+        2. Predicts reference and alternate tracks
+        3. Computes max absolute log2(alt/ref) scores
+        4. Annotates VCF with effect scores
+        
+        ## Parameters
+        
+        - **RNA-seq max LFC**: Max RNA log-fold-change threshold
+        - **ATAC-seq max LFC**: Max ATAC log-fold-change threshold
+        - **Splice sites max LFC**: Max splice log-fold-change threshold
+        - **Organism**: Species (Human or Mouse)
+        - **Ontology term**: Optional tissue/cell type (e.g., UBERON IDs)
+        - **Prediction window size**: Context window size for prediction
+        
+        ## Output
+        
+        - Annotated VCF with effect scores
+        - HTML report with analysis results
+    ]]></help>
+</tool>

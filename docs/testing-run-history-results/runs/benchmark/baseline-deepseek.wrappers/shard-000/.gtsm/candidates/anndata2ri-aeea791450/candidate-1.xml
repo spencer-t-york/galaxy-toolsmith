@@ -1,0 +1,67 @@
+<tool id="anndata2ri" name="anndata2ri" version="0.1.0" profile="25.0">
+  <description>Convert between Anndata and SingleCellExperiment objects</description>
+  <requirements>
+    <requirement type="package">anndata2ri=1.3.2</requirement>
+    <requirement type="package">rpy2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        if $conversion_mode == 'to_r':
+            anndata2ri --to-r $input_file --output $output_file
+        else:
+            anndata2ri --from-r $input_file --output $output_file
+    </command>
+  <inputs>
+    <conditional name="conversion_mode">
+      <param name="conversion_mode" type="select" label="Conversion Direction">
+        <option value="to_r">Anndata to SingleCellExperiment (R)</option>
+        <option value="from_r">SingleCellExperiment (R) to Anndata</option>
+      </param>
+      <when value="to_r">
+        <param name="input_file" type="data" format="h5ad" label="Input Anndata file" />
+      </when>
+      <when value="from_r">
+        <param name="input_file" type="data" format="rds" label="Input SingleCellExperiment file" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="h5ad" when="conversion_mode='from_r'">
+      <metadata>
+        <set value="h5ad" name="file_ext" />
+      </metadata>
+    </data>
+    <data name="output_file" format="rds" when="conversion_mode='to_r'">
+      <metadata>
+        <set value="rds" name="file_ext" />
+      </metadata>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="conversion_mode.conversion_mode" value="to_r" />
+      <input name="input_file" file="test_input.h5ad" />
+      <output name="output_file" file="test_output.rds">
+        <has_text>SingleCellExperiment</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # Anndata2ri
+        
+        Convert between Anndata and SingleCellExperiment objects. This tool facilitates the exchange of single-cell data between Python (Anndata) and R (SingleCellExperiment) formats.
+        
+        ## Usage
+        
+        - **To R**: Convert an Anndata file (.h5ad) to a SingleCellExperiment file (.rds).
+        - **From R**: Convert a SingleCellExperiment file (.rds) to an Anndata file (.h5ad).
+        
+        For conversion of other single-cell file formats, consider using the **SCEasy Converter** tool.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

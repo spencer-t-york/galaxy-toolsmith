@@ -1,0 +1,38 @@
+<tool id="abricate_list" name="ABRicate List" version="0.1.0" profile="25.0">
+  <description>List antibiotic databases used by ABRicate</description>
+  <requirements>
+    <requirement type="package">abricate=1.4.0</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abricate list &gt; output.txt
+    </command>
+  <inputs />
+  <outputs>
+    <output name="output" type="txt" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <output name="output">
+        <has_text>Database: aac(6')-aph(2'')_1</has_text>
+        <has_text>Database: aadD_1</has_text>
+        <has_text>Database: blaZ_32</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ABRicate List
+        
+        Lists all antibiotic resistance gene databases used by ABRicate.
+        
+        ## Output
+        
+        - `output.txt`: Text file containing the list of available databases.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

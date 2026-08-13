@@ -1,0 +1,90 @@
+<tool id="ampvis2_boxplot" name="ampvis2 boxplot" version="2.4+galaxy0" profile="21.09">
+  <description>generates boxplots of the most abundant taxa</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.4">iuc-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+        Rscript '$__tool_directory__/boxplot.R'
+            --input '$input'
+            --metadata '$metadata'
+            #if $output_format == 'html':
+                --html
+            #end if
+            --taxon '$taxon'
+            --groupby '$groupby'
+            --top '$top'
+            --mincount '$mincount'
+            --maxcount '$maxcount'
+            --out '$out'
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="rds" label="Amplicon dataset" />
+    <param argument="--metadata" type="data" format="tabular" label="Metadata table" />
+    <param argument="--output-format" type="select" label="Output format">
+      <option value="png">PNG</option>
+      <option value="svg">SVG</option>
+      <option value="html" selected="true">HTML</option>
+    </param>
+    <param argument="--taxon" type="text" value="" label="Taxon to plot" help="Leave empty to plot all taxa." />
+    <param argument="--groupby" type="text" value="" label="Grouping variable" help="Leave empty to plot all samples." />
+    <param argument="--top" type="integer" min="0" value="0" label="Number of top taxa to plot" help="Set to 0 to plot all taxa." />
+    <param argument="--mincount" type="integer" min="0" value="0" label="Minimum count per taxon" help="Set to 0 to ignore this filter." />
+    <param argument="--maxcount" type="integer" min="0" value="0" label="Maximum count per taxon" help="Set to 0 to ignore this filter." />
+  </inputs>
+  <outputs>
+    <data name="out" format="png" label="${tool.name} on ${on_string}: PNG" />
+    <data name="out_html" format="html" label="${tool.name} on ${on_string}: HTML">
+      <filter>output_format == 'html'</filter>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" ftype="rds" value="AalborgWWTPs.rds" />
+      <param name="metadata" ftype="tabular" value="AalborgWWTPs-metadata.tabular" />
+      <param name="output_format" value="png" />
+      <output name="out" file="AalborgWWTPs-boxplot.png" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates boxplots of the most abundant taxa.
+
+The Galaxy tool calls the `amp_boxplot
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_boxplot.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+Boxplot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-015-0076-x</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,51 @@
+<tool id="art_solid" name="ART SOLiD" version="0.1.0" profile="25.0">
+  <description>Simulate SOLiD sequencing reads using ART_SOLiD</description>
+  <requirements>
+    <requirement type="package">iuc/art</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        art_SOLiD -i $input1 -o $output1 -l $read_length -c $coverage
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="fasta" label="Reference Genome" />
+    <param name="output1" type="directory" label="Output Directory" />
+    <param name="read_length" type="integer" label="Read Length" help="Length of the reads to simulate" />
+    <param name="coverage" type="integer" label="Coverage" help="Desired coverage depth" />
+  </inputs>
+  <outputs>
+    <data name="output1" format="directory" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="test.fasta" />
+      <param name="read_length" value="50" />
+      <param name="coverage" value="30" />
+      <output name="output1">
+        <has_text>art SOLiD simulation complete</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ART SOLiD Simulator
+        
+        ART_SOLiD generates SOLiD sequencing reads based on a reference genome.
+        
+        ## Requirements
+        
+        - Reference genome in FASTA format
+        - Specify desired read length and coverage
+        
+        ## Example
+        
+        ```
+        art_SOLiD -i reference.fasta -o output_dir -l 50 -c 30
+        ```
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

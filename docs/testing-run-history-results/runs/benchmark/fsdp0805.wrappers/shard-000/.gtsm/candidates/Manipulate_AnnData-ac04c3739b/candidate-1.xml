@@ -1,0 +1,373 @@
+<tool id="anndata_manipulate" name="Manipulate AnnData" version="0.1.0+galaxy0" profile="21.05">
+    <description>with various methods</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">anndata</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="0.11.4">anndata</requirement>
+    </requirements>
+    <version_command>python -c "import anndata; print(anndata.__version__)"</version_command>
+    <command detect_errors="exit_code">
+        python -c '
+            import sys
+            import anndata
+            import numpy as np
+            import pandas as pd
+            
+            def read_anndata(file):
+                if str(file.extension) == "h5ad":
+                    return anndata.read_h5ad(str(file))
+                elif str(file.extension) == "loom":
+                    return anndata.read_loom(str(file))
+            
+            def write_anndata(adata, file):
+                if str(file.extension) == "h5ad":
+                    adata.write_h5ad(str(file))
+                elif str(file.extension) == "loom":
+                    adata.write_loom(str(file))
+
+            adata = read_anndata($input)
+            $concatenate:
+                adata = anndata.AnnData.concatenate(
+                    [adata] + [read_anndata(f) for f in $concatenate.files],
+                    join=$concatenate.join,
+                    batch_key=$concatenate.batch_key,
+                    index_unique=$concatenate.index_unique
+                )
+            $make_obs_names_unique:
+                adata.obs_names_make_unique()
+            $make_var_names_unique:
+                adata.var_names_make_unique()
+            $rename_categories:
+                adata.rename_categories(key="$rename_categories.key", categories=[str(c) for c in $rename_categories.categories])
+            $remove_keys:
+                for k in $remove_keys.keys:
+                    del adata.obs[k]
+                    del adata.var[k]
+            $flag_genes_start_with:
+                adata.var["flag"] = np.array([str(gene).startswith("$flag_genes_start_with") for gene in adata.var_names], dtype=int)
+            $strings_to_categoricals:
+                adata.strings_to_categoricals(keys=[str(k) for k in $strings_to_categoricals.keys])
+            $transpose:
+                adata = adata.transpose()
+            $add_annotation_for_variables:
+                adata.var["$add_annotation_for_variables.key"] = pd.Series([str(v) for v in $add_annotation_for_variables.values], index=adata.var_names)
+            $split_by_obs_key:
+                splits = list(adata.split_obs(key="$split_by_obs_key.key"))
+                for split in splits:
+                    write_anndata(split, "%s.%s" % ($output.name, split.obs[$split_by_obs_key.key].iloc[0]))
+            $filter_observations:
+                adata = adata[[str(i) for i in $filter_observations.indices]]
+            $filter_variables:
+                adata = adata[:, [str(i) for i in $filter_variables.indices]]
+            $freeze_current_state_into_raw_attribute:
+                adata.raw = adata.copy()
+
+            write_anndata(adata, "$output")
+        '
+    </command>
+    <inputs>
+        <param argument="--input" type="data" format="h5ad,loom" label="Input AnnData"/>
+        <conditional name="concatenate">
+            <param name="method" type="select" label="Concatenate along the observations axis">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value="">
+                
+            </when>
+            <when value="yes">
+                <param argument="--concatenate.method" type="select" label="Join method">
+                    <option value="inner">Inner</option>
+                    <option value="outer">Outer</option>
+                </param>
+                <param argument="--concatenate.join" type="text" value="" label="Join key"/>
+                <param argument="--concatenate.batch_key" type="text" value="" label="Batch key"/>
+                <param argument="--concatenate.index_unique" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Index unique"/>
+                <param argument="--concatenate.files" type="data" format="h5ad,loom" multiple="true" label="Files to concatenate"/>
+            </when>
+        </conditional>
+        <conditional name="make_obs_names_unique">
+            <param name="method" type="select" label="Makes the obs index unique by appending '1', '2', etc">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes"/>
+        </conditional>
+        <conditional name="make_var_names_unique">
+            <param name="method" type="select" label="Makes the var index unique by appending '1', '2', etc">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes"/>
+        </conditional>
+        <conditional name="rename_categories">
+            <param name="method" type="select" label="Rename categories of annotation `key` in `obs`, `var` and `uns`">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--rename_categories.key" type="text" value="" label="Key"/>
+                <param argument="--rename_categories.categories" type="data_column" data_ref="input" column_name="categories" label="Categories"/>
+            </when>
+        </conditional>
+        <conditional name="remove_keys">
+            <param name="method" type="select" label="Remove keys from obs or var annotations">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--remove_keys.keys" type="data_column" data_ref="input" column_name="keys" label="Keys"/>
+            </when>
+        </conditional>
+        <conditional name="flag_genes_start_with">
+            <param name="method" type="select" label="Flag genes start with a pattern">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--flag_genes_start_with" type="text" value="" label="Pattern"/>
+            </when>
+        </conditional>
+        <conditional name="strings_to_categoricals">
+            <param name="method" type="select" label="Transform string annotations to categoricals">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--strings_to_categoricals.keys" type="data_column" data_ref="input" column_name="keys" label="Keys"/>
+            </when>
+        </conditional>
+        <conditional name="transpose">
+            <param name="method" type="select" label="Transpose the data matrix, leaving observations and variables interchanged">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes"/>
+        </conditional>
+        <conditional name="add_annotation_for_variables">
+            <param name="method" type="select" label="Add annotation for variables">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--add_annotation_for_variables.key" type="text" value="" label="Key"/>
+                <param argument="--add_annotation_for_variables.values" type="data_column" data_ref="input" column_name="values" label="Values"/>
+            </when>
+        </conditional>
+        <conditional name="split_by_obs_key">
+            <param name="method" type="select" label="Split the AnnData object into multiple AnnData objects based on the values of a given obs key">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--split_by_obs_key.key" type="text" value="" label="Key"/>
+            </when>
+        </conditional>
+        <conditional name="filter_observations">
+            <param name="method" type="select" label="Filter data variables or observations, by index or key">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--filter_observations.indices" type="data_column" data_ref="input" column_name="indices" label="Indices"/>
+            </when>
+        </conditional>
+        <conditional name="filter_variables">
+            <param name="method" type="select" label="Filter data variables or observations, by index or key">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes">
+                <param argument="--filter_variables.indices" type="data_column" data_ref="input" column_name="indices" label="Indices"/>
+            </when>
+        </conditional>
+        <conditional name="freeze_current_state_into_raw_attribute">
+            <param name="method" type="select" label="Freeze the current state into the 'raw' attribute">
+                <option value="">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value=""/>
+            <when value="yes"/>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="output" format_source="input"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="concatenate">
+                <param name="method" value="yes"/>
+                <param name="join" value="inner"/>
+                <param name="batch_key" value="batch"/>
+                <param name="index_unique" value="True"/>
+                <param name="files" value="input.h5ad,input.h5ad"/>
+            </conditional>
+            <output name="output" file="output_concatenated.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="make_obs_names_unique">
+                <param name="method" value="yes"/>
+            </conditional>
+            <output name="output" file="output_obs_names_unique.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="make_var_names_unique">
+                <param name="method" value="yes"/>
+            </conditional>
+            <output name="output" file="output_var_names_unique.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="rename_categories">
+                <param name="method" value="yes"/>
+                <param name="key" value="cell_type"/>
+                <param name="categories" value="B cell,T cell,NK cell"/>
+            </conditional>
+            <output name="output" file="output_rename_categories.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="remove_keys">
+                <param name="method" value="yes"/>
+                <param name="keys" value="qc_metrics"/>
+            </conditional>
+            <output name="output" file="output_remove_keys.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="flag_genes_start_with">
+                <param name="method" value="yes"/>
+                <param name="pattern" value="mt"/>
+            </conditional>
+            <output name="output" file="output_flag_genes_start_with.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="strings_to_categoricals">
+                <param name="method" value="yes"/>
+                <param name="keys" value="cell_type"/>
+            </conditional>
+            <output name="output" file="output_strings_to_categoricals.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="transpose">
+                <param name="method" value="yes"/>
+            </conditional>
+            <output name="output" file="output_transpose.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="add_annotation_for_variables">
+                <param name="method" value="yes"/>
+                <param name="key" value="new_key"/>
+                <param name="values" value="new_value"/>
+            </conditional>
+            <output name="output" file="output_add_annotation_for_variables.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="split_by_obs_key">
+                <param name="method" value="yes"/>
+                <param name="key" value="cluster"/>
+            </conditional>
+            <output_collection name="output" type="list">
+                <element name="0" file="output_split_by_obs_key_0.h5ad" ftype="h5ad"/>
+                <element name="1" file="output_split_by_obs_key_1.h5ad" ftype="h5ad"/>
+                <element name="2" file="output_split_by_obs_key_2.h5ad" ftype="h5ad"/>
+            </output_collection>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="filter_observations">
+                <param name="method" value="yes"/>
+                <param name="indices" value="0,1,2"/>
+            </conditional>
+            <output name="output" file="output_filter_observations.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="filter_variables">
+                <param name="method" value="yes"/>
+                <param name="indices" value="0,1,2"/>
+            </conditional>
+            <output name="output" file="output_filter_variables.h5ad" ftype="h5ad"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad" ftype="h5ad"/>
+            <conditional name="freeze_current_state_into_raw_attribute">
+                <param name="method" value="yes"/>
+            </conditional>
+            <output name="output" file="output_freeze_current_state_into_raw_attribute.h5ad" ftype="h5ad"/>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+This tool takes an AnnData dataset, manipulates it and returns it.
+
+The possible manipulations are:
+
+- Concatenate along the observations axis (`concatenate method &lt;https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.concatenate.html&gt;`__)
+
+    The `uns`, `varm` and `obsm` attributes are ignored.
+
+    If you use `join='outer'` this fills 0s for sparse data when variables are absent in a batch. Use this with care. Dense data is filled with `NaN`
+
+- Makes the obs index unique by appending '1', '2', etc (`obs_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.obs_names_make_unique.html&gt;`__)
+
+    The first occurrence of a non-unique value is ignored.
+
+- Makes the var index unique by appending '1', '2', etc (`var_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.var_names_make_unique.html&gt;`__)
+
+    The first occurrence of a non-unique value is ignored.
+
+- Rename categories of annotation `key` in `obs`, `var` and `uns` (`rename_categories method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.rename_categories.html&gt;`__)
+
+    Besides calling `self.obs[key].cat.categories = categories` - similar for `var` - this also renames categories in unstructured annotation that uses the categorical annotation `key`
+
+- Remove keys from obs or var annotations
+
+    Helps in cleaning up andata with many annotations. For example, helps in removing qc metrics calculated during the preprocesing or already existing cluster annotations.
+
+- Flag genes start with a pattern
+
+    Useful for flagging the mitochondrial or ribosomal protein genes
+
+- Transform string annotations to categoricals (`strings_to_categoricals method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.strings_to_categoricals.html&gt;`__)
+
+    Only affects string annotations that lead to less categories than the total number of observations.
+
+- Transpose the data matrix, leaving observations and variables interchanged (`transpose method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.transpose.html&gt;`__)
+
+    Data matrix is transposed, observations and variables are interchanged.
+
+- Add annotation for variables or
+
+- Split the AnnData object into multiple AnnData objects based on the values of a given obs key
+
+    For example, helps in splitting an anndata objects based on cluster annotation. This function generates a collection with a number of elements equal to the number of categories in the input obs key.
+
+- Filter data variables or observations, by index or key
+
+- Freeze the current state into the 'raw' attribute
+
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned

@@ -1,0 +1,105 @@
+<tool id="import_anndata" name="Import Anndata" version="0.1.0" profile="25.0">
+  <description>Imports data into an AnnData object from various formats</description>
+  <requirements>
+    <requirement type="package">anndata</requirement>
+    <requirement type="package">loompy</requirement>
+    <requirement type="package">pandas</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python3 &lt;&lt;__END__
+        import anndata
+        import pandas as pd
+        import loompy
+        import sys
+        import os
+
+        input_type = '$input_type'
+        output_file = '$output_file'
+
+        if input_type == 'loom':
+            adata = anndata.read_loom('$loom_file')
+        elif input_type == 'csv':
+            adata = anndata.read_csv('$csv_file', delimiter='$csv_delimiter')
+        elif input_type == 'mtx':
+            adata = anndata.read_mtx('$mtx_file')
+        elif input_type == 'umi':
+            adata = anndata.read_umi_tools('$umi_file')
+
+        adata.write_h5ad(output_file)
+        __END__
+    </command>
+  <inputs>
+    <conditional name="input_type">
+      <param name="input_type" type="select" label="Input format">
+        <option value="loom">Loom file</option>
+        <option value="csv">Tabular (CSV) file</option>
+        <option value="mtx">Matrix Market (mtx) file</option>
+        <option value="umi">UMI tools file</option>
+      </param>
+      <when value="loom">
+        <param name="loom_file" type="data" format="loom" label="Loom file" />
+      </when>
+      <when value="csv">
+        <param name="csv_file" type="data" format="tabular" label="CSV file" />
+        <param name="csv_delimiter" type="select" label="Delimiter" default=",">
+          <option value="," label="Comma (,)" />
+          <option value="\t" label="Tab (\t)" />
+          <option value=";" label="Semicolon (;)" />
+        </param>
+      </when>
+      <when value="mtx">
+        <param name="mtx_file" type="data" format="mtx" label="Matrix Market file" />
+      </when>
+      <when value="umi">
+        <param name="umi_file" type="data" format="txt" label="UMI tools file" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data format="h5ad" name="output_file" label="Output AnnData file">
+      <description>Output file in AnnData .h5ad format</description>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_type" value="csv" />
+      <param name="csv_file" value="test.csv" />
+      <param name="csv_delimiter" value="," />
+      <output name="output_file" file="test.h5ad" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # Import Anndata
+        
+        This tool imports data into an AnnData object from various formats.
+        
+        ## Supported Input Formats
+        
+        - **Loom**: Efficient format for large omics datasets.
+        - **CSV**: Tabular data with optional delimiters.
+        - **Matrix Market (mtx)**: Sparse matrix format.
+        - **UMI tools**: File format from UMI tools pipeline.
+        
+        ## Output
+        
+        The tool produces an AnnData object in the `.h5ad` format, which is a binary HDF5-based format optimized for AnnData storage.
+        
+        ## AnnData
+        
+        AnnData is a Python package for handling annotated data matrices, widely used in single-cell RNA sequencing analysis. It stores:
+        
+        - `X`: The main data matrix.
+        - `obs`: Annotations for observations (e.g., cells).
+        - `var`: Annotations for variables (e.g., genes).
+        - `uns`: Unstructured annotations.
+        
+        For more details, visit the [AnnData documentation](https://anndata.readthedocs.io).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

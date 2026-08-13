@@ -1,0 +1,3043 @@
+[
+  {
+    "request_id": "gen-20260810140233691205",
+    "created_at": "2026-08-10T14:02:33.691513+00:00",
+    "tool_name": "Add input name as column",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810140233691205/report.json",
+    "tool_id": "addName",
+    "tool_display_name": "Add input name as column",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "**What it does**\n\nAdds a new column with the name of the input file as it appears in the history.\nBy default the column is appended.\n\n-----\n\n.. class:: infomark\n\n**TIP:** If your data is not TAB delimited, use *Text Manipulation->Convert*",
+      "original_chars": 238,
+      "shaped_chars": 238,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: mvdbeek/add_input_name_as_column\n- Tool id: addName\nCore options:\n- -----\nRequired/input cues:\n- Adds a new column with the name of the input file as it appears in the history.",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: mvdbeek/add_input_name_as_column",
+          "Tool id: addName"
+        ],
+        "option_lines": [
+          "-----"
+        ],
+        "required_lines": [
+          "Adds a new column with the name of the input file as it appears in the history."
+        ],
+        "output_lines": [],
+        "datatype_terms": []
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 1416,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/Add_input_name_as_column-bdfce68288/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 197,
+          "input_count": 1,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": true,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 1624
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": true,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 0,
+    "package_id": "mvdbeek/add_input_name_as_column",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/add_input_name_as_column/add_input_name_as_column.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/add_input_name_as_column/add_input_name_as_column.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810140356669849",
+    "created_at": "2026-08-10T14:03:56.670248+00:00",
+    "tool_name": "AmpliGone",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AmpliGone-06650ea441.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810140356669849/report.json",
+    "tool_id": "ampligone",
+    "tool_display_name": "AmpliGone",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AmpliGone-06650ea441.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "**AmpliGone**\n\nIn contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. When providing BED input, reads are trimmed based on primer sequence coordinates in relation to a given reference sequence. Additionally, AmpliGone is able to compensate for, and therefore properly clean, reads that start or end outside of a primer-region as this is a common occurrence in amplicon-based sequencing data.\nAmpliGone works with both reads in FASTQ format, as well as aligned data in BAM-format. However, when data is presented in the BAM-format then only read-data (sequence and quality scores) will be used. Other data present in the BAM-format will not be used in this version of AmpliGone.\n\nCurrently, AmpliGone supports Nanopore data and Illumina data. The Illumina platform (NextSeq/MiSeq/HiSeq/other) does not matter.\n\nIt is however important that you know the read-length in relation to the amplicon length. AmpliGone expects this information in the form of an 'amplicon-type'.\n\nAmpliGone is build and tested with Nanopore and Illumina data (fastq) in mind and supports 'end-to-end', 'end-to-mid' and 'fragmented' amplicons to be cleaned.\n\n\n**More Information**\n\n- **Official Repository**: https://github.com/RIVM-bioinformatics/AmpliGone\n- **Extended User Guide**: https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/\n\nUnderlying software source documentation:\n- AmpliGone ampligone-2.0.1/README.md: [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/ampligone/README.html) # AmpliGone AmpliGone is a tool which accurately finds and removes primer sequences from NGS reads in an amplicon experiment. In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. Instead, reads are trimmed based on primer sequence coordinates in relation to a given reference sequence. Additionally, AmpliGone is able to compensate for, and therefore properly clean, reads that start or end outside of a primer-region as this is a common occurrence in amplicon-based sequencing data. AmpliGone is build and tested with Nanopore and Illumina data (fastq) in mind and supports 'end-to-end', 'end-to-mid' and 'fragmented' amplicons to be cleaned.\n- AmpliGone ampligone-2.0.1/docs/index.md: [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/ampligone/README.html) # AmpliGone AmpliGone is a tool which accurately finds and removes primer sequences from NGS reads in an amplicon experiment. In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. Instead, reads are trimmed based on primer sequence coordinates in relation to a given reference sequence. Additionally, AmpliGone is able to compensate for, and therefore properly clean, reads that start or end outside of a primer-region as this is a common occurrence in amplicon-based sequencing data. AmpliGone is build and tested with Nanopore and Illumina data (fastq) in mind and supports both 'end-to-end' as well as 'end-to-mid' amplicons to be cleaned. Pl [truncated]\n- AmpliGone ampligone-2.0.1/docs/user-guide.md: --threads 16 ``` ## Using AmpliGone in a pipeline/workflow In pipelines it's often required to that output-files are always created, even if they are empty. AmpliGone has the `-to` flag for this. Which stands for 'touch-outputs'. When this flag is given, AmpliGone will *always* create the output-files. Even if AmpliGone would normally fail because of (for example) an empty input file or when primer-sequences couldn't be found on the reference. !!! warning \"Please use with caution\"",
+      "original_chars": 3827,
+      "shaped_chars": 3825,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/ampligone\n- Tool id: ampligone\n- Primary command: ampligone\nCore options:\n- - **Official Repository**: https://github.com/RIVM-bioinformatics/AmpliGone\n- - **Extended User Guide**: https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/\n- - AmpliGone ampligone-2.0.1/README.md: [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/reci...\n- - AmpliGone ampligone-2.0.1/docs/index.md: [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/...\n- - AmpliGone ampligone-2.0.1/docs/user-guide.md: --threads 16 ``` ## Using AmpliGone in a pipeline/workflow In pipelines it's often required to that output-files are always creat...\nRequired/input cues:\n- In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. When providing BED input, reads are trimmed based...\n- AmpliGone works with both reads in FASTQ format, as well as aligned data in BAM-format. However, when data is presented in the BAM-format then only read-data (sequence and quali...\n- It is however important that you know the read-length in relation to the amplicon length. AmpliGone expects this information in the form of an 'amplicon-type'.\nDatatype cues:\n- fastq, bam, bed, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/ampligone",
+          "Tool id: ampligone",
+          "Primary command: ampligone"
+        ],
+        "option_lines": [
+          "- **Official Repository**: https://github.com/RIVM-bioinformatics/AmpliGone",
+          "- **Extended User Guide**: https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/",
+          "- AmpliGone ampligone-2.0.1/README.md: [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/reci...",
+          "- AmpliGone ampligone-2.0.1/docs/index.md: [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/...",
+          "- AmpliGone ampligone-2.0.1/docs/user-guide.md: --threads 16 ``` ## Using AmpliGone in a pipeline/workflow In pipelines it's often required to that output-files are always creat..."
+        ],
+        "required_lines": [
+          "In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. When providing BED input, reads are trimmed based...",
+          "AmpliGone works with both reads in FASTQ format, as well as aligned data in BAM-format. However, when data is presented in the BAM-format then only read-data (sequence and quali...",
+          "It is however important that you know the read-length in relation to the amplicon length. AmpliGone expects this information in the form of an 'amplicon-type'."
+        ],
+        "output_lines": [],
+        "datatype_terms": [
+          "fastq",
+          "bam",
+          "bed",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 5613,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/AmpliGone-06650ea441/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 978,
+          "input_count": 6,
+          "output_count": 6,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": true,
+          "test_count_before": 2,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 5012
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": true,
+      "test_count_before": 2,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AmpliGone-06650ea441.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AmpliGone-06650ea441.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AmpliGone-06650ea441.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 2,
+    "package_id": "iuc/ampligone",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampligone/ampligone.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampligone/ampligone.expanded.xml",
+    "primary_command": "ampligone"
+  },
+  {
+    "request_id": "gen-20260810141246337252",
+    "created_at": "2026-08-10T14:12:46.337561+00:00",
+    "tool_name": "AEGeAn ParsEval",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810141246337252/report.json",
+    "tool_id": "aegean_parseval",
+    "tool_display_name": "AEGeAn ParsEval",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": ".. class:: infomark\n\n**Purpose**\n\nParsEval is a program for comparing two sets of gene annotations for the same sequence. The most common use cases for ParsEval are as follows.\n\n- You are annotating a newly assembled genome. The optimal parameter settings for annotation are not clear initially, so you do some exploratory data analysis and try several different parameter settings. You can use ParsEval to identify the similarities and differences between the different annotations you have produced.\n\n- You are doing a genome-wide analysis of genes in your favorite organism. There is a gene annotation available from the consortium that sequenced and assembled the genome, but there is a different annotation available at NCBI. Again, ParsEval is the best way to compare these two annotations to quickly identify their similarities and differences.\n\n-----\n\n.. class:: infomark\n\n**Input**\n\nInput for ParsEval is two sets of annotations in GFF3 format. ParsEval uses the GenomeTools GFF3 parser, which strictly enforces syntax rules laid out in the GFF3 specification. ParsEval itself does some additional checks on the data to make sure valid comparisons are possible. Any features not directly related to protein-coding genes are ignored.\n\nParsEval will infer features implicitly encoded in the data. For example, if a gene annotation declares 6 exon features but no intron features, ParsEval will infer the 5 corresponding intron features from the exon boundaries. However, if ParsEval sees any intron features in a gene model it will assume all introns are declared explicitly. Violations of that assumption will likely elicit a program error.\n\nParsEval is pretty flexible in handling various common conventions for encoding gene structure: exons + start/stop codons, exons + CDS, CDS + UTRs, etc. Any subset of features that completely captures the gene\u2019s exon/intron structure, CDS(s), and UTRs should be handled correctly.\n\nParsEval requires that gene isoforms be encoded using the feature type mRNA (as opposed to transcript, primary_transcript, or other valid SO terms). For mRNA features lacking an explicitly declared gene parent, ParsEval will create one. Note, however, that ParsEval will treat all such transcripts as belonging to separate distinct genes, which will erroneously inflate summary statistics reported by ParsEval.\n\n-----\n\n\n**Output**\n\nParsEval output includes a variety of similarity statistics that measure the agreement between the two annotations. Our use of agreement here instead of accuracy is intentional: except in a very few rare cases, you will not be comparing a prediction to a true high-quality \u201cgold standard.\u201d It is much more common to compare two annotation sets whose relative quality is unknown. ParsEval uses the terms reference and prediction only to distinguish the two sets: it makes no assumptions as to their relative quality.\n\nUnderlying software source documentation:\n- aegean AEGeAn-0.16.0/README.md: # AEGeAn Toolkit AEGeAn: <b>a</b>nalysis and <b>e</b>valuation of <b>ge</b>nome <b>an</b>notations Copyright (c) 2010-2016, Daniel S. Standage and [CONTRIBUTORS](https://github.com/BrendelGroup/AEGeAn/blob/master/docs/contrib.rst). See LICENSE and for details. Project homepage: http://brendelgroup.github.io/AEGeAn.\n- aegean AEGeAn-0.16.0/docs/install.rst: sudo sh -c 'echo \"/usr/local/lib\" > /etc/ld.so.conf.d/genometools-x86_64.conf' sudo ldconfig # Download, compile, and install the AEGeAn Toolkit curl https://github.com/standage/AEGeAn/archive/v0.15.0.tar.gz > AEGeAn-0.15.1.tar.gz tar xzf AEGeAn-0.15.1.tar.gz cd AEGeAn-0.15.1 make test sudo make install sudo ldconfig # Update linker config again",
+      "original_chars": 3850,
+      "shaped_chars": 3662,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 1,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/aegean\n- Tool id: aegean_parseval\n- Primary command: parseval\nCore options:\n- - You are annotating a newly assembled genome. The optimal parameter settings for annotation are not clear initially, so you do some exploratory data analysis and try several di...\n- - You are doing a genome-wide analysis of genes in your favorite organism. There is a gene annotation available from the consortium that sequenced and assembled the genome, but...\n- -----\n- - aegean AEGeAn-0.16.0/README.md: # AEGeAn Toolkit AEGeAn: <b>a</b>nalysis and <b>e</b>valuation of <b>ge</b>nome <b>an</b>notations Copyright (c) 2010-2016, Daniel S. Standage...\n- - aegean AEGeAn-0.16.0/docs/install.rst: sudo sh -c 'echo \"/usr/local/lib\" > /etc/ld.so.conf.d/genometools-x86_64.conf' sudo ldconfig # Download, compile, and install the AEGeAn...\nRequired/input cues:\n- **Input**\n- Input for ParsEval is two sets of annotations in GFF3 format. ParsEval uses the GenomeTools GFF3 parser, which strictly enforces syntax rules laid out in the GFF3 specification....\nOutput cues:\n- **Output**\n- ParsEval output includes a variety of similarity statistics that measure the agreement between the two annotations. Our use of agreement here instead of accuracy is intentional:...",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/aegean",
+          "Tool id: aegean_parseval",
+          "Primary command: parseval"
+        ],
+        "option_lines": [
+          "- You are annotating a newly assembled genome. The optimal parameter settings for annotation are not clear initially, so you do some exploratory data analysis and try several di...",
+          "- You are doing a genome-wide analysis of genes in your favorite organism. There is a gene annotation available from the consortium that sequenced and assembled the genome, but...",
+          "-----",
+          "- aegean AEGeAn-0.16.0/README.md: # AEGeAn Toolkit AEGeAn: <b>a</b>nalysis and <b>e</b>valuation of <b>ge</b>nome <b>an</b>notations Copyright (c) 2010-2016, Daniel S. Standage...",
+          "- aegean AEGeAn-0.16.0/docs/install.rst: sudo sh -c 'echo \"/usr/local/lib\" > /etc/ld.so.conf.d/genometools-x86_64.conf' sudo ldconfig # Download, compile, and install the AEGeAn..."
+        ],
+        "required_lines": [
+          "**Input**",
+          "Input for ParsEval is two sets of annotations in GFF3 format. ParsEval uses the GenomeTools GFF3 parser, which strictly enforces syntax rules laid out in the GFF3 specification...."
+        ],
+        "output_lines": [
+          "**Output**",
+          "ParsEval output includes a variety of similarity statistics that measure the agreement between the two annotations. Our use of agreement here instead of accuracy is intentional:..."
+        ],
+        "datatype_terms": []
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 4044,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/AEGeAn_ParsEval-85382e2bbe/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 35,
+          "input_count": 2,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 4201
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 6,
+    "package_id": "iuc/aegean",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/aegean/parseval.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/parseval.expanded.xml",
+    "primary_command": "parseval"
+  },
+  {
+    "request_id": "gen-20260810142114076919",
+    "created_at": "2026-08-10T14:21:14.077257+00:00",
+    "tool_name": "argNorm",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/argNorm-0cc6ad7e6d.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810142114076919/report.json",
+    "tool_id": "argnorm",
+    "tool_display_name": "argNorm",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/argNorm-0cc6ad7e6d.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "argNorm is a tool to normalize antibiotic resistance genes (ARGs) by mapping them to the antibiotic resistance ontology (ARO) created by the CARD database.\n\nargNorm also enhances antibiotic resistance gene annotations by providing drug categorization of the drugs that antibiotic resistance genes confer resistance to.\n\nUnderlying software source documentation:\n- argnorm argnorm-1.0.0/README.md: # argNorm: Normalize ARG annotations to the ARO [![Documentation](https://readthedocs.org/projects/argnorm/badge/?version=latest)](https://argnorm.readthedocs.io/en/latest/?badge=latest) [![Python package](https://github.com/BigDataBiology/argNorm/actions/workflows/python-package.yml/badge.svg)](https://github.com/BigDataBiology/argNorm/actions/workflows/python-package.yml) [![Downloads](https://pepy.tech/badge/argNorm)](https://pepy.tech/project/argNorm) ![](https://img.shields.io/badge/status-beta-yellow?style=flat) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/argnorm/README.html) [![Anaconda-Server Badge](https://anaconda.org/bioconda/argnorm/badges/platforms.svg)](https://anaconda.org/bioconda/argnorm)\n- argnorm argnorm-1.0.0/README.md: [![Anaconda-Server Badge](https://anaconda.org/bioconda/argnorm/badges/platforms.svg)](https://anaconda.org/bioconda/argnorm) [![Anaconda-Server Badge](https://anaconda.org/bioconda/argnorm/badges/license.svg)](https://anaconda.org/bioconda/argnorm) ## argNorm Overview ![argNorm Overview](./docs/images/argnorm_overview.svg) *General overview of argNorm. (a) Genomes and metagenomes can be annotated using ARG annotation tools. argNorm accepts the outputs of these ARG annotation tools directly or after the outputs are processed by hAMRonization to perform ARO normalization and drug categorization. (b) The argNorm workflow includes: mapping gene names in the ARG annotation outputs to ARO accessions from ARO annotation tables constructed using RGI and manual curation; and mapping gene ARO accessions to drugs and drugs classes. In categorizing drugs, argNorm reports the immedia [truncated]\n- argnorm argnorm-1.0.0/README.md: *argNorm presented at the Microbiome Virtual International Forum* ### argNorm manuscript For more high-level information on argNorm, please refer to the manuscript: > Svetlana Ugarcina Perovic, Vedanth Ramji, Hui Chong, Yiqian Duan, Finlay Maguire, Luis Pedro Coelho, argNorm: normalization of antibiotic resistance gene annotations to the Antibiotic Resistance Ontology (ARO), in _Bioinformatics_ (2025) https://doi.org/10.1093/bioinformatics/btaf173 We also ask that you cite the manuscript if you use argNorm in your work.\n- argnorm argnorm-1.0.0/README.md: We also ask that you cite the manuscript if you use argNorm in your work. ## argNorm workflow ![argNorm Workflow](./docs/images/argnorm_workflow.svg) *Schematic illustration of argNorm workflow through a Resfinder output example: mapping gene names in the ARG annotation outputs to gene names from the ARO mapped ARG databases and adding corresponding drug categorization, namely \u201cconfers resistance to immediate drug class\u201d and \u201coverall category of drug class\u201d, from the ARO ontology file.* ## What is argNorm? argNorm is a tool to normalize antibiotic resistance genes (ARGs) by mapping them to the [antibiotic resistance ontology (ARO)](https://obofoundry.org/ontology/aro.html) created by the [CARD database](https://card.mcmaster.ca/).",
+      "original_chars": 3478,
+      "shaped_chars": 3478,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/argnorm\n- Tool id: argnorm\n- Primary command: argnorm\nCore options:\n- - argnorm argnorm-1.0.0/README.md: # argNorm: Normalize ARG annotations to the ARO [![Documentation](https://readthedocs.org/projects/argnorm/badge/?version=latest)](https://arg...\n- - argnorm argnorm-1.0.0/README.md: [![Anaconda-Server Badge](https://anaconda.org/bioconda/argnorm/badges/platforms.svg)](https://anaconda.org/bioconda/argnorm) [![Anaconda-Serv...\n- - argnorm argnorm-1.0.0/README.md: *argNorm presented at the Microbiome Virtual International Forum* ### argNorm manuscript For more high-level information on argNorm, please re...\n- - argnorm argnorm-1.0.0/README.md: We also ask that you cite the manuscript if you use argNorm in your work. ## argNorm workflow ![argNorm Workflow](./docs/images/argnorm_workfl...\nDatatype cues:\n- html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/argnorm",
+          "Tool id: argnorm",
+          "Primary command: argnorm"
+        ],
+        "option_lines": [
+          "- argnorm argnorm-1.0.0/README.md: # argNorm: Normalize ARG annotations to the ARO [![Documentation](https://readthedocs.org/projects/argnorm/badge/?version=latest)](https://arg...",
+          "- argnorm argnorm-1.0.0/README.md: [![Anaconda-Server Badge](https://anaconda.org/bioconda/argnorm/badges/platforms.svg)](https://anaconda.org/bioconda/argnorm) [![Anaconda-Serv...",
+          "- argnorm argnorm-1.0.0/README.md: *argNorm presented at the Microbiome Virtual International Forum* ### argNorm manuscript For more high-level information on argNorm, please re...",
+          "- argnorm argnorm-1.0.0/README.md: We also ask that you cite the manuscript if you use argNorm in your work. ## argNorm workflow ![argNorm Workflow](./docs/images/argnorm_workfl..."
+        ],
+        "required_lines": [],
+        "output_lines": [],
+        "datatype_terms": [
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 1881,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/argNorm-0cc6ad7e6d/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 86,
+          "input_count": 1,
+          "output_count": 2,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 2044
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/argNorm-0cc6ad7e6d.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/argNorm-0cc6ad7e6d.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/argNorm-0cc6ad7e6d.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 10,
+    "package_id": "iuc/argnorm",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/argnorm/argnorm.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/argnorm/argnorm.expanded.xml",
+    "primary_command": "argnorm"
+  },
+  {
+    "request_id": "gen-20260810143020837964",
+    "created_at": "2026-08-10T14:30:20.839379+00:00",
+    "tool_name": "AlphaGenome Interval Predictor",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810143020837964/report.json",
+    "tool_id": "alphagenome_interval_predictor",
+    "tool_display_name": "AlphaGenome Interval Predictor",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "**AlphaGenome Interval Predictor**\n\nPredicts regulatory tracks for genomic intervals using AlphaGenome's\n``predict_interval()`` API. No variants \u2014 just baseline characterization\nof the chromatin, expression, and splicing landscape at each region.\n\n-----\n\n**What it does**\n\nFor each interval in the input BED file:\n\n1. Creates a prediction window centered on the interval\n2. Calls ``predict_interval()`` for selected output types\n3. Computes summary statistics (mean, max) over the original BED region\n4. Reports per-track values in tabular format\n\n-----\n\n**Output modes**\n\n- **Summary** (default): One row per interval x track with mean and max signal.\n  Compact output good for screening many regions.\n- **Binned**: Divides each interval into fixed-width bins (default 128bp) and\n  reports mean signal per bin. Provides spatial resolution for visualizing\n  signal patterns across a region.\n\n\n**Output columns \u2014 summary mode**\n\n- ``chrom``, ``start``, ``end`` \u2014 interval coordinates\n- ``name`` \u2014 region name from BED\n- ``output_type`` \u2014 RNA_SEQ, ATAC, etc.\n- ``track_name`` \u2014 specific experimental track\n- ``ontology_curie`` \u2014 tissue/cell type ontology term\n- ``mean_signal`` \u2014 mean predicted signal across the region\n- ``max_signal`` \u2014 maximum predicted signal in the region\n\n**Output columns \u2014 binned mode**\n\n- ``chrom``, ``bin_start``, ``bin_end`` \u2014 bin coordinates\n- ``region_name`` \u2014 original region name\n- ``output_type``, ``track_name``, ``ontology_curie`` \u2014 as above\n- ``mean_signal`` \u2014 mean predicted signal in the bin\n\n\n**Use cases**\n\n- Characterize regulatory activity at GWAS loci\n- Compare predicted chromatin landscapes between regions\n- Identify active promoters, enhancers, or splice sites\n- Generate baseline predictions for regions of interest\n\nWrapper helper context:\n\nAPI calls used by wrapper helper scripts:\n- alphagenome_interval_predictor.py: alphagenome_research.model.dna_model.create_from_huggingface, alphagenome.models.dna_client.create, alphagenome.data.genome.Interval\n\nUnderlying software source documentation:\n- alphagenome alphagenome-0.6.1/docs/source/installation.md: # Installation The easiest way to install AlphaGenome is via the published [PyPi package](https://pypi.org/project/alphagenome). ```bash $ pip install -U alphagenome ```\n- alphagenome alphagenome-0.6.1/docs/source/installation.md: pip install -e ./alphagenome ``` ### Updating `alphagenome` Assuming the relevant virtual environment is already activated: ```bash cd ./alphagenome git pull pip install --upgrade .\n- alphagenome alphagenome-0.6.1/README.md: ![AlphaGenome header image](docs/source/_static/header.png) # AlphaGenome API ![PyPI Python version](https://img.shields.io/pypi/pyversions/AlphaGenome) ![Presubmit Checks](https://github.com/google-deepmind/alphagenome/actions/workflows/presubmit_checks.yml/badge.svg) [**Get API key**](https://deepmind.google.com/science/alphagenome) | [**Quick start**](#quick-start) | [**Installation**](#installation) | [**Documentation**](https://www.alphagenomedocs.com/) |\n- alphagenome alphagenome-0.6.1/README.md: plt.show() ``` ## Installation <!-- mdformat off(disable for [!TIP] format) --> > [!TIP] > You may optionally wish to create a > [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html) to > prevent conflicts with your system's Python environment.",
+      "original_chars": 3345,
+      "shaped_chars": 3333,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 2,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/alphagenome\n- Tool id: alphagenome_interval_predictor\nCore options:\n- -----\n- - **Summary** (default): One row per interval x track with mean and max signal.\n- - **Binned**: Divides each interval into fixed-width bins (default 128bp) and\n- - ``chrom``, ``start``, ``end`` \u2014 interval coordinates\n- - ``name`` \u2014 region name from BED\n- - ``output_type`` \u2014 RNA_SEQ, ATAC, etc.\n- - ``track_name`` \u2014 specific experimental track\n- - ``ontology_curie`` \u2014 tissue/cell type ontology term\n- - ``mean_signal`` \u2014 mean predicted signal across the region\n- - ``max_signal`` \u2014 maximum predicted signal in the region\n- - ``chrom``, ``bin_start``, ``bin_end`` \u2014 bin coordinates\n- - ``region_name`` \u2014 original region name\n- - ``output_type``, ``track_name``, ``ontology_curie`` \u2014 as above\n- - ``mean_signal`` \u2014 mean predicted signal in the bin\n- - Characterize regulatory activity at GWAS loci\n- - Compare predicted chromatin landscapes between regions\n- - Identify active promoters, enhancers, or splice sites\n- - Generate baseline predictions for regions of interest\n- - alphagenome_interval_predictor.py: alphagenome_research.model.dna_model.create_from_huggingface, alphagenome.models.dna_client.create, alphagenome.data.genome.Interval\n- - alphagenome alphagenome-0.6.1/docs/source/installation.md: # Installation The easiest way to install AlphaGenome is via the published [PyPi package](https://pypi.org/project/a...\n- - alphagenome alphagenome-0.6.1/docs/source/installation.md: pip install -e ./alphagenome ``` ### Updating `alphagenome` Assuming the relevant virtual environment is already act...\n- - alphagenome alphagenome-0.6.1/README.md: ![AlphaGenome header image](docs/source/_static/header.png) # AlphaGenome API ![PyPI Python version](https://img.shields.io/pypi/pyver...\n- - alphagenome alphagenome-0.6.1/README.md: plt.show() ``` ## Installation <!-- mdformat off(disable for [!TIP] format) --> > [!TIP] > You may optionally wish to create a > [Pyth...\nRequired/input cues:\n- For each interval in the input BED file:\nOutput cues:\n- 2. Calls ``predict_interval()`` for selected output types\n- 4. Reports per-track values in tabular format\n- **Output modes**\n- Compact output good for screening many regions.\n- reports mean signal per bin. Provides spatial resolution for visualizing\n- **Output columns \u2014 summary mode**\n- **Output columns \u2014 binned mode**\nDatatype cues:\n- bed, tabular, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/alphagenome",
+          "Tool id: alphagenome_interval_predictor"
+        ],
+        "option_lines": [
+          "-----",
+          "- **Summary** (default): One row per interval x track with mean and max signal.",
+          "- **Binned**: Divides each interval into fixed-width bins (default 128bp) and",
+          "- ``chrom``, ``start``, ``end`` \u2014 interval coordinates",
+          "- ``name`` \u2014 region name from BED",
+          "- ``output_type`` \u2014 RNA_SEQ, ATAC, etc.",
+          "- ``track_name`` \u2014 specific experimental track",
+          "- ``ontology_curie`` \u2014 tissue/cell type ontology term",
+          "- ``mean_signal`` \u2014 mean predicted signal across the region",
+          "- ``max_signal`` \u2014 maximum predicted signal in the region",
+          "- ``chrom``, ``bin_start``, ``bin_end`` \u2014 bin coordinates",
+          "- ``region_name`` \u2014 original region name",
+          "- ``output_type``, ``track_name``, ``ontology_curie`` \u2014 as above",
+          "- ``mean_signal`` \u2014 mean predicted signal in the bin",
+          "- Characterize regulatory activity at GWAS loci",
+          "- Compare predicted chromatin landscapes between regions",
+          "- Identify active promoters, enhancers, or splice sites",
+          "- Generate baseline predictions for regions of interest",
+          "- alphagenome_interval_predictor.py: alphagenome_research.model.dna_model.create_from_huggingface, alphagenome.models.dna_client.create, alphagenome.data.genome.Interval",
+          "- alphagenome alphagenome-0.6.1/docs/source/installation.md: # Installation The easiest way to install AlphaGenome is via the published [PyPi package](https://pypi.org/project/a...",
+          "- alphagenome alphagenome-0.6.1/docs/source/installation.md: pip install -e ./alphagenome ``` ### Updating `alphagenome` Assuming the relevant virtual environment is already act...",
+          "- alphagenome alphagenome-0.6.1/README.md: ![AlphaGenome header image](docs/source/_static/header.png) # AlphaGenome API ![PyPI Python version](https://img.shields.io/pypi/pyver...",
+          "- alphagenome alphagenome-0.6.1/README.md: plt.show() ``` ## Installation <!-- mdformat off(disable for [!TIP] format) --> > [!TIP] > You may optionally wish to create a > [Pyth..."
+        ],
+        "required_lines": [
+          "For each interval in the input BED file:"
+        ],
+        "output_lines": [
+          "2. Calls ``predict_interval()`` for selected output types",
+          "4. Reports per-track values in tabular format",
+          "**Output modes**",
+          "Compact output good for screening many regions.",
+          "reports mean signal per bin. Provides spatial resolution for visualizing",
+          "**Output columns \u2014 summary mode**",
+          "**Output columns \u2014 binned mode**"
+        ],
+        "datatype_terms": [
+          "bed",
+          "tabular",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 4809,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/AlphaGenome_Interval_Predictor-fdc11327fd/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 346,
+          "input_count": 6,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": true,
+          "test_count_before": 2,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 4458
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": true,
+      "test_count_before": 2,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 14,
+    "package_id": "iuc/alphagenome",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/alphagenome/alphagenome_interval_predictor.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_interval_predictor.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810143127172890",
+    "created_at": "2026-08-10T14:31:27.173221+00:00",
+    "tool_name": "AlphaGenome Variant Effect",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810143127172890/report.json",
+    "tool_id": "alphagenome_variant_effect",
+    "tool_display_name": "AlphaGenome Variant Effect",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "**AlphaGenome Variant Effect Predictor**\n\nScores genetic variants using Google DeepMind's AlphaGenome model via\n``predict_variant()``. For each variant in the input VCF, the tool predicts\nreference and alternate genomic tracks and computes a max absolute\nlog-fold-change (LFC) score for each selected output type.\n\n-----\n\n**What it does**\n\nFor each variant the tool:\n\n1. Creates a prediction window centered on the variant\n2. Calls AlphaGenome ``predict_variant()`` to get reference and alternate track predictions\n3. Computes max absolute log2(alt / ref) across the track as an effect score\n4. Annotates the VCF INFO field with per-type scores and an overall max\n\n-----\n\n**Output INFO fields**\n\n- ``AG_RNA_LFC`` \u2014 RNA-seq max absolute log-fold-change\n- ``AG_ATAC_LFC`` \u2014 ATAC-seq max absolute log-fold-change\n- ``AG_SPLICE_LFC`` \u2014 Splice sites max absolute log-fold-change\n- ``AG_MAX_EFFECT`` \u2014 Overall max across all selected types\n\n(Additional fields appear for each selected output type.)\n\n\n**Organisms**\n\n- **Human (hg38)** \u2014 Homo sapiens\n- **Mouse (mm10)** \u2014 Mus musculus\n\nNo reference genome file is needed; the API handles sequence context internally.\n\n\n**Ontology terms**\n\nOptional tissue/cell type context for predictions. Common terms:\n\n- ``UBERON:0001157`` \u2014 Peyer's patch\n- ``UBERON:0002107`` \u2014 Liver\n- ``UBERON:0000955`` \u2014 Brain\n- ``CL:0000746`` \u2014 Cardiac muscle cell\n- ``CL:0000540`` \u2014 Neuron\n\n\n**Prediction window sizes**\n\nLarger windows capture more genomic context but cost more compute:\n\n- **16 KB** \u2014 Fast, minimal context\n- **128 KB** \u2014 Good for most variants\n- **512 KB** \u2014 Extended regulatory context\n- **1 MB** \u2014 Maximum context (default, recommended)\n\nWrapper helper context:\n\nAPI calls used by wrapper helper scripts:\n- alphagenome_variant_effect.py: alphagenome_research.model.dna_model.create_from_huggingface, alphagenome.models.dna_client.create, alphagenome.data.genome.Variant\n\nUnderlying software source documentation:\n- alphagenome alphagenome-0.6.1/docs/source/installation.md: # Installation The easiest way to install AlphaGenome is via the published [PyPi package](https://pypi.org/project/alphagenome). ```bash $ pip install -U alphagenome ```\n- alphagenome alphagenome-0.6.1/docs/source/installation.md: pip install -e ./alphagenome ``` ### Updating `alphagenome` Assuming the relevant virtual environment is already activated: ```bash cd ./alphagenome git pull pip install --upgrade .\n- alphagenome alphagenome-0.6.1/README.md: ![AlphaGenome header image](docs/source/_static/header.png) # AlphaGenome API ![PyPI Python version](https://img.shields.io/pypi/pyversions/AlphaGenome) ![Presubmit Checks](https://github.com/google-deepmind/alphagenome/actions/workflows/presubmit_checks.yml/badge.svg) [**Get API key**](https://deepmind.google.com/science/alphagenome) | [**Quick start**](#quick-start) | [**Installation**](#installation) | [**Documentation**](https://www.alphagenomedocs.com/) |\n- alphagenome alphagenome-0.6.1/README.md: plt.show() ``` ## Installation <!-- mdformat off(disable for [!TIP] format) --> > [!TIP] > You may optionally wish to create a > [Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html) to > prevent conflicts with your system's Python environment.",
+      "original_chars": 3260,
+      "shaped_chars": 3242,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 3,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/alphagenome\n- Tool id: alphagenome_variant_effect\nCore options:\n- -----\n- - ``AG_RNA_LFC`` \u2014 RNA-seq max absolute log-fold-change\n- - ``AG_ATAC_LFC`` \u2014 ATAC-seq max absolute log-fold-change\n- - ``AG_SPLICE_LFC`` \u2014 Splice sites max absolute log-fold-change\n- - ``AG_MAX_EFFECT`` \u2014 Overall max across all selected types\n- - **Human (hg38)** \u2014 Homo sapiens\n- - **Mouse (mm10)** \u2014 Mus musculus\n- - ``UBERON:0001157`` \u2014 Peyer's patch\n- - ``UBERON:0002107`` \u2014 Liver\n- - ``UBERON:0000955`` \u2014 Brain\n- - ``CL:0000746`` \u2014 Cardiac muscle cell\n- - ``CL:0000540`` \u2014 Neuron\n- - **16 KB** \u2014 Fast, minimal context\n- - **128 KB** \u2014 Good for most variants\n- - **512 KB** \u2014 Extended regulatory context\n- - **1 MB** \u2014 Maximum context (default, recommended)\n- - alphagenome_variant_effect.py: alphagenome_research.model.dna_model.create_from_huggingface, alphagenome.models.dna_client.create, alphagenome.data.genome.Variant\n- - alphagenome alphagenome-0.6.1/docs/source/installation.md: # Installation The easiest way to install AlphaGenome is via the published [PyPi package](https://pypi.org/project/a...\n- - alphagenome alphagenome-0.6.1/docs/source/installation.md: pip install -e ./alphagenome ``` ### Updating `alphagenome` Assuming the relevant virtual environment is already act...\n- - alphagenome alphagenome-0.6.1/README.md: ![AlphaGenome header image](docs/source/_static/header.png) # AlphaGenome API ![PyPI Python version](https://img.shields.io/pypi/pyver...\n- - alphagenome alphagenome-0.6.1/README.md: plt.show() ``` ## Installation <!-- mdformat off(disable for [!TIP] format) --> > [!TIP] > You may optionally wish to create a > [Pyth...\nRequired/input cues:\n- ``predict_variant()``. For each variant in the input VCF, the tool predicts\n- No reference genome file is needed; the API handles sequence context internally.\nOutput cues:\n- log-fold-change (LFC) score for each selected output type.\n- **Output INFO fields**\n- (Additional fields appear for each selected output type.)\nDatatype cues:\n- vcf, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/alphagenome",
+          "Tool id: alphagenome_variant_effect"
+        ],
+        "option_lines": [
+          "-----",
+          "- ``AG_RNA_LFC`` \u2014 RNA-seq max absolute log-fold-change",
+          "- ``AG_ATAC_LFC`` \u2014 ATAC-seq max absolute log-fold-change",
+          "- ``AG_SPLICE_LFC`` \u2014 Splice sites max absolute log-fold-change",
+          "- ``AG_MAX_EFFECT`` \u2014 Overall max across all selected types",
+          "- **Human (hg38)** \u2014 Homo sapiens",
+          "- **Mouse (mm10)** \u2014 Mus musculus",
+          "- ``UBERON:0001157`` \u2014 Peyer's patch",
+          "- ``UBERON:0002107`` \u2014 Liver",
+          "- ``UBERON:0000955`` \u2014 Brain",
+          "- ``CL:0000746`` \u2014 Cardiac muscle cell",
+          "- ``CL:0000540`` \u2014 Neuron",
+          "- **16 KB** \u2014 Fast, minimal context",
+          "- **128 KB** \u2014 Good for most variants",
+          "- **512 KB** \u2014 Extended regulatory context",
+          "- **1 MB** \u2014 Maximum context (default, recommended)",
+          "- alphagenome_variant_effect.py: alphagenome_research.model.dna_model.create_from_huggingface, alphagenome.models.dna_client.create, alphagenome.data.genome.Variant",
+          "- alphagenome alphagenome-0.6.1/docs/source/installation.md: # Installation The easiest way to install AlphaGenome is via the published [PyPi package](https://pypi.org/project/a...",
+          "- alphagenome alphagenome-0.6.1/docs/source/installation.md: pip install -e ./alphagenome ``` ### Updating `alphagenome` Assuming the relevant virtual environment is already act...",
+          "- alphagenome alphagenome-0.6.1/README.md: ![AlphaGenome header image](docs/source/_static/header.png) # AlphaGenome API ![PyPI Python version](https://img.shields.io/pypi/pyver...",
+          "- alphagenome alphagenome-0.6.1/README.md: plt.show() ``` ## Installation <!-- mdformat off(disable for [!TIP] format) --> > [!TIP] > You may optionally wish to create a > [Pyth..."
+        ],
+        "required_lines": [
+          "``predict_variant()``. For each variant in the input VCF, the tool predicts",
+          "No reference genome file is needed; the API handles sequence context internally."
+        ],
+        "output_lines": [
+          "log-fold-change (LFC) score for each selected output type.",
+          "**Output INFO fields**",
+          "(Additional fields appear for each selected output type.)"
+        ],
+        "datatype_terms": [
+          "vcf",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 3925,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/AlphaGenome_Variant_Effect-b3cef5d5c7/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 205,
+          "input_count": 5,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 4053
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 16,
+    "package_id": "iuc/alphagenome",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/alphagenome/alphagenome_variant_effect.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_variant_effect.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810143249470746",
+    "created_at": "2026-08-10T14:32:49.471044+00:00",
+    "tool_name": "ART Illumina",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_Illumina-e396390388.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810143249470746/report.json",
+    "tool_id": "art_illumina",
+    "tool_display_name": "ART Illumina",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_Illumina-e396390388.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "Art Illumina Simulator\n======================\n\nART (art_Illumina Q version) is a simulation program to generate sequence read\ndata of Illumina sequencers. ART generates reads according to the empirical\nread quality profile summarized from large real read data. ART has been using\nfor testing or benchmarking a variety of methods or tools for next-generation\nsequencing data analysis, including read alignment, de novo assembly, detection\nof SNP, CNV, or other structure variation.\n\nart_Illumina can generate single-end, paired-end,  mate-pair reads, and\namplicon sequencing simulation of Illumina sequencing platform. Its outputs\ninclude FASTQ read, ALN and/or SAM alignment files.\n\nUnderlying software source documentation:\n- art art_src_MountRainier_Linux/ART_profiler_454/README: art_profiler_454 is the tool to generate a 454 read profile from 454 sequencing data in the fastq format. USAGE: ./art_profiler_454 input_fastq_files_dir output_profile_dir [fastq_filename_extension] PARAMETERS input_fastq_files_dir - directory containing all 454 read data files in the fastq format output_profile_dir - directory to put read profile files generated by the program\n- art art_src_MountRainier_Linux/ART_profiler_illumina/README: This tool is to create an ART illumina read quality profile from Illumina sequencing data in multiple fastq or gzipped fastq files USAGE: ./art_profiler_illumina output_profile_name input_fastq_dir fastq_filename_extension [max_number_threads] PARAMETERS: output_profile_name: the name of read quality profile to be generated input_fastq_dir: the directory of input fastq or zipped fastq files fastq_filename_extension: fastq or gzipped fastq filename extension max_number_threads:: maximum number of threads/cores to be used for the run (default: all cores)",
+      "original_chars": 1786,
+      "shaped_chars": 1786,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/art\n- Tool id: art_illumina\n- Primary command: art_illumina\nCore options:\n- - art art_src_MountRainier_Linux/ART_profiler_454/README: art_profiler_454 is the tool to generate a 454 read profile from 454 sequencing data in the fastq format. USAGE: ./art_...\n- - art art_src_MountRainier_Linux/ART_profiler_illumina/README: This tool is to create an ART illumina read quality profile from Illumina sequencing data in multiple fastq or gzi...\nRequired/input cues:\n- ART (art_Illumina Q version) is a simulation program to generate sequence read\n- data of Illumina sequencers. ART generates reads according to the empirical\n- read quality profile summarized from large real read data. ART has been using\n- sequencing data analysis, including read alignment, de novo assembly, detection\n- art_Illumina can generate single-end, paired-end,  mate-pair reads, and\n- include FASTQ read, ALN and/or SAM alignment files.\nOutput cues:\n- amplicon sequencing simulation of Illumina sequencing platform. Its outputs\nDatatype cues:\n- fastq, sam, directory",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/art",
+          "Tool id: art_illumina",
+          "Primary command: art_illumina"
+        ],
+        "option_lines": [
+          "- art art_src_MountRainier_Linux/ART_profiler_454/README: art_profiler_454 is the tool to generate a 454 read profile from 454 sequencing data in the fastq format. USAGE: ./art_...",
+          "- art art_src_MountRainier_Linux/ART_profiler_illumina/README: This tool is to create an ART illumina read quality profile from Illumina sequencing data in multiple fastq or gzi..."
+        ],
+        "required_lines": [
+          "ART (art_Illumina Q version) is a simulation program to generate sequence read",
+          "data of Illumina sequencers. ART generates reads according to the empirical",
+          "read quality profile summarized from large real read data. ART has been using",
+          "sequencing data analysis, including read alignment, de novo assembly, detection",
+          "art_Illumina can generate single-end, paired-end,  mate-pair reads, and",
+          "include FASTQ read, ALN and/or SAM alignment files."
+        ],
+        "output_lines": [
+          "amplicon sequencing simulation of Illumina sequencing platform. Its outputs"
+        ],
+        "datatype_terms": [
+          "fastq",
+          "sam",
+          "directory"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 5298,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ART_Illumina-e396390388/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 388,
+          "input_count": 16,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 5358
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_Illumina-e396390388.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_Illumina-e396390388.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_Illumina-e396390388.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 18,
+    "package_id": "iuc/art",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/art/art_illumina.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/art/art_illumina.expanded.xml",
+    "primary_command": "art_illumina"
+  },
+  {
+    "request_id": "gen-20260810143745582249",
+    "created_at": "2026-08-10T14:37:45.582615+00:00",
+    "tool_name": "ART SOLiD",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810143745582249/report.json",
+    "tool_id": "art_solid",
+    "tool_display_name": "ART SOLiD",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "list"
+      ],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries."
+      ],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "Art SOLiD Simulator\n===================\n\nART_SOLiD  is a simulation program to generate sequence read data of SOLiD\nsequencing reads. ART generates reads according to a SOLiD read error profile.\nThe built-in error profile is an empiricial error profile summarized from large\nSOLiD sequencing data. ART has been using for testing or benchmarking a variety\nof method or tools for next-generation sequencing data analysis, including read\nalignment, de novo assembly, detection of SNP, CNV, or other structure\nvariation.\n\nart_SOLiD can generate both single-end, matepair, and paired-end of SOLiD\n- art art_src_MountRainier_Linux/ART_profiler_454/README: art_profiler_454 is the tool to generate a 454 read profile from 454 sequencing data in the fastq format. USAGE: ./art_profiler_454 input_fastq_files_dir output_profile_dir [fastq_filename_extension] PARAMETERS input_fastq_files_dir - directory containing all 454 read data files in the fastq format output_profile_dir - directory to put read profile files generated by the program\nsequencing platform. art_SOLiD also support amplicon sequencing simulation with\nRNA references.\nUnderlying software source documentation:\n\n[Toolsmith note: help text was shortened for prompting; use the preserved usage/options/examples as source of truth.]",
+      "original_chars": 1792,
+      "shaped_chars": 1288,
+      "max_chars": 1500,
+      "truncated": true,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/art\n- Tool id: art_solid\n- Primary command: art_SOLiD\nCore options:\n- - art art_src_MountRainier_Linux/ART_profiler_454/README: art_profiler_454 is the tool to generate a 454 read profile from 454 sequencing data in the fastq format. USAGE: ./art_...\n- - art art_src_MountRainier_Linux/ART_profiler_illumina/README: This tool is to create an ART illumina read quality profile from Illumina sequencing data in multiple fastq or gzi...\nRequired/input cues:\n- ART_SOLiD  is a simulation program to generate sequence read data of SOLiD\n- sequencing reads. ART generates reads according to a SOLiD read error profile.\n- The built-in error profile is an empiricial error profile summarized from large\n- of method or tools for next-generation sequencing data analysis, including read\n- alignment, de novo assembly, detection of SNP, CNV, or other structure\nDatatype cues:\n- fastq, directory",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/art",
+          "Tool id: art_solid",
+          "Primary command: art_SOLiD"
+        ],
+        "option_lines": [
+          "- art art_src_MountRainier_Linux/ART_profiler_454/README: art_profiler_454 is the tool to generate a 454 read profile from 454 sequencing data in the fastq format. USAGE: ./art_...",
+          "- art art_src_MountRainier_Linux/ART_profiler_illumina/README: This tool is to create an ART illumina read quality profile from Illumina sequencing data in multiple fastq or gzi..."
+        ],
+        "required_lines": [
+          "ART_SOLiD  is a simulation program to generate sequence read data of SOLiD",
+          "sequencing reads. ART generates reads according to a SOLiD read error profile.",
+          "The built-in error profile is an empiricial error profile summarized from large",
+          "of method or tools for next-generation sequencing data analysis, including read",
+          "alignment, de novo assembly, detection of SNP, CNV, or other structure"
+        ],
+        "output_lines": [],
+        "datatype_terms": [
+          "fastq",
+          "directory"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 3746,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 2,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ART_SOLiD-9a5e3dc43a/candidate-attempt-2-1.xml",
+        "selected": true,
+        "score": 455,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10",
+          "unknown_datatypes:-5"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 312,
+          "input_count": 7,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [
+            "list"
+          ],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries."
+          ],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 3792
+      }
+    ],
+    "selected_candidate_attempt": 2,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [
+        "list"
+      ],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 2,
+    "repair_attempted": true,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 304, column 21; Generated XML does not contain a closing </tool> tag.",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 20,
+    "package_id": "iuc/art",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/art/art_solid.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/art/art_solid.expanded.xml",
+    "primary_command": "art_SOLiD"
+  },
+  {
+    "request_id": "gen-20260810143805989779",
+    "created_at": "2026-08-10T14:38:05.990072+00:00",
+    "tool_name": "anndata2ri",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/anndata2ri-aeea791450.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810143805989779/report.json",
+    "tool_id": "anndata2ri",
+    "tool_display_name": "anndata2ri",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/anndata2ri-aeea791450.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "anndata2ri\n==========\n        Convert between Anndata and SingleCellExperiment objects. For conversion of further single-cell file formats, consider using **SCEasy Converter** tool.\n\nUnderlying software source documentation:\n- anndata anndata-0.10.9/README.md: class=\"dark-light\" align=\"right\" width=\"350\" alt=\"image\" /> # anndata - Annotated data anndata is a Python package for handling annotated data matrices in memory and on disk, positioned between pandas and xarray. anndata offers a broad range of computationally efficient features including, among others, sparse data support, lazy operations, and a PyTorch interface. - Discuss development on [GitHub](https://github.com/scverse/anndata). - Read the [documentation](https://anndata.readthedocs.io). - Ask questions on the [scverse Discourse](https://discourse.scverse.org). - Install via `pip install anndata` or `conda install anndata -c conda-forge`.\n- anndata anndata-0.10.9/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using [asv](https://asv.readthedocs.io). ## Setup I definitely recommend reading through the asv docs. Currently, this assumes the benchmark suite can reach the `anndata` repo via the path `../anndata`. Otherwise, all you'll need to do is create a [machine file](https://asv.readthedocs.io/en/stable/commands.html#asv-machine) for your system and make sure `anndata`s dependencies are installable via `conda`.\n- anndata anndata-0.10.9/docs/fileformat-prose.md: * An element MUST have a string-valued field `\"encoding-type\"` in its metadata * An element MUST have a string-valued field `\"encoding-version\"` in its metadata that can be evaluated to a version ### AnnData specification (v0.1.0) * An `AnnData` object MUST be a group. * The group's metadata MUST include entries: `\"encoding-type\": \"anndata\"`, `\"encoding-version\": \"0.1.0\"`. * An `AnnData` group MUST contain entries `\"obs\"` and `\"var\"`, which MUST be dataframes (though this may only have an index with no columns). * The group MAY contain an entry `X`, which MUST be either a dense or sparse array and whose shape MUST be (`n_obs`, `n_var`) * The group MAY contain a mapping `layers`. Entries in `layers` MUST be dense or sparse arrays which have shapes (`n_obs`, `n_var`) * The group MAY contain a mapping `obsm`. Entries in `obsm` MUST be sparse arrays, dense arrays, or datafram [truncated]\n- anndata2ri anndata2ri-1.3.2/README.rst: .. _rpy2: https://github.com/rpy2/rpy2#readme .. _issues: https://github.com/theislab/anndata2ri/issues Usage from Python ----------------- Either use the converter manually \u2026 .. code-block:: python import anndata2ri",
+      "original_chars": 2701,
+      "shaped_chars": 2701,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/anndata2ri\n- Tool id: anndata2ri\nCore options:\n- - anndata anndata-0.10.9/README.md: class=\"dark-light\" align=\"right\" width=\"350\" alt=\"image\" /> # anndata - Annotated data anndata is a Python package for handling annotated dat...\n- - anndata anndata-0.10.9/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using...\n- - anndata anndata-0.10.9/docs/fileformat-prose.md: * An element MUST have a string-valued field `\"encoding-type\"` in its metadata * An element MUST have a string-valued field `\"...\n- - anndata2ri anndata2ri-1.3.2/README.rst: .. _rpy2: https://github.com/rpy2/rpy2#readme .. _issues: https://github.com/theislab/anndata2ri/issues Usage from Python -------------...\nRequired/input cues:\n- Convert between Anndata and SingleCellExperiment objects. For conversion of further single-cell file formats, consider using **SCEasy Converter** tool.\nDatatype cues:\n- html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/anndata2ri",
+          "Tool id: anndata2ri"
+        ],
+        "option_lines": [
+          "- anndata anndata-0.10.9/README.md: class=\"dark-light\" align=\"right\" width=\"350\" alt=\"image\" /> # anndata - Annotated data anndata is a Python package for handling annotated dat...",
+          "- anndata anndata-0.10.9/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using...",
+          "- anndata anndata-0.10.9/docs/fileformat-prose.md: * An element MUST have a string-valued field `\"encoding-type\"` in its metadata * An element MUST have a string-valued field `\"...",
+          "- anndata2ri anndata2ri-1.3.2/README.rst: .. _rpy2: https://github.com/rpy2/rpy2#readme .. _issues: https://github.com/theislab/anndata2ri/issues Usage from Python -------------..."
+        ],
+        "required_lines": [
+          "Convert between Anndata and SingleCellExperiment objects. For conversion of further single-cell file formats, consider using **SCEasy Converter** tool."
+        ],
+        "output_lines": [],
+        "datatype_terms": [
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 1219,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/anndata2ri-aeea791450/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 75,
+          "input_count": 1,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 1378
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/anndata2ri-aeea791450.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/anndata2ri-aeea791450.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/anndata2ri-aeea791450.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 22,
+    "package_id": "iuc/anndata2ri",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/anndata2ri/anndata2ri.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata2ri/anndata2ri.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810144631127350",
+    "created_at": "2026-08-10T14:46:31.128292+00:00",
+    "tool_name": "Export AnnData",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Export_AnnData-8a972c99b4.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810144631127350/report.json",
+    "tool_id": "anndata_export",
+    "tool_display_name": "Export AnnData",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Export_AnnData-8a972c99b4.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "This tool exports an AnnData dataset to a tabular files (`write_csvs method <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html>`__)\n\n\n**AnnData**\n\nAnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy <https://github.com/theislab/scanpy>`__, for which it was initially developed.\n\nAnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.\n\n.. image:: https://falexwolf.de/img/scanpy/anndata.svg\n\n\nAnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics\nof statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics\nand machine learning packages in Python (statsmodels, scikit-learn).\n\nMore details on the `AnnData documentation\n<https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html>`__\n\n\n**Loom data**\n\nLoom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.\n\n.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png\n\n\nLoom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes\nand cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).\n\nUnderlying software source documentation:\n- anndata anndata-0.11.4/README.md: class=\"dark-light\" align=\"right\" width=\"350\" alt=\"image\" /> # anndata - Annotated data anndata is a Python package for handling annotated data matrices in memory and on disk, positioned between pandas and xarray. anndata offers a broad range of computationally efficient features including, among others, sparse data support, lazy operations, and a PyTorch interface. - Discuss development on [GitHub](https://github.com/scverse/anndata). - Read the [documentation](https://anndata.readthedocs.io). - Ask questions on the [scverse Discourse](https://discourse.scverse.org). - Install via `pip install anndata` or `conda install anndata -c conda-forge`.\n- anndata anndata-0.11.4/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using [asv](https://asv.readthedocs.io). ## Setup I definitely recommend reading through the asv docs. Currently, this assumes the benchmark suite can reach the `anndata` repo via the path `../anndata`. Otherwise, all you'll need to do is create a [machine file](https://asv.readthedocs.io/en/stable/commands.html#asv-machine) for your system and make sure `anndata`s dependencies are installable via `conda`.\n- anndata anndata-0.11.4/docs/fileformat-prose.md: * An element MUST have a string-valued field `\"encoding-type\"` in its metadata * An element MUST have a string-valued field `\"encoding-version\"` in its metadata that can be evaluated to a version ### AnnData specification (v0.1.0) * An `AnnData` object MUST be a group. * The group's metadata MUST include entries: `\"encoding-type\": \"anndata\"`, `\"encoding-version\": \"0.1.0\"`. * An `AnnData` group MUST contain entries `\"obs\"` and `\"var\"`, which MUST be dataframes (though this may only have an index with no columns). * The group MAY contain an entry `X`, which MUST be either a dense or sparse array and whose shape MUST be (`n_obs`, `n_var`) * The group MAY contain a mapping `layers`. Entries in `layers` MUST be dense or sparse arrays which have shapes (`n_obs`, `n_var`) * The group MAY contain a mapping `obsm`. Entries in `obsm` MUST be sparse arrays, dense arrays, or datafram [truncated]\n- loompy loompy-3.0.8/README.md: # loompy v3.0 \u2b50 Loompy v3.0 was released Sep. 24, 2019! To get started, head over to [the documentation](http://loompy.org)! Loom, loompy, and the [loom-viewer](https://github.com/linnarsson-lab/loom-viewer) are being developed by members of the [Linnarsson Lab](http://linnarssonlab.org).",
+      "original_chars": 4222,
+      "shaped_chars": 4222,
+      "max_chars": 6000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/anndata\n- Tool id: anndata_export\nCore options:\n- - anndata anndata-0.11.4/README.md: class=\"dark-light\" align=\"right\" width=\"350\" alt=\"image\" /> # anndata - Annotated data anndata is a Python package for handling annotated dat...\n- - anndata anndata-0.11.4/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using...\n- - anndata anndata-0.11.4/docs/fileformat-prose.md: * An element MUST have a string-valued field `\"encoding-type\"` in its metadata * An element MUST have a string-valued field `\"...\n- - loompy loompy-3.0.8/README.md: # loompy v3.0 \u2b50 Loompy v3.0 was released Sep. 24, 2019! To get started, head over to [the documentation](http://loompy.org)! Loom, loompy, and t...\nRequired/input cues:\n- This tool exports an AnnData dataset to a tabular files (`write_csvs method <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html>`__)\n- AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics\n- <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html>`__\n- Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations,...\n- Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations c...\nOutput cues:\n- This tool exports an AnnData dataset to a tabular files (`write_csvs method <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html>`__)\nDatatype cues:\n- tabular, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/anndata",
+          "Tool id: anndata_export"
+        ],
+        "option_lines": [
+          "- anndata anndata-0.11.4/README.md: class=\"dark-light\" align=\"right\" width=\"350\" alt=\"image\" /> # anndata - Annotated data anndata is a Python package for handling annotated dat...",
+          "- anndata anndata-0.11.4/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using...",
+          "- anndata anndata-0.11.4/docs/fileformat-prose.md: * An element MUST have a string-valued field `\"encoding-type\"` in its metadata * An element MUST have a string-valued field `\"...",
+          "- loompy loompy-3.0.8/README.md: # loompy v3.0 \u2b50 Loompy v3.0 was released Sep. 24, 2019! To get started, head over to [the documentation](http://loompy.org)! Loom, loompy, and t..."
+        ],
+        "required_lines": [
+          "This tool exports an AnnData dataset to a tabular files (`write_csvs method <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html>`__)",
+          "AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics",
+          "<https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html>`__",
+          "Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations,...",
+          "Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations c..."
+        ],
+        "output_lines": [
+          "This tool exports an AnnData dataset to a tabular files (`write_csvs method <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html>`__)"
+        ],
+        "datatype_terms": [
+          "tabular",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 2910,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 2,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/Export_AnnData-8a972c99b4/candidate-attempt-2-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 134,
+          "input_count": 1,
+          "output_count": 1,
+          "requirement_count": 2,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": true,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 3051
+      }
+    ],
+    "selected_candidate_attempt": 2,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": true,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Export_AnnData-8a972c99b4.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Export_AnnData-8a972c99b4.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/Export_AnnData-8a972c99b4.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 2,
+    "repair_attempted": true,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "Generated XML is not well formed. XML parse error: not well-formed (invalid token): line 38, column 83",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 28,
+    "package_id": "iuc/anndata",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/anndata/export.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/export.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810144655202451",
+    "created_at": "2026-08-10T14:46:55.203585+00:00",
+    "tool_name": "ABRicate List",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABRicate_List-90425a1e42.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810144655202451/report.json",
+    "tool_id": "abricate_list",
+    "tool_display_name": "ABRicate List",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABRicate_List-90425a1e42.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "**What it does**\n\nABRicate List will list all the antibiotic databases used by ABRicate. The database of these genes is built from ResFinder.\n\nUnderlying software source documentation:\n- abricate abricate-1.4.0/README.md: [![European Galaxy server](https://img.shields.io/badge/usegalaxy-.eu-brightgreen?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAYAAABB7B6eAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAACC2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDx0aWZmOkNvbXByZXNzaW9uPjE8L3RpZmY6Q29tcHJlc3Npb24+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgICAgIDx0aWZmOlBob3RvbWV0cmljSW50ZXJwcmV0YXRpb24+MjwvdGlmZjpQaG90b21ldHJpY0ludGV [truncated]\n- abricate abricate-1.4.0/README.md: This can be individual abricate reports, or a combined one. ``` # Run abricate on each .fa file % abricate 1.fna > 1.tab % abricate 2.fna > 2.tab # Combine % abricate --summary 1.tab 2.tab #FILE NUM_FOUND aac(6')-aph(2'')_1 aadD_1 blaZ_32 blaZ_36 erm(A)_1 mecA_15 norA_1 spc_1 tet(M)_7",
+      "original_chars": 1441,
+      "shaped_chars": 1441,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/abricate\n- Tool id: abricate_list\n- Primary command: abricate\nCore options:\n- - abricate abricate-1.4.0/README.md: [![European Galaxy server](https://img.shields.io/badge/usegalaxy-.eu-brightgreen?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAA...\n- - abricate abricate-1.4.0/README.md: This can be individual abricate reports, or a combined one. ``` # Run abricate on each .fa file % abricate 1.fna > 1.tab % abricate 2.fna >...",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/abricate",
+          "Tool id: abricate_list",
+          "Primary command: abricate"
+        ],
+        "option_lines": [
+          "- abricate abricate-1.4.0/README.md: [![European Galaxy server](https://img.shields.io/badge/usegalaxy-.eu-brightgreen?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAA...",
+          "- abricate abricate-1.4.0/README.md: This can be individual abricate reports, or a combined one. ``` # Run abricate on each .fa file % abricate 1.fna > 1.tab % abricate 2.fna >..."
+        ],
+        "required_lines": [],
+        "output_lines": [],
+        "datatype_terms": []
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 1549,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ABRicate_List-90425a1e42/candidate-1.xml",
+        "selected": true,
+        "score": 420,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "missing_inputs:-10",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": false,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 15,
+          "input_count": 0,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 1627
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABRicate_List-90425a1e42.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABRicate_List-90425a1e42.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABRicate_List-90425a1e42.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 30,
+    "package_id": "iuc/abricate",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/abricate/abricate_list.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abricate/abricate_list.expanded.xml",
+    "primary_command": "abricate"
+  },
+  {
+    "request_id": "gen-20260810144758441707",
+    "created_at": "2026-08-10T14:47:58.442020+00:00",
+    "tool_name": "autoBIGS.cli",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/autoBIGS.cli-108330a964.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810144758441707/report.json",
+    "tool_id": "autobigs-cli",
+    "tool_display_name": "autoBIGS.cli",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/autoBIGS.cli-108330a964.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "What is autoBIGS\n================\nautoBIGS is a tool to help automatically performes multi-locus sequence typing (MLST) on given data by performing calls to necessary web BIGS database web APIs.\n\nSupport for typing schemes other than MLST\n==========================================\nAutoBIGS is capable of performing typing for any available schemes given a database. To retrieve a list of available schemes in the form of a spreadsheet (CSV), under operation, select \"retrieve available schemes for database\" and run the tool.\n\nPerforming Sequence Typing\n==========================\nSimply select \"Perform Sequence Typing\" for the \"Operation\" and select your FASTA files. Then, enter your SeqDef Database name (see \"Obtaining Database Name and Schema ID\" above) and schema ID.\n\nSpecial behaviour for FASTAs with multiple sequences\n====================================================\nAutoBIGS will treat multiple sequences in the same FASTA file as part of the same sample. This will result in a fasta with multiple sequences within the same row with the final sequence type being retrieved from the resulting alleles of the individual sequences within the FASTA. This is helpful if the input FASTA was obtained from a targetted form of sequencing for the specific needed regions (e.g., Sanger sequencing of 7 house keeping genes), rather than a whole genome sequence. If your data is a whole genome sequence (WGS) of the entire genome or similar, each WGS should have it's own FASTA.\n\nIn the case all sequences in a given FASTA have the same ID, autoBIGS will not repeat these names in the output row.\n\nMore Information\n================\nFor more information on the tool being wrapped itself, please see the `autoBIGS.cli Github repository`_. Issues, bugs, and feature requests for the tool itself should be submitted to the `autoBIGS.cli issues`_. If the issue/bug/feature request is solely pertanent to the Galaxy wrapper, please check out the `autoBIGS.galaxy issues`_ tracker on GitHub.\n\n\n.. _autoBIGS.cli GitHub repository: https://github.com/Syph-and-VPD-Lab/autoBIGS.cli\n.. _autoBIGS.cli issues: https://github.com/Syph-and-VPD-Lab/autoBIGS.cli/issues\n.. _autoBIGS.galaxy: https://github.com/Syph-and-VPD-Lab/autoBIGS.galaxy\n.. _autoBIGS.galaxy issues: https://github.com/Syph-and-VPD-Lab/autoBIGS.galaxy/issues\n\nUnderlying software source documentation:\n- autobigs-cli autobigs_cli-0.6.2/README.md: # autoBIGS.cli A command-line interface (CLI) based program that allows quickly batched requests for obtaining MLST profiles on multiple FASTA sequences and exporting it as a convenient CSV. Capable of querying a variety of MLST databases from both Institut Pasteur and PubMLST. This program is simply a command-line interface for [autoBIGS.engine](https://pypi.org/project/autoBIGS.engine). ## Features",
+      "original_chars": 2809,
+      "shaped_chars": 2809,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/autobigs\n- Tool id: autobigs-cli\n- Primary command: autoBIGS\nCore options:\n- - autobigs-cli autobigs_cli-0.6.2/README.md: # autoBIGS.cli A command-line interface (CLI) based program that allows quickly batched requests for obtaining MLST profiles on mult...\nRequired/input cues:\n- AutoBIGS is capable of performing typing for any available schemes given a database. To retrieve a list of available schemes in the form of a spreadsheet (CSV), under operation,...\n- Simply select \"Perform Sequence Typing\" for the \"Operation\" and select your FASTA files. Then, enter your SeqDef Database name (see \"Obtaining Database Name and Schema ID\" above...\n- AutoBIGS will treat multiple sequences in the same FASTA file as part of the same sample. This will result in a fasta with multiple sequences within the same row with the final...\nOutput cues:\n- AutoBIGS will treat multiple sequences in the same FASTA file as part of the same sample. This will result in a fasta with multiple sequences within the same row with the final...\n- In the case all sequences in a given FASTA have the same ID, autoBIGS will not repeat these names in the output row.\nDatatype cues:\n- fasta, csv",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/autobigs",
+          "Tool id: autobigs-cli",
+          "Primary command: autoBIGS"
+        ],
+        "option_lines": [
+          "- autobigs-cli autobigs_cli-0.6.2/README.md: # autoBIGS.cli A command-line interface (CLI) based program that allows quickly batched requests for obtaining MLST profiles on mult..."
+        ],
+        "required_lines": [
+          "AutoBIGS is capable of performing typing for any available schemes given a database. To retrieve a list of available schemes in the form of a spreadsheet (CSV), under operation,...",
+          "Simply select \"Perform Sequence Typing\" for the \"Operation\" and select your FASTA files. Then, enter your SeqDef Database name (see \"Obtaining Database Name and Schema ID\" above...",
+          "AutoBIGS will treat multiple sequences in the same FASTA file as part of the same sample. This will result in a fasta with multiple sequences within the same row with the final..."
+        ],
+        "output_lines": [
+          "AutoBIGS will treat multiple sequences in the same FASTA file as part of the same sample. This will result in a fasta with multiple sequences within the same row with the final...",
+          "In the case all sequences in a given FASTA have the same ID, autoBIGS will not repeat these names in the output row."
+        ],
+        "datatype_terms": [
+          "fasta",
+          "csv"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 4611,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/autoBIGS.cli-108330a964/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 191,
+          "input_count": 4,
+          "output_count": 1,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": true,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": true,
+          "test_count_before": 2,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 4481
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": true,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": true,
+      "test_count_before": 2,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/autoBIGS.cli-108330a964.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/autoBIGS.cli-108330a964.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/autoBIGS.cli-108330a964.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 32,
+    "package_id": "iuc/autobigs",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/autobigs/autobigs-cli.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/autobigs/autobigs-cli.expanded.xml",
+    "primary_command": "autoBIGS"
+  },
+  {
+    "request_id": "gen-20260810144853375064",
+    "created_at": "2026-08-10T14:48:53.375331+00:00",
+    "tool_name": "ABySS",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABySS-ad1ad9f776.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810144853375064/report.json",
+    "tool_id": "abyss-pe",
+    "tool_display_name": "ABySS",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABySS-ad1ad9f776.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "**What it does**\n\n`ABySS`_ is a de novo sequence assembler intended for short paired-end reads and large genomes.\n\n**Input**\n\nInput files should be FASTA or FASTQ files.\n\nFor paired reads, a pair of reads must be named with the suffixes /1 and /2 to identify the first and second read, or the reads may be named identically. The paired reads may be in separate files or interleaved in a single file.\n\nAt least a paired-end library or a single-end library must be provided.\n\nContigs are generated only if at least a paired-end library is provided. Scaffolds are generated only if at least a paired-end library or a mate-pair library is provided.\n\n**Description**\n\nThis tool performs the complete ABySS pipeline using abyss-pe, described in https://github.com/bcgsc/abyss/blob/master/doc/flowchart.pdf .\n\n**License and citation**\n\nThis Galaxy tool is Copyright \u00a9 2015-2021 `Earlham Institute`_\n\n.. _Earlham Institute: http://www.earlham.ac.uk/\n\n.. _ABySS: https://github.com/bcgsc/abyss\n\nUnderlying software source documentation:\n- abyss abyss-2.3.10/README.html: <li><code>abyss-db-txt</code>: create a flat file showing entire repository at a glance</li> <li><code>abyss-db-csv</code>: create <code>.csv</code> table(s) from the repository</li> </ul> <p>Usage:</p> <pre><code>abyss-db-txt /your/repository abyss-db-csv /your/repository program(s)</code></pre> <p>For example,</p> <pre><code>abyss-db-txt repo.sqlite abyss-db-csv repo.sqlite DistanceEst abyss-db-csv repo.sqlite DistanceEst abyss-scaffold abyss-db-csv repo.sqlite --all</code></pre>\n- abyss abyss-2.3.10/README.md: Installation ================================================================================ ## Install ABySS using Conda (recommended) If you have the [Conda](https://docs.conda.io/en/latest/) package manager (Linux, MacOS) installed, run: conda install -c bioconda -c conda-forge abyss Or you can install ABySS in a dedicated environment:\n- abyss abyss-2.3.10/README.md: conda activate abyss-env conda install -c bioconda -c conda-forge abyss ## Install ABySS using Homebrew If you have the [Homebrew](https://brew.sh) package manager (Linux, MacOS) installed, run: brew install abyss ## Install ABySS on Windows\n- abyss abyss-2.3.10/README.md: brew install abyss ## Install ABySS on Windows Install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/) from which you can run Conda or Homebrew installation. Dependencies ============ ## Dependencies for linked reads",
+      "original_chars": 2474,
+      "shaped_chars": 2474,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/abyss\n- Tool id: abyss-pe\n- Primary command: abyss-pe\nCore options:\n- - abyss abyss-2.3.10/README.html: <li><code>abyss-db-txt</code>: create a flat file showing entire repository at a glance</li> <li><code>abyss-db-csv</code>: create <code>.csv</...\n- - abyss abyss-2.3.10/README.md: Installation ================================================================================ ## Install ABySS using Conda (recommended) If you h...\n- - abyss abyss-2.3.10/README.md: conda activate abyss-env conda install -c bioconda -c conda-forge abyss ## Install ABySS using Homebrew If you have the [Homebrew](https://brew.s...\n- - abyss abyss-2.3.10/README.md: brew install abyss ## Install ABySS on Windows Install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/) from which yo...\nRequired/input cues:\n- `ABySS`_ is a de novo sequence assembler intended for short paired-end reads and large genomes.\n- **Input**\n- Input files should be FASTA or FASTQ files.\n- For paired reads, a pair of reads must be named with the suffixes /1 and /2 to identify the first and second read, or the reads may be named identically. The paired reads may be...\n- Contigs are generated only if at least a paired-end library is provided. Scaffolds are generated only if at least a paired-end library or a mate-pair library is provided.\nDatatype cues:\n- fastq, fasta, csv, txt, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/abyss",
+          "Tool id: abyss-pe",
+          "Primary command: abyss-pe"
+        ],
+        "option_lines": [
+          "- abyss abyss-2.3.10/README.html: <li><code>abyss-db-txt</code>: create a flat file showing entire repository at a glance</li> <li><code>abyss-db-csv</code>: create <code>.csv</...",
+          "- abyss abyss-2.3.10/README.md: Installation ================================================================================ ## Install ABySS using Conda (recommended) If you h...",
+          "- abyss abyss-2.3.10/README.md: conda activate abyss-env conda install -c bioconda -c conda-forge abyss ## Install ABySS using Homebrew If you have the [Homebrew](https://brew.s...",
+          "- abyss abyss-2.3.10/README.md: brew install abyss ## Install ABySS on Windows Install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/) from which yo..."
+        ],
+        "required_lines": [
+          "`ABySS`_ is a de novo sequence assembler intended for short paired-end reads and large genomes.",
+          "**Input**",
+          "Input files should be FASTA or FASTQ files.",
+          "For paired reads, a pair of reads must be named with the suffixes /1 and /2 to identify the first and second read, or the reads may be named identically. The paired reads may be...",
+          "Contigs are generated only if at least a paired-end library is provided. Scaffolds are generated only if at least a paired-end library or a mate-pair library is provided."
+        ],
+        "output_lines": [],
+        "datatype_terms": [
+          "fastq",
+          "fasta",
+          "csv",
+          "txt",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 3442,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ABySS-ad1ad9f776/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 340,
+          "input_count": 5,
+          "output_count": 3,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": true,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 3522
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": true,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABySS-ad1ad9f776.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABySS-ad1ad9f776.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ABySS-ad1ad9f776.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 34,
+    "package_id": "iuc/abyss",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/abyss/abyss-pe.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abyss/abyss-pe.expanded.xml",
+    "primary_command": "abyss-pe"
+  },
+  {
+    "request_id": "gen-20260810145048409787",
+    "created_at": "2026-08-10T14:50:48.410100+00:00",
+    "tool_name": "ampvis2 rank abundance plot",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810145048409787/report.json",
+    "tool_id": "ampvis2_rankabundance",
+    "tool_display_name": "ampvis2 rank abundance plot",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "What it does\n============\n\nGenerates a rank abundance curve (rank abundance vs cumulative read abundance),\noptionally with standard deviation from mean intervals.\n\nThe Galaxy tool calls the `amp_rankabundance\n<https://kasperskytte.github.io/ampvis2/reference/amp_rankabundance.html>`_ function\nof the ampvis2 package.\n\nCurrently only OTU level is supported.\n\nInput\n=====\n\n\n        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the\n        ``ampvis2: subset ...`` tools).\n\n\n\n        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the\n        ``ampvis2: subset sample`` tool).  This input is only used for providing\n        values to the parameters alowing to select metadata variables or values.\n\n\nOutput\n======\n\nAn rank abundance plot in the chosen output format.",
+      "original_chars": 874,
+      "shaped_chars": 866,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/ampvis2\n- Tool id: ampvis2_rankabundance\nRequired/input cues:\n- Generates a rank abundance curve (rank abundance vs cumulative read abundance),\n- Input\n- ``ampvis2: subset sample`` tool).  This input is only used for providing\nOutput cues:\n- The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the\n- Output\n- An rank abundance plot in the chosen output format.\nDatatype cues:\n- html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/ampvis2",
+          "Tool id: ampvis2_rankabundance"
+        ],
+        "option_lines": [],
+        "required_lines": [
+          "Generates a rank abundance curve (rank abundance vs cumulative read abundance),",
+          "Input",
+          "``ampvis2: subset sample`` tool).  This input is only used for providing"
+        ],
+        "output_lines": [
+          "The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the",
+          "Output",
+          "An rank abundance plot in the chosen output format."
+        ],
+        "datatype_terms": [
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 7340,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ampvis2_rank_abundance_plot-1ed63777de/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 354,
+          "input_count": 13,
+          "output_count": 1,
+          "requirement_count": 34,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": true,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 7170
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": true,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 36,
+    "package_id": "iuc/ampvis2",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/rankabundance.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/rankabundance.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810145837778617",
+    "created_at": "2026-08-10T14:58:37.778948+00:00",
+    "tool_name": "ampvis2 load",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810145837778617/report.json",
+    "tool_id": "ampvis2_load",
+    "tool_display_name": "ampvis2 load",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "biom"
+      ],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries."
+      ],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "What it does\n============\n\nThis tool reads an OTU or ASV table and corresponding sample metadata, and returns\na RDS data set for use in all ampvis2 tools. It is therefore required to load\ndata with this tool before any other ampvis2 tools can be used.\n\nThe Galaxy tool calls the `amp_load <https://kasperskytte.github.io/ampvis2/reference/amp_load.html>`_\nfunction of the ampvis2 package. This function validates and corrects the\nprovided data frames in different ways to make it suitable for the rest of the\nampvis2 tools. It is important that the provided data sets match the\nrequirements as described in the following to work properly.\n\nInput\n=====\n\n**The OTU-table**\n\ncontains information about the OTU/ASVs, their read counts in each sample, and\noptionally their assigned taxonomy. The OTU table can be given as\n\n- Tabular data set\n- BIOM version (1 and 2)\n\nMetadata and taxonomy in the tabular or BIOM files that are given via the\n``OTU table`` parameter can is overwritten if by data presented via the\n``Sample metadata`` or ``Taxonomy table`` parameters.\n\nIf given in tabular format the provided OTU-table must be a table with the\nfollowing requirements:\n\n- The rows are OTU IDs and the columns are samples.\n- The OTU IDs are by default expected to be in a column called \"OTU\", \"ASV\", or \"#OTU ID\" (it might be good to avoid the later: https://github.com/KasperSkytte/ampvis2/issues/180).\n  For data using an empty header for the OTU/ASV colum enable the option *OTU/ASV column has empty header*\n  (this allows to process data as produced e.g. by dada2).\n- The column names of the table are the sample IDs, exactly matching those in\n  the metadata\n- The last 7 columns are optionally the corresponding taxonomy assigned to the\n  OTUs, named \"Kingdom\", \"Phylum\", \"Class\", \"Order\", \"Family\", \"Genus\", \"Species\".\n\nIf the ASV IDs are actually the ASV Sequences then enabling\n*ASV identifiers are the ASV sequences* will rename the identifiers to ASV1, ASV2,...\n(and save the sequences in the ampvis2 object).\n\nGenerally avoid special characters and spaces in row- and column names.\n\nThe OTU table can also contain the taxonomic information in additional columns:\nKingdom, Phylum, Class, Order, Family, Genus.\n\nCheck `here <https://biom-format.org/>`_ for information on the BIOM formats.\n\n**The metadata**\n\ncontains additional information about the samples, for example where each sample\nwas taken, date, pH, treatment etc, which is used to compare and group the\nsamples during analysis. The amount of information in the metadata is unlimited,\nit can contain any number of columns (variables), however there are a few\nrequirements:\n\n- The sample IDs must be in the first column. The sample IDs must match exactly\n  to those in the OTU-table. Any unmatched samples between the otutable and\n  metadata will be removed with a warning.\n- Generally avoid special characters and spaces in row- and column names.\n\nBy default the data types of metadata columns are guessed with\n``readr::type_convert``. The guessed column types can be seen in the last (4th)\ncolumn of the ``metadata list`` output and also stdout of the tool.  Guessing of\ndata types can be disabled using the parameter ``Guess metadata column types``.\nIf disabled matadata from separate tabular input is treated as character data,\nand if loaded from biom files that data is used as is. Metadata types can be set\nmanually using the tool ``ampvis2: set metadata``\n\nDates should be given in the format ``YYYY-MM-DD`` (Y: year, M: month, D: day).\n\nIn addition to the RDS data set a metadata (resp. taxonomy) list data set is returned\nif metadata (resp. taxonomic information) is given to this tool. It contains\nrestructured metadata (taxonomic information) that is used in downstream ampvis2\nGalaxy tools in order to select metadata / metadata values (resp. taxonomic levels).\n\n**Taxonomy**\n\nis a tabular data set with 7 columns and one row per ASV/OTU:\n\n- the 1st column is identical to the 1st column of the OTU table parameter\n- the remaining columns contain data for Kingdom, Phylum, Class, Order, Family, Genus\n\nNote that the taxonomic information can also be embedded in the OTU table.\n\n**Tree**\n\na tree with branch lengths in Newick format.\n\nThis is needed / usefull only if the data is used as input of: ``ampvis2:\nordination plot`` for ordination methods NNDS / MMDS with (un)weighted UniFrac\ndistances. Note that the loaded tree is also filtered by the ``ampvis2: subset\n...`` tools.\n\n**Fasta**\n\na fasta file containing the sequences of the OTUs. Note that this information is\nonly used in ``ampvis2: export fasta``. If the OTU table is modified by\n``ampvis2: mergereplicates`` or the ``ampvis2: subset ...`` tools this might be\nuseful to obtain a filtered list of sequences.\n\n\nOutput\n======\n\n**RDS**\n\nThe main output of the tool is an RDS data set that contains the R representation of\nthe ampvis2 object containing the provided data (OTU table, metadata, taxonomy,\nphylogenetic tree, and fasta).\n\n**List files**\n\nSummarize the metadata and taxonomy information:\n\n- the taxonomy list file lists all taxa in a 1 column tabular data set\n- the metadata list file lists the Metadata variables (column 1), and the corresponding\n  available metadata values (column 2), if the variable is the SampleID (column 3), and\n  the data type of the corresponding metadata variable (column 4)\n\nThese files are auxilliary files that are needed in downstream ``ampvis2`` Galaxy tools\nto allow selecting metadata and taxonomy. They are not passed to the underlying R functions.\n\nNote that, if the no taxonomy (or metadata) is given then the underlying ``ampvis2`` R\nfunction adds dummy taxonomy (resp. metadata). In this case the output of the list datasets\ncan be disabled with the ``Output list data sets`` parameter.\n\nWrapper configfile context:\n\nAPI calls used by generated wrapper scripts:\n- rscript: readr::type_convert",
+      "original_chars": 5882,
+      "shaped_chars": 5876,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/ampvis2\n- Tool id: ampvis2_load\nCore options:\n- - Tabular data set\n- - BIOM version (1 and 2)\n- - The rows are OTU IDs and the columns are samples.\n- - The OTU IDs are by default expected to be in a column called \"OTU\", \"ASV\", or \"#OTU ID\" (it might be good to avoid the later: https://github.com/KasperSkytte/ampvis2/issues/180).\n- - The column names of the table are the sample IDs, exactly matching those in\n- - The last 7 columns are optionally the corresponding taxonomy assigned to the\n- - The sample IDs must be in the first column. The sample IDs must match exactly\n- - Generally avoid special characters and spaces in row- and column names.\n- - the 1st column is identical to the 1st column of the OTU table parameter\n- - the remaining columns contain data for Kingdom, Phylum, Class, Order, Family, Genus\n- - the taxonomy list file lists all taxa in a 1 column tabular data set\n- - the metadata list file lists the Metadata variables (column 1), and the corresponding\n- - rscript: readr::type_convert\nRequired/input cues:\n- This tool reads an OTU or ASV table and corresponding sample metadata, and returns\n- a RDS data set for use in all ampvis2 tools. It is therefore required to load\n- Input\n- contains information about the OTU/ASVs, their read counts in each sample, and\n- Metadata and taxonomy in the tabular or BIOM files that are given via the\n- ``Sample metadata`` or ``Taxonomy table`` parameters.\n- contains additional information about the samples, for example where each sample\n- samples during analysis. The amount of information in the metadata is unlimited,\n- to those in the OTU-table. Any unmatched samples between the otutable and\n- ``readr::type_convert``. The guessed column types can be seen in the last (4th)\nOutput cues:\n- ``OTU table`` parameter can is overwritten if by data presented via the\n- column of the ``metadata list`` output and also stdout of the tool.  Guessing of\n- Output\n- The main output of the tool is an RDS data set that contains the R representation of\n- function adds dummy taxonomy (resp. metadata). In this case the output of the list datasets\n- can be disabled with the ``Output list data sets`` parameter.\nDatatype cues:\n- fasta, tabular, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/ampvis2",
+          "Tool id: ampvis2_load"
+        ],
+        "option_lines": [
+          "- Tabular data set",
+          "- BIOM version (1 and 2)",
+          "- The rows are OTU IDs and the columns are samples.",
+          "- The OTU IDs are by default expected to be in a column called \"OTU\", \"ASV\", or \"#OTU ID\" (it might be good to avoid the later: https://github.com/KasperSkytte/ampvis2/issues/180).",
+          "- The column names of the table are the sample IDs, exactly matching those in",
+          "- The last 7 columns are optionally the corresponding taxonomy assigned to the",
+          "- The sample IDs must be in the first column. The sample IDs must match exactly",
+          "- Generally avoid special characters and spaces in row- and column names.",
+          "- the 1st column is identical to the 1st column of the OTU table parameter",
+          "- the remaining columns contain data for Kingdom, Phylum, Class, Order, Family, Genus",
+          "- the taxonomy list file lists all taxa in a 1 column tabular data set",
+          "- the metadata list file lists the Metadata variables (column 1), and the corresponding",
+          "- rscript: readr::type_convert"
+        ],
+        "required_lines": [
+          "This tool reads an OTU or ASV table and corresponding sample metadata, and returns",
+          "a RDS data set for use in all ampvis2 tools. It is therefore required to load",
+          "Input",
+          "contains information about the OTU/ASVs, their read counts in each sample, and",
+          "Metadata and taxonomy in the tabular or BIOM files that are given via the",
+          "``Sample metadata`` or ``Taxonomy table`` parameters.",
+          "contains additional information about the samples, for example where each sample",
+          "samples during analysis. The amount of information in the metadata is unlimited,",
+          "to those in the OTU-table. Any unmatched samples between the otutable and",
+          "``readr::type_convert``. The guessed column types can be seen in the last (4th)"
+        ],
+        "output_lines": [
+          "``OTU table`` parameter can is overwritten if by data presented via the",
+          "column of the ``metadata list`` output and also stdout of the tool.  Guessing of",
+          "Output",
+          "The main output of the tool is an RDS data set that contains the R representation of",
+          "function adds dummy taxonomy (resp. metadata). In this case the output of the list datasets",
+          "can be disabled with the ``Output list data sets`` parameter."
+        ],
+        "datatype_terms": [
+          "fasta",
+          "tabular",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 10724,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ampvis2_load-9dff6d3c45/candidate-1.xml",
+        "selected": true,
+        "score": 455,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10",
+          "unknown_datatypes:-5"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 2163,
+          "input_count": 7,
+          "output_count": 5,
+          "requirement_count": 1,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [
+            "biom"
+          ],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries."
+          ],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 10833
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [
+        "biom"
+      ],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 40,
+    "package_id": "iuc/ampvis2",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/load.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/load.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810150415558653",
+    "created_at": "2026-08-10T15:04:15.558947+00:00",
+    "tool_name": "ampvis2 rarefaction curve",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810150415558653/report.json",
+    "tool_id": "ampvis2_rarecurve",
+    "tool_display_name": "ampvis2 rarefaction curve",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "What it does\n============\n\nGenerates a rarefaction curve (number of reads vs number of observed OTUs) for each sample.\nThe plot can be colored or faceted (i.e. split into multiple panels) by metadata\n\nThe Galaxy tool calls the `amp_rarecurve\n<https://kasperskytte.github.io/ampvis2/reference/amp_rarecurve.html>`_ function\nof the ampvis2 package.\n\nInput\n=====\n\n\n        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the\n        ``ampvis2: subset ...`` tools).\n\n\n\n        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the\n        ``ampvis2: subset sample`` tool).  This input is only used for providing\n        values to the parameters alowing to select metadata variables or values.\n\n\nOutput\n======\n\nRarefaction curves in the chosen output format.",
+      "original_chars": 860,
+      "shaped_chars": 851,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/ampvis2\n- Tool id: ampvis2_rarecurve\nRequired/input cues:\n- Generates a rarefaction curve (number of reads vs number of observed OTUs) for each sample.\n- Input\n- ``ampvis2: subset sample`` tool).  This input is only used for providing\nOutput cues:\n- The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the\n- Output\n- Rarefaction curves in the chosen output format.\nDatatype cues:\n- html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/ampvis2",
+          "Tool id: ampvis2_rarecurve"
+        ],
+        "option_lines": [],
+        "required_lines": [
+          "Generates a rarefaction curve (number of reads vs number of observed OTUs) for each sample.",
+          "Input",
+          "``ampvis2: subset sample`` tool).  This input is only used for providing"
+        ],
+        "output_lines": [
+          "The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the",
+          "Output",
+          "Rarefaction curves in the chosen output format."
+        ],
+        "datatype_terms": [
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 4109,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ampvis2_rarefaction_curve-e80625d649/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 225,
+          "input_count": 9,
+          "output_count": 1,
+          "requirement_count": 5,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": true,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 4168
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": true,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 44,
+    "package_id": "iuc/ampvis2",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/rarecurve.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/rarecurve.expanded.xml",
+    "primary_command": ""
+  },
+  {
+    "request_id": "gen-20260810150449035689",
+    "created_at": "2026-08-10T15:04:49.037419+00:00",
+    "tool_name": "ampvis2 export fasta",
+    "provider": "local-peft",
+    "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+    "skills_profile": "default",
+    "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml",
+    "report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/generation/gen-20260810150449035689/report.json",
+    "tool_id": "ampvis2_export_fasta",
+    "tool_display_name": "ampvis2 export fasta",
+    "artifact_format": "xml",
+    "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml",
+    "output_udt_yaml_path": "",
+    "validation": {
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_run",
+      "planemo_status": "not_run",
+      "notes": [],
+      "artifact_format": "xml"
+    },
+    "prompt_help": {
+      "text": "What it does\n============\n\nExport sequences from an ampvis2 object and optionally add taxonomy to the fasta header lines.\n\nThe Galaxy tool calls the `amp_export_fasta\n<https://kasperskytte.github.io/ampvis2/reference/amp_export_fasta.html>`_ function\nof the ampvis2 package.\n\nInput\n=====\n\n\n        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the\n        ``ampvis2: subset ...`` tools).\n\n\nIn order to work the ampvis2 rds data set needs to contain sequence information.\n\nOutput\n======\n\nThe sequences contained in the input as fasta.",
+      "original_chars": 596,
+      "shaped_chars": 592,
+      "max_chars": 12000,
+      "truncated": false,
+      "omitted_repeated_lines": 0,
+      "interface_hints": {
+        "text": "Metadata cues:\n- Package: iuc/ampvis2\n- Tool id: ampvis2_export_fasta\nRequired/input cues:\n- Input\n- The sequences contained in the input as fasta.\nOutput cues:\n- Output\nDatatype cues:\n- fasta, html",
+        "usage_lines": [],
+        "metadata_lines": [
+          "Package: iuc/ampvis2",
+          "Tool id: ampvis2_export_fasta"
+        ],
+        "option_lines": [],
+        "required_lines": [
+          "Input",
+          "The sequences contained in the input as fasta."
+        ],
+        "output_lines": [
+          "Output"
+        ],
+        "datatype_terms": [
+          "fasta",
+          "html"
+        ]
+      }
+    },
+    "source_context": {
+      "text": "",
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "metadata_sources": 0,
+      "scanned_files": 0,
+      "included_files": 0,
+      "included_chars": 0,
+      "truncated": false,
+      "included_paths": [],
+      "test_context_mode": "none",
+      "included_test_files": 0,
+      "included_test_chars": 0,
+      "test_context_truncated": false,
+      "included_test_paths": [],
+      "errors": []
+    },
+    "raw_response_log_path": "",
+    "raw_response_chars": 2156,
+    "generation_settings": {
+      "provider": "local",
+      "model": "",
+      "temperature": 0.0,
+      "max_tokens": 4096,
+      "ollama_context_tokens": null
+    },
+    "sidecar_artifacts": [],
+    "candidate_artifacts": [
+      {
+        "attempt": 1,
+        "candidate_index": 1,
+        "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/.gtsm/candidates/ampvis2_export_fasta-1913c889f6/candidate-1.xml",
+        "selected": true,
+        "score": 460,
+        "score_reasons": [
+          "xml_well_formed:+100",
+          "root_is_tool:+100",
+          "no_generation_diagnostics:+50",
+          "has_command:+80",
+          "has_outputs:+60",
+          "has_inputs:+30",
+          "has_requirements:+15",
+          "has_tests:+15",
+          "has_help:+10"
+        ],
+        "features": {
+          "has_command": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_requirements": true,
+          "has_tests": true,
+          "has_help": true,
+          "command_chars": 123,
+          "input_count": 2,
+          "output_count": 1,
+          "requirement_count": 3,
+          "test_count": 1
+        },
+        "validation": {
+          "xml_well_formed": true,
+          "root_tag": "tool",
+          "root_is_tool": true,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [],
+          "artifact_format": "xml"
+        },
+        "postprocess": {
+          "artifact_format": "xml",
+          "citation_mode": "direct",
+          "citation_added": true,
+          "tool_id_applied": false,
+          "tool_name_applied": false,
+          "macros_import_added": false,
+          "tests_pruned": false,
+          "test_count_before": 1,
+          "test_count_after": 1,
+          "changed": true
+        },
+        "bytes": 2308
+      }
+    ],
+    "selected_candidate_attempt": 1,
+    "selected_candidate_index": 1,
+    "postprocess": {
+      "artifact_format": "xml",
+      "citation_mode": "direct",
+      "citation_added": true,
+      "tool_id_applied": false,
+      "tool_name_applied": false,
+      "macros_import_added": false,
+      "tests_pruned": false,
+      "test_count_before": 1,
+      "test_count_after": 1,
+      "changed": true
+    },
+    "datatype_scaffold": {
+      "enabled": true,
+      "unknown_datatypes": [],
+      "metadata_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml.gtsm/unknown-datatypes.json",
+      "datatypes_conf_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml.gtsm/datatypes_conf.xml.sample",
+      "readme_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml.gtsm/README.datatypes.md"
+    },
+    "attempt_count": 1,
+    "repair_attempted": false,
+    "repair_mode": "",
+    "repair_no_progress": false,
+    "repair_reason": "",
+    "initial_validation": {},
+    "initial_raw_response_log_path": "",
+    "corpus_index": 46,
+    "package_id": "iuc/ampvis2",
+    "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/export_fasta.xml",
+    "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/export_fasta.expanded.xml",
+    "primary_command": ""
+  }
+]

@@ -1,0 +1,34 @@
+<tool id="ampvis2_octave_plot" name="ampvis2 octave plot" version="0.1.0" profile="25.0">
+  <description>Generates an octave plot to assess alpha diversity.</description>
+  <requirements>
+    <requirement type="package" version="1.0">R</requirement>
+    <requirement type="package" version="1.0">octave</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e 'library(ampvis2); amp_octave(input_file = "$input", metadata_file = "$metadata", output_file = "$output")'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="AmpVis2 RDS Dataset" />
+    <param name="metadata" type="data" format="txt" label="Metadata List" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="Octave Plot" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="ampvis2_sample.rds" />
+      <param name="metadata" value="ampvis2_metadata.txt" />
+      <output name="output" file="ampvis2_octave_plot.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Generates an octave plot to assess alpha diversity. See details.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

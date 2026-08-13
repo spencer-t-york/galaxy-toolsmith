@@ -1,0 +1,39 @@
+<tool id="abyss" name="ABySS" version="0.1.0" profile="25.0">
+  <description>A de novo sequence assembler for short paired-end reads and large genomes.</description>
+  <requirements>
+    <requirement type="package" version="2.3.10">abyss</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abyss-pe k=$k threads=$threads in=$in out=$out
+    </command>
+  <inputs>
+    <param name="in" type="data" format="fastq,fasta" multiple="true" label="Input paired-end reads" />
+    <param name="k" type="integer" value="91" min="1" max="1000" label="Kmer size" />
+    <param name="threads" type="integer" value="4" min="1" label="Number of threads" />
+  </inputs>
+  <outputs>
+    <data name="contigs" format="fasta" label="Assembly contigs" />
+    <data name="scaffolds" format="fasta" label="Assembly scaffolds" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="in" value="sample.fastq" />
+      <param name="k" value="91" />
+      <param name="threads" value="4" />
+      <output name="contigs" file="contigs.fasta" />
+      <output name="scaffolds" file="scaffolds.fasta" />
+    </test>
+  </tests>
+  <help format="markdown">
+        ABySS is a de novo sequence assembler for short paired-end reads and large genomes.
+        Provide paired-end reads in FASTA or FASTQ format. At least one paired-end library is required.
+        Contigs are generated with paired-end libraries; scaffolds require paired-end or mate-pair libraries.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

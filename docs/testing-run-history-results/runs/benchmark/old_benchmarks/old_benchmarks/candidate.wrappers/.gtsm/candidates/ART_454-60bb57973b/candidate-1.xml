@@ -1,0 +1,68 @@
+<tool id="art_454" name="ART 454" version="0.1.0" profile="25.0">
+  <description>Simulate sequence read data of Roche 454 Pyrosequencing sequencers.</description>
+  <requirements>
+    <requirement type="package" version="1.5.7">art</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        art_454 $input_type $output_prefix $read_length $coverage $insert_size $num_reads $error_rate $homopolymer_error_rate $indel_error_rate $model $adapter $quality_profile $threads
+    </command>
+  <inputs>
+    <param name="input_type" type="select" label="Input Type">
+      <option value="single_end">Single End</option>
+      <option value="paired_end">Paired End</option>
+    </param>
+    <param name="output_prefix" type="text" label="Output Prefix" size="20" />
+    <param name="read_length" type="integer" label="Read Length" min="1" max="1000" value="150" />
+    <param name="coverage" type="float" label="Coverage" min="0.1" max="100" value="1.0" />
+    <param name="insert_size" type="integer" label="Insert Size" min="100" max="1000" value="300" />
+    <param name="num_reads" type="integer" label="Number of Reads" min="1" max="1000000" value="100000" />
+    <param name="error_rate" type="float" label="Error Rate" min="0.0" max="0.1" value="0.01" />
+    <param name="homopolymer_error_rate" type="float" label="Homopolymer Error Rate" min="0.0" max="0.1" value="0.005" />
+    <param name="indel_error_rate" type="float" label="Indel Error Rate" min="0.0" max="0.1" value="0.005" />
+    <param name="model" type="select" label="Model">
+      <option value="HS">High Sensitivity</option>
+      <option value="LR">Low Range</option>
+      <option value="SR">Super Read</option>
+    </param>
+    <param name="adapter" type="boolean" label="Adapter Presence" truevalue="true" falsevalue="false" checked="false" />
+    <param name="quality_profile" type="data" format="txt" label="Quality Profile" />
+    <param name="threads" type="integer" label="Threads" min="1" max="16" value="1" />
+  </inputs>
+  <outputs>
+    <collection name="reads" type="list" label="Generated Reads">
+      <element name="read" path="*.fastq.gz" format="fastq" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_type" value="single_end" />
+      <param name="output_prefix" value="test" />
+      <param name="read_length" value="150" />
+      <param name="coverage" value="1.0" />
+      <param name="insert_size" value="300" />
+      <param name="num_reads" value="100000" />
+      <param name="error_rate" value="0.01" />
+      <param name="homopolymer_error_rate" value="0.005" />
+      <param name="indel_error_rate" value="0.005" />
+      <param name="model" value="HS" />
+      <param name="adapter" value="false" />
+      <param name="quality_profile" value="profile.txt" />
+      <param name="threads" value="1" />
+      <output_collection name="reads" type="list">
+        <element name="read" path="test_R1.fastq.gz" format="fastq" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+# ART 454 Pyrosequencing Simulator
+
+Simulates sequence read data of Roche 454 Pyrosequencing sequencers.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

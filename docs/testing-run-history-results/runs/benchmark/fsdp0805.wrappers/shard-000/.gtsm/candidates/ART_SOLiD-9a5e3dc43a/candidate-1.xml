@@ -1,0 +1,93 @@
+<tool id="art_solid" name="ART SOLiD" version="4.0+galaxy0" profile="21.05">
+  <description>Simulator for SOLiD sequencing reads</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">art</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="4.0">iuc/art</requirement>
+  </requirements>
+  <version_command>echo "4.0"</version_command>
+  <command detect_errors="exit_code">
+        ln -s '$input' 'input.fastq' &amp;&amp;
+        #if $type.type == "single":
+            art_SOLiD -s \${GALAXY_SLOTS:-1} -l $length -f $fragment_length -m $mean_quality -o 'output' 'input.fastq'
+        #elif $type.type == "mate_pair":
+            art_SOLiD -s \${GALAXY_SLOTS:-1} -l $length -f $fragment_length -m $mean_quality -p $insert_size -e $insert_std_dev -o 'output' 'input.fastq'
+        #else if $type.type == "paired_end":
+            art_SOLiD -s \${GALAXY_SLOTS:-1} -l $length -f $fragment_length -m $mean_quality -p $insert_size -e $insert_std_dev -r $read_length -n $num_reads -o 'output' 'input.fastq'
+        #end if
+    </command>
+  <inputs>
+    <param argument="-i" type="data" format="fastq" label="Input FASTQ file" />
+    <conditional name="type">
+      <param name="type" type="select" label="Type of SOLiD sequencing">
+        <option value="single">Single-end</option>
+        <option value="mate_pair">Mate-pair</option>
+        <option value="paired_end">Paired-end</option>
+      </param>
+      <when value="single">
+        <param argument="-l" type="integer" min="1" value="76" label="Read length" />
+        <param argument="-f" type="integer" min="1" value="100" label="Fragment length" />
+        <param argument="-m" type="float" min="0.0" value="30.0" label="Mean quality score" />
+      </when>
+      <when value="mate_pair">
+        <param argument="-l" type="integer" min="1" value="76" label="Read length" />
+        <param argument="-f" type="integer" min="1" value="100" label="Fragment length" />
+        <param argument="-m" type="float" min="0.0" value="30.0" label="Mean quality score" />
+        <param argument="-p" type="integer" min="1" value="1000" label="Insert size" />
+        <param argument="-e" type="integer" min="0" value="100" label="Standard deviation of insert size" />
+      </when>
+      <when value="paired_end">
+        <param argument="-l" type="integer" min="1" value="76" label="Read length" />
+        <param argument="-f" type="integer" min="1" value="100" label="Fragment length" />
+        <param argument="-m" type="float" min="0.0" value="30.0" label="Mean quality score" />
+        <param argument="-p" type="integer" min="1" value="1000" label="Insert size" />
+        <param argument="-e" type="integer" min="0" value="100" label="Standard deviation of insert size" />
+        <param argument="-r" type="integer" min="1" value="1000" label="Number of reads per pair" />
+        <param argument="-n" type="integer" min="1" value="1000" label="Number of pairs" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <collection name="reads" type="list" label="${tool.name} on ${on_string}: Read files">
+      <discover_datasets pattern="__name_and_ext__" directory="output" />
+    </collection>
+  </outputs>
+  <tests>
+    <test>
+      <param name="type" value="single" />
+      <param name="i" ftype="fastq" value="input.fastq" />
+      <param name="l" value="76" />
+      <param name="f" value="100" />
+      <param name="m" value="30.0" />
+      <output_collection name="reads" count="1">
+        <element name="solid_R1" md5="9b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e" ftype="fastq" />
+      </output_collection>
+    </test>
+  </tests>
+  <help>
+Art SOLiD Simulator
+===================
+
+ART_SOLiD  is a simulation program to generate sequence read data of SOLiD
+sequencing reads. ART generates reads according to a SOLiD read error profile.
+The built-in error profile is an empiricial error profile summarized from large
+SOLiD sequencing data. ART has been using for testing or benchmarking a variety
+of method or tools for next-generation sequencing data analysis, including read
+alignment, de novo assembly, detection of SNP, CNV, or other structure
+variation.
+
+art_SOLiD can generate both single-end, matepair, and paired-end of SOLiD
+sequencing platform. art_SOLiD also support amplicon sequencing simulation with
+RNA references.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/bts036</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

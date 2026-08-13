@@ -1,0 +1,61 @@
+<tool id="aegean_canongff3" name="AEGeAn CanonGFF3" version="0.1.0" profile="25.0">
+  <description>Clean and preprocess GFF3 files for protein-coding genes</description>
+  <requirements>
+    <requirement type="package">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        for $i in `seq 1 ${repeat_count}`; do
+            canon-gff3 -i "${inputs.$i.input_file}" -o "${outputs.$i.output_file}"
+        done
+    </command>
+  <inputs>
+    <repeat name="inputs">
+      <param name="input_file" type="data" format="gff3" label="Input GFF3 file" />
+    </repeat>
+  </inputs>
+  <outputs>
+    <repeat name="outputs">
+      <data name="output_file" format="gff3" label="Cleaned GFF3 file" />
+    </repeat>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="inputs">
+        <param name="input_file">
+          <filename>test_input.gff3</filename>
+          <contents>##gff-version 3
+seq1\tgene\t1\t100\t.\t+\t.\tID=gene1
+seq1\texon\t10\t90\t.\t+\t.\tID=exon1;Parent=gene1
+seq1\tCDS\t15\t85\t.\t+\t0\tID=cds1;Parent=exon1
+</contents>
+        </param>
+      </param>
+      <output name="outputs">
+        <param name="output_file">
+          <has_text>##gff-version 3</has_text>
+          <has_text>seq1\tgene\t1\t100\t.\t+\t.\tID=gene1</has_text>
+          <has_text>seq1\texon\t10\t90\t.\t+\t.\tID=exon1;Parent=gene1</has_text>
+        </param>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AEGeAn CanonGFF3
+
+        ## Purpose
+        Clean and preprocess GFF3 files for protein-coding genes by removing non-essential features and inferring missing components like introns and UTRs.
+
+        ## Input
+        Provide one or more GFF3 files containing protein-coding gene annotations. The input must comply with GFF3 syntax and include sufficient detail to infer gene structure.
+
+        ## Output
+        The tool produces a cleaned GFF3 file containing only protein-coding genes with all necessary features explicitly defined.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

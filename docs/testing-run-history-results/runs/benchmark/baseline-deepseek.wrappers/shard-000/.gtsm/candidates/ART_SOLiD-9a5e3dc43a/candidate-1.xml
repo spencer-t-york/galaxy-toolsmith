@@ -1,0 +1,83 @@
+<tool> tag, including the id, name, version, and profile. The description should be concise, so I'll use "Simulate SOLiD sequencing reads using ART_SOLiD."
+
+Next, the requirements. Since the package is iuc/art, I'll add a requirement for that.
+
+The command section needs to execute art_SOLiD. The inputs are the reference genome, and outputs are the read files and a directory. I'll use the command line arguments as per the tool's usage. The command will include parameters for the reference, output prefix, and other options like read length, coverage, etc.
+
+For inputs, I'll define a <param> for the reference genome as a file input. Then, I'll add parameters for read length, coverage, fragment size, standard deviation, and the output prefix. These are all user-adjustable options.
+
+Outputs will include two FASTQ files for paired-end reads and a directory for other outputs.
+
+The test section should have a minimal test case. I'll use a sample reference genome and expected output files. The has_text assertions will check for the presence of the expected files.
+
+The help section will provide a brief explanation of the tool, its purpose, and usage instructions.
+
+I need to ensure the XML is self-contained, under 120 lines, and that the command and help sections are within their respective limits. I'll avoid using external scripts unless necessary and keep the structure compact.
+
+I'll structure the command using the parameters, making sure to reference the input and output correctly. The outputs are paired FASTQ files and a directory, so I'll define them accordingly.
+
+Finally, I'll review the XML to ensure all elements are correctly placed and that there are no syntax errors. I'll make sure the tool is user-friendly with clear parameter labels and help text.
+</think>
+
+```xml
+<tool id="art_solid" name="ART SOLiD" version="0.1.0" profile="25.0">
+    <description>Simulate SOLiD sequencing reads using ART_SOLiD</description>
+    <requirements>
+        <requirement type="package">iuc/art</requirement>
+    </requirements>
+    <command detect_errors="aggressive"><![CDATA[
+        art_SOLiD \
+            -i ${input_ref} \
+            -o ${output_prefix} \
+            -l ${read_length} \
+            -f ${coverage} \
+            -m ${fragment_size} \
+            -s ${fragment_stddev} \
+            > ${output_log}
+    ]]></command>
+    <inputs>
+        <param name="input_ref" type="data" format="fasta" label="Reference Genome" />
+        <param name="read_length" type="integer" label="Read Length" default="50" />
+        <param name="coverage" type="float" label="Coverage" default="30.0" />
+        <param name="fragment_size" type="integer" label="Fragment Size" default="200" />
+        <param name="fragment_stddev" type="integer" label="Fragment Size Standard Deviation" default="50" />
+        <param name="output_prefix" type="text" label="Output Prefix" default="art_solid" />
+    </inputs>
+    <outputs>
+        <data name="output_1" format="fastq" />
+        <data name="output_2" format="fastq" />
+        <data name="output_log" format="txt" />
+    </outputs>
+    <tests>
+        <test expect_num_outputs="3">
+            <param name="input_ref" value="test.fasta" />
+            <param name="read_length" value="50" />
+            <param name="coverage" value="30.0" />
+            <param name="fragment_size" value="200" />
+            <param name="fragment_stddev" value="50" />
+            <param name="output_prefix" value="test" />
+            <output name="output_1" file="test_1.fastq" />
+            <output name="output_2" file="test_2.fastq" />
+            <output name="output_log" file="test.log" />
+        </test>
+    </tests>
+    <help format="markdown"><![CDATA[
+        # ART SOLiD Simulator
+        
+        ART_SOLiD simulates SOLiD sequencing reads based on a reference genome and specified parameters. It generates paired-end reads with realistic error profiles.
+        
+        ## Usage
+        
+        - **Reference Genome**: Provide a FASTA file as the input reference.
+        - **Read Length**: Specify the length of the sequencing reads.
+        - **Coverage**: Target sequencing coverage depth.
+        - **Fragment Size**: Average fragment size for paired-end libraries.
+        - **Fragment Size Standard Deviation**: Spread of fragment sizes.
+        - **Output Prefix**: Prefix for output files.
+        
+        ## Output
+        
+        - Two FASTQ files for paired-end reads.
+        - A log file containing simulation details.
+    ]]></help>
+</tool>

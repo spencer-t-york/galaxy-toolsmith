@@ -1,0 +1,107 @@
+<tool id="ampvis2_alpha_diversity" name="ampvis2 alpha diversity" version="2.4+galaxy1" profile="21.09">
+  <description>calculate alpha-diversity indices for each sample</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.4">iuc-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+        Rscript '$__tool_directory__/alpha_diversity.R'
+            '$input'
+            '$output'
+            $rarefy
+            #if str($indices):
+                --indices '$indices'
+            #end if
+            &gt; '$output'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="Load an ampvis2 dataset" />
+    <param argument="--rarefy" type="integer" value="1000" min="1" label="Rarefaction depth" />
+    <param argument="--indices" type="select" multiple="true" display="checkboxes" label="Alpha-diversity indices">
+      <option value="ace" selected="true">ACE</option>
+      <option value="berger-parkerdominance" selected="true">Berger-Parker dominance</option>
+      <option value="brillouinindex" selected="true">Brillouin index</option>
+      <option value="chao1" selected="true">Chao1</option>
+      <option value="chao1ci" selected="true">Chao1 confidence interval</option>
+      <option value="doubleest" selected="true">Double estimator</option>
+      <option value="doubleestci" selected="true">Double estimator confidence interval</option>
+      <option value="enversheid" selected="true">Evensheid</option>
+      <option value="fisheralpha" selected="true">Fisher's alpha</option>
+      <option value="goodscoverage" selected="true">Good's coverage</option>
+      <option value="heippeindex" selected="true">Heippe index</option>
+      <option value="invsimpson" selected="true">Inverse Simpson index</option>
+      <option value="jost" selected="true">Jost's D</option>
+      <option value="mcintoshd" selected="true">McIntosh D</option>
+      <option value="margaleffnumber" selected="true">Margaleff number</option>
+      <option value="menhinick" selected="true">Menhinick</option>
+      <option value="observedspecies" selected="true">Observed species</option>
+      <option value="osd" selected="true">Order statistic dispersion</option>
+      <option value="simpson" selected="true">Simpson index</option>
+      <option value="simpsonreciprocal" selected="true">Reciprocal Simpson index</option>
+      <option value="shannon" selected="true">Shannon entropy</option>
+      <option value="simpson_e" selected="true">Simpson evenness</option>
+      <option value="simpson_reciprocalsq" selected="true">Reciprocal square Simpson index</option>
+      <option value="simpson_sqrt" selected="true">Square root Simpson index</option>
+      <option value="singlespeciesfraction" selected="true">Single species fraction</option>
+      <option value="stanley" selected="true">Stanley</option>
+      <option value="tss" selected="true">Total sum of squares</option>
+      <option value="unique" selected="true">Unique</option>
+      <option value="vegind" selected="true">Vegindex</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" ftype="rds" value="picrust-test.rds" />
+      <param name="rarefy" value="1000" />
+      <param name="indices" value="ace,berger-parkerdominance,chao1,goodscoverage,jost,simpson,shannon,tss,unique" />
+      <output name="output" file="alpha_diversity.tabular" ftype="tabular" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Calculate alpha-diversity indices for each sample and combines with the metadata.
+
+The Galaxy tool calls the `amp_alpha_diversity
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_alphadiv.html&gt;`_ function
+of the ampvis2 package.
+
+Usage
+=====
+
+The alpha-diversity indices are calculated per sample using the vegan function `diversity &lt;https://rdrr.io/pkg/vegan/man/diversity.html&gt;`_,
+where the read abundances are first rarefied using `rrarefy &lt;https://rdrr.io/pkg/vegan/man/rarefy.html&gt;`_ by the size of the rarefy argument.
+Refer to the vegan documentation for details about the different indices and how they are
+calculated.
+
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+Output
+======
+
+A tabular dataset containing the chosen alpha-diversity measures per sample.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-015-0060-2</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

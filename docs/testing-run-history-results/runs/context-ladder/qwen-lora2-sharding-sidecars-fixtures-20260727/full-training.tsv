@@ -1,0 +1,13 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-07-27T20:57:00Z	probe	65536	all-raw	192000	512	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-65536-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-27T21:26:21Z	probe	65536	all-filtered	192000	512	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-65536-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-27T22:08:49Z	probe	32768	all-raw	96000	256	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-32768-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-27T22:38:50Z	probe	32768	all-filtered	96000	256	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-32768-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-27T23:20:52Z	probe	16384	all-raw	36000	128	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-16384-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-27T23:50:03Z	probe	16384	all-filtered	36000	128	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-16384-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-28T00:32:36Z	probe	12288	all-raw	24000	96	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-12288-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-28T01:02:19Z	probe	12288	all-filtered	24000	96	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-12288-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-28T01:45:02Z	probe	8192	all-raw	12000	64	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-8192-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-28T02:14:48Z	probe	8192	all-filtered	12000	64	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-8192-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-28T02:57:26Z	probe	4096	all-raw	6000	32	deepspeed-zero3	completed	tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727
+2026-07-28T03:45:45Z	full	4096	all-raw	6000	32	deepspeed-zero3	post-export-failed	tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727

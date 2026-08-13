@@ -1,0 +1,19 @@
+{
+  "variant_id": "tools-iuc-devstral-24b-mixed-all-raw-12288-ddp-qwen-lora-sharding-sidecars-fixtures-20260727",
+  "schema_version": "0.1.0",
+  "created_at": "2026-07-27T22:08:46.986935+00:00",
+  "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "quantization": "none",
+  "training_dataset_id": "bootstrap-dataset",
+  "provider": "local",
+  "skills_profile": "default",
+  "backend": "axolotl",
+  "training_method": "lora",
+  "effective_training_method": "lora",
+  "artifact_kind": "peft_adapter",
+  "artifact_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-qwen-lora-sharding-sidecars-fixtures-20260727-probe-12288-all-raw-ddp/output",
+  "export_quantizations": [],
+  "ollama_model_name": "",
+  "requested_ollama_model_name": "",
+  "ollama_modelfile_path": ""
+}

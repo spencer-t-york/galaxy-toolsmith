@@ -1,0 +1,69 @@
+<tool id="autobigs.cli" name="autoBIGS.cli" version="0.1.0" profile="25.0">
+  <description>Perform sequence typing using autoBIGS CLI tool</description>
+  <requirements>
+    <requirement type="package">autobigs-cli</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        autoBIGS
+        $op_arg
+        $fasta_files
+        $database_arg
+        $schema_arg
+        &gt; $output_csv
+    </command>
+  <inputs>
+    <param name="op" type="select" label="Operation" required="true">
+      <option value="--retrieve_schemes">Retrieve available schemes for database</option>
+      <option value="--perform_typing">Perform sequence typing</option>
+    </param>
+    <repeat name="fasta_files">
+      <param name="fasta" type="data" format="fasta" label="Input FASTA file" />
+    </repeat>
+    <conditional name="op_args">
+      <when value="--perform_typing">
+        <param name="database" type="text" label="SeqDef Database Name" required="true" />
+        <param name="schema" type="text" label="Schema ID" required="true" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output_csv" format="csv" label="Typing Results" />
+    <data name="output_log" format="txt" label="Log File" optional="true" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="op" value="--retrieve_schemes" />
+      <repeat name="fasta_files">
+        <param name="fasta" value="test.fasta" />
+      </repeat>
+      <output name="output_csv" file="test_schemes.csv" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # autoBIGS.cli
+        
+        A tool for performing sequence typing using the autoBIGS CLI interface. It supports:
+        
+        - Retrieving available typing schemes for a database
+        - Performing sequence typing on FASTA files
+        
+        ## Input Requirements
+        
+        - Provide one or more FASTA files containing nucleotide sequences
+        - For sequence typing, specify the SeqDef database name and schema ID
+        
+        ## Output
+        
+        - Results are exported as a CSV file
+        - Log file is generated for debugging purposes
+        
+        For more details, visit the [autoBIGS.cli GitHub repository](https://github.com/Syph-and-VPD-Lab/autoBIGS.cli).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

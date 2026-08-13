@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "mtx"
+  ],
+  "records": [
+    {
+      "datatype": "mtx",
+      "tool_name": "Import Anndata",
+      "tool_id": "import_anndata",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/Import_Anndata-f48bab69f6.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

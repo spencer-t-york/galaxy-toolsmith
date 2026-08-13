@@ -1,0 +1,35 @@
+<tool id="art_454" name="ART 454" version="0.1.0" profile="25.0">
+  <description>Simulate sequence read data of Roche 454 Pyrosequencing sequencers.</description>
+  <requirements>
+    <requirement type="package" version="latest">iuc/art</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        art_454 $input_file $output_directory
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="fastq" label="Input FASTQ file" />
+    <param name="output_directory" type="text" label="Output Directory" />
+  </inputs>
+  <outputs>
+    <data name="output_reads" format="directory" label="Generated Read Data" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample.fastq" />
+      <param name="output_directory" value="output" />
+      <assert_contents>
+        <has_text filename="output/reads.txt" substring="Generated reads" />
+      </assert_contents>
+    </test>
+  </tests>
+  <help format="markdown">
+        Simulates sequence read data of Roche 454 Pyrosequencing sequencers.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

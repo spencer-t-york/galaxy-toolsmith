@@ -1,0 +1,173 @@
+<tool id="manipulate_anndata" name="Manipulate AnnData" version="0.1.0+galaxy0" profile="25.0">
+  <description>on observation and variable axes</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">anndata</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+    <requirement type="package" version="3.0.8">loompy</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+python '$__tool_directory__/script.py'
+--input $input
+--output $output
+$concatenate
+$make_obs_names_unique
+$make_var_names_unique
+$rename_categories
+$remove_keys
+$flag_genes
+$string_to_categoricals
+$transpose
+$add_annotation
+$split_by_key
+$filter
+$freeze_raw
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="h5ad,loom" label="Input AnnData" />
+    <conditional name="concatenate">
+      <param name="concatenate" type="select" label="Concatenate along the observations axis">
+        <option value="">None</option>
+        <option value="--concatenate join=inner">Inner join</option>
+        <option value="--concatenate join=outer">Outer join</option>
+      </param>
+    </conditional>
+    <conditional name="make_obs_names_unique">
+      <param name="make_obs_names_unique" type="boolean" truevalue="--obs_names_make_unique" falsevalue="" checked="false" label="Makes the obs index unique by appending '1', '2', etc" />
+    </conditional>
+    <conditional name="make_var_names_unique">
+      <param name="make_var_names_unique" type="boolean" truevalue="--var_names_make_unique" falsevalue="" checked="false" label="Makes the var index unique by appending '1', '2', etc" />
+    </conditional>
+    <conditional name="rename_categories">
+      <param name="rename_categories" type="text" value="" label="Rename categories of annotation `key` in `obs`, `var` and `uns`" />
+    </conditional>
+    <conditional name="remove_keys">
+      <param name="remove_keys" type="text" value="" label="Remove keys from obs or var annotations" />
+    </conditional>
+    <conditional name="flag_genes">
+      <param name="flag_genes" type="text" value="" label="Flag genes start with a pattern" />
+    </conditional>
+    <conditional name="string_to_categoricals">
+      <param name="string_to_categoricals" type="boolean" truevalue="--strings_to_categoricals" falsevalue="" checked="false" label="Transform string annotations to categoricals" />
+    </conditional>
+    <conditional name="transpose">
+      <param name="transpose" type="boolean" truevalue="--transpose" falsevalue="" checked="false" label="Transpose the data matrix, leaving observations and variables interchanged" />
+    </conditional>
+    <conditional name="add_annotation">
+      <param name="add_annotation" type="text" value="" label="Add annotation for variables or" />
+    </conditional>
+    <conditional name="split_by_key">
+      <param name="split_by_key" type="text" value="" label="Split the AnnData object into multiple AnnData objects based on the values of a given obs key" />
+    </conditional>
+    <conditional name="filter">
+      <param name="filter" type="text" value="" label="Filter data variables or observations, by index or key" />
+    </conditional>
+    <conditional name="freeze_raw">
+      <param name="freeze_raw" type="boolean" truevalue="--freeze_raw" falsevalue="" checked="false" label="Freeze the current state into the 'raw' attribute" />
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output" format="h5ad" label="${tool.name} on ${on_string}: Output AnnData" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" ftype="h5ad" value="adata.h5ad" />
+      <output name="output" ftype="h5ad" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+This tool takes an AnnData dataset, manipulates it and returns it.
+
+The possible manipulations are:
+
+- Concatenate along the observations axis (`concatenate method &lt;https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.concatenate.html&gt;`__)
+
+    The `uns`, `varm` and `obsm` attributes are ignored.
+
+    If you use `join='outer'` this fills 0s for sparse data when variables are absent in a batch. Use this with care. Dense data is filled with `NaN`
+
+- Makes the obs index unique by appending '1', '2', etc (`obs_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.obs_names_make_unique.html&gt;`__)
+
+    The first occurrence of a non-unique value is ignored.
+
+- Makes the var index unique by appending '1', '2', etc (`var_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.var_names_make_unique.html&gt;`__)
+
+    The first occurrence of a non-unique value is ignored.
+
+- Rename categories of annotation `key` in `obs`, `var` and `uns` (`rename_categories method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.rename_categories.html&gt;`__)
+
+    Besides calling `self.obs[key].cat.categories = categories` - similar for `var` - this also renames categories in unstructured annotation that uses the categorical annotation `key`
+
+- Remove keys from obs or var annotations
+
+    Helps in cleaning up andata with many annotations. For example, helps in removing qc metrics calculated during the preprocesing or already existing cluster annotations.
+
+- Flag genes start with a pattern
+
+    Useful for flagging the mitochondrial or ribosomal protein genes
+
+- Transform string annotations to categoricals (`strings_to_categoricals method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.strings_to_categoricals.html&gt;`__)
+
+    Only affects string annotations that lead to less categories than the total number of observations.
+
+- Transpose the data matrix, leaving observations and variables interchanged (`transpose method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.transpose.html&gt;`__)
+
+    Data matrix is transposed, observations and variables are interchanged.
+
+- Add annotation for variables or
+
+- Split the AnnData object into multiple AnnData objects based on the values of a given obs key
+
+    For example, helps in splitting an anndata objects based on cluster annotation. This function generates a collection with a number of elements equal to the number of categories in the input obs key.
+
+- Filter data variables or observations, by index or key
+
+- Freeze the current state into the 'raw' attribute
+
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy &lt;https://github.com/theislab/scanpy&gt;`__, for which it was initially developed.
+
+AnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.
+
+.. image:: https://falexwolf.de/img/scanpy/anndata.svg
+
+
+AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics
+of statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics
+and machine learning packages in Python (statsmodels, scikit-learn).
+
+More details on the `AnnData documentation
+&lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html&gt;`__
+
+
+**Loom data**
+
+Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+
+.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png
+
+
+Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes
+and cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).
+
+Underlying software source documentation:
+- anndata anndata-0.11.4/README.md: class="dark-light" align="right" width="350" alt="image" /&gt; # anndata - Annotated data anndata is a Python package for handling annotated data matrices in memory and on disk, positioned between pandas and xarray. anndata offers a broad range of computationally efficient features including, among others, sparse data support, lazy operations, and a PyTorch interface. - Discuss development on [GitHub](https://github.com/scverse/anndata). - Read the [documentation](https://anndata.readthedocs.io). - Ask questions on the [scverse Discourse](https://discourse.scverse.org). - Install via `pip install anndata` or `conda install anndata -c conda-forge`.
+- anndata anndata-0.11.4/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using [asv](https://asv.readthedocs.io). ## Setup I definitely recommend reading through the asv docs. Currently, this assumes the benchmark suite can reach the `anndata` repo via the path `../anndata`. Otherwise, all you'll need to do is create a [machine file](https://asv.readthedocs.io/en/stable/commands.html#asv-machine) for your system and make sure `anndata`s dependencies are installable via `conda`.
+- anndata anndata-0.11.4/docs/fileformat-prose.md: * An element MUST have a string-valued field `"encoding-type"` in its metadata * An element MUST have a string-valued field `"encoding-version"` in its metadata that can be evaluated to a version ### AnnData specification (v0.1.0) * An `AnnData` object MUST be a group. * The group's metadata MUST include entries: `"encoding-type": "anndata"`, `"encoding-version": "0.1.0"`. * An `AnnData` group MUST contain entries `"obs"` and `"var"`, which MUST be dataframes (though this may only have an index with no columns). * The group MAY contain an entry `X`, which MUST be either a dense or sparse array and whose shape MUST be (`n_obs`, `n_var`) * The group MAY contain a mapping `layers`. Entries in `layers` MUST be dense or sparse arrays which have shapes (`n_obs`, `n_var`) * The group MAY contain a mapping `obsm`. Entries in `obsm` MUST be sparse arrays, dense arrays, or datafram [truncated]
+- loompy loompy-3.0.8/README.md: # loompy v3.0 ⭐ Loompy v3.0 was released Sep. 24, 2019! To get started, head over to [the documentation](http://loompy.org)! Loom, loompy, and the [loom-viewer](https://github.com/linnarsson-lab/loom-viewer) are being developed by members of the [Linnarsson Lab](http://linnarssonlab.org).
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41586-019-1701-7</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

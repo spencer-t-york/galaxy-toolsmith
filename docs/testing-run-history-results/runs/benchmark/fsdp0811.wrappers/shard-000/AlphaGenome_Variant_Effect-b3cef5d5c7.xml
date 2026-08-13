@@ -1,0 +1,123 @@
+<tool id="alphagenome_variant_effect" name="AlphaGenome Variant Effect" version="0.6.1+galaxy0" profile="21.05">
+  <description>predicts variant effects using AlphaGenome</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">alphagenome</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        python '$__tool_directory__/alphagenome_variant_effect.py'
+            --input '$input'
+            --output '$output'
+            --api_key '$api_key'
+            --organism '$organism'
+            --window_size $window_size
+            --tissue '$tissue'
+            --cell '$cell'
+            --rna
+            --atac
+            --splice
+            --max_effect
+    </command>
+  <inputs>
+    <param name="input" type="data" format="vcf" label="Input VCF file" />
+    <param name="api_key" type="text" label="AlphaGenome API key" help="Get your key at https://deepmind.google.com/science/alphagenome" />
+    <param name="organism" type="select" label="Organism" help="No reference genome file is needed; the API handles sequence context internally.">
+      <option value="hg38">Human (hg38)</option>
+      <option value="mm10">Mouse (mm10)</option>
+    </param>
+    <param name="window_size" type="select" label="Prediction window size" help="Larger windows capture more genomic context but cost more compute:">
+      <option value="16384">16 KB (Fast, minimal context)</option>
+      <option value="131072">128 KB (Good for most variants)</option>
+      <option value="524288">512 KB (Extended regulatory context)</option>
+      <option value="1048576" selected="true">1 MB (Maximum context)</option>
+    </param>
+    <param name="tissue" type="text" label="Tissue UBERON term" optional="true" help="Optional tissue context for predictions. Common terms: UBERON:0001157 (Peyer's patch), UBERON:0002107 (Liver), UBERON:0000955 (Brain).">
+      <sanitizer invalid_char=""> </sanitizer>
+    </param>
+    <param name="cell" type="text" label="Cell type CL term" optional="true" help="Optional cell type context for predictions. Common terms: CL:0000746 (Cardiac muscle cell), CL:0000540 (Neuron).">
+      <sanitizer invalid_char=""> </sanitizer>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="vcf" label="${tool.name} on ${on_string}: AlphaGenome VCF" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="input.vcf" />
+      <param name="api_key" value="test" />
+      <param name="organism" value="hg38" />
+      <param name="window_size" value="16384" />
+      <output name="output" file="output.vcf" ftype="vcf" lines_diff="2" />
+    </test>
+  </tests>
+  <help>
+**AlphaGenome Variant Effect Predictor**
+
+Scores genetic variants using Google DeepMind's AlphaGenome model via
+``predict_variant()``. For each variant in the input VCF, the tool predicts
+reference and alternate genomic tracks and computes a max absolute
+log-fold-change (LFC) score for each selected output type.
+
+-----
+
+**What it does**
+
+For each variant the tool:
+
+1. Creates a prediction window centered on the variant
+2. Calls AlphaGenome ``predict_variant()`` to get reference and alternate track predictions
+3. Computes max absolute log2(alt / ref) across the track as an effect score
+4. Annotates the VCF INFO field with per-type scores and an overall max
+
+-----
+
+**Output INFO fields**
+
+- ``AG_RNA_LFC`` — RNA-seq max absolute log-fold-change
+- ``AG_ATAC_LFC`` — ATAC-seq max absolute log-fold-change
+- ``AG_SPLICE_LFC`` — Splice sites max absolute log-fold-change
+- ``AG_MAX_EFFECT`` — Overall max across all selected types
+
+(Additional fields appear for each selected output type.)
+
+
+**Organisms**
+
+- **Human (hg38)** — Homo sapiens
+- **Mouse (mm10)** — Mus musculus
+
+No reference genome file is needed; the API handles sequence context internally.
+
+
+**Ontology terms**
+
+Optional tissue/cell type context for predictions. Common terms:
+
+- ``UBERON:0001157`` — Peyer's patch
+- ``UBERON:0002107`` — Liver
+- ``UBERON:0000955`` — Brain
+- ``CL:0000746`` — Cardiac muscle cell
+- ``CL:0000540`` — Neuron
+
+
+**Prediction window sizes**
+
+Larger windows capture more genomic context but cost more compute:
+
+- **16 KB** — Fast, minimal context
+- **128 KB** — Good for most variants
+- **512 KB** — Extended regulatory context
+- **1 MB** — Maximum context (default, recommended)
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-023-01780-0</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

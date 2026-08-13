@@ -1,0 +1,52 @@
+<tool id="export_anndata" name="Export AnnData" version="0.1.0" profile="25.0">
+  <description>Export an AnnData dataset to tabular files</description>
+  <requirements>
+    <requirement type="package">python</requirement>
+    <requirement type="package">anndata</requirement>
+    <requirement type="package">loompy</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python anndata_export.py \
+            --input $input_file \
+            --output $output_dir
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="anndata" label="Input AnnData file" />
+    <param name="output_dir_name" type="text" label="Output directory name" default="exported_data" />
+  </inputs>
+  <outputs>
+    <output name="output_dir" type="directory" format="directory" extension="dir" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="test_anndata.h5ad" />
+      <param name="output_dir_name" value="test_output" />
+      <output name="output_dir">
+        <has_text>genes.csv</has_text>
+        <has_text>barcodes.csv</has_text>
+        <has_text>matrix.csv</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        This tool exports an AnnData dataset to tabular files using the `write_csvs` method. The output includes CSV files containing the data matrix, gene annotations, and cell barcodes.
+
+        ### AnnData
+        AnnData is a Python package for handling annotated data matrices, particularly useful for single-cell omics data. It stores the main data matrix along with annotations for observations (cells) and variables (genes).
+
+        ### Output
+        The tool generates a directory containing:
+        - `matrix.csv`: The main data matrix
+        - `genes.csv`: Gene annotations
+        - `barcodes.csv`: Cell barcodes/identifiers
+
+        For more details, see the [AnnData documentation](https://anndata.readthedocs.io).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

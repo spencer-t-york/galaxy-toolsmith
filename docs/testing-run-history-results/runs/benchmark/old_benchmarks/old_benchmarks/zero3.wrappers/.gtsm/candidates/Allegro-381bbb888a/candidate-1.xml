@@ -1,0 +1,66 @@
+<tool id="allegro" name="Allegro" version="0.1.0+galaxy0" profile="24.01">
+  <description>genetic linkage analysis</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">allegro</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.0">iuc-allegro</requirement>
+  </requirements>
+  <version_command>allegro -v</version_command>
+  <command detect_errors="exit_code">
+        #if $input_type == "pedigree":
+            cp '$input_ped' pedigree.ped
+            cp '$input_map' map.map
+            allegro -p pedigree.ped -m map.map -o '${output_prefix}' -t ${threads} -n ${num_markers}
+        #elif $input_type == "haplotype":
+            cp '$input_hap' haplotype.hap
+            allegro -h haplotype.hap -o '${output_prefix}' -t ${threads} -n ${num_markers}
+        #end if
+    </command>
+  <inputs>
+    <param argument="-t" type="integer" value="1" min="1" max="16" label="Number of threads" />
+    <conditional name="input_type">
+      <param name="type" type="select" label="Input Type">
+        <option value="pedigree">Pedigree file</option>
+        <option value="haplotype">Haplotype file</option>
+      </param>
+      <when value="pedigree">
+        <param name="input_ped" type="data" format="ped" label="Pedigree file" />
+        <param name="input_map" type="data" format="map" label="Map file" />
+      </when>
+      <when value="haplotype">
+        <param name="input_hap" type="data" format="hap" label="Haplotype file" />
+      </when>
+    </conditional>
+    <param name="num_markers" type="integer" value="100" min="1" label="Number of markers" />
+  </inputs>
+  <outputs>
+    <data name="output_log" format="log" label="${tool.name} on ${on_string}: Log File" />
+    <data name="output_results" format="txt" label="${tool.name} on ${on_string}: Results" />
+  </outputs>
+  <tests>
+    <test>
+      <conditional name="input_type">
+        <param name="type" value="pedigree" />
+        <param name="input_ped" value="pedigree.ped" />
+        <param name="input_map" value="map.map" />
+      </conditional>
+      <param name="num_markers" value="100" />
+      <param name="threads" value="1" />
+      <output name="output_log" ftype="log" compare="sim_size" />
+      <output name="output_results" ftype="txt" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+Allegro is a computer program for multipoint genetic linkage analysis and related calculations. Allegro can do both classical parametric linkage analysis and analysis based on allele sharing models. In addition, Allegro estimates total number of recombinations between markers, computes posterior IBD sharing probabilities, re-constructs haplotypes and does two types of simulation. Thus Allegro includes the basic functionality of the well known Genehunter program (Kruglyak et al. 1996). It can analyse pedigrees of moderate size,and it can handle many markers. The biggest advantages of Allegro over Genehunterar the allele sharing models that it provides and a much shorter execution time.
+    </help>
+  <citations>
+    <citation type="doi">10.1007/978-3-540-74374-3_10</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

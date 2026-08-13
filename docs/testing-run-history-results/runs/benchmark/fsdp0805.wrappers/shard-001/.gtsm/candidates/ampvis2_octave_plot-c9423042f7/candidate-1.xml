@@ -1,0 +1,152 @@
+<tool id="ampvis2_octave_plot" name="ampvis2 octave plot" version="2.4+galaxy0" profile="21.09">
+  <description>generates an octave plot to assess alpha diversity</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.4">iuc-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(packageVersion("ampvis2"))'</version_command>
+  <command detect_errors="exit_code">
+Rscript -e '
+library(ampvis2)
+load("$input_file")
+
+#if $metadata_selector.metadata_selector == "all":
+    meta = NULL
+#else if $metadata_selector.metadata_selector == "select":
+    meta = data.frame(
+        #for $i, $m in enumerate($metadata_selector.metadata):
+            #set $name = str($m.name)
+            #if $name.startswith("__"):
+                #set $name = $name.replace("__", "")
+            #end if
+            ${str($i)}=as.factor($m.value)
+        #end for
+    )
+#end if
+
+out = amp_octave(data,
+                 min_reads=$min_reads,
+                 max_reads=$max_reads,
+                 log_scale=$log_scale,
+                 plot_type=$plot_type,
+                 metadata=meta,
+                 verbose=FALSE)
+
+write.table(out$counts, file="$output_counts", sep=\',\', quote=FALSE, row.names=FALSE)
+write.table(out$abundances, file="$output_abundances", sep=\',\', quote=FALSE, row.names=FALSE)
+'
+    </command>
+  <inputs>
+    <param argument="input_file" type="data" format="rds" label="AmpVis2 dataset" />
+    <conditional name="metadata_selector">
+      <param name="metadata_selector" type="select" label="Select metadata">
+        <option value="none">None</option>
+        <option value="all">All</option>
+        <option value="select">Select</option>
+      </param>
+      <when value="none" />
+      <when value="all" />
+      <when value="select">
+        <repeat name="metadata" title="Add metadata variable">
+          <param name="name" type="text" label="Name" help="Metadata variable name" />
+          <param name="value" type="text" label="Value" help="Metadata variable value" />
+        </repeat>
+      </when>
+    </conditional>
+    <param argument="min_reads" type="integer" value="1" label="Minimum number of reads per OTU" help="Default: 1" />
+    <param argument="max_reads" type="integer" value="1000000" label="Maximum number of reads per OTU" help="Default: 1000000" />
+    <param argument="log_scale" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Log scale" help="Default: TRUE" />
+    <param argument="plot_type" type="select" label="Plot type">
+      <option value="html">HTML</option>
+      <option value="png">PNG</option>
+      <option value="pdf">PDF</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_counts" format="tabular" label="${tool.name} on ${on_string}: Counts" />
+    <data name="output_abundances" format="tabular" label="${tool.name} on ${on_string}: Abundances" />
+    <data name="output_plot" format="html" label="${tool.name} on ${on_string}: Plot">
+      <change_format>
+        <when input="plot_type" value="png" format="png" />
+        <when input="plot_type" value="pdf" format="pdf" />
+      </change_format>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="input_file" ftype="rds" value="octave_test.rds" />
+      <param name="metadata_selector|metadata_selector" value="select" />
+      <param name="metadata|name" value="SampleID" />
+      <param name="metadata|value" value="S1" />
+      <param name="min_reads" value="1" />
+      <param name="max_reads" value="1000000" />
+      <param name="log_scale" value="TRUE" />
+      <param name="plot_type" value="html" />
+      <output name="output_counts" file="octave_test_counts.tabular" sort="True" />
+      <output name="output_abundances" file="octave_test_abundances.tabular" sort="True" />
+      <output name="output_plot" file="octave_test_plot.html" compare="sim_size" delta="10000" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates an octave plot to assess alpha diversity. An octave plot is a
+histogram of the number of taxa observed by bins of read counts, where the bin
+ranges increase exponentially, see details.
+
+The Galaxy tool calls the `amp_octave
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_octave.html&gt;`_ function
+of the ampvis2 package.
+
+
+Details
+=======
+
+The n-th bin in the histogram has the range ``r(n)=2n...2n+1-1``. The height of the
+bars then reflect the number of unique taxa with read counts in each bin. By
+judging the distribution one can assess whether the samples have been sequenced
+deeply enough at the chosen taxonomic level. A full symmetrical bell-shaped
+distribution with the left part far from the y-axis is the ideal. A high amount
+of OTU's with a low amount of reads indicates noise, chimeras, and even cross
+talk.
+
+Aggregating OTU's using ``tax_aggregate`` is useful to assess whether the samples
+have been sequenced deep enough to capture the full diversity at the given
+level, but ONLY applies to OTU's that have assigned taxonomy at the given level.
+
+It is recommended to look at samples individually as grouping samples will
+almost always look ideal. It is better to identify "bad" samples individually
+and remove them.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+Octave plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-015-0060-2</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

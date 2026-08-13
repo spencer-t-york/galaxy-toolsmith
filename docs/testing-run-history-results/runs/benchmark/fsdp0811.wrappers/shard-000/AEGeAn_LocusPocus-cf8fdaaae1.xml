@@ -1,0 +1,528 @@
+<tool id="aegean_locuspocus" name="AEGeAn LocusPocus" version="0.16.0+galaxy0" profile="21.05">
+    <description>compute interval loci (iLoci) from gene annotations</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">aegean</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="0.16.0">aegean</requirement>
+    </requirements>
+    <version_command>locuspocus --version</version_command>
+    <command detect_errors="exit_code">
+        locuspocus
+        #if $input.ext.endswith(".gz"):
+            --gzip
+        #end if
+        #if $input.ext.endswith(".bz2"):
+            --bzip2
+        #end if
+        #if $input.ext.endswith(".zip"):
+            --zip
+        #end if
+        #if $input.ext.endswith(".tar.gz"):
+            --tar-gzip
+        #end if
+        #if $input.ext.endswith(".tar.bz2"):
+            --tar-bzip2
+        #end if
+        #if $input.ext.endswith(".tar"):
+            --tar
+        #end if
+        #if $input.ext.endswith(".tar.xz"):
+            --tar-xz
+        #end if
+        #if $input.ext.endswith(".tar.lz4"):
+            --tar-lz4
+        #end if
+        #if $input.ext.endswith(".tar.zst"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #if $input.ext.endswith(".tar.lzma"):
+            --tar-lzma
+        #end if
+        #if $input.ext.endswith(".tar.lzo"):
+            --tar-lzo
+        #end if
+        #if $input.ext.endswith(".tar.snappy"):
+            --tar-snappy
+        #end if
+        #if $input.ext.endswith(".tar.sz"):
+            --tar-sz
+        #end if
+        #if $input.ext.endswith(".tar.zstd"):
+            --tar-zstd
+        #end if
+        #if $input.ext.endswith(".tar.z"):
+            --tar-compress
+        #end if
+        #if $input.ext.endswith(".tar.lz"):
+            --tar-lzip
+        #end if
+        #

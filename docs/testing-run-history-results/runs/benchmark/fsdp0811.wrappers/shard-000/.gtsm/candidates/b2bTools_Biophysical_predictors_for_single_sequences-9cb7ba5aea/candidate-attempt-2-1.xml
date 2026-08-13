@@ -1,0 +1,173 @@
+<tool id="b2btools_single_sequence" name="b2bTools: Biophysical predictors for single sequences" version="0.1.0" profile="21.05">
+    <description>using Bio2Byte tools</description>
+    <macros/><requirements>
+        <requirement type="package" version="0.1.0">b2btools</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        #if $input.is_of_type("fasta")
+            ln -s '$input' input.fasta &amp;&amp;
+        #else
+            ln -s '$input' input.fasta.gz &amp;&amp;
+        #end if
+        b2btools-single-sequence
+            --input input.fasta
+            --output output
+            --threads \${GALAXY_SLOTS:-1}
+            #if $plot
+                --plot
+            #end if
+            #if $plot_all
+                --plot-all
+            #end if
+            #if $predictors.dynamine
+                --dynamine
+            #end if
+            #if $predictors.disomine
+                --disomine
+            #end if
+            #if $predictors.efoldmine
+                --efoldmine
+            #end if
+            #if $predictors.agmata
+                --agmata
+            #end if
+    </command>
+    <inputs>
+        <param name="input" type="data" format="fasta,fasta.gz" label="Input sequences"/>
+        <param name="predictors" type="select" multiple="true" label="Predictors to run">
+            <option value="dynamine" selected="true">DynaMine</option>
+            <option value="disomine" selected="true">DisoMine</option>
+            <option value="efoldmine" selected="true">EFoldMine</option>
+            <option value="agmata" selected="true">AgMata</option>
+        </param>
+        <param name="plot" type="boolean" truevalue="--plot" falsevalue="" label="Plot per sequence" help="If checked, the tool will generate a plot for each predicted feature per sequence"/>
+        <param name="plot_all" type="boolean" truevalue="--plot-all" falsevalue="" label="Plot all sequences" help="If checked, the tool will generate a plot for each predicted feature containing all sequences"/>
+    </inputs>
+    <outputs>
+        <data name="json" format="json" from_work_dir="output.json" label="${tool.name} on ${on_string}: JSON"/>
+        <data name="tabular" format="tabular" from_work_dir="output.tsv" label="${tool.name} on ${on_string}: Tabular"/>
+        <collection name="plots" type="list" label="${tool.name} on ${on_string}: Plots">
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.png" format="png" directory="output"/>
+        </collection>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="3">
+            <param name="input" value="input.fasta"/>
+            <param name="predictors" value="dynamine,disomine,efoldmine,agmata"/>
+            <param name="plot" value="true"/>
+            <param name="plot_all" value="true"/>
+            <output name="json" file="output.json" ftype="json" compare="sim_size"/>
+            <output name="tabular" file="output.tsv" ftype="tabular" compare="sim_size"/>
+            <output_collection name="plots" type="list" count="100">
+                <element name="sequence_01_agmata" file="sequence_01_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_backbone" file="sequence_01_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_coil" file="sequence_01_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_disomine" file="sequence_01_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_efoldmine" file="sequence_01_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_helix" file="sequence_01_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_ppII" file="sequence_01_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_sheet" file="sequence_01_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_01_sidechain" file="sequence_01_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_agmata" file="sequence_02_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_backbone" file="sequence_02_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_coil" file="sequence_02_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_disomine" file="sequence_02_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_efoldmine" file="sequence_02_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_helix" file="sequence_02_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_ppII" file="sequence_02_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_sheet" file="sequence_02_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_02_sidechain" file="sequence_02_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_agmata" file="sequence_03_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_backbone" file="sequence_03_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_coil" file="sequence_03_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_disomine" file="sequence_03_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_efoldmine" file="sequence_03_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_helix" file="sequence_03_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_ppII" file="sequence_03_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_sheet" file="sequence_03_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_03_sidechain" file="sequence_03_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_agmata" file="sequence_04_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_backbone" file="sequence_04_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_coil" file="sequence_04_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_disomine" file="sequence_04_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_efoldmine" file="sequence_04_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_helix" file="sequence_04_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_ppII" file="sequence_04_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_sheet" file="sequence_04_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_04_sidechain" file="sequence_04_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_agmata" file="sequence_05_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_backbone" file="sequence_05_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_coil" file="sequence_05_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_disomine" file="sequence_05_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_efoldmine" file="sequence_05_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_helix" file="sequence_05_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_ppII" file="sequence_05_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_sheet" file="sequence_05_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_05_sidechain" file="sequence_05_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_agmata" file="sequence_06_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_backbone" file="sequence_06_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_coil" file="sequence_06_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_disomine" file="sequence_06_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_efoldmine" file="sequence_06_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_helix" file="sequence_06_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_ppII" file="sequence_06_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_sheet" file="sequence_06_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_06_sidechain" file="sequence_06_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_agmata" file="sequence_07_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_backbone" file="sequence_07_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_coil" file="sequence_07_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_disomine" file="sequence_07_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_efoldmine" file="sequence_07_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_helix" file="sequence_07_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_ppII" file="sequence_07_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_sheet" file="sequence_07_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_07_sidechain" file="sequence_07_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_agmata" file="sequence_08_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_backbone" file="sequence_08_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_coil" file="sequence_08_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_disomine" file="sequence_08_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_efoldmine" file="sequence_08_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_helix" file="sequence_08_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_ppII" file="sequence_08_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_sheet" file="sequence_08_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_08_sidechain" file="sequence_08_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_agmata" file="sequence_09_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_backbone" file="sequence_09_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_coil" file="sequence_09_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_disomine" file="sequence_09_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_efoldmine" file="sequence_09_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_helix" file="sequence_09_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_ppII" file="sequence_09_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_sheet" file="sequence_09_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_09_sidechain" file="sequence_09_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_agmata" file="sequence_10_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_backbone" file="sequence_10_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_coil" file="sequence_10_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_disomine" file="sequence_10_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_efoldmine" file="sequence_10_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_helix" file="sequence_10_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_ppII" file="sequence_10_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_sheet" file="sequence_10_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_10_sidechain" file="sequence_10_sidechain.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_agmata" file="sequence_11_agmata.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_backbone" file="sequence_11_backbone.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_coil" file="sequence_11_coil.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_disomine" file="sequence_11_disomine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_efoldmine" file="sequence_11_efoldmine.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_helix" file="sequence_11_helix.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_ppII" file="sequence_11_ppII.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_sheet" file="sequence_11_sheet.png" ftype="png" compare="sim_size"/>
+                <element name="sequence_11_sidechain" file="sequence_11_sidechain.png" ftype="png" compare="sim_size"/>
+            </output_collection>
+        </test>
+    </tests>
+    <help>
+Single protein sequence analysis
+--------------------------------
+The **current Galaxy Tool** is the implementation of the Bio2Byte tools for **single protein sequence analysis**.
+It means that this tool receives amino-acid sequences in FASTA format and
+will return the biophysical predictions depending on the predictors selected.
+
+Input sequences
+'''''''''''''''
+The tool works with either single or multiple input files, just keeping in

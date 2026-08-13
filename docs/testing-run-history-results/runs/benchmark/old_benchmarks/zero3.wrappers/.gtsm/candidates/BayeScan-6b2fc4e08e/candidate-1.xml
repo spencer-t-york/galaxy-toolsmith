@@ -1,0 +1,887 @@
+<tool id="bayescan" name="BayeScan" version="2.1+galaxy0">
+    <description>Identify candidate loci under natural selection</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">bayescan</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="2.1">bayescan</requirement>
+    </requirements>
+    <version_command>bayescan2 -h | grep "Version:" | awk '{print $2}'</version_command>
+    <command detect_errors="exit_code">
+        #if str($input_type) == 'SNP':
+            lnk='snp'
+        #elif str($input_type) == 'microsat':
+            lnk='microsat'
+        #end if
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\${lnk}
+        
+        lnk=\

@@ -1,0 +1,75 @@
+<tool id="aegean_gaeval" name="AEGeAn GAEVAL" version="0.16.0+galaxy0" profile="21.05">
+  <description>computes coverage and integrity scores for gene models using transcript alignments</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">aegean</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.16.0">iuc_aegean</requirement>
+  </requirements>
+  <version_command>gaeval --version</version_command>
+  <command detect_errors="exit_code">
+        gaeval
+            '$gene_prediction'
+            '$transcript_alignment'
+            &gt; '$output'
+    </command>
+  <inputs>
+    <param argument="--gene-prediction" type="data" format="gff3" label="Gene Prediction" />
+    <param argument="--transcript-alignment" type="data" format="gff3" label="Transcript Alignment" />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="gene_prediction" ftype="gff3" value="gene_prediction.gff3" />
+      <param name="transcript_alignment" ftype="gff3" value="transcript_alignment.gff3" />
+      <output name="output" file="gaeval_output.gff3" ftype="gff3" />
+    </test>
+  </tests>
+  <help>
+
+.. class:: infomark
+
+**Purpose**
+
+GAEVAL is a program for computing coverage and integrity scores for gene models using transcript alignments. The integrity score is a value between 0 and 1 that indicates the level of agreement between the gene model and any related transcript alignments, with 0 corresponding to no transcript support and 1 corresponding to complete transcript support.
+
+-----
+
+.. class:: infomark
+
+**Input**
+
+Input for GAEVAL is two GFF3 files, one containing gene predictions/annotations and one containing transcript alignments. Although the GFF3 Specification explicitly supports several similar encoding conventions for alignment features, only one is supported by GAEVAL, as shown below.
+
+
+ctg123 . cDNA_match 1050  1500  5.8e-42  +  . ID=match00001;Target=cdna0123 12 462
+ctg123 . cDNA_match 5000  5500  8.1e-43  +  . ID=match00001;Target=cdna0123 463 963
+ctg123 . cDNA_match 7000  9000  1.4e-40  +  . ID=match00001;Target=cdna0123 964 2964
+
+
+GAEVAL will accept alignments with types cDNA_match, EST_match, and the generic nucleotide_match, depending on the source of the data.
+
+The Target and Gap attributes are not disallowed by GAEVAL, but they are not interpreted by GAEVAL either. Gapped or spliced alignments must be encoded as multifeatures, with each segment of the alignment on its own distinct line and all segments of a single alignment sharing the same ID attribute.
+
+-----
+
+
+**Output**
+
+GAEVAL computes coverage and integrity scores for each mRNA feature in the gene prediction input. The output will be identical to the input, except that each mRNA feature will have two new attribtues: gaeval_coverage and gaeval_integrity.
+
+
+
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/bts015</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

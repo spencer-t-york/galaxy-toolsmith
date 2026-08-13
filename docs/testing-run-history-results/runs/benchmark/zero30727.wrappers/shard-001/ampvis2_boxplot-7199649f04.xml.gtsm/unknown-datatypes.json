@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "${format}"
+  ],
+  "records": [
+    {
+      "datatype": "${format}",
+      "tool_name": "ampvis2 boxplot",
+      "tool_id": "ampvis2_boxplot",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_boxplot-7199649f04.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

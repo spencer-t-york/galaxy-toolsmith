@@ -1,0 +1,48 @@
+<tool id="trimn" name="TrimN" version="0.1.0" profile="25.0">
+  <description>TrimNs tool from the VGP pipeline to process FASTA files</description>
+  <requirements>
+    <requirement type="package">iuc/trimns</requirement>
+    <requirement type="python">python3</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        remove_fake_cut_sites_DNAnexus.py $input_fasta $output_fasta $output_log
+    </command>
+  <inputs>
+    <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" />
+  </inputs>
+  <outputs>
+    <data name="output_fasta" format="fasta" label="Trimmed FASTA output" />
+    <data name="output_log" format="txt" label="TrimNs log file" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="input_fasta">input.fa</param>
+      <output name="output_fasta">output.fa</output>
+      <output name="output_log">
+        <has_text>Processed</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # TrimNs Tool
+        
+        This tool processes FASTA files to trim N stretches and remove fake cut sites
+        from bionano hybrid scaffolds as part of the VGP pipeline.
+        
+        ## Input
+        
+        - Input FASTA file: The input sequence file to process.
+        
+        ## Output
+        
+        - Trimmed FASTA output: The processed FASTA file with Ns trimmed.
+        - TrimNs log file: Log containing processing details.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

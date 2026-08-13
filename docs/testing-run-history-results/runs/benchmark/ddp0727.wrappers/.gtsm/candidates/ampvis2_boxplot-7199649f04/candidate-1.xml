@@ -1,0 +1,44 @@
+<tool id="ampvis2_boxplot" name="ampvis2 boxplot" version="0.1.0" profile="25.0">
+  <description>Generates boxplots of the most abundant taxa.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=1.0">R</requirement>
+    <requirement type="package" version="&gt;=2.0">ggplot2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e "library(ampvis2); library(ggplot2); amp_boxplot(input_file, metadata_file, output_format)"
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="metadata_file" type="data" format="txt" label="Metadata List" />
+    <param name="output_format" type="select" label="Output Format">
+      <option value="html">HTML</option>
+      <option value="png">PNG</option>
+      <option value="pdf">PDF</option>
+    </param>
+  </inputs>
+  <outputs>
+    <collection name="boxplot_output" type="list" label="Boxplot Outputs">
+      <element name="boxplot" type="data" format="html" label="Boxplot" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="ampvis2_sample.rds" />
+      <param name="metadata_file" value="ampvis2_metadata.txt" />
+      <param name="output_format" value="html" />
+      <output_collection name="boxplot_output">
+        <element name="boxplot" file="ampvis2_boxplot.html" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+        Generates boxplots of the most abundant taxa using the `amp_boxplot` function from the ampvis2 package.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

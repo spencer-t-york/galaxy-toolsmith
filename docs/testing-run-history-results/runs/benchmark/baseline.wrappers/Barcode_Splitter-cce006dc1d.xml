@@ -1,0 +1,45 @@
+<tool id="barcode_splitter" name="Barcode Splitter" version="0.1.0" profile="25.0">
+  <description>Splits a FASTQ file into several files using barcodes.</description>
+  <requirements>
+    <requirement type="package" version="1.0">barcode_splitter</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        barcode_splitter --bcfile $bcfile --mismatches $mismatches --index_files $index_files --output_dir $output_dir
+    </command>
+  <inputs>
+    <param name="bcfile" type="data" format="txt" label="Barcode File" />
+    <param name="mismatches" type="integer" value="0" min="0" label="Number of Mismatches" />
+    <param name="index_files" type="data" format="fastq" multiple="true" label="Index Files" />
+    <param name="output_dir" type="text" value="./" label="Output Directory" />
+  </inputs>
+  <outputs>
+    <collection name="split_fastqs" type="list" label="Split FASTQ Files">
+      <element name="fastq_file" type="data" format="fastq" label="FASTQ File" />
+    </collection>
+    <data name="summary_table" format="tabular" label="Summary Table" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="bcfile" value="barcode_file.txt" />
+      <param name="mismatches" value="1" />
+      <param name="index_files" value="index1.fastq,index2.fastq" />
+      <param name="output_dir" value="./" />
+      <output name="summary_table">
+        <assert_contents>
+          <has_text>BC1</has_text>
+          <has_text>BC2</has_text>
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        Splits a FASTQ file into several files using barcodes as the split criteria.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

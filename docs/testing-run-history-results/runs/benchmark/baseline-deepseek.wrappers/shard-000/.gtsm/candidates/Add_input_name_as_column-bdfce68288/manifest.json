@@ -1,0 +1,59 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "selected_candidate_attempt": 2,
+  "selected_candidate_index": 1,
+  "primary_output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml",
+  "candidates": [
+    {
+      "attempt": 2,
+      "candidate_index": 1,
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/.gtsm/candidates/Add_input_name_as_column-bdfce68288/candidate-attempt-2-1.xml",
+      "selected": true,
+      "score": 40,
+      "score_reasons": [
+        "xml_well_formed:+100",
+        "root_is_tool:+100",
+        "no_generation_diagnostics:+50",
+        "missing_command:-120",
+        "missing_outputs:-80",
+        "missing_inputs:-10"
+      ],
+      "features": {
+        "has_command": false,
+        "has_inputs": false,
+        "has_outputs": false,
+        "has_requirements": false,
+        "has_tests": false,
+        "has_help": false,
+        "command_chars": 0,
+        "input_count": 0,
+        "output_count": 0,
+        "requirement_count": 0,
+        "test_count": 0
+      },
+      "validation": {
+        "xml_well_formed": true,
+        "root_tag": "tool",
+        "root_is_tool": true,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [],
+        "artifact_format": "xml"
+      },
+      "postprocess": {
+        "artifact_format": "xml",
+        "citation_mode": "direct",
+        "citation_added": true,
+        "tool_id_applied": true,
+        "tool_name_applied": true,
+        "macros_import_added": false,
+        "tests_pruned": false,
+        "test_count_before": 0,
+        "test_count_after": 0,
+        "changed": true
+      },
+      "bytes": 349
+    }
+  ]
+}

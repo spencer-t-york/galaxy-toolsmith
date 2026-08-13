@@ -1,0 +1,4 @@
+<datatypes>
+  <!-- Review these placeholders before installing into a Galaxy instance. -->
+  <datatype extension="biom" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+</datatypes>

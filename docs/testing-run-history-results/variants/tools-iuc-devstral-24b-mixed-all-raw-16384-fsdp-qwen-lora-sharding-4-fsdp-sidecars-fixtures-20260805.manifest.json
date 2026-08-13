@@ -1,0 +1,21 @@
+{
+  "variant_id": "tools-iuc-devstral-24b-mixed-all-raw-16384-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805",
+  "schema_version": "0.1.0",
+  "created_at": "2026-08-05T19:22:56.822486+00:00",
+  "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "quantization": "none",
+  "training_dataset_id": "bootstrap-dataset",
+  "provider": "local",
+  "skills_profile": "default",
+  "backend": "axolotl",
+  "training_method": "lora",
+  "effective_training_method": "lora",
+  "artifact_kind": "peft_adapter",
+  "artifact_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805-full-16384-all-raw-fsdp/output",
+  "export_quantizations": [
+    "q4_k_m"
+  ],
+  "ollama_model_name": "gtsm-tools-iuc-devstral-24b-mixed-all-raw-16384-fsdp-2ac527d744",
+  "requested_ollama_model_name": "gtsm-tools-iuc-devstral-24b-mixed-all-raw-16384-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805-q4",
+  "ollama_modelfile_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/models/exports/tools-iuc-devstral-24b-mixed-all-raw-16384-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805/ollama/Modelfile"
+}

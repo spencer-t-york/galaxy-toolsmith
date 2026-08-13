@@ -1,0 +1,355 @@
+{
+  "created_at": "2026-08-10T15:47:22.699821+00:00",
+  "total_wrappers": 12,
+  "xml_well_formed_count": 12,
+  "tool_root_count": 12,
+  "wrappers_with_unknown_datatypes": 4,
+  "artifact_format": "xml",
+  "artifact_valid_count": 12,
+  "yaml_well_formed_count": 0,
+  "udt_schema_valid_count": 0,
+  "user_tool_root_count": 0,
+  "xsd_status": "not_configured",
+  "planemo_status": "not_run",
+  "planemo_test_status": "not_run",
+  "mean_structural_score": 1.0,
+  "wrapper_reports": [
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "list"
+      ],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 9,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries.",
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/AEGeAn_LocusPocus-cf8fdaaae1.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 7,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/BayeScan-6b2fc4e08e.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 4,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 5,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "list"
+      ],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 17,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries.",
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/Manipulate_AnnData-ac04c3739b.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 14,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/Export_AnnData-8a972c99b4.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "list"
+      ],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 1,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries.",
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/autoBIGS.cli-108330a964.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 5,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 9,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "list"
+      ],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 7,
+        "output_count": 2,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries.",
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 9,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/ampvis2_OTU_network_plot-9e761c0446.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 8,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    }
+  ],
+  "notes": []
+}

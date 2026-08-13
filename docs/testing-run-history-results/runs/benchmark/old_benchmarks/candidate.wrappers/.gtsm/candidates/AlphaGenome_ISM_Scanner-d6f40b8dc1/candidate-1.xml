@@ -1,0 +1,75 @@
+<tool id="alphagenome_ism_scanner" name="AlphaGenome ISM Scanner" version="0.1.0" profile="25.0">
+  <description>Performs in-silico saturation mutagenesis (ISM) using AlphaGenome's score_ism_variants() API.</description>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python /path/to/alphagenome_ism_scanner.py --region $region --position $position --mutation_index $mutation_index --gene_id $gene_id --gene_name $gene_name --output_type $output_type --variant_scorer $variant_scorer --track_name $track_name --raw_score $raw_score --quantile_score $quantile_score
+    </command>
+  <inputs>
+    <param name="region" type="data" format="bed" label="BED Region File" />
+    <param name="position" type="integer" label="Genomic Position of Mutation" />
+    <param name="mutation_index" type="select" label="Alternate Base Index">
+      <option value="0">A</option>
+      <option value="1">C</option>
+      <option value="2">G</option>
+    </param>
+    <param name="gene_id" type="text" label="Ensembl Gene ID" />
+    <param name="gene_name" type="text" label="Gene Symbol" />
+    <param name="output_type" type="select" label="Output Type">
+      <option value="RNA_SEQ">RNA_SEQ</option>
+      <option value="ATAC">ATAC</option>
+    </param>
+    <param name="variant_scorer" type="select" label="Variant Scorer">
+      <option value="RECOMMENDED_VARIANT_SCORER_1">RECOMMENDED_VARIANT_SCORER_1</option>
+      <option value="RECOMMENDED_VARIANT_SCORER_2">RECOMMENDED_VARIANT_SCORER_2</option>
+    </param>
+    <param name="track_name" type="text" label="Specific Track Name" />
+    <param name="raw_score" type="float" label="Raw Effect Score" />
+    <param name="quantile_score" type="float" label="Empirical Quantile (0-1)" />
+  </inputs>
+  <outputs>
+    <collection name="results" type="list" label="ISM Scan Results">
+      <element name="result" type="tabular" format="tsv" label="Result" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="region" value="sample.bed" />
+      <param name="position" value="100" />
+      <param name="mutation_index" value="0" />
+      <param name="gene_id" value="ENSG00000123456" />
+      <param name="gene_name" value="BRCA1" />
+      <param name="output_type" value="RNA_SEQ" />
+      <param name="variant_scorer" value="RECOMMENDED_VARIANT_SCORER_1" />
+      <param name="track_name" value="Track1" />
+      <param name="raw_score" value="0.9" />
+      <param name="quantile_score" value="0.75" />
+      <output_collection name="results">
+        <element name="result" path="results/result.tsv" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+        Performs in-silico saturation mutagenesis (ISM) using AlphaGenome's score_ism_variants() API. Every position in each input region is systematically mutated to all 3 alternative bases and scored, replacing expensive wet-lab saturation mutagenesis experiments.
+        
+        Output columns:
+        - region: region name from BED
+        - position: genomic position of the mutation
+        - mutation_index: index of the alternate base (0-2)
+        - gene_id: Ensembl gene ID
+        - gene_name: gene symbol
+        - output_type: RNA_SEQ, ATAC, etc.
+        - variant_scorer: scorer name
+        - track_name: specific track
+        - raw_score: raw effect score
+        - quantile_score: empirical quantile (0-1)
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

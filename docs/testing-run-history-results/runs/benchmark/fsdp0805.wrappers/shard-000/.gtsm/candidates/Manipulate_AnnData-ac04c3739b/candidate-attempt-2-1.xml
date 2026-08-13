@@ -1,0 +1,110 @@
+<tool id="manipulate_anndata" name="Manipulate AnnData" version="0.11.4+galaxy0" profile="21.05">
+  <description>cleaning up andata with many annotations</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">anndata</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <version_command>python -c "import anndata; print(anndata.__version__)"</version_command>
+  <command detect_errors="exit_code">
+        python -c '
+            import sys
+            import anndata
+
+            adata = anndata.read_h5ad('${input_file}')
+
+            ${concatenate}
+            ${obs_names_make_unique}
+            ${var_names_make_unique}
+            ${rename_categories}
+            ${remove_keys}
+            ${flag_genes_start_with_pattern}
+            ${strings_to_categoricals}
+            ${transpose}
+            ${add_annotation}
+            ${split}
+
+            ${filter_observations}
+            ${filter_variables}
+
+            ${freeze_raw}
+
+            adata.write_h5ad("${output_file}")
+        '
+    </command>
+  <inputs>
+    <param argument="--input_file" type="data" format="h5ad" label="Input AnnData file" />
+    <param argument="--concatenate" type="boolean" truevalue="adata.concatenate([${input_file}])" falsevalue="" checked="false" label="Concatenate along the observations axis" />
+    <param argument="--obs_names_make_unique" type="boolean" truevalue="adata.obs_names_make_unique()" falsevalue="" checked="false" label="Makes the obs index unique by appending '1', '2', etc" />
+    <param argument="--var_names_make_unique" type="boolean" truevalue="adata.var_names_make_unique()" falsevalue="" checked="false" label="Makes the var index unique by appending '1', '2', etc" />
+    <param argument="--rename_categories" type="text" optional="true" label="Rename categories of annotation `key` in `obs`, `var` and `uns`" />
+    <param argument="--remove_keys" type="text" optional="true" label="Remove keys from obs or var annotations" />
+    <param argument="--flag_genes_start_with_pattern" type="text" optional="true" label="Flag genes start with a pattern" />
+    <param argument="--strings_to_categoricals" type="boolean" truevalue="adata.strings_to_categoricals()" falsevalue="" checked="false" label="Transform string annotations to categoricals" />
+    <param argument="--transpose" type="boolean" truevalue="adata.transpose()" falsevalue="" checked="false" label="Transpose the data matrix, leaving observations and variables interchanged" />
+    <param argument="--add_annotation" type="text" optional="true" label="Add annotation for variables or" />
+    <param argument="--split" type="boolean" truevalue="adata.split(obs_key=${split})" falsevalue="" checked="false" label="Split the AnnData object into multiple AnnData objects based on the values of a given obs key" />
+    <param argument="--filter_observations" type="text" optional="true" label="Filter data variables or observations, by index or key" />
+    <param argument="--filter_variables" type="text" optional="true" label="Filter data variables or observations, by index or key" />
+    <param argument="--freeze_raw" type="boolean" truevalue="adata.freeze_raw()" falsevalue="" checked="false" label="Freeze the current state into the 'raw' attribute" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="h5ad" label="${tool.name} on ${on_string}: Output AnnData file" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_file" ftype="h5ad" value="input.h5ad" />
+      <param name="concatenate" value="" />
+      <param name="obs_names_make_unique" value="" />
+      <param name="var_names_make_unique" value="" />
+      <param name="rename_categories" value="" />
+      <param name="remove_keys" value="" />
+      <param name="flag_genes_start_with_pattern" value="" />
+      <param name="strings_to_categoricals" value="" />
+      <param name="transpose" value="" />
+      <param name="add_annotation" value="" />
+      <param name="split" value="" />
+      <param name="filter_observations" value="" />
+      <param name="filter_variables" value="" />
+      <param name="freeze_raw" value="" />
+      <output name="output_file" ftype="h5ad">
+        <assert_contents>
+          <has_size value="60000" delta="1000" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+This tool takes an AnnData dataset, manipulates it and returns it.
+
+The possible manipulations are:
+
+- Concatenate along the observations axis (`concatenate method &lt;https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.concatenate.html&gt;`__)
+
+    The `uns`, `varm` and `obsm` attributes are ignored.
+
+    If you use `join='outer'` this fills 0s for sparse data when variables are absent in a batch. Use this with care. Dense data is filled with `NaN`
+
+- Makes the obs index unique by appending '1', '2', etc (`obs_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.obs_names_make_unique.html&gt;`__)
+- Makes the var index unique by appending '1', '2', etc (`var_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.var_names_make_unique.html&gt;`__)
+- Rename categories of annotation `key` in `obs`, `var` and `uns` (`rename_categories method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.rename_categories.html&gt;`__)
+- Remove keys from obs or var annotations
+- Flag genes start with a pattern
+- Transform string annotations to categoricals (`strings_to_categoricals method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.strings_to_categoricals.html&gt;`__)
+    The first occurrence of a non-unique value is ignored.
+
+[Toolsmith note: help text was shortened for prompting; use the preserved usage/options/examples as source of truth.]
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-019-0200-9</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

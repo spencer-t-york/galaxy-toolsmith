@@ -1,0 +1,100 @@
+<tool id="ampvis2_load" name="ampvis2 load" version="0.1.0" profile="25.0">
+  <description>Load OTU/ASV table and metadata into ampvis2 format</description>
+  <requirements>
+    <requirement type="package">ampvis2</requirement>
+    <requirement type="package">readr</requirement>
+    <requirement type="package">phyloseq</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla -e '
+            library(ampvis2); library(readr); library(phyloseq);
+            input &lt;- readRDS("$otu_table");
+            if (!is.null("$metadata")) {
+                metadata &lt;- readRDS("$metadata");
+                input &lt;- amp_load(input, metadata=metadata, guess_metadata=!!guess_metadata);
+            }
+            if (!is.null("$taxonomy")) {
+                taxonomy &lt;- readRDS("$taxonomy");
+                input &lt;- amp_load(input, taxonomy=taxonomy);
+            }
+            if (!is.null("$tree")) {
+                tree &lt;- read_tree("$tree");
+                input &lt;- amp_load(input, tree=tree);
+            }
+            if (!is.null("$fasta")) {
+                fasta &lt;- read_fasta("$fasta");
+                input &lt;- amp_load(input, fasta=fasta);
+            }
+            output_rds &lt;- "$output_rds";
+            saveRDS(input, file=output_rds);
+            if (output_lists) {
+                if (!is.null(metadata)) {
+                    metadata_list &lt;- data.frame(
+                        Variable=names(metadata),
+                        Values=apply(metadata, 2, function(x) paste(unique(x), collapse=", ")),
+                        isSampleID=names(metadata) == "SampleID",
+                        Type=map_chr(metadata, typeof)
+                    );
+                    write.table(metadata_list, file="$metadata_list", sep="\t", row.names=FALSE);
+                }
+                if (!is.null(taxonomy)) {
+                    taxonomy_list &lt;- data.frame(Taxonomy=unique(unlist(taxonomy)));
+                    write.table(taxonomy_list, file="$taxonomy_list", sep="\t", row.names=FALSE);
+                }
+            }
+        '
+    </command>
+  <inputs>
+    <param name="otu_table" type="data" format="tabular,biom" label="OTU/ASV table" />
+    <param name="metadata" type="data" format="tabular" label="Sample metadata" optional="true" />
+    <param name="taxonomy" type="data" format="tabular" label="Taxonomy table" optional="true" />
+    <param name="tree" type="data" format="newick" label="Phylogenetic tree" optional="true" />
+    <param name="fasta" type="data" format="fasta" label="Fasta sequences" optional="true" />
+    <param name="guess_metadata" type="boolean" label="Guess metadata column types" truevalue="TRUE" falsevalue="FALSE" default="TRUE" />
+    <param name="output_lists" type="boolean" label="Output list data sets" truevalue="TRUE" falsevalue="FALSE" default="TRUE" />
+  </inputs>
+  <outputs>
+    <data name="output_rds" format="rds" />
+    <data name="metadata_list" format="tabular" optional="true" />
+    <data name="taxonomy_list" format="tabular" optional="true" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="otu_table" value="otu_table.txt" />
+      <param name="metadata" value="metadata.txt" />
+      <param name="taxonomy" value="taxonomy.txt" />
+      <param name="output_rds" file="output.rds" />
+      <param name="metadata_list" file="metadata_list.txt" />
+      <param name="taxonomy_list" file="taxonomy_list.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # ampvis2 load
+        
+        ## What it does
+        Loads OTU/ASV table and metadata into ampvis2 format for downstream analysis.
+        
+        ## Input
+        - **OTU/ASV table**: Tabular or BIOM formatted file containing OTU/ASV data.
+        - **Sample metadata**: Optional tabular file with sample information.
+        - **Taxonomy table**: Optional tabular file with taxonomic assignments.
+        - **Phylogenetic tree**: Optional Newick formatted tree.
+        - **Fasta sequences**: Optional FASTA file with OTU sequences.
+        
+        ## Output
+        - **RDS file**: Main output containing ampvis2 object.
+        - **Metadata list**: Tabular file with metadata variables and values.
+        - **Taxonomy list**: Tabular file with taxonomic information.
+        
+        ## Parameters
+        - **Guess metadata column types**: Enable automatic type detection for metadata columns.
+        - **Output list data sets**: Enable generation of metadata and taxonomy list files.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,62 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "selected_candidate_attempt": 2,
+  "selected_candidate_index": 1,
+  "primary_output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/Manipulate_AnnData-ac04c3739b.xml",
+  "candidates": [
+    {
+      "attempt": 2,
+      "candidate_index": 1,
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/.gtsm/candidates/Manipulate_AnnData-ac04c3739b/candidate-attempt-2-1.xml",
+      "selected": true,
+      "score": 460,
+      "score_reasons": [
+        "xml_well_formed:+100",
+        "root_is_tool:+100",
+        "no_generation_diagnostics:+50",
+        "has_command:+80",
+        "has_outputs:+60",
+        "has_inputs:+30",
+        "has_requirements:+15",
+        "has_tests:+15",
+        "has_help:+10"
+      ],
+      "features": {
+        "has_command": true,
+        "has_inputs": true,
+        "has_outputs": true,
+        "has_requirements": true,
+        "has_tests": true,
+        "has_help": true,
+        "command_chars": 592,
+        "input_count": 14,
+        "output_count": 1,
+        "requirement_count": 1,
+        "test_count": 1
+      },
+      "validation": {
+        "xml_well_formed": true,
+        "root_tag": "tool",
+        "root_is_tool": true,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [],
+        "artifact_format": "xml"
+      },
+      "postprocess": {
+        "artifact_format": "xml",
+        "citation_mode": "direct",
+        "citation_added": true,
+        "tool_id_applied": true,
+        "tool_name_applied": false,
+        "macros_import_added": false,
+        "tests_pruned": false,
+        "test_count_before": 1,
+        "test_count_after": 1,
+        "changed": true
+      },
+      "bytes": 6238
+    }
+  ]
+}

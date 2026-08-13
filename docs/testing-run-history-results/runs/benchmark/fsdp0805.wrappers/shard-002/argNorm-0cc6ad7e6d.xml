@@ -1,0 +1,52 @@
+<tool id="argnorm" name="argNorm" version="1.0.0+galaxy0" profile="24.1">
+    <description>Normalize antibiotic resistance genes to the ARO</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">argnorm</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="1.0.0">argnorm</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        argnorm
+            --input '$input'
+            --output '$output'
+            --arogff '$arogff'
+            --log '$log'
+            $enhance
+            $verbose
+    </command>
+    <inputs>
+        <param argument="--input" type="data" format="tabular" label="Input file"/>
+        <param argument="--arogff" type="data" format="gff" label="ARO GFF file"/>
+        <param argument="--enhance" type="boolean" truevalue="--enhance" falsevalue="" checked="false" label="Enhance ARG annotations with drug categories"/>
+        <param argument="--verbose" type="boolean" truevalue="--verbose" falsevalue="" checked="false" label="Verbose mode"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="html"/>
+        <data name="log" format="txt"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="input.tabular"/>
+            <param name="arogff" value="aro.gff"/>
+            <output name="output" ftype="html">
+                <assert_contents>
+                    <has_line line="<h1>Normalized ARG annotations</h1>"/>
+                </assert_contents>
+            </output>
+            <output name="log" ftype="txt">
+                <assert_contents>
+                    <has_line line="INFO:root:Starting argNorm"/>
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+argNorm is a tool to normalize antibiotic resistance genes (ARGs) by mapping them to the antibiotic resistance ontology (ARO) created by the CARD database.
+
+argNorm also enhances antibiotic resistance gene annotations by providing drug categorization of the drugs that antibiotic resistance genes confer resistance to.
+    </help>
+    <citations>
+        <citation type="doi">10.1101/gr.276900.123</citation>
+    </citations>
+</tool>

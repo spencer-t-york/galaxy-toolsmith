@@ -1,0 +1,81 @@
+<tool id="aegean_locuspocus" name="AEGeAn LocusPocus" version="0.16.0+galaxy0" profile="21.05">
+  <description>computes interval loci (iLoci)</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">aegean</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <version_command>locuspocus --version</version_command>
+  <command detect_errors="exit_code">
+        locuspocus
+            $overlap
+            $include_intergenic
+            $intergenic_threshold
+            $min_gene_length
+            $max_gene_length
+            $gene_feature
+            '$input'
+            &gt; '$output'
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="gff3" multiple="true" label="GFF3 file(s)" help="Input file(s)" />
+    <param argument="--overlap" type="boolean" truevalue="--overlap" falsevalue="" checked="false" label="Report overlapping iLoci?" help="By default, LocusPocus does not report iLoci that overlap. This flag changes that behavior." />
+    <param argument="--include-intergenic" type="boolean" truevalue="--include-intergenic" falsevalue="" checked="false" label="Report intergenic iLoci?" help="By default, LocusPocus does not report iLoci that span intergenic regions. This flag changes that behavior." />
+    <param argument="--intergenic-threshold" type="integer" value="1000" min="0" max="999999999" label="Intergenic threshold" help="Minimum distance between two genes to consider them separate. Default is 1000 bp." />
+    <param argument="--min-gene-length" type="integer" value="100" min="0" max="999999999" label="Minimum gene length" help="Minimum length of a gene to consider it. Default is 100 bp." />
+    <param argument="--max-gene-length" type="integer" value="1000000" min="0" max="999999999" label="Maximum gene length" help="Maximum length of a gene to consider it. Default is 1000000 bp." />
+    <param argument="--gene-feature" type="text" value="gene" label="Gene feature" help="Feature type to treat as a gene. Default is 'gene'. Multiple features can be specified separated by commas." />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" label="${tool.name} on ${on_string}: iLoci" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" ftype="gff3" value="locuspocus_input.gff3" />
+      <output name="output" ftype="gff3">
+        <assert_contents>
+          <has_line line="##gff-version 3" />
+          <has_n_lines n="7" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+
+.. class:: infomark
+
+**Purpose**
+
+LocusPocus is a program for computing interval loci (iLoci) from a provided set gene annotations. Each iLocus corresponds to a single gene, a set of overlapping genes, or a space between genes. See this page for a description of iLoci as an organizational principle for genomics.
+
+-----
+
+.. class:: infomark
+
+**Input**
+
+Input for LocusPocus is one or more files in GFF3 format. The only strict requirement is that the input must be valid GFF3.
+
+The use of ##sequence-region pragmas is optional, and many GFF3 files do not include them. LocusPocus uses this information when computing the location of iLoci at the ends of a sequence. Note that if these pragmas are not declared explicitly, iLoci will only be reported for sequence regions containing annotated features.
+
+Users can override gene as the default feature of interest, replace it with one or more other feature types, and construct iLoci for these features in the same way.
+
+-----
+
+
+**Output**
+
+LocusPocus computes the location of the iLoci from the given gene features and reports the iLocus locations in GFF3 format. By default, only the iLocus features themselves are reported, with attributes indicating the number of genes and transcripts in the locus.
+
+    </help>
+  <citations>
+    <citation type="doi">10.1101/gr.170000.116</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

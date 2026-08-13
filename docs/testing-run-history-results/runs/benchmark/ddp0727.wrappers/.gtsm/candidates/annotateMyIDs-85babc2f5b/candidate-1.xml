@@ -1,0 +1,59 @@
+<tool id="annotatemyids" name="annotateMyIDs" version="0.1.0" profile="25.0">
+  <description>Annotate a list of IDs using Bioconductor annotation data packages.</description>
+  <requirements>
+    <requirement type="package" version="1.20.0">R</requirement>
+    <requirement type="package" version="1.50.0">BiocManager</requirement>
+    <requirement type="package" version="1.40.0">AnnotationDbi</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla -e 'library(BiocManager); BiocManager::install("org.Hs.eg.db"); library(org.Hs.eg.db); library(AnnotationDbi); args &lt;- commandArgs(trailingOnly=FALSE); input_file &lt;- sapply(strsplit(args[grep("--input", args)], "="), "[[", 2); output_file &lt;- sapply(strsplit(args[grep("--output", args)], "="), "[[", 2); id_type &lt;- sapply(strsplit(args[grep("--id_type", args)], "="), "[[", 2); columns &lt;- sapply(strsplit(args[grep("--columns", args)], "="), "[[", 2); df &lt;- read.table(input_file, header=TRUE, sep="\t", stringsAsFactors=FALSE); res &lt;- mapIds(org.Hs.eg.db, keys=df[[1]], column=columns, keytype=id_type, multiVals="first"); write.table(res, file=output_file, sep="\t", quote=FALSE, col.names=NA)
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="tabular" label="Input File" help="Tab-delimited file with identifiers in the first column." />
+    <param name="id_type" type="select" label="ID Type" help="Type of identifiers in the input file.">
+      <option value="ENSEMBL">ENSEMBL</option>
+      <option value="ENSEMBLPROT">ENSEMBLPROT</option>
+      <option value="ENSEMBLTRANS">ENSEMBLTRANS</option>
+      <option value="ENTREZID">ENTREZID</option>
+      <option value="FLYBASE">FLYBASE</option>
+      <option value="GO">GO</option>
+      <option value="MGI">MGI</option>
+      <option value="PATH">PATH</option>
+      <option value="REFSEQ">REFSEQ</option>
+      <option value="SYMBOL">SYMBOL</option>
+      <option value="ZFIN">ZFIN</option>
+    </param>
+    <param name="columns" type="text" label="Columns to Retrieve" help="Comma-separated list of columns to add to the output. Available columns depend on the input ID type." />
+    <param name="output_file" type="data" format="tabular" label="Output File" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Annotated IDs" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample_ids.txt" />
+      <param name="id_type" value="ENSEMBL" />
+      <param name="columns" value="ENTREZID,SYMBOL,GENENAME" />
+      <param name="output_file" value="annotated_ids.txt" />
+      <assert_contents filename="sample_output.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        This tool annotates a list of IDs using Bioconductor annotation data packages. Supported organisms are human, mouse, rat, fruit fly, and zebrafish. The org.db packages used here are primarily based on mapping using Entrez Gene identifiers.
+        
+        Examples of what this tool can be used for include:
+        
+        * Adding gene names to IDs
+        * Mapping between IDs (e.g., Entrez, Ensembl, Symbols)
+        * Adding GO and KEGG identifiers
+        
+        This tool uses the `select` function from the Bioconductor AnnotationDbi package. Note that if you request columns that have multiple matches for your IDs, `select` will return one row in the output for each possible match. This can lead to multiplication of results if requesting multiple columns with many-to-one relationships.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

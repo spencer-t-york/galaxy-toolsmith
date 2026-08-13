@@ -1,0 +1,33 @@
+<tool id="aegean_canongff3" name="AEGeAn CanonGFF3" version="0.1.0" profile="25.0">
+  <description>Pre-process GFF3 data encoding canonical protein-coding genes</description>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+canon-gff3 $input --output $output
+</command>
+  <inputs>
+    <param name="input" type="data" format="gff3" label="Input GFF3 file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" label="Processed GFF3 file" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.gff3" />
+      <output name="output" file="expected_output.gff3" />
+    </test>
+  </tests>
+  <help format="markdown">
+CanonGFF3 is a program for pre-processing GFF3 data encoding canonical protein-coding genes. It will clean up a GFF3 file, removing all features not directly related to protein-coding genes and inferring features that are not explicitly declared, such as introns and UTRs.
+Input: One or more GFF3 files describing protein coding genes.
+Output: A GFF3 file containing protein-coding genes.
+</help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

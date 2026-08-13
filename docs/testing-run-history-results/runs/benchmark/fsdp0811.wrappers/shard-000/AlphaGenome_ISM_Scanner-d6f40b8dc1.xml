@@ -1,0 +1,112 @@
+<tool id="alphagenome_ism_scanner" name="AlphaGenome ISM Scanner" version="0.6.1+galaxy0" profile="21.05">
+    <description>in-silico saturation mutagenesis</description>
+    <macros/><requirements>
+        <requirement type="package" version="0.6.1">alphagenome</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        alphagenome_ism_scanner.py
+            --input '$input'
+            --output '$output'
+            --output_type '$output_type'
+            --variant_scorer '$variant_scorer'
+            --track_name '$track_name'
+            --max_mutations $max_mutations
+            --genome '$genome'
+            --cores \${GALAXY_SLOTS:-1}
+    </command>
+    <inputs>
+        <param name="input" type="data" format="bed" label="Input BED file"/>
+        <param name="output_type" type="select" label="Output type">
+            <option value="RNA_SEQ">RNA_SEQ</option>
+            <option value="ATAC">ATAC</option>
+            <option value="H3K27me2">H3K27me2</option>
+            <option value="H3K27me3">H3K27me3</option>
+            <option value="H3K4me1">H3K4me1</option>
+            <option value="H3K4me3">H3K4me3</option>
+            <option value="H3K9me3">H3K9me3</option>
+            <option value="H3K36me3">H3K36me3</option>
+            <option value="H3K9me2">H3K9me2</option>
+            <option value="H3K9me1">H3K9me1</option>
+            <option value="H3K4me2">H3K4me2</option>
+            <option value="H3K27ac">H3K27ac</option>
+            <option value="H3K36me1">H3K36me1</option>
+            <option value="H3K36me2">H3K36me2</option>
+            <option value="H3K4me0">H3K4me0</option>
+            <option value="H3K9me0">H3K9me0</option>
+            <option value="H3K27me0">H3K27me0</option>
+            <option value="H3K36me0">H3K36me0</option>
+            <option value="H3K4me">H3K4me</option>
+            <option value="H3K9me">H3K9me</option>
+            <option value="H3K27me">H3K27me</option>
+            <option value="H3K36me">H3K36me</option>
+            <option value="H3K4me1me2">H3K4me1me2</option>
+            <option value="H3K4me1me3">H3K4me1me3</option>
+            <option value="H3K4me2me3">H3K4me2me3</option>
+            <option value="H3K9me1me2">H3K9me1me2</option>
+            <option value="H3K9me1me3">H3K9me1me3</option>
+            <option value="H3K9me2me3">H3K9me2me3</option>
+            <option value="H3K27me1me2">H3K27me1me2</option>
+            <option value="H3K27me1me3">H3K27me1me3</option>
+            <option value="H3K27me2me3">H3K27me2me3</option>
+            <option value="H3K36me1me2">H3K36me1me2</option>
+            <option value="H3K36me1me3">H3K36me1me3</option>
+            <option value="H3K36me2me3">H3K36me2me3</option>
+            <option value="H3K4me1me2me3">H3K4me1me2me3</option>
+            <option value="H3K9me1me2me3">H3K9me1me2me3</option>
+            <option value="H3K27me1me2me3">H3K27me1me2me3</option>
+            <option value="H3K36me1me2me3">H3K36me1me2me3</option>
+            <option value="H3K4me1me3me0">H3K4me1me3me0</option>
+            <option value="H3K9me1me3me0">H3K9me1me3me0</option>
+            <option value="H3K27me1me3me0">H3K27me1me3me0</option>
+            <option value="H3K36me1me3me0">H3K36me1me3me0</option>
+            <option value="H3K4me1me2me3me0">H3K4me1me2me3me0</option>
+            <option value="H3K9me1me2me3me0">H3K9me1me2me3me0</option>
+            <option value="H3K27me1me2me3me0">H3K27me1me2me3me0</option>
+            <option value="H3K36me1me2me3me0">H3K36me1me2me3me0</option>
+            <option value="H3K4me1me2me3me0me0">H3K4me1me2me3me0me0</option>
+            <option value="H3K9me1me2me3me0me0">H3K9me1me2me3me0me0</option>
+            <option value="H3K27me1me2me3me0me0">H3K27me1me2me3me0me0</option>
+            <option value="H3K36me1me2me3me0me0">H3K36me1me2me3me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0">H3K4me1me2me3me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0">H3K9me1me2me3me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0">H3K27me1me2me3me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0">H3K36me1me2me3me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0">H3K4me1me2me3me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0">H3K9me1me2me3me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0">H3K27me1me2me3me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0">H3K36me1me2me3me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0">H3K27me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K36me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0">H3K36me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0me0">H3K4me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0me0">H3K9me1me2me3me0me0me0me0me0me0me0me0me0me0me0me0me0</option>
+            <option value="H3K27me1me2

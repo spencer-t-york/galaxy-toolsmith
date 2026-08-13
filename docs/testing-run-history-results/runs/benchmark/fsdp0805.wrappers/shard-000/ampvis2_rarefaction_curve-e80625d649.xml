@@ -1,0 +1,112 @@
+<tool id="ampvis2_rarefaction_curve" name="ampvis2 rarefaction curve" version="2.4+galaxy0" profile="21.05">
+  <description>generates a rarefaction curve (number of reads vs number of observed OTUs)</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.4">ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+        Rscript -e '
+            library(ampvis2)
+            data &lt;- readRDS('${input_dataset}')
+            # set up metadata
+            meta &lt;- data.frame()
+            # loop through all metadata columns
+            for (col in colnames($metadata)) {
+                # add column to metadata dataframe
+                meta[[col]] &lt;- sapply(strsplit(colnames(data), "_"), "[[", $metadata[col])
+            }
+            # write metadata to file
+            write.table(meta, "meta.txt", quote = FALSE, row.names = FALSE, sep = "\t")
+            # run the rarecurve function
+            res &lt;- amp_rarecurve(
+                data,
+                samples = ${samples},
+                metadata = "meta.txt",
+                facet_by = "${facet_by}",
+                color_by = "${color_by}",
+                nboot = ${nboot},
+                min_reads = ${min_reads},
+                max_reads = ${max_reads},
+                step = ${step}
+            )
+            # save the result
+            saveRDS(res, "output.rds")
+        '
+    </command>
+  <inputs>
+    <param argument="--input_dataset" type="data" format="rds" label="AmpVis2 dataset" />
+    <param argument="--metadata" type="select" multiple="true" display="checkboxes" label="Select metadata columns">
+      <options from_data_table="ampvis2_metadata" />
+    </param>
+    <param argument="--samples" type="text" value="" label="Samples to include in the analysis" help="Comma-separated list of sample names." />
+    <param argument="--facet_by" type="select" label="Facet by" help="Split the plot into multiple panels based on the selected metadata variable.">
+      <options from_data_table="ampvis2_faceting_options" />
+    </param>
+    <param argument="--color_by" type="select" label="Color by" help="Color the points based on the selected metadata variable.">
+      <options from_data_table="ampvis2_coloring_options" />
+    </param>
+    <param argument="--nboot" type="integer" value="999" label="Number of bootstrap replicates" help="Number of bootstrap replicates to perform for confidence intervals." />
+    <param argument="--min_reads" type="integer" value="10" label="Minimum number of reads" help="Minimum number of reads per sample to consider." />
+    <param argument="--max_reads" type="integer" value="10000" label="Maximum number of reads" help="Maximum number of reads per sample to consider." />
+    <param argument="--step" type="integer" value="100" label="Step size" help="Step size for increasing the number of reads." />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" from_work_dir="output.rds" label="${tool.name} on ${on_string}: Rarefaction Curve" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_dataset" value="AalborgWWTPs.rds" ftype="rds" />
+      <param name="metadata" value="SampleType,Location" />
+      <param name="samples" value="" />
+      <param name="facet_by" value="SampleType" />
+      <param name="color_by" value="Location" />
+      <param name="nboot" value="999" />
+      <param name="min_reads" value="10" />
+      <param name="max_reads" value="10000" />
+      <param name="step" value="100" />
+      <output name="output" file="AalborgWWTPs_rarecurve.html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates a rarefaction curve (number of reads vs number of observed OTUs) for each sample.
+The plot can be colored or faceted (i.e. split into multiple panels) by metadata
+
+The Galaxy tool calls the `amp_rarecurve
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_rarecurve.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+Rarefaction curves in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-015-0076-x</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

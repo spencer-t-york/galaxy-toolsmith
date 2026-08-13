@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "list"
+  ],
+  "records": [
+    {
+      "datatype": "list",
+      "tool_name": "Export AnnData",
+      "tool_id": "export_anndata",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-000/Export_AnnData-8a972c99b4.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

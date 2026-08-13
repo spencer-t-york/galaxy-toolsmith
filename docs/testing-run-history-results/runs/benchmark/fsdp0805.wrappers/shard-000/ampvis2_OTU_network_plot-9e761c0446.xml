@@ -1,0 +1,116 @@
+<tool id="ampvis2_otu_network_plot" name="ampvis2 OTU network plot" version="0.0.1+galaxy0" profile="24.1">
+  <description>generates network plot of taxa and samples</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.9.6">R</requirement>
+    <requirement type="package" version="0.9.6">r-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(packageVersion("ampvis2"))'</version_command>
+  <command detect_errors="exit_code">
+        Rscript -e '
+            library(ampvis2)
+            library(ggplot2)
+
+            # Load data
+            ampdata &lt;- readRDS($input_dataset)
+
+            # Set up metadata
+            meta &lt;- data.frame(
+                $meta_vars,
+                row.names = rownames(ampdata$metadata)
+            )
+
+            # Run otu_network
+            otu_network &lt;- amp_otu_network(
+                ampdata,
+                meta,
+                var = "$var",
+                value = "$value"
+            )
+
+            # Save plot
+            ggsave(
+                "otu_network.$output_format",
+                plot = otu_network,
+                width = $width,
+                height = $height,
+                dpi = $dpi
+            )
+        '
+    </command>
+  <inputs>
+    <param argument="--input_dataset" type="data" format="rds" label="Amplicon dataset" />
+    <repeat name="meta_vars" title="Select metadata variable(s)" min="1">
+      <param argument="--meta_vars" type="select" multiple="true" label="Variable">
+        <options from_data_table="ampvis2_metadata_keys" />
+      </param>
+    </repeat>
+    <param argument="--var" type="text" label="Variable" help="Variable to filter on." />
+    <param argument="--value" type="text" label="Value" help="Value to filter on." />
+    <param argument="--output_format" type="select" label="Output format">
+      <option value="png" selected="True">PNG</option>
+      <option value="svg">SVG</option>
+    </param>
+    <param argument="--width" type="integer" value="7" label="Width" help="Plot width in inches." />
+    <param argument="--height" type="integer" value="7" label="Height" help="Plot height in inches." />
+    <param argument="--dpi" type="integer" value="300" label="DPI" help="Resolution of the image." />
+  </inputs>
+  <outputs>
+    <data name="out_plot" format="html" from_work_dir="otu_network.png" label="${tool.name} on ${on_string}: OTU Network Plot" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_dataset" ftype="rds" value="AalborgWWTPs.rds" />
+      <repeat name="meta_vars">
+        <param name="meta_vars" value="station" />
+      </repeat>
+      <param name="var" value="station" />
+      <param name="value" value="S01" />
+      <param name="output_format" value="png" />
+      <param name="width" value="7" />
+      <param name="height" value="7" />
+      <param name="dpi" value="300" />
+      <output name="out_plot" file="otu_network.png" compare="sim_size" delta="10000" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates network plot of taxa and samples.
+
+The Galaxy tool calls the `amp_otu_network
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_otu_network.html&gt;`_ function
+of the ampvis2 package (based on ggnet2.).
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+An OTU network plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-016-0109-x</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,117 @@
+<tool id="manipulate_anndata" name="Manipulate AnnData" version="0.1.0" profile="25.0">
+  <description>Manipulate AnnData datasets with various operations</description>
+  <requirements>
+    <requirement type="package">python</requirement>
+    <requirement type="package">anndata=0.11.4</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python3 -c "
+        import anndata as ad
+        import sys
+        import argparse
+
+        def main():
+            parser = argparse.ArgumentParser()
+            parser.add_argument('--input', required=True)
+            parser.add_argument('--output', required=True)
+            parser.add_argument('--operation', required=True)
+            args = parser.parse_args()
+
+            adata = ad.read(args.input)
+            
+            if args.operation == 'concatenate':
+                adata.concatenate(adata)
+            elif args.operation == 'obs_names_make_unique':
+                adata.obs_names_make_unique()
+            elif args.operation == 'var_names_make_unique':
+                adata.var_names_make_unique()
+            elif args.operation == 'rename_categories':
+                adata.rename_categories('obs', {'old': 'new'})
+            elif args.operation == 'remove_keys':
+                adata.obs.drop(['key'], axis=1, inplace=True)
+            elif args.operation == 'flag_genes':
+                adata.var['mito'] = adata.var_names.str.startswith('MT-')
+            elif args.operation == 'strings_to_categoricals':
+                adata.strings_to_categoricals()
+            elif args.operation == 'transpose':
+                adata.transpose()
+            elif args.operation == 'add_annotation':
+                adata.obs['new_annotation'] = 'value'
+            elif args.operation == 'split':
+                adata.split('obs_key')
+            elif args.operation == 'filter':
+                adata = adata[adata.obs['key'] == 'value']
+            elif args.operation == 'freeze_raw':
+                adata.raw = adata
+            
+            adata.write_loom(args.output)
+
+        if __name__ == '__main__':
+            main()
+        " $*
+    </command>
+  <inputs>
+    <param name="input" type="data" format="loom" label="Input AnnData file" />
+    <param name="operation" type="select" label="Operation to perform">
+      <option value="concatenate">Concatenate along observations</option>
+      <option value="obs_names_make_unique">Make obs names unique</option>
+      <option value="var_names_make_unique">Make var names unique</option>
+      <option value="rename_categories">Rename categories</option>
+      <option value="remove_keys">Remove keys</option>
+      <option value="flag_genes">Flag genes</option>
+      <option value="strings_to_categoricals">Strings to categoricals</option>
+      <option value="transpose">Transpose</option>
+      <option value="add_annotation">Add annotation</option>
+      <option value="split">Split by obs key</option>
+      <option value="filter">Filter</option>
+      <option value="freeze_raw">Freeze raw</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="loom" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="test.loom" />
+      <param name="operation" value="concatenate" />
+      <output name="output" file="test_concatenated.loom">
+        <has_text>concatenated</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AnnData Manipulation Tool
+        
+        This tool performs various manipulations on AnnData datasets. Operations include:
+        
+        - Concatenation of datasets
+        - Making observation and variable names unique
+        - Renaming categories
+        - Removing keys
+        - Flagging genes
+        - Converting strings to categoricals
+        - Transposing data
+        - Adding annotations
+        - Splitting by observation keys
+        - Filtering data
+        - Freezing raw data
+        
+        ### Input
+        - AnnData file in .loom format
+        
+        ### Output
+        - Manipulated AnnData file in .loom format
+        
+        ### Example
+        ```bash
+        anndata-manipulate --input input.loom --operation concatenate --output output.loom
+        ```
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

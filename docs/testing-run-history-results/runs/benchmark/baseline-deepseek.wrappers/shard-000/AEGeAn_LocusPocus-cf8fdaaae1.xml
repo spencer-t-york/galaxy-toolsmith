@@ -1,0 +1,52 @@
+<tool id="aegean_locuspocus" name="AEGeAn LocusPocus" version="0.1.0" profile="25.0">
+  <description>Compute interval loci (iLoci) from gene annotations in GFF3 format</description>
+  <requirements>
+    <requirement type="package">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        mkdir -p locuspocus_output
+        for input_file in $input_gff; do
+            locuspocus "$input_file" &gt; "locuspocus_output/$(basename "$input_file")"
+        done
+        cat locuspocus_output/* &gt; $output_gff
+    </command>
+  <inputs>
+    <param name="input_gff" type="data" format="gff" multiple="true" label="Input GFF3 files" help="One or more GFF3 files containing gene annotations" />
+  </inputs>
+  <outputs>
+    <data name="output_gff" format="gff" label="iLoci in GFF3 format" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_gff">
+        <file name="test_input.gff" content="##gff-version 3 chr1    test    gene    100    200    .    +    .    ID=gene1 chr1    test    gene    150    250    .    +    .    ID=gene2" />
+      </param>
+      <output name="output_gff">
+        <has_text>chr1</has_text>
+        <has_text>iLocus</has_text>
+        <has_text>ID=iLocus1</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # LocusPocus: Compute interval loci (iLoci) from gene annotations
+
+        ## Purpose
+        LocusPocus computes interval loci (iLoci) from gene annotations in GFF3 format. Each iLocus represents a single gene, a set of overlapping genes, or the space between genes.
+
+        ## Input
+        - Input must be one or more valid GFF3 files
+        - Optional ##sequence-region pragmas can influence iLocus computation at sequence ends
+
+        ## Output
+        - iLoci locations in GFF3 format
+        - Includes attributes for number of genes and transcripts in each locus
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

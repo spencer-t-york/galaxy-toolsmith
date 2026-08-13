@@ -1,0 +1,69 @@
+<tool id="aegean_canongff3" name="AEGeAn CanonGFF3" version="0.16.0+galaxy0" profile="21.05">
+  <description>pre-process GFF3 data encoding canonical protein-coding genes</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">aegean</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <version_command>canon-gff3 --version</version_command>
+  <command detect_errors="exit_code">
+        #import re
+        #set $names = []
+        #for $i in $input:
+            #set $name = re.sub('[^\w\-\s]', '_', str($i.element_identifier))
+            #set $names.append($name)
+            ln -s '$i' '$name' &amp;&amp;
+        #end for
+        canon-gff3
+        #for $i in $names:
+            '$i'
+        #end for
+        &gt; '$output'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="gff3" multiple="true" label="Input GFF3 file(s)" />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="input1.gff3" />
+      <output name="output" file="output1.gff3" ftype="gff3" />
+    </test>
+  </tests>
+  <help>
+.. class:: infomark
+
+**Purpose**
+
+CanonGFF3 is a program for pre-processing GFF3 data encoding canonical protein-coding genes. It will clean up a GFF3 file, removing all features not directly related to protein-coding genes and inferring features that are not explicitly declared, such as inrons and UTRs. Under the hood, CanonGFF3 essentially applies the same procedure used by ParsEval when it inspects its GFF3 input.
+
+-----
+
+.. class:: infomark
+
+**Input**
+
+Input for CanonGFF3 is one or more files in GFF3 forma. Aside from compliance to GFF3 syntax, CanonGFF3 requires only that protein coding genes be described in enough detail that the entire gene structure can be interpreted.
+
+For example, one common convention is to use exon and CDS features to describe the structure. No intron, UTR, or start/stop features are explicitly provided, but these can be inferred from the other features. An alternative convention is to only declare exon and start &amp; stop codon features, which requires the introns, UTRs, and CDS to be inferred. CanonGFF3 is pretty flexible in its handling of these various conventions, assuming the gene structure is described in sufficient detail.
+
+-----
+
+
+**Output**
+
+CanonGFF3 output is a GFF3 file containing protein-coding genes from the provided input file(s).
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btt143</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

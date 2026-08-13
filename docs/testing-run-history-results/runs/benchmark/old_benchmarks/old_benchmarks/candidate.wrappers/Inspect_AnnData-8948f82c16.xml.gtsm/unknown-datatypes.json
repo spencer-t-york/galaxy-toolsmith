@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "list"
+  ],
+  "records": [
+    {
+      "datatype": "list",
+      "tool_name": "Inspect AnnData",
+      "tool_id": "inspect_anndata",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/candidate.wrappers/Inspect_AnnData-8948f82c16.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

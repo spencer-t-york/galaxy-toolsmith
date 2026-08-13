@@ -1,0 +1,57 @@
+<tool id="adapterremoval_remove_adapter_sequences" name="AdapterRemoval: remove adapter sequences" version="0.1.0" profile="25.0">
+  <description>Searches for and removes adapter sequences from high-throughput sequencing (HTS) data.</description>
+  <requirements>
+    <requirement type="package" version="2.3.4">adapter_removal</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        AdapterRemoval --input $input --output $output --adapter1 $adapter1 --adapter2 $adapter2 --minalignmentlength $minalignmentlength --minquality $minquality --window_size $window_size --trim5p $trim5p --trim3p $trim3p --collapse $collapse --deterministic $deterministic
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fastq" label="Input FASTQ file" />
+    <param name="adapter1" type="text" label="Adapter sequence for read 1" />
+    <param name="adapter2" type="text" label="Adapter sequence for read 2" optional="true" />
+    <param name="minalignmentlength" type="integer" value="36" label="Minimum alignment length" />
+    <param name="minquality" type="float" value="20" label="Minimum quality" />
+    <param name="window_size" type="float" value="4" label="Window size for quality trimming" />
+    <param name="trim5p" type="integer" value="0" label="Trim 5' by" />
+    <param name="trim3p" type="integer" value="0" label="Trim 3' by" />
+    <param name="collapse" type="boolean" checked="false" truevalue="--collapse" falsevalue="" label="Collapse reads" />
+    <param name="deterministic" type="boolean" checked="false" truevalue="--deterministic" falsevalue="" label="Deterministic mode" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="Settings" />
+    <data name="truncated" format="fastq" label="Truncated reads" />
+    <data name="forward_truncated" format="fastq" label="Forward truncated reads" />
+    <data name="reverse_truncated" format="fastq" label="Reverse truncated reads" />
+    <data name="interleaved_truncated" format="fastq" label="Interleaved truncated reads" />
+    <data name="singleton_truncated" format="fastq" label="Singleton truncated reads" />
+    <data name="collapsed" format="fastq" label="Collapsed reads" />
+    <data name="collapsed_truncated" format="fastq" label="Collapsed truncated reads" />
+    <data name="discarded" format="fastq" label="Discarded reads" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.fastq" />
+      <param name="adapter1" value="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC" />
+      <param name="adapter2" value="AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGATTCCGCAGTA" />
+      <param name="minalignmentlength" value="36" />
+      <param name="minquality" value="20" />
+      <param name="window_size" value="4" />
+      <param name="trim5p" value="0" />
+      <param name="trim3p" value="0" />
+      <param name="collapse" value="false" />
+      <param name="deterministic" value="false" />
+      <output name="output" file="expected_settings.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+        AdapterRemoval searches for and removes adapter sequences from high-throughput sequencing (HTS) data.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

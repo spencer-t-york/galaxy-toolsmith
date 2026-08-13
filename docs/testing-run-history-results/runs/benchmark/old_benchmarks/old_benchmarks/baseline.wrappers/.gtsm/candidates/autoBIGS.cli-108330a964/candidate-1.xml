@@ -1,0 +1,46 @@
+<tool id="autobigs.cli" name="autoBIGS.cli" version="0.1.0" profile="25.0">
+  <description>A command-line interface for performing multi-locus sequence typing (MLST)</description>
+  <requirements>
+    <requirement type="package" version="0.6.2">iuc/autobigs</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        autoBIGS --operation $operation --fasta $fasta --database $database --schema_id $schema_id
+    </command>
+  <inputs>
+    <param name="operation" type="select" label="Operation">
+      <option value="retrieve_available_schemes_for_database">Retrieve Available Schemes for Database</option>
+      <option value="perform_sequence_typing">Perform Sequence Typing</option>
+    </param>
+    <param name="fasta" type="data" format="fasta" label="FASTA File" />
+    <param name="database" type="text" label="SeqDef Database Name" />
+    <param name="schema_id" type="text" label="Schema ID" optional="true" />
+  </inputs>
+  <outputs>
+    <data name="output" format="csv" label="MLST Profile" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="operation" value="perform_sequence_typing" />
+      <param name="fasta" value="sample.fasta" />
+      <param name="database" value="example_db" />
+      <param name="schema_id" value="1234" />
+      <output name="output" file="expected_output.csv" />
+    </test>
+  </tests>
+  <help format="markdown">
+        autoBIGS is a tool to help automatically perform multi-locus sequence typing (MLST) on given data by performing calls to necessary web BIGS database web APIs.
+        
+        **Performing Sequence Typing**
+        Select "Perform Sequence Typing", upload your FASTA file, and provide the SeqDef Database name and schema ID.
+        
+        **Special Behaviour for FASTAs with Multiple Sequences**
+        Multiple sequences in the same FASTA file are treated as part of the same sample.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

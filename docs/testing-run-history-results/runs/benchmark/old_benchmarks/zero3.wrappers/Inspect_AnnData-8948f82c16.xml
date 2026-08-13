@@ -1,0 +1,80 @@
+<tool id="inspect_anndata" name="Inspect AnnData" version="0.1.0+galaxy0" profile="25.0">
+  <description>General information, X, obs, var</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">anndata_inspect</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+python '$__tool_directory__/anndata_inspect.py'
+-i '$input'
+--output $output
+    </command>
+  <inputs>
+    <param argument="-i" type="data" format="h5ad" label="Input AnnData" />
+  </inputs>
+  <outputs>
+    <data name="output" format="txt" label="${tool.name} on ${on_string}: Output" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="adata.h5ad" />
+      <output name="output" file="adata.txt" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+This tool inspects a AnnData dataset and returns:
+
+- General information about the object as text
+- The full data matrix (`X`) as a Tabular
+- A chunk of the data matrix as a Tabular, using the `chunk_X method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.chunk_X.html&gt;`__
+- Key-indexed observations annotation (`obs`) as a Tabular
+- Key-indexed annotation of variables/features (`var`) as a Tabular
+
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy &lt;https://github.com/theislab/scanpy&gt;`__, for which it was initially developed.
+
+AnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.
+
+.. image:: https://falexwolf.de/img/scanpy/anndata.svg
+
+
+AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics
+of statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics
+and machine learning packages in Python (statsmodels, scikit-learn).
+
+More details on the `AnnData documentation
+&lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html&gt;`__
+
+
+**Loom data**
+
+Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+
+.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png
+
+
+Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes
+and cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).
+
+Underlying software source documentation:
+- anndata anndata-0.11.4/README.md: class="dark-light" align="right" width="350" alt="image" /&gt; # anndata - Annotated data anndata is a Python package for handling annotated data matrices in memory and on disk, positioned between pandas and xarray. anndata offers a broad range of computationally efficient features including, among others, sparse data support, lazy operations, and a PyTorch interface. - Discuss development on [GitHub](https://github.com/scverse/anndata). - Read the [documentation](https://anndata.readthedocs.io). - Ask questions on the [scverse Discourse](https://discourse.scverse.org). - Install via `pip install anndata` or `conda install anndata -c conda-forge`.
+- anndata anndata-0.11.4/benchmarks/README.md: # AnnData Benchmarks This repo contains some work in progress benchmarks for [AnnData](https://github.com/theislab/anndata) using [asv](https://asv.readthedocs.io). ## Setup I definitely recommend reading through the asv docs. Currently, this assumes the benchmark suite can reach the `anndata` repo via the path `../anndata`. Otherwise, all you'll need to do is create a [machine file](https://asv.readthedocs.io/en/stable/commands.html#asv-machine) for your system and make sure `anndata`s dependencies are installable via `conda`.
+- anndata anndata-0.11.4/docs/fileformat-prose.md: * An element MUST have a string-valued field `"encoding-type"` in its metadata * An element MUST have a string-valued field `"encoding-version"` in its metadata that can be evaluated to a version ### AnnData specification (v0.1.0) * An `AnnData` object MUST be a group. * The group's metadata MUST include entries: `"encoding-type": "anndata"`, `"encoding-version": "0.1.0"`. * An `AnnData` group MUST contain entries `"obs"` and `"var"`, which MUST be dataframes (though this may only have an index with no columns). * The group MAY contain an entry `X`, which MUST be either a dense or sparse array and whose shape MUST be (`n_obs`, `n_var`) * The group MAY contain a mapping `layers`. Entries in `layers` MUST be dense or sparse arrays which have shapes (`n_obs`, `n_var`) * The group MAY contain a mapping `obsm`. Entries in `obsm` MUST be sparse arrays, dense arrays, or datafram [truncated]
+- loompy loompy-3.0.8/README.md: # loompy v3.0 ⭐ Loompy v3.0 was released Sep. 24, 2019! To get started, head over to [the documentation](http://loompy.org)! Loom, loompy, and the [loom-viewer](https://github.com/linnarsson-lab/loom-viewer) are being developed by members of the [Linnarsson Lab](http://linnarssonlab.org).
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41586-019-1701-7</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

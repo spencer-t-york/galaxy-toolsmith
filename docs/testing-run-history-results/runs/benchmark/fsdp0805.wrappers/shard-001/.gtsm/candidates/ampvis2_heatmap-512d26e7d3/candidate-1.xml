@@ -1,0 +1,412 @@
+<tool id="ampvis2_heatmap" name="ampvis2 heatmap" version="2.4+galaxy0" profile="21.09">
+    <description>generates a heatmap of amplicon data</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">ampvis2</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="2.4">iuc-ampvis2</requirement>
+    </requirements>
+    <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+    <command detect_errors="exit_code">
+Rscript -e '
+library(ampvis2)
+load(&quot;$input_dataset&quot;)
+
+#if $metadata.metadata_selector == "select":
+    metadata &lt;- read.table(&quot;$metadata.metadata_file&quot;, header = TRUE, row.names = 1)
+#else:
+    metadata &lt;- read.table(&quot;$metadata.metadata_list&quot;, header = FALSE, row.names = 1)
+#end if
+
+#if str_detect($function_data, "\\.rds$"):
+    function_data &lt;- readRDS(&quot;$function_data&quot;)
+#end if
+
+out &lt;- amp_heatmap(
+    data,
+    metadata,
+    #if $metadata.metadata_selector == "select":
+        metadata_select = c($metadata.metadata_select),
+    #else:
+        metadata_select = c($metadata.metadata_select),
+    #end if
+    #if $function_data:
+        function_data = function_data,
+    #end if
+    #if $function_data:
+        function_select = c($function_select),
+    #end if
+    #if $plot_options.plot_type == "heatmap":
+        plot_type = "$plot_options.plot_type",
+    #else:
+        plot_type = "$plot_options.plot_type",
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if
+    #if $plot_options.colour_scale == "custom":
+        colour_scale = c($plot_options.colour_scale),
+    #end if

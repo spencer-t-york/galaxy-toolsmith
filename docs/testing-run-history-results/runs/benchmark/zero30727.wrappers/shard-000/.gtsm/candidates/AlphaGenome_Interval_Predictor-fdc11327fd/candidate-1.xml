@@ -1,0 +1,109 @@
+<tool id="alphagenome_interval_predictor" name="AlphaGenome Interval Predictor" version="0.1.0+galaxy0" profile="23.09">
+  <description>Predict Regulatory Tracks for Genomic Intervals</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">alphagenome</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <version_command>python3 -m alphagenome --version</version_command>
+  <command detect_errors="exit_code">
+        python3 '$__tool_directory__/alphagenome_interval_predictor.py'
+            --bed '${input_bed}'
+            --output ${output}
+            --api_key '${api_key}'
+            --model_path '${model_path}'
+            --output_mode '${output_mode}'
+            --window_size ${window_size}
+            --bin_width ${bin_width}
+            --verbose
+    </command>
+  <inputs>
+    <param argument="--bed" type="data" format="bed" label="Input BED File" />
+    <param argument="--api_key" type="text" value="" label="AlphaGenome API Key" help="Your personal API key." />
+    <param argument="--model_path" type="text" value="huggingface://google/deepmind-alpha-genome-rnaseq" label="Model Path" help="Path to model weights." />
+    <param argument="--output_mode" type="select" label="Output Mode">
+      <option value="summary" selected="true">Summary</option>
+      <option value="binned">Binned</option>
+    </param>
+    <param argument="--window_size" type="integer" value="1000" min="1" label="Window Size" help="Size of prediction window around each interval." />
+    <param argument="--bin_width" type="integer" value="128" min="1" label="Bin Width" help="Width of bins for binned output." />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: Predicted Regulatory Tracks" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_bed" value="regions.bed" />
+      <param name="api_key" value="fake_api_key" />
+      <param name="model_path" value="huggingface://google/deepmind-alpha-genome-rnaseq" />
+      <param name="output_mode" value="summary" />
+      <param name="window_size" value="1000" />
+      <param name="bin_width" value="128" />
+      <output name="output" file="predicted_tracks_summary.tsv" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**AlphaGenome Interval Predictor**
+
+Predicts regulatory tracks for genomic intervals using AlphaGenome's
+``predict_interval()`` API. No variants — just baseline characterization
+of the chromatin, expression, and splicing landscape at each region.
+
+-----
+
+**What it does**
+
+For each interval in the input BED file:
+
+1. Creates a prediction window centered on the interval
+2. Calls ``predict_interval()`` for selected output types
+3. Computes summary statistics (mean, max) over the original BED region
+4. Reports per-track values in tabular format
+
+-----
+
+**Output modes**
+
+- **Summary** (default): One row per interval x track with mean and max signal.
+  Compact output good for screening many regions.
+- **Binned**: Divides each interval into fixed-width bins (default 128bp) and
+  reports mean signal per bin. Provides spatial resolution for visualizing
+  signal patterns across a region.
+
+
+**Output columns — summary mode**
+
+- ``chrom``, ``start``, ``end`` — interval coordinates
+- ``name`` — region name from BED
+- ``output_type`` — RNA_SEQ, ATAC, etc.
+- ``track_name`` — specific experimental track
+- ``ontology_curie`` — tissue/cell type ontology term
+- ``mean_signal`` — mean predicted signal across the region
+- ``max_signal`` — maximum predicted signal in the region
+
+**Output columns — binned mode**
+
+- ``chrom``, ``bin_start``, ``bin_end`` — bin coordinates
+- ``region_name`` — original region name
+- ``output_type``, ``track_name``, ``ontology_curie`` — as above
+- ``mean_signal`` — mean predicted signal in the bin
+
+
+**Use cases**
+
+- Characterize regulatory activity at GWAS loci
+- Compare predicted chromatin landscapes between regions
+- Identify active promoters, enhancers, or splice sites
+- Generate baseline predictions for regions of interest
+    </help>
+  <citations>
+    <citation type="doi">10.1101/2023.07.11.548600</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

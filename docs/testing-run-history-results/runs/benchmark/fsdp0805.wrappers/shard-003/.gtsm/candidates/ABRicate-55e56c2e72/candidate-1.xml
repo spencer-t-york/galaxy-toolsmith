@@ -1,0 +1,75 @@
+<tool id="abricate" name="ABRicate" version="1.4.0+galaxy1" profile="21.05">
+  <description>Antibiotic Resistance Gene Identification</description>
+  <macros />
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        abricate
+            '$input'
+            &gt; '$output'
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="fasta,genbank" label="Input" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="NC_017338.fasta" />
+      <output name="output" ftype="tabular">
+        <assert_contents>
+          <has_line line="#FILE     SEQUENCE     START   END     GENE     COVERAGE     COVERAGE_MAP     GAPS  %COVERAGE  %IDENTITY  DATABASE   ACCESSION" />
+          <has_n_lines n="10" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+Given a FASTA contig file or a genbank file, ABRicate will perform a mass screening of contigs and identify the presence of antibiotic resistance genes. The user can choose which database to search from a list of available AMR databases.
+
+**Output**
+
+ABRicate will produce a tab-seperated output file with the following outputs:
+
++---------------+------------------------------------------------+
+|  Column       | Description                                    |
++===============+================================================+
+|  FILE         | The filename this hit came from                |
++---------------+------------------------------------------------+
+|  SEQUENCE     | The sequence in the filename                   |
+|  START        | Start coordinate in the sequence               |
+|  END          | End coordinate                                 |
+|  GENE         | ABR gene                                       |
+|  COVERAGE     | What proportion of the gene is in our sequence |
+|  COVERAGE_MAP | A visual represenation                         |
+|  GAPS         | Was there any gaps in the                      |
+|               | alignment - possible pseudogene?               |
+|  %COVERAGE    | Proportion of gene covered                     |
+|  %IDENTITY    | Proportion of exact nucleotide matches         |
+|  DATABASE     | The database this sequence comes from          |
+|  ACCESSION    | The genomic source of the sequence             |
+
+
+**Example Output**
+
+::
+
+        #FILE     SEQUENCE     START   END     GENE     COVERAGE     COVERAGE_MAP     GAPS  %COVERAGE  %IDENTITY  DATABASE   ACCESSION
+        6159.fna  NC_017338.1  39177   41186   mecA_15  1-2010/2010  ===============  0/0   100.00     100.000    resfinder  AB505628
+        6159.fna  NC_017338.1  727191  728356  norA_1   1-1166/1167  ===============  0/0   99.91      92.367     resfinder  M97169
+        6159.fna  NC_017339.1  10150   10995   blaZ_32  1-846/846    ===============  0/0   100.00     100.000    resfinder  AP004832
+
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz005</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

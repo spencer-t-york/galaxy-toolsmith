@@ -1,0 +1,7 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-08-05T15:23:16Z	probe	65536	all-raw	192000	512	fsdp	failed	tools-iuc-devstral-24b-mixed-all-raw-65536-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805
+2026-08-05T15:54:18Z	probe	65536	all-filtered	192000	512	fsdp	failed	tools-iuc-devstral-24b-mixed-all-filtered-65536-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805
+2026-08-05T16:37:25Z	probe	32768	all-raw	96000	256	fsdp	failed	tools-iuc-devstral-24b-mixed-all-raw-32768-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805
+2026-08-05T17:08:07Z	probe	32768	all-filtered	96000	256	fsdp	failed	tools-iuc-devstral-24b-mixed-all-filtered-32768-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805
+2026-08-05T17:51:20Z	probe	16384	all-raw	36000	128	fsdp	completed	tools-iuc-devstral-24b-mixed-all-raw-16384-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805
+2026-08-05T19:25:55Z	full	16384	all-raw	36000	128	fsdp	post-export-failed	tools-iuc-devstral-24b-mixed-all-raw-16384-fsdp-qwen-lora-sharding-4-fsdp-sidecars-fixtures-20260805

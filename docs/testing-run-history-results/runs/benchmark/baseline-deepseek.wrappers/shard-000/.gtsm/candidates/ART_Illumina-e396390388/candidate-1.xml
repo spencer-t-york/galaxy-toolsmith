@@ -1,0 +1,75 @@
+<tool id="art_illumina" name="ART Illumina" version="0.1.0" profile="25.0">
+  <description>Simulate Illumina sequencing reads using ART Illumina</description>
+  <requirements>
+    <requirement type="package">art=2.5.8</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        art_illumina
+        -i $input1
+        -l $read_length
+        -f $coverage
+        -o $output_prefix
+        -p $read_type
+        -e $error_profile
+        -s $seed
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="fasta" label="Reference Genome" />
+    <param name="read_type" type="select" label="Read Type">
+      <option value="SE">Single-end</option>
+      <option value="PE">Paired-end</option>
+      <option value="MP">Mate-pair</option>
+      <option value="AMP">Amplicon</option>
+    </param>
+    <param name="read_length" type="integer" label="Read Length" min="1" default="150" />
+    <param name="coverage" type="float" label="Coverage" min="0.1" default="30" />
+    <param name="error_profile" type="text" label="Error Profile" default="default" />
+    <param name="seed" type="integer" label="Random Seed" default="12345" />
+  </inputs>
+  <outputs>
+    <data name="output1" format="fastq" label="Simulated Reads 1" />
+    <data name="output2" format="fastq" label="Simulated Reads 2" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="input1" value="test.fasta" />
+      <param name="read_type" value="SE" />
+      <param name="read_length" value="150" />
+      <param name="coverage" value="30" />
+      <param name="error_profile" value="default" />
+      <param name="seed" value="12345" />
+      <output name="output1" file="reads1.fastq" />
+      <output name="output2" file="reads2.fastq" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # ART Illumina Simulator
+        
+        ART Illumina is a tool for simulating Illumina sequencing reads based on empirical quality profiles. It can generate:
+        
+        - Single-end reads
+        - Paired-end reads
+        - Mate-pair reads
+        - Amplicon sequencing reads
+        
+        ## Parameters
+        
+        - **Reference Genome**: Input FASTA file containing the reference genome.
+        - **Read Type**: Choose between single-end, paired-end, mate-pair, or amplicon sequencing.
+        - **Read Length**: Length of the simulated reads.
+        - **Coverage**: Target coverage depth for the simulation.
+        - **Error Profile**: Optional error profile to apply (default uses built-in profile).
+        - **Random Seed**: Seed for random number generation (for reproducibility).
+        
+        ## Outputs
+        
+        - Simulated reads in FASTQ format.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

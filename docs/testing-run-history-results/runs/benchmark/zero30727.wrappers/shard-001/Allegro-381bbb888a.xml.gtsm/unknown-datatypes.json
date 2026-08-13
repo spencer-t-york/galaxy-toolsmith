@@ -1,0 +1,39 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "hap",
+    "log",
+    "map",
+    "ped"
+  ],
+  "records": [
+    {
+      "datatype": "hap",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Allegro-381bbb888a.xml"
+    },
+    {
+      "datatype": "log",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Allegro-381bbb888a.xml"
+    },
+    {
+      "datatype": "map",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Allegro-381bbb888a.xml"
+    },
+    {
+      "datatype": "ped",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Allegro-381bbb888a.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

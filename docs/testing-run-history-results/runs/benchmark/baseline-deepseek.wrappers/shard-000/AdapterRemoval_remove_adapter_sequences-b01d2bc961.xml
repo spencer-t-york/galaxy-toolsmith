@@ -1,0 +1,85 @@
+<tool id="adapterremoval_remove_adapter_sequences" name="AdapterRemoval: remove adapter sequences" version="0.1.0" profile="25.0">
+  <description>Remove adapter sequences from high-throughput sequencing data</description>
+  <requirements>
+    <requirement type="package">iuc/adapter_removal</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        AdapterRemoval
+        --file1 $input1
+        --file2 $input2
+        --adapter1 $adapter1
+        --adapter2 $adapter2
+        --minquality $minquality
+        --minalignmentlength $minalignmentlength
+        --outputcollapsed $outputCollapsed
+        --outputtruncated $outputTruncated
+        --outputsettings $outputSettings
+    </command>
+  <inputs>
+    <param name="input_type" type="select" label="Input type">
+      <option value="single">Single-end reads</option>
+      <option value="paired">Paired-end reads</option>
+    </param>
+    <conditional name="input_type">
+      <when value="single">
+        <param name="input1" type="data" format="fastq" label="Single-end reads" />
+      </when>
+      <when value="paired">
+        <param name="input1" type="data" format="fastq" label="Forward reads" />
+        <param name="input2" type="data" format="fastq" label="Reverse reads" />
+      </when>
+    </conditional>
+    <param name="adapter1" type="text" label="Adapter sequence for mate 1" optional="true" />
+    <param name="adapter2" type="text" label="Adapter sequence for mate 2" optional="true" />
+    <param name="minquality" type="integer" label="Minimum quality score" default="20" />
+    <param name="minalignmentlength" type="integer" label="Minimum alignment length" default="10" />
+    <param name="outputCollapsed" type="boolean" label="Output collapsed reads" default="false" />
+    <param name="outputTruncated" type="boolean" label="Output truncated reads" default="false" />
+    <param name="outputSettings" type="boolean" label="Output settings file" default="false" />
+  </inputs>
+  <outputs>
+    <data name="outputSettings" format="tabular" label="Settings file" optional="true" />
+    <data name="outputTruncated" format="fastq" label="Truncated reads" optional="true" />
+    <data name="outputCollapsed" format="fastq" label="Collapsed reads" optional="true" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="input_type" value="single" />
+      <param name="input1" value="test.fastq" />
+      <param name="adapter1" value="ADAPTER1" />
+      <param name="minquality" value="20" />
+      <param name="minalignmentlength" value="10" />
+      <param name="outputCollapsed" value="false" />
+      <param name="outputTruncated" value="true" />
+      <param name="outputSettings" value="true" />
+      <output name="outputSettings" file="settings.txt" />
+      <output name="outputTruncated" file="truncated.fastq" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # AdapterRemoval
+
+        AdapterRemoval removes adapter sequences from high-throughput sequencing data and trims low-quality bases. It supports both single-end and paired-end reads.
+
+        ## Parameters
+
+        - **Input type**: Select between single-end or paired-end reads.
+        - **Adapter sequences**: Specify adapter sequences for mate 1 and/or mate 2.
+        - **Minimum quality score**: Trimming threshold for quality-based trimming.
+        - **Minimum alignment length**: Minimum overlap for adapter identification.
+        - **Output options**: Control which output files to generate.
+
+        ## Outputs
+
+        - **Settings file**: Contains run parameters and statistics.
+        - **Truncated reads**: Reads after adapter removal and trimming.
+        - **Collapsed reads**: Merged paired-end reads (if enabled).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,146 @@
+<tool id="annotatemyids" name="annotateMyIDs" version="0.1.0+galaxy0" profile="23.05">
+  <description>add annotations to a list of IDs</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">annotatemyids</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.22.0">R</requirement>
+    <requirement type="package" version="1.22.0">r-base</requirement>
+    <requirement type="package" version="1.22.0">r-annotate-my-ids</requirement>
+  </requirements>
+  <version_command>Rscript '$__tool_directory__/get_version.R'</version_command>
+  <command detect_errors="exit_code">
+Rscript '$__tool_directory__/run.R'
+--input_ids '$input_ids'
+--output_file '$output_file'
+--id_type '${id_type}'
+--columns '${columns}'
+    </command>
+  <inputs>
+    <param argument="--input_ids" type="data" format="tabular" label="Input IDs" />
+    <param argument="--id_type" type="select" label="ID Type">
+      <option value="ENSEMBL">ENSEMBL</option>
+      <option value="ENSEMBLPROT">ENSEMBLPROT</option>
+      <option value="ENSEMBLTRANS">ENSEMBLTRANS</option>
+      <option value="ENTREZID">ENTREZID</option>
+      <option value="FLYBASE">FLYBASE</option>
+      <option value="GO">GO</option>
+      <option value="MGI">MGI</option>
+      <option value="PATH">PATH</option>
+      <option value="REFSEQ">REFSEQ</option>
+      <option value="SYMBOL">SYMBOL</option>
+      <option value="ZFIN">ZFIN</option>
+    </param>
+    <param argument="--columns" type="checkboxes" label="Columns to add">
+      <column name="ALIAS" type="text" value="ALIAS" label="Commonly used gene symbols" />
+      <column name="EVIDENCE" type="text" value="EVIDENCE" label="Evidence codes for GO associations with a gene of interest" />
+      <column name="GENENAME" type="text" value="GENENAME" label="The full gene name" />
+      <column name="ONTOLOGY" type="text" value="ONTOLOGY" label="For GO Identifiers, which Gene Ontology (BP, CC, or MF)" />
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="${tool.name} on ${on_string}: annotated IDs" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_ids" ftype="tabular" value="input_ids.txt" />
+      <param name="id_type" value="ENSEMBL" />
+      <param name="columns" value="GENENAME,ALIAS,EVIDENCE,ONTOLOGY" />
+      <output name="output_file" ftype="tabular" compare="sim_size" value="output_ids.txt" />
+    </test>
+  </tests>
+  <help>
+.. class:: infomark
+
+**What it does**
+
+This tool can get annotation for a generic set of IDs, using the Bioconductor_ annotation data packages. Supported organisms are human, mouse, rat, fruit fly and zebrafish. The org.db packages that are used here are primarily based on mapping using Entrez Gene identifiers. More information on the annotation packages can be found at the Bioconductor website, for example, information on the human annotation package (org.Hs.eg.db) can be found here_.
+
+Examples of what this tool can be used for are:
+
+* adding gene names to IDs
+* mapping between IDs e.g. Entrez, Ensembl, Symbols
+* adding GO and KEGG identifiers
+
+.. _Bioconductor: https://www.bioconductor.org/
+.. _here: http://bioconductor.org/packages/release/data/annotation/manuals/org.Hs.eg.db/man/org.Hs.eg.db.pdf
+
+-----
+
+**Inputs**
+
+A tab-delimited file with identifiers in the first column. If the file contains a header row, select the file has a header option in the tool form above.
+
+Example:
+
+    =============== =======================
+    **GeneID**      *Additional Columns...*
+    --------------- -----------------------
+    ENSG00000091831
+    ENSG00000082175
+    ENSG00000141736
+    ENSG00000012048
+    ENSG00000139618
+    ENSG00000129514
+    ENSG00000171862
+    ENSG00000141510
+    =============== =======================
+
+    ID types supported for input are:
+
+    * **ENSEMBL**: Ensembl gene IDs
+    * **ENSEMBLPROT**: Ensembl protein IDs
+    * **ENSEMBLTRANS**: Ensembl transcript IDs
+    * **ENTREZID**: Entrez gene Identifiers
+    * **FLYBASE**: FlyBase accession numbers
+    * **GO**: GO Identifiers
+    * **MGI**: Jackson Laboratory MGI gene accession numbers
+    * **PATH**: KEGG Pathway Identifiers
+    * **REFSEQ**: Refseq Identifiers
+    * **SYMBOL**: The official gene symbol
+    * **ZFIN**: Zfin accession numbers
+
+.. class:: warningmark
+
+This tool uses the ``select`` function from the Bioconductor AnnotationDBi_ package. Note that if you request columns that have multiple matches for your IDs, select will return *one row in the output for each possible match*. This has the effect that if you request multiple columns and some of them have a many-to-one relationship to the IDs, things will continue to multiply accordingly. So it's not a good idea to request a large number of columns unless you know what you are asking for should have a one-to-one relationship with the initial set of IDs. In general, if you need to retrieve a column like **GO** or **KEGG**, that has a many-to-one relationship to the original IDs, it is most useful to extract that separately.
+
+.. _AnnotationDBi: https://www.bioconductor.org/packages/devel/bioc/manuals/AnnotationDbi/man/AnnotationDbi.pdf
+
+-----
+
+**Outputs**
+
+If the input IDs are Ensembl, the default output will be similar to below, containing four columns. Other columns, such as GO and KEGG terms, can be selected above to be added as additional columns.
+
+Example:
+
+    =============== ============ ========== =================================
+    **ENSEMBL**     **ENTREZID** **SYMBOL** **GENENAME**
+    --------------- ------------ ---------- ---------------------------------
+    ENSG00000091831  2099        ESR1       estrogen receptor 1
+    ENSG00000082175  5241        PGR        progesterone receptor
+    ENSG00000141736  2064        ERBB2      erb-b2 receptor tyrosine kinase 2
+    ENSG00000012048  672         BRCA1      breast cancer 1
+    ENSG00000139618  675         BRCA2      breast cancer 2
+    ENSG00000129514  3169        FOXA1      forkhead box A1
+    ENSG00000171862  5728        PTEN       phosphatase and tensin homolog
+    ENSG00000141510  7157        TP53       tumor protein p53
+    =============== ============ ========== =================================
+
+    Columns available for output include many of the ID columns already described under Inputs above and also:
+
+    * **ALIAS**: Commonly used gene symbols
+    * **EVIDENCE**: Evidence codes for GO associations with a gene of interest
+    * **GENENAME**: The full gene name
+    * **ONTOLOGY**: For GO Identifiers, which Gene Ontology (BP, CC, or MF)
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/bts005</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

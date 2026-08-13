@@ -1,0 +1,47 @@
+<tool id="add_input_name_as_column" name="Add input name as column" version="0.1.0+galaxy0" profile="22.09">
+  <description>Adds a new column with the name of the input file as it appears in the history.</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">mvdbeek/add_input_name_as_column</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.1.0">mvdbeek/add_input_name_as_column</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        #if $input.type == 'tabular':
+            add_input_name_as_column --input $input --output $output
+        #else:
+            echo "Error: Input is not a tabular dataset." &gt; $output
+        #end if
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="tabular" label="Input" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: Output" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="example.tabular" />
+      <output name="output" file="result.tabular" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+Adds a new column with the name of the input file as it appears in the history.
+By default the column is appended.
+
+-----
+.. class:: infomark
+
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

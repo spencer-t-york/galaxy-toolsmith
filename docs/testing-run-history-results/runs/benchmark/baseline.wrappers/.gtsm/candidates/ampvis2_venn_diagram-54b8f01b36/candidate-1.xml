@@ -1,0 +1,40 @@
+<tool id="ampvis2_venn_diagram" name="ampvis2 venn diagram" version="0.1.0" profile="25.0">
+  <description>Calculates the number of "core" OTUs shared by groups given thresholds for how frequent the OTUs should be above a certain abundance.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=2.0">R</requirement>
+    <requirement type="package" version="&gt;=1.0">ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e 'library(ampvis2); amp_venn(input_rds, metadata_list, output_format)'
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="metadata_list" type="data" format="txt" label="Metadata List" />
+    <param name="output_format" type="select" label="Output Format">
+      <option value="html">HTML</option>
+      <option value="png">PNG</option>
+      <option value="svg">SVG</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_diagram" format="${output_format}" label="Venn Diagram" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="test_input.rds" />
+      <param name="metadata_list" value="test_metadata.txt" />
+      <param name="output_format" value="html" />
+      <output name="output_diagram" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Calculates the number of "core" OTUs shared by groups given thresholds for how frequent the OTUs should be above a certain abundance. Also returns the average abundance of the OTUs in a particular group.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

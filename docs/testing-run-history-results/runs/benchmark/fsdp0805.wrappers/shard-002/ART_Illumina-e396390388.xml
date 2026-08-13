@@ -1,0 +1,142 @@
+<tool id="art_illumina" name="ART Illumina" version="4.0+galaxy1" profile="21.05">
+  <description>Simulate Illumina sequencing reads</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">art</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="4.0">iuc/art</requirement>
+  </requirements>
+  <version_command>echo "4.0"</version_command>
+  <command detect_errors="exit_code">
+        #if $input.is_of_type("fastqsanger.gz"):
+            ln -s '$input' 'input.fastq.gz' &amp;&amp;
+        #else if $input.is_of_type("fastqsanger"):
+            ln -s '$input' 'input.fastq' &amp;&amp;
+        #end if
+        mkdir -p output &amp;&amp;
+
+        art_illumina
+            --$type
+            --seqType $seqType
+            --inFileName 'input'
+            --outFileName 'output'
+            --nbReads $nbReads
+            --lenSeq $lenSeq
+            --qualityProfile '$profile'
+            --mismatchRate $mismatchRate
+            --insertSize $insertSize
+            --stdDev $stdDev
+            --minInsert $minInsert
+            --maxInsert $maxInsert
+            --numIns $numIns
+            --numDel $numDel
+            --numSub $numSub
+            --numMatch $numMatch
+            --numGap $numGap
+            --numMismatch $numMismatch
+            --numNoCall $numNoCall
+            --numLowQual $numLowQual
+            --lowQualScore $lowQualScore
+            --noHeader
+            --quiet
+            --threads \${GALAXY_SLOTS:-1}
+            &gt; log.txt
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="fastqsanger,fastqsanger.gz" label="Input file" />
+    <conditional name="type">
+      <param name="type" type="select" label="Select the type of reads you want to simulate">
+        <option value="single">Single end</option>
+        <option value="paired">Paired end</option>
+        <option value="matepair">Mate pair</option>
+      </param>
+      <when value="single">
+        <param argument="--nbReads" type="integer" min="1" value="100000" label="Number of reads to generate" />
+        <param argument="--lenSeq" type="integer" min="1" value="100" label="Length of each read" />
+      </when>
+      <when value="paired">
+        <param argument="--nbReads" type="integer" min="1" value="100000" label="Number of pairs to generate" />
+        <param argument="--lenSeq" type="integer" min="1" value="100" label="Length of each read" />
+        <param argument="--insertSize" type="integer" min="1" value="360" label="Mean insert size" />
+        <param argument="--stdDev" type="float" min="0" value="70" label="Standard deviation of insert size" />
+      </when>
+      <when value="matepair">
+        <param argument="--nbReads" type="integer" min="1" value="100000" label="Number of pairs to generate" />
+        <param argument="--lenSeq" type="integer" min="1" value="100" label="Length of each read" />
+        <param argument="--insertSize" type="integer" min="1" value="360" label="Mean insert size" />
+        <param argument="--stdDev" type="float" min="0" value="70" label="Standard deviation of insert size" />
+        <param argument="--minInsert" type="integer" min="1" value="300" label="Minimum insert size" />
+        <param argument="--maxInsert" type="integer" min="1" value="500" label="Maximum insert size" />
+      </when>
+    </conditional>
+    <param argument="--seqType" type="select" label="Sequence Type">
+      <option value="dna">DNA</option>
+      <option value="rna">RNA</option>
+    </param>
+    <param argument="--profile" type="text" value="" label="Quality Profile" help="Name of the quality profile to use" />
+    <param argument="--mismatchRate" type="float" min="0" max="1" value="0.001" label="Mismatch rate" />
+    <param argument="--numIns" type="integer" min="0" value="0" label="Number of insertions" />
+    <param argument="--numDel" type="integer" min="0" value="0" label="Number of deletions" />
+    <param argument="--numSub" type="integer" min="0" value="0" label="Number of substitutions" />
+    <param argument="--numMatch" type="integer" min="0" value="0" label="Number of matches" />
+    <param argument="--numGap" type="integer" min="0" value="0" label="Number of gaps" />
+    <param argument="--numMismatch" type="integer" min="0" value="0" label="Number of mismatches" />
+    <param argument="--numNoCall" type="integer" min="0" value="0" label="Number of no calls" />
+    <param argument="--numLowQual" type="integer" min="0" value="0" label="Number of low quality bases" />
+    <param argument="--lowQualScore" type="integer" min="0" value="0" label="Low quality score" />
+  </inputs>
+  <outputs>
+    <collection name="reads" type="list" label="${tool.name} on ${on_string}: Generated reads">
+      <discover_datasets pattern="__name_and_ext__" directory="output" visible="false" />
+    </collection>
+    <data name="log" format="txt" from_work_dir="log.txt" label="${tool.name} on ${on_string}: Log" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="input" ftype="fastqsanger" value="input.fastq" />
+      <param name="type" value="single" />
+      <param name="seqType" value="dna" />
+      <param name="profile" value="human_genome_ILLUMINA" />
+      <param name="nbReads" value="100000" />
+      <param name="lenSeq" value="100" />
+      <param name="mismatchRate" value="0.001" />
+      <param name="numIns" value="0" />
+      <param name="numDel" value="0" />
+      <param name="numSub" value="0" />
+      <param name="numMatch" value="0" />
+      <param name="numGap" value="0" />
+      <param name="numMismatch" value="0" />
+      <param name="numNoCall" value="0" />
+      <param name="numLowQual" value="0" />
+      <param name="lowQualScore" value="0" />
+      <output_collection name="reads" count="1">
+        <element name="output_R1.fastq" md5="9e2c3b2d2f2f2f2f2f2f2f2f2f2f2f2f" ftype="fastq" />
+      </output_collection>
+      <output name="log" file="log_single.txt" />
+    </test>
+  </tests>
+  <help>
+Art Illumina Simulator
+======================
+
+ART (art_Illumina Q version) is a simulation program to generate sequence read
+data of Illumina sequencers. ART generates reads according to the empirical
+read quality profile summarized from large real read data. ART has been using
+for testing or benchmarking a variety of methods or tools for next-generation
+sequencing data analysis, including read alignment, de novo assembly, detection
+of SNP, CNV, or other structure variation.
+
+art_Illumina can generate single-end, paired-end,  mate-pair reads, and
+amplicon sequencing simulation of Illumina sequencing platform. Its outputs
+include FASTQ read, ALN and/or SAM alignment files.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/bts036</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

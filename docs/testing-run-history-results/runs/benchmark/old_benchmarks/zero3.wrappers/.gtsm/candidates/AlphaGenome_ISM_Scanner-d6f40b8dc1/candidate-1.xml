@@ -1,0 +1,87 @@
+<tool id="alphagenome_ism_scanner" name="AlphaGenome ISM Scanner" version="0.1.0+galaxy0" profile="23.09">
+  <description>in-silico saturation mutagenesis</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">alphagenome</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <version_command>python3 -m alphagenome --version</version_command>
+  <command detect_errors="exit_code">
+        python3 '$__tool_directory__/alphagenome_ism_scanner.py'
+            --bed '${input_bed}'
+            --scorer '${scorer}'
+            --output ${output}
+    </command>
+  <inputs>
+    <param name="input_bed" type="data" format="bed" label="Input BED" />
+    <param name="scorer" type="select" label="Variant Scorer">
+      <options from_data_table="variant_scorers" />
+      <filter type="sort_by" column="name" />
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: ISM Results" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_bed" value="example.bed" />
+      <param name="scorer" value="SVM" />
+      <output name="output" file="results.tabular" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**AlphaGenome ISM Scanner**
+
+Performs in-silico saturation mutagenesis (ISM) using AlphaGenome's
+``score_ism_variants()`` API. Every position in each input region is
+systematically mutated to all 3 alternative bases and scored, replacing
+expensive wet-lab saturation mutagenesis experiments.
+
+-----
+
+**What it does**
+
+For each region in the input BED file:
+
+1. Creates a prediction window encompassing the region
+2. Calls ``score_ism_variants()`` which auto-splits regions &amp;gt;10bp into chunks
+3. Scores all possible single-base substitutions (3 per position)
+4. Converts results to tabular format using ``tidy_scores()``
+
+-----
+
+**Output columns**
+
+- ``region`` — region name from BED
+- ``position`` — genomic position of the mutation
+- ``mutation_index`` — index of the alternate base (0-2)
+- ``gene_id`` — Ensembl gene ID
+- ``gene_name`` — gene symbol
+- ``output_type`` — RNA_SEQ, ATAC, etc.
+- ``variant_scorer`` — scorer name
+- ``track_name`` — specific track
+- ``raw_score`` — raw effect score
+- ``quantile_score`` — empirical quantile (0-1)
+
+
+**Compute cost**
+
+Each region generates **3 x width** API calls. A 200bp region = 600 mutations.
+Start with small regions and few scorers to verify results before scaling up.
+
+- 10bp region: 30 mutations (fast)
+- 100bp region: 300 mutations
+- 200bp region: 600 mutations (default limit)
+- 1000bp region: 3000 mutations (maximum, use with caution)
+    </help>
+  <citations>
+    <citation type="doi">10.1101/2023.07.11.548700</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

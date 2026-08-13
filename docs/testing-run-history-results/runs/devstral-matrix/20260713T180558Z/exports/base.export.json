@@ -1,0 +1,29 @@
+{
+  "variant_id": "agentic-devstral-24b-base",
+  "format": "gguf",
+  "quantizations": [
+    "q4_k_m"
+  ],
+  "merged_path": "",
+  "adapter_export_path": "",
+  "gguf_path": "",
+  "gguf_paths": {},
+  "status": "partial",
+  "notes": [
+    "llama.cpp GGUF export unavailable: llama.cpp GGUF backend is not configured. Set GTSM_LLAMA_CPP_DIR, or set GTSM_LLAMA_CPP_CONVERT and GTSM_LLAMA_CPP_QUANTIZE.",
+    "Unsloth GGUF export failed: No module named 'unsloth'",
+    "GGUF export skipped: configure user-space llama.cpp or install optional [unsloth] deps."
+  ],
+  "model_source_policy": {
+    "registry": "",
+    "revision": "",
+    "cache_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/models/hf-cache",
+    "hub_cache_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/models/hf-cache/hub",
+    "transformers_cache_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/models/hf-cache/transformers",
+    "cache_dir_source": "workspace-default",
+    "local_files_only": false
+  },
+  "ollama_modelfile_path": "",
+  "ollama_model_name": "",
+  "requested_ollama_model_name": ""
+}

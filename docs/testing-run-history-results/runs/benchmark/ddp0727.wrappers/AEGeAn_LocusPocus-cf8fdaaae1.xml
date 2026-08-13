@@ -1,0 +1,32 @@
+<tool id="aegean_locuspocus" name="AEGeAn LocusPocus" version="0.1.0" profile="25.0">
+  <description>Computes interval loci (iLoci) from gene annotations</description>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        locuspocus $input --output $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="gff3" multiple="true" label="Input GFF3 file(s)" />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" label="LocusPocus Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.gff3" ftype="gff3" />
+      <output name="output" file="expected_output.gff3" ftype="gff3" />
+    </test>
+  </tests>
+  <help format="markdown">
+        LocusPocus computes the location of interval loci (iLoci) from a provided set of gene annotations.
+        Input should be one or more GFF3 files. Output is in GFF3 format.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

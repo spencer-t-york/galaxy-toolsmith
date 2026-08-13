@@ -1,0 +1,72 @@
+<tool id="bayescan" name="BayeScan" version="2.1+galaxy0" profile="24.1">
+  <description>identifies candidate loci under natural selection</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">bayescan</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.1">iuc-bayescan</requirement>
+  </requirements>
+  <version_command>bayescan2 -v</version_command>
+  <command detect_errors="exit_code">
+        ln -s '$input' ./input.txt &amp;&amp;
+        #if $type == "SNP":
+            #set $input_type = "snps"
+        #else if $type == "STR":
+            #set $input_type = "str"
+        #end if
+        bayescan2 -p $input_type -f input.txt -n $n -m $m -o output.txt
+    </command>
+  <inputs>
+    <param argument="-f" type="data" format="txt" label="Input file" />
+    <param argument="-n" type="integer" value="1000" min="1" label="Number of iterations" />
+    <param argument="-m" type="integer" value="1000" min="1" label="Number of burn-in steps" />
+    <param argument="-t" type="select" label="Type of data">
+      <option value="SNP">Single Nucleotide Polymorphism</option>
+      <option value="STR">Short Tandem Repeats</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" from_work_dir="output.txt" label="${tool.name} on ${on_string}: Results" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" ftype="txt" value="input_snps.txt" />
+      <param name="n" value="1000" />
+      <param name="m" value="1000" />
+      <param name="t" value="SNP" />
+      <output name="output" file="output_snps.tabular" sort="true" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+This program, BayeScan aims at identifying candidate loci under natural selection from genetic data, using differences in allele frequencies between populations.
+
+`BayeScan`_ is based on the multinomial-Dirichlet model.
+
+One of the simplest possible scenarios covered consists of an island model in which subpopulation allele frequencies are correlated through a common migrant gene pool from which they differ in varying degrees. The difference in allele frequency between this common gene pool and each subpopulation is measured by a subpopulation specific FST coefficient.
+
+Therefore, this formulation can consider realistic ecological scenarios where the effective size and the immigration rate may differ among subpopulations.
+
+.. _Bayescan: http://cmpg.unibe.ch/software/BayeScan/
+
+.. class:: infomark
+
+**Input file**
+
+BayeScan uses its own input file formats, which depend on the type of data used. All input files are simply in text format.
+
+Read the `manual`_ to create the input file.
+
+.. _manual: http://cmpg.unibe.ch/software/BayeScan/files/BayeScan2.1_manual.pdf
+    </help>
+  <citations>
+    <citation type="doi">10.1093/molbev/msq076</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

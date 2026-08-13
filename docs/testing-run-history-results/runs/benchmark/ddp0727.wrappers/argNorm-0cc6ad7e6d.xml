@@ -1,0 +1,37 @@
+<tool id="argnorm" name="argNorm" version="0.1.0" profile="25.0">
+  <description>Normalize antibiotic resistance genes to the ARO</description>
+  <requirements>
+    <requirement type="package" version="1.0.0">argnorm</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        argnorm $input --output $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="txt" label="Input ARG annotation file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="Normalized ARG annotations" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="example_arg_annotation.txt" />
+      <output name="output" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        argNorm normalizes antibiotic resistance genes to the ARO.
+        
+        **Inputs**
+        - Input ARG annotation file
+        
+        **Outputs**
+        - Normalized ARG annotations in HTML format
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

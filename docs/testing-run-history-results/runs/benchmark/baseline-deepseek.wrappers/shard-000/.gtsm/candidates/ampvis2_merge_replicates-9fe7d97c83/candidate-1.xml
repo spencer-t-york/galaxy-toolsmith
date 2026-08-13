@@ -1,0 +1,47 @@
+<tool id="ampvis2_merge_replicates" name="ampvis2 merge replicates" version="0.1.0" profile="25.0">
+  <description>Aggregates read counts in replicate samples by calculating the mean abundances of OTU's</description>
+  <requirements>
+    <requirement type="package">R</requirement>
+    <requirement type="package">ampvis2=2.10.0</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla "$__tool_dir__/ampvis2_mergereplicates.R" "$input1" "$input2" "$output1"
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="rds" label="ampvis2 RDS dataset" />
+    <param name="input2" type="data" format="txt" label="ampvis2 metadata list" />
+  </inputs>
+  <outputs>
+    <data name="output1" format="html" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="sample_input.rds" />
+      <param name="input2" value="metadata.txt" />
+      <output name="output1">
+        <has_text>Rank abundance plot</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ampvis2 merge replicates
+
+        Aggregates read counts in replicate samples by calculating the mean abundances of OTU's.
+
+        ## Input
+
+        - ampvis2 RDS dataset: An ampvis2 RDS dataset obtained from previous tools.
+        - ampvis2 metadata list: Metadata list from previous tools for parameter selection.
+
+        ## Output
+
+        - Rank abundance plot in HTML format.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

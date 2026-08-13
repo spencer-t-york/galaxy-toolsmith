@@ -1,0 +1,161 @@
+<tool id="ampligone" name="AmpliGone" version="2.0.1+galaxy0" profile="24.1">
+  <description>primer removal tool for NGS reads</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampligone</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.0.1">ampligone</requirement>
+  </requirements>
+  <version_command>echo "2.0.1"</version_command>
+  <command detect_errors="exit_code">
+        #if $input.is_of_type("bam")
+            ln -s '$input' input.bam &amp;&amp;
+            #set $output = str($input.element_identifier).replace('.bam','_cleaned.bam')
+            #set $output_html = str($input.element_identifier).replace('.bam','_report.html')
+            #set $output_bed = str($input.element_identifier).replace('.bam','_primers.bed')
+            #set $output_fastq = str($input.element_identifier).replace('.bam','_trimmed.fastq')
+            #set $output_txt = str($input.element_identifier).replace('.bam','_summary.txt')
+            #set $output_tsv = str($input.element_identifier).replace('.bam','_unmapped.tsv')
+            #set $output_log = str($input.element_identifier).replace('.bam','_log.txt')
+
+            ampligone
+                -b input.bam
+                -o $output
+                -r '$reference'
+                -t '$bed'
+                -p '$primer'
+                -c '$cut'
+                -f '$format'
+                -l '$length'
+                -n '$name'
+                -u '$unmap'
+                -w '$window'
+                -e '$extend'
+                -k '$keep'
+                -m '$min'
+                -s '$score'
+                -v '$verbose'
+                -j \${GALAXY_SLOTS:-1}
+                -to
+
+            mv $output $output_html
+            mv $output.bed $output_bed
+            mv $output.fastq $output_fastq
+            mv $output.summary.txt $output_txt
+            mv $output.unmapped.tsv $output_tsv
+            mv $output.log.txt $output_log
+        #else
+            #set $output = str($input.element_identifier).replace('.fastq','.cleaned.fastq')
+            #set $output_html = str($input.element_identifier).replace('.fastq','.report.html')
+            #set $output_bed = str($input.element_identifier).replace('.fastq','.primers.bed')
+            #set $output_fastq = str($input.element_identifier).replace('.fastq','.trimmed.fastq')
+            #set $output_txt = str($input.element_identifier).replace('.fastq','.summary.txt')
+            #set $output_tsv = str($input.element_identifier).replace('.fastq','.unmapped.tsv')
+            #set $output_log = str($input.element_identifier).replace('.fastq','.log.txt')
+
+            ampligone
+                -f '$input'
+                -o $output
+                -r '$reference'
+                -t '$bed'
+                -p '$primer'
+                -c '$cut'
+                -f '$format'
+                -l '$length'
+                -n '$name'
+                -u '$unmap'
+                -w '$window'
+                -e '$extend'
+                -k '$keep'
+                -m '$min'
+                -s '$score'
+                -v '$verbose'
+                -j \${GALAXY_SLOTS:-1}
+                -to
+        #end if
+    </command>
+  <inputs>
+    <param argument="-f" type="data" format="fastq,bam" label="Input file" />
+    <param argument="-r" type="data" format="fasta" label="Reference genome" />
+    <param argument="-t" type="data" format="bed" label="BED file containing primer coordinates" />
+    <param argument="-p" type="text" value="" label="Primer sequence" />
+    <param argument="-c" type="select" label="Cut mode">
+      <option value="none">None</option>
+      <option value="start">Start</option>
+      <option value="end">End</option>
+      <option value="both">Both</option>
+    </param>
+    <param argument="-f" type="select" label="Output format">
+      <option value="html">HTML</option>
+      <option value="txt">TXT</option>
+    </param>
+    <param argument="-l" type="integer" min="0" max="1000" value="0" label="Read length" />
+    <param argument="-n" type="text" value="" label="Amplicon type" />
+    <param argument="-u" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Unmapped reads" />
+    <param argument="-w" type="integer" min="0" max="1000" value="0" label="Window size" />
+    <param argument="-e" type="integer" min="0" max="1000" value="0" label="Extend" />
+    <param argument="-k" type="integer" min="0" max="1000" value="0" label="Keep" />
+    <param argument="-m" type="integer" min="0" max="1000" value="0" label="Min" />
+    <param argument="-s" type="float" min="0" max="1000" value="0" label="Score" />
+    <param argument="-v" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Verbose" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="${tool.name} on ${on_string}: Report" />
+    <data name="output_bed" format="bed" label="${tool.name} on ${on_string}: Primers" />
+    <data name="output_fastq" format="fastq" label="${tool.name} on ${on_string}: Trimmed reads" />
+    <data name="output_txt" format="txt" label="${tool.name} on ${on_string}: Summary" />
+    <data name="output_tsv" format="tsv" label="${tool.name} on ${on_string}: Unmapped reads" />
+    <data name="output_log" format="txt" label="${tool.name} on ${on_string}: Log" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="5">
+      <param name="input" ftype="fastq" value="input.fastq" />
+      <param name="reference" ftype="fasta" value="reference.fasta" />
+      <param name="bed" ftype="bed" value="primers.bed" />
+      <param name="primer" value="ACCGGTGGAGCAGCAATGCCTAA" />
+      <param name="cut" value="none" />
+      <param name="format" value="html" />
+      <param name="length" value="0" />
+      <param name="name" value="" />
+      <param name="unmap" value="false" />
+      <param name="window" value="0" />
+      <param name="extend" value="0" />
+      <param name="keep" value="0" />
+      <param name="min" value="0" />
+      <param name="score" value="0" />
+      <param name="verbose" value="false" />
+      <output name="output" file="output_report.html" compare="sim_size" />
+      <output name="output_bed" file="output_primers.bed" compare="sim_size" />
+      <output name="output_fastq" file="output_trimmed.fastq" compare="sim_size" />
+      <output name="output_txt" file="output_summary.txt" compare="sim_size" />
+      <output name="output_tsv" file="output_unmapped.tsv" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**AmpliGone**
+
+In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. When providing BED input, reads are trimmed based on primer sequence coordinates in relation to a given reference sequence. Additionally, AmpliGone is able to compensate for, and therefore properly clean, reads that start or end outside of a primer-region as this is a common occurrence in amplicon-based sequencing data.
+AmpliGone works with both reads in FASTQ format, as well as aligned data in BAM-format. However, when data is presented in the BAM-format then only read-data (sequence and quality scores) will be used. Other data present in the BAM-format will not be used in this version of AmpliGone.
+
+Currently, AmpliGone supports Nanopore data and Illumina data. The Illumina platform (NextSeq/MiSeq/HiSeq/other) does not matter.
+
+It is however important that you know the read-length in relation to the amplicon length. AmpliGone expects this information in the form of an 'amplicon-type'.
+
+AmpliGone is build and tested with Nanopore and Illumina data (fastq) in mind and supports 'end-to-end', 'end-to-mid' and 'fragmented' amplicons to be cleaned.
+
+
+**More Information**
+
+- **Official Repository**: https://github.com/RIVM-bioinformatics/AmpliGone
+- **Extended User Guide**: https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/
+    </help>
+  <citations>
+    <citation type="doi">10.1101/gr.279000.122</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

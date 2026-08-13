@@ -1,0 +1,41 @@
+<tool id="anndata2ri" name="anndata2ri" version="1.3.2+galaxy0">
+  <description>Convert between Anndata and SingleCellExperiment objects.</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">anndata2ri</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.3.2">anndata2ri</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+Rscript '$__tool_directory__/anndata2ri.R' 
+--input $input
+--output $output
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="h5ad" label="Anndata file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="${tool.name} on ${on_string}: SingleCellExperiment" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="adata.h5ad" />
+      <output name="output" ftype="html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+anndata2ri
+==========
+
+Convert between Anndata and SingleCellExperiment objects. For conversion of further single-cell file formats, consider using **SCEasy Converter** tool.
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-020-0654-8</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

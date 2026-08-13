@@ -1,0 +1,32 @@
+<tool id="import_anndata" name="Import Anndata" version="0.1.0" profile="25.0">
+  <description>Create an AnnData from various input types</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m scanpy.read_10x_h5 $input_file --out $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="h5ad" label="Input File" />
+    <param name="output_file" type="text" value="output.h5ad" label="Output File" />
+  </inputs>
+  <outputs>
+    <data name="output" format="h5ad" label="Anndata Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample_input.h5ad" />
+      <output name="output" file="expected_output.h5ad" />
+    </test>
+  </tests>
+  <help format="markdown">
+        This tool imports an AnnData dataset from a 10x Genomics H5AD file.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

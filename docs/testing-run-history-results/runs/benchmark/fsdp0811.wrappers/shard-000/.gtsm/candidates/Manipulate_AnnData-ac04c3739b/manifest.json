@@ -1,0 +1,90 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "selected_candidate_attempt": 2,
+  "selected_candidate_index": 1,
+  "primary_output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Manipulate_AnnData-ac04c3739b.xml",
+  "candidates": [
+    {
+      "attempt": 2,
+      "candidate_index": 1,
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/.gtsm/candidates/Manipulate_AnnData-ac04c3739b/candidate-attempt-2-1.xml",
+      "selected": true,
+      "score": -2445,
+      "score_reasons": [
+        "xml_parse_failed:-1000",
+        "root_not_tool:-500",
+        "generation_diagnostics:-450",
+        "extra_tests:-275",
+        "repeated_xml_lines:-10",
+        "missing_command:-120",
+        "missing_outputs:-80",
+        "missing_inputs:-10"
+      ],
+      "features": {
+        "has_command": false,
+        "has_inputs": false,
+        "has_outputs": false,
+        "has_requirements": false,
+        "has_tests": false,
+        "has_help": false,
+        "command_chars": 0,
+        "input_count": 0,
+        "output_count": 0,
+        "requirement_count": 0,
+        "test_count": 0
+      },
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 170, column 4196",
+          "Generated XML does not contain a closing </tool> tag.",
+          "Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.",
+          "Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.",
+            "Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test."
+          ],
+          "option_count": 18,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [
+            "<param name=\"input\" value=\"input.h5ad\"/>"
+          ],
+          "repeated_xml_line_count": 1,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 12,
+          "too_many_tests": true,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "postprocess": {
+        "artifact_format": "xml",
+        "citation_mode": "direct",
+        "citation_added": false,
+        "tool_id_applied": false,
+        "tool_name_applied": false,
+        "macros_import_added": false,
+        "tests_pruned": false,
+        "test_count_before": 0,
+        "test_count_after": 0,
+        "changed": false,
+        "error": "XML parse error: no element found: line 170, column 4196"
+      },
+      "bytes": 12496
+    }
+  ]
+}

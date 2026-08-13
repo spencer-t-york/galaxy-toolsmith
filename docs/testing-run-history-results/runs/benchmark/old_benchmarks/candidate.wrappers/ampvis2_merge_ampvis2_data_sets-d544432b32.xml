@@ -1,0 +1,39 @@
+<tool id="ampvis2_merge_ampvis2_data_sets" name="ampvis2 merge ampvis2 data sets" version="0.1.0" profile="25.0">
+  <description>Merge any number of ampvis2 data sets into a single data set.</description>
+  <requirements>
+    <requirement type="package" version="1.0">iuc/ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        amp_merge_ampvis2 $input $output --merge_by_exact_matches $merge_by_exact_matches
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="Input AmpVis2 RDS Dataset" />
+    <boolean name="merge_by_exact_matches" truevalue="--merge_by_exact_matches" falsevalue="" label="Merge by exact matches between DNA reference sequences?" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="Merged AmpVis2 Data Set" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="example.rds" />
+      <param name="merge_by_exact_matches" value="false" />
+      <output name="output" file="merged_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Merge any number of ampvis2 data sets into a single data set.
+
+        The Galaxy tool calls the `amp_merge_ampvis2` function of the ampvis2 package.
+
+        It's important to ensure that the taxonomy for all OTUs across datasets is generated in the exact same way with the same database. When "Merge by exact matches between DNA reference sequences" is not checked, it's likewise important to ensure that OTU IDs are not arbitrary between datasets and that they correspond to the same sequences across datasets (objects). When "Merge by exact matches between DNA reference sequences" is checked, the full DNA sequences will be used as the new OTU IDs.
+
+        Currently, phylogenetic trees are not merged.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

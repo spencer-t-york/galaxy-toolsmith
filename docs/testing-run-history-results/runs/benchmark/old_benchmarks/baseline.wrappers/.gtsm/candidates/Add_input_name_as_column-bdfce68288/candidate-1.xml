@@ -1,0 +1,36 @@
+<tool id="add_input_name_as_column" name="Add input name as column" version="0.1.0" profile="25.0">
+  <description>Adds a new column with the name of the input file as it appears in the history.</description>
+  <requirements>
+    <requirement type="package" version="latest">mvdbeek/add_input_name_as_column</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        addName -i $input -o $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="txt" label="Input file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="Output table" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.txt" />
+      <output name="output" file="expected_output.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+        **What it does**
+        
+        Adds a new column with the name of the input file as it appears in the history.
+        By default the column is appended.
+        
+        **TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

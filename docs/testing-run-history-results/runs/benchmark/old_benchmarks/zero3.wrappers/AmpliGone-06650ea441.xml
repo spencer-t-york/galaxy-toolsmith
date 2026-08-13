@@ -1,0 +1,101 @@
+<tool id="ampligone" name="AmpliGone" version="2.0.1+galaxy0">
+  <description>primer removal tool</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampligone</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.0.1">ampligone</requirement>
+  </requirements>
+  <version_command>ampligone --version</version_command>
+  <command detect_errors="exit_code">
+        #if $input_type == "bam":
+            ln -s '$input_bam' input.bam &amp;&amp;
+            samtools index input.bam &amp;&amp;
+            ampligone 
+                -b input.bam
+                -r '$reference'
+                -t '$threads'
+                -o '${output_dir}/clean_reads.bam'
+                -f '${output_dir}/clean_reads.fastq'
+                -u '${output_dir}/unmapped_reads.bam'
+                -p '${output_dir}/primers.bed'
+                -c '${output_dir}/clean_reads_stats.txt'
+                -d '${output_dir}/unmapped_reads_stats.txt'
+                -e '${output_dir}/log.txt'
+                -to
+        #else:
+            ampligone 
+                -f '$input_fastq'
+                -r '$reference'
+                -t '$threads'
+                -o '${output_dir}/clean_reads.fastq'
+                -p '${output_dir}/primers.bed'
+                -c '${output_dir}/clean_reads_stats.txt'
+                -e '${output_dir}/log.txt'
+                -to
+        #end if
+    </command>
+  <inputs>
+    <param argument="-f" type="data" format="fastq" label="Input Fastq File" />
+    <conditional name="input_type">
+      <param name="type" type="select" label="Type of Input">
+        <option value="fastq" selected="true">Fastq</option>
+        <option value="bam">BAM</option>
+      </param>
+      <when value="bam">
+        <param argument="-b" type="data" format="bam" label="Input Bam File" />
+      </when>
+    </conditional>
+    <param argument="-r" type="data" format="bed" label="Reference Bed File" />
+    <param argument="-t" type="integer" value="4" min="1" label="Number of Threads" />
+  </inputs>
+  <outputs>
+    <data name="clean_reads" format="fastq" label="${tool.name} on ${on_string}: Clean Reads" />
+    <data name="unmapped_reads" format="bam" label="${tool.name} on ${on_string}: Unmapped Reads" />
+    <data name="primers" format="bed" label="${tool.name} on ${on_string}: Primers" />
+    <data name="clean_reads_stats" format="txt" label="${tool.name} on ${on_string}: Clean Reads Stats" />
+    <data name="unmapped_reads_stats" format="txt" label="${tool.name} on ${on_string}: Unmapped Reads Stats" />
+    <data name="log" format="html" label="${tool.name} on ${on_string}: Log" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_fastq" ftype="fastq" value="reads.fastq.gz" />
+      <param name="reference" ftype="bed" value="references.bed" />
+      <param name="threads" value="1" />
+      <output name="clean_reads" ftype="fastq" compare="sim_size" />
+      <output name="unmapped_reads" ftype="bam" compare="sim_size" />
+      <output name="primers" ftype="bed" compare="sim_size" />
+      <output name="clean_reads_stats" ftype="txt" compare="sim_size" />
+      <output name="unmapped_reads_stats" ftype="txt" compare="sim_size" />
+      <output name="log" ftype="html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**AmpliGone**
+
+In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. When providing BED input, reads are trimmed based on primer sequence coordinates in relation to a given reference sequence. Additionally, AmpliGone is able to compensate for, and therefore properly clean, reads that start or end outside of a primer-region as this is a common occurrence in amplicon-based sequencing data.
+AmpliGone works with both reads in FASTQ format, as well as aligned data in BAM-format. However, when data is presented in the BAM-format then only read-data (sequence and quality scores) will be used. Other data present in the BAM-format will not be used in this version of AmpliGone.
+
+Currently, AmpliGone supports Nanopore data and Illumina data. The Illumina platform (NextSeq/MiSeq/HiSeq/other) does not matter.
+
+It is however important that you know the read-length in relation to the amplicon length. AmpliGone expects this information in the form of an 'amplicon-type'.
+
+AmpliGone is build and tested with Nanopore and Illumina data (fastq) in mind and supports 'end-to-end', 'end-to-mid' and 'fragmented' amplicons to be cleaned.
+
+
+**More Information**
+
+- **Official Repository**: https://github.com/RIVM-bioinformatics/AmpliGone
+- **Extended User Guide**: https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/
+
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bib/bbaa070</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

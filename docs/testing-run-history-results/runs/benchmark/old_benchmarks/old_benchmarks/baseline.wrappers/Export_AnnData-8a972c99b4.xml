@@ -1,0 +1,31 @@
+<tool id="export_anndata" name="Export AnnData" version="0.1.0" profile="25.0">
+  <description>Exports an AnnData dataset to tabular files.</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m anndata write_csvs $input $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="h5ad" label="Input AnnData file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="Exported CSV files" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.h5ad" />
+      <output name="output" file="expected_output.csv" />
+    </test>
+  </tests>
+  <help format="markdown">
+        This tool exports an AnnData dataset to tabular files using the `write_csvs` method.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

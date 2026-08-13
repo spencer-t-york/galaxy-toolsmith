@@ -1,0 +1,86 @@
+<tool id="ampligone" name="AmpliGone" version="2.0.1+galaxy0" profile="21.05">
+  <description>Removes primer sequences from NGS reads in an amplicon experiment</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampligone</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.0.1">ampligone</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        ampligone
+        --threads \${GALAXY_SLOTS:-1}
+        --amplicon-type '$amplicon_type'
+        --platform '$platform'
+        #if $input_type == "fastq":
+            --fastq '$input'
+        #else:
+            --bam '$input'
+        #end if
+        --bed '$bed'
+        --output-prefix 'output'
+        --to
+        --log 'output.log'
+        --html 'output.html'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fastq,bam" label="Input file" help="Input file in FASTQ or BAM format" />
+    <param name="bed" type="data" format="bed" label="BED file" help="BED file containing the primer coordinates" />
+    <param name="amplicon_type" type="select" label="Amplicon type" help="Amplicon type">
+      <option value="end-to-end">End-to-end</option>
+      <option value="end-to-mid">End-to-mid</option>
+      <option value="fragmented">Fragmented</option>
+    </param>
+    <param name="platform" type="select" label="Platform" help="Platform">
+      <option value="nanopore">Nanopore</option>
+      <option value="illumina">Illumina</option>
+    </param>
+    <param name="input_type" type="select" label="Input type" help="Input type">
+      <option value="fastq">FASTQ</option>
+      <option value="bam">BAM</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="fastq" from_work_dir="output.fastq" label="${tool.name} on ${on_string}: Output" />
+    <data name="log" format="txt" from_work_dir="output.log" label="${tool.name} on ${on_string}: Log" />
+    <data name="html" format="html" from_work_dir="output.html" label="${tool.name} on ${on_string}: HTML" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="input" value="input.fastq" />
+      <param name="bed" value="input.bed" />
+      <param name="amplicon_type" value="end-to-end" />
+      <param name="platform" value="nanopore" />
+      <param name="input_type" value="fastq" />
+      <output name="output" file="output.fastq" ftype="fastq" />
+      <output name="log" file="output.log" ftype="txt" />
+      <output name="html" file="output.html" ftype="html" />
+    </test>
+  </tests>
+  <help>
+**AmpliGone**
+
+In contrast to a lot of other primer-removal tools, AmpliGone does not actively look for primer sequences within the NGS reads. When providing BED input, reads are trimmed based on primer sequence coordinates in relation to a given reference sequence. Additionally, AmpliGone is able to compensate for, and therefore properly clean, reads that start or end outside of a primer-region as this is a common occurrence in amplicon-based sequencing data.
+AmpliGone works with both reads in FASTQ format, as well as aligned data in BAM-format. However, when data is presented in the BAM-format then only read-data (sequence and quality scores) will be used. Other data present in the BAM-format will not be used in this version of AmpliGone.
+
+Currently, AmpliGone supports Nanopore data and Illumina data. The Illumina platform (NextSeq/MiSeq/HiSeq/other) does not matter.
+
+It is however important that you know the read-length in relation to the amplicon length. AmpliGone expects this information in the form of an 'amplicon-type'.
+
+AmpliGone is build and tested with Nanopore and Illumina data (fastq) in mind and supports 'end-to-end', 'end-to-mid' and 'fragmented' amplicons to be cleaned.
+
+
+**More Information**
+
+- **Official Repository**: https://github.com/RIVM-bioinformatics/AmpliGone
+- **Extended User Guide**: https://rivm-bioinformatics.github.io/AmpliGone/2.0.1/
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btab108</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

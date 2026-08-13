@@ -1,0 +1,37 @@
+<tool id="ampvis2_core_community_analysis" name="ampvis2 core community analysis" version="0.1.0" profile="25.0">
+  <description>Investigate the core community of OTUs in groups of samples.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=1.0">R</requirement>
+    <requirement type="package" version="&gt;=2.0">ggplot2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e 'library(ampvis2); amp_core(input_rds, metadata_list, output_file = output_html)'
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="metadata_list" type="data" format="txt" label="Metadata List" />
+    <boolean name="normalise" checked="true" truevalue="TRUE" falsevalue="FALSE" label="Normalise Abundances" />
+  </inputs>
+  <outputs>
+    <data name="output_html" format="html" label="Core Community Plot" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="sample_input.rds" />
+      <param name="metadata_list" value="sample_metadata.txt" />
+      <param name="normalise" value="false" />
+      <output name="output_html" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Generates a core community plot to investigate the most abundant OTUs in groups of samples.
+        Normalises raw read counts by default; disable for accurate subset analysis.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

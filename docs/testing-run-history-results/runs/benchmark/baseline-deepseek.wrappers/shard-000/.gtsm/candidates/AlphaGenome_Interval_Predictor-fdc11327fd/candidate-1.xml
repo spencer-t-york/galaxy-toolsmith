@@ -1,0 +1,64 @@
+<tool id="alphagenome_interval_predictor" name="AlphaGenome Interval Predictor" version="0.1.0" profile="25.0">
+  <description>Predicts regulatory tracks for genomic intervals using AlphaGenome's API</description>
+  <requirements>
+    <requirement type="package">python</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python $tool_dir/alphagenome_interval_predictor.py \
+            --input $input \
+            --output $output \
+            --mode $output_mode
+    </command>
+  <inputs>
+    <param name="input" type="data" format="bed" label="Input BED file" />
+    <param name="output_mode" type="select" label="Output mode" default="summary">
+      <option value="summary">Summary (mean/max per interval)</option>
+      <option value="binned">Binned (mean per sub-bin)</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="test_input.bed" />
+      <param name="output_mode" value="summary" />
+      <output name="output">
+        <has_text>chrom,start,end,name,output_type,track_name,ontology_curie,mean_signal,max_signal</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AlphaGenome Interval Predictor
+
+        Predicts regulatory tracks for genomic intervals using AlphaGenome's API. No variants — just baseline characterization of the chromatin, expression, and splicing landscape at each region.
+
+        ## What it does
+
+        For each interval in the input BED file:
+
+        1. Creates a prediction window centered on the interval
+        2. Calls `predict_interval()` for selected output types
+        3. Computes summary statistics (mean, max) over the original BED region
+        4. Reports per-track values in tabular format
+
+        ## Output modes
+
+        - **Summary (default)**: One row per interval x track with mean and max signal. Compact output good for screening many regions.
+        - **Binned**: Divides each interval into fixed-width bins (default 128bp) and reports mean signal per bin. Provides spatial resolution for visualizing signal patterns across a region.
+
+        ## Use cases
+
+        - Characterize regulatory activity at GWAS loci
+        - Compare predicted chromatin landscapes between regions
+        - Identify active promoters, enhancers, or splice sites
+        - Generate baseline predictions for regions of interest
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

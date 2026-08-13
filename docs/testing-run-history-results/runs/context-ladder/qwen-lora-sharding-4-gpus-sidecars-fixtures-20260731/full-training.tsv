@@ -1,0 +1,15 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-07-31T17:15:33Z	probe	65536	all-raw	192000	512	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-65536-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T17:36:56Z	probe	65536	all-filtered	192000	512	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-65536-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T18:10:14Z	probe	32768	all-raw	96000	256	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-32768-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T18:32:06Z	probe	32768	all-filtered	96000	256	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-32768-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T19:05:23Z	probe	16384	all-raw	36000	128	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-16384-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T19:26:19Z	probe	16384	all-filtered	36000	128	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-16384-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T19:59:37Z	probe	12288	all-raw	24000	96	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-12288-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T20:20:50Z	probe	12288	all-filtered	24000	96	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-12288-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T20:53:55Z	probe	8192	all-raw	12000	64	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-8192-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T21:15:07Z	probe	8192	all-filtered	12000	64	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-8192-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T21:48:10Z	probe	4096	all-raw	6000	32	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T22:09:09Z	probe	4096	all-filtered	6000	32	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-4096-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T22:42:16Z	probe	2048	all-raw	3000	16	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-raw-2048-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731
+2026-07-31T23:05:28Z	probe	2048	all-filtered	3000	16	deepspeed-zero3	failed	tools-iuc-devstral-24b-mixed-all-filtered-2048-deepspeed-zero3-qwen-lora-sharding-4-gpus-sidecars-fixtures-20260731

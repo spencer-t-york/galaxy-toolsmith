@@ -1,0 +1,44 @@
+<tool id="abricate_summary" name="ABRicate Summary" version="1.4.0+galaxy0">
+  <description>Summarize multiple ABRicate reports</description>
+  <macros />
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+abricate --summary '$input_files'
+    </command>
+  <inputs>
+    <param argument="--summary" type="data" format="tabular" multiple="true" label="Input ABRicate Reports" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: Combined ABRicate Report" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_files" value="abricate_sample1.tab,abricate_sample2.tab" />
+      <output name="output" file="abricate_combined.tab" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+ABRicate can combine results into a simple matrix of gene presence/absence. An absent gene is denoted by '.' and a present gene is represented by its '%COVERAGE`. This can be individual abricate reports, or a combined one.
+
+**Example Output**
+
+::
+        
+        #FILE	NUM_FOUND	AAC3	ANT(4')-Ib	ANT3-DPRIME	ANT4-PRIME	APH3-PRIME	ARLR	ARLS	BLAI	BLAR	BLAZ	BLE	DHAP	ERMA	ErmA	FOSB	LMRS	MECA	MECI	MEPA	MEPB	MEPR	MGRA	NORA	NORB	PC1_beta-lactamase_(blaZ)	RLMH	Staphylococcus_aureus_FosB	Staphylococcus_aureus_norA	Staphylococcys_aureus_LmrS	TET38	arlR	arlS	mecA	mecI	mecR1	mepA	mepR	mgrA	tet(38)
+        sample1	15	.	100.00	.	.	.	.	.	.	.	.	.	.	.	100.00;100.00	.	.	.	.	.	.	.	.	.	.	100.00	.	100.00	99.91	100.00	.	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00
+        sample2	24	100.00	.	100.00;100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00;100.00	.	100.00	100.00	100.00;100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	.	100.00	.	.	.	100.00	.	.	.	.	.	.	.	.	.
+
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz005</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

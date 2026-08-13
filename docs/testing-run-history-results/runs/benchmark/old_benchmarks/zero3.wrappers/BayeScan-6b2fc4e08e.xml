@@ -1,0 +1,323 @@
+<tool id="bayescan" name="BayeScan" version="2.1+galaxy0">
+    <description>Identify candidate loci under natural selection</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">bayescan</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="2.1">bayescan</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        #if $input_type == "genetic":
+            ln -s '$input_genetic' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "haploid":
+            ln -s '$input_haploid' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "diploid":
+            ln -s '$input_diploid' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "fstat":
+            ln -s '$input_fstat' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "structure":
+            ln -s '$input_structure' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "vcf":
+            ln -s '$input_vcf' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "plink":
+            ln -s '$input_plink' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "fastq":
+            ln -s '$input_fastq' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "bed":
+            ln -s '$input_bed' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "bim":
+            ln -s '$input_bim' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "fam":
+            ln -s '$input_fam' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "map":
+            ln -s '$input_map' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "genepop":
+            ln -s '$input_genepop' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "phylip":
+            ln -s '$input_phylip' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "nexus":
+            ln -s '$input_nexus' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spafasta":
+            ln -s '$input_spafasta' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spabinary":
+            ln -s '$input_spabinary' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spalabelled":
+            ln -s '$input_spalabelled' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spacsv":
+            ln -s '$input_spacsv' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spatext":
+            ln -s '$input_spatext' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spadna":
+            ln -s '$input_spadna' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaseq":
+            ln -s '$input_spaseq' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spastats":
+            ln -s '$input_spastats' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaweb":
+            ln -s '$input_spaweb' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxml":
+            ln -s '$input_spaxml' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb":
+            ln -s '$input_spaxmlweb' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb2":
+            ln -s '$input_spaxmlweb2' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb3":
+            ln -s '$input_spaxmlweb3' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb4":
+            ln -s '$input_spaxmlweb4' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb5":
+            ln -s '$input_spaxmlweb5' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb6":
+            ln -s '$input_spaxmlweb6' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb7":
+            ln -s '$input_spaxmlweb7' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb8":
+            ln -s '$input_spaxmlweb8' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb9":
+            ln -s '$input_spaxmlweb9' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb10":
+            ln -s '$input_spaxmlweb10' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb11":
+            ln -s '$input_spaxmlweb11' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb12":
+            ln -s '$input_spaxmlweb12' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb13":
+            ln -s '$input_spaxmlweb13' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb14":
+            ln -s '$input_spaxmlweb14' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb15":
+            ln -s '$input_spaxmlweb15' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb16":
+            ln -s '$input_spaxmlweb16' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb17":
+            ln -s '$input_spaxmlweb17' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb18":
+            ln -s '$input_spaxmlweb18' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb19":
+            ln -s '$input_spaxmlweb19' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb20":
+            ln -s '$input_spaxmlweb20' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb21":
+            ln -s '$input_spaxmlweb21' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb22":
+            ln -s '$input_spaxmlweb22' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb23":
+            ln -s '$input_spaxmlweb23' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb24":
+            ln -s '$input_spaxmlweb24' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb25":
+            ln -s '$input_spaxmlweb25' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb26":
+            ln -s '$input_spaxmlweb26' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb27":
+            ln -s '$input_spaxmlweb27' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb28":
+            ln -s '$input_spaxmlweb28' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb29":
+            ln -s '$input_spaxmlweb29' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb30":
+            ln -s '$input_spaxmlweb30' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb31":
+            ln -s '$input_spaxmlweb31' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb32":
+            ln -s '$input_spaxmlweb32' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb33":
+            ln -s '$input_spaxmlweb33' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb34":
+            ln -s '$input_spaxmlweb34' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb35":
+            ln -s '$input_spaxmlweb35' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb36":
+            ln -s '$input_spaxmlweb36' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb37":
+            ln -s '$input_spaxmlweb37' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb38":
+            ln -s '$input_spaxmlweb38' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb39":
+            ln -s '$input_spaxmlweb39' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb40":
+            ln -s '$input_spaxmlweb40' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb41":
+            ln -s '$input_spaxmlweb41' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb42":
+            ln -s '$input_spaxmlweb42' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb43":
+            ln -s '$input_spaxmlweb43' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb44":
+            ln -s '$input_spaxmlweb44' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb45":
+            ln -s '$input_spaxmlweb45' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb46":
+            ln -s '$input_spaxmlweb46' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb47":
+            ln -s '$input_spaxmlweb47' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb48":
+            ln -s '$input_spaxmlweb48' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb49":
+            ln -s '$input_spaxmlweb49' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb50":
+            ln -s '$input_spaxmlweb50' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb51":
+            ln -s '$input_spaxmlweb51' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb52":
+            ln -s '$input_spaxmlweb52' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb53":
+            ln -s '$input_spaxmlweb53' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb54":
+            ln -s '$input_spaxmlweb54' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb55":
+            ln -s '$input_spaxmlweb55' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb56":
+            ln -s '$input_spaxmlweb56' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb57":
+            ln -s '$input_spaxmlweb57' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb58":
+            ln -s '$input_spaxmlweb58' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb59":
+            ln -s '$input_spaxmlweb59' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb60":
+            ln -s '$input_spaxmlweb60' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb61":
+            ln -s '$input_spaxmlweb61' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb62":
+            ln -s '$input_spaxmlweb62' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb63":
+            ln -s '$input_spaxmlweb63' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb64":
+            ln -s '$input_spaxmlweb64' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb65":
+            ln -s '$input_spaxmlweb65' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb66":
+            ln -s '$input_spaxmlweb66' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb67":
+            ln -s '$input_spaxmlweb67' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb68":
+            ln -s '$input_spaxmlweb68' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb69":
+            ln -s '$input_spaxmlweb69' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb70":
+            ln -s '$input_spaxmlweb70' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb71":
+            ln -s '$input_spaxmlweb71' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb72":
+            ln -s '$input_spaxmlweb72' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb73":
+            ln -s '$input_spaxmlweb73' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb74":
+            ln -s '$input_spaxmlweb74' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb75":
+            ln -s '$input_spaxmlweb75' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb76":
+            ln -s '$input_spaxmlweb76' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb77":
+            ln -s '$input_spaxmlweb77' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb78":
+            ln -s '$input_spaxmlweb78' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb79":
+            ln -s '$input_spaxmlweb79' input.txt &amp;&amp;
+        #end if
+        #if $input_type == "spaxmlweb80":
+            ln -s '$input_spaxmlweb80'

@@ -1,0 +1,80 @@
+<tool id="alphagenome_variant_scorer" name="AlphaGenome Variant Scorer" version="0.1.0" profile="25.0">
+  <description>Scores genetic variants using AlphaGenome's API</description>
+  <requirements>
+    <requirement type="package" version="3.8">python</requirement>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -c "from alphagenome_variant_scorer import main; main()" \
+            --variant_id '$variant_id' \
+            --output_type '$output_type' \
+            --variant_scorer '$variant_scorer' \
+            --metadata_columns '$metadata_columns' \
+            &gt; '$output'
+    </command>
+  <inputs>
+    <param name="variant_id" type="text" label="Variant ID" help="Variant identifier in chr:pos:ref&gt;alt format" />
+    <param name="output_type" type="select" label="Output Type" help="Type of output to generate">
+      <option value="RNA_SEQ">RNA_SEQ</option>
+      <option value="ATAC">ATAC</option>
+      <option value="CAGE">CAGE</option>
+      <option value="CHIP_TF">CHIP_TF</option>
+      <option value="SPLICE_SITES">SPLICE_SITES</option>
+      <option value="CONTACT_MAPS">CONTACT_MAPS</option>
+    </param>
+    <param name="variant_scorer" type="text" label="Variant Scorer" help="Name of the variant scorer to use" default="default_scorer" />
+    <param name="metadata_columns" type="text" label="Metadata Columns" help="Optional metadata columns to include" default="ontology_curie,gtex_tissue,biosample_name" />
+  </inputs>
+  <outputs>
+    <output name="output" type="tabular" label="Variant Scores" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="variant_id" value="chr1:12345:A&gt;T" />
+      <param name="output_type" value="RNA_SEQ" />
+      <param name="variant_scorer" value="default_scorer" />
+      <param name="metadata_columns" value="ontology_curie,gtex_tissue" />
+      <output name="output">
+        <has_text>variant_id</has_text>
+        <has_text>scored_interval</has_text>
+        <has_text>gene_id</has_text>
+        <has_text>gene_name</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AlphaGenome Variant Scorer
+        
+        Scores genetic variants using AlphaGenome's API, providing structured per-gene, per-track scores with proper gene-level aggregation and quantile normalization.
+        
+        ## Input Requirements
+        
+        - Variant ID in `chr:pos:ref&gt;alt` format
+        - Select output type from available categories
+        - Specify variant scorer name
+        
+        ## Output
+        
+        Tabular output with columns:
+        - variant_id
+        - scored_interval
+        - gene_id
+        - gene_name
+        - gene_type
+        - gene_strand
+        - output_type
+        - variant_scorer
+        - track_name
+        - raw_score
+        - quantile_score
+        
+        Optional metadata columns can be included based on input parameters.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

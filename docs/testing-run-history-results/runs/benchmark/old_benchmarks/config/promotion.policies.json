@@ -1,0 +1,31 @@
+{
+  "policies": {
+    "development": {
+      "min_generation_success_rate": 0.85,
+      "min_xml_well_formed_rate": 0.9,
+      "max_unknown_datatype_rate": 0.25,
+      "require_xsd_pass": false,
+      "require_planemo_pass": false,
+      "require_planemo_test_pass": false,
+      "baseline_tolerance": 0.05
+    },
+    "staging": {
+      "min_generation_success_rate": 0.95,
+      "min_xml_well_formed_rate": 0.95,
+      "max_unknown_datatype_rate": 0.1,
+      "require_xsd_pass": false,
+      "require_planemo_pass": false,
+      "require_planemo_test_pass": false,
+      "baseline_tolerance": 0.02
+    },
+    "production": {
+      "min_generation_success_rate": 0.98,
+      "min_xml_well_formed_rate": 0.99,
+      "max_unknown_datatype_rate": 0.02,
+      "require_xsd_pass": true,
+      "require_planemo_pass": true,
+      "require_planemo_test_pass": false,
+      "baseline_tolerance": 0.0
+    }
+  }
+}

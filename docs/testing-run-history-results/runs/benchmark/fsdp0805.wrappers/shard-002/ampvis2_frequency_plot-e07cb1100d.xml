@@ -1,0 +1,156 @@
+<tool id="ampvis2_frequency_plot" name="ampvis2 frequency plot" version="0.0.1+galaxy0" profile="24.1">
+  <description>generates a barplot with frequency vs read abundance</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.9.6">iuc-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+Rscript -e '
+library(ampvis2)
+load("$input_dataset")
+
+#if $metadata_list.metadata_select == "select":
+    meta &lt;- data.frame(
+        #for $meta in $metadata_list.metadata_columns:
+            $meta.name,
+        #end for
+    )
+    colnames(meta) &lt;- c(
+        #for $meta in $metadata_list.metadata_columns:
+            $meta.name,
+        #end for
+    )
+
+    #for $meta in $metadata_list.metadata_columns:
+        meta$'$meta.name' &lt;- '$meta.value'
+    #end for
+#end if
+
+out &lt;- amp_frequency(
+    data,
+    freq = $freq,
+    min_abund = $min_abund,
+    max_abund = $max_abund,
+    log_scale = $log_scale,
+    metadata = meta,
+    metadata_select = "$metadata_list.metadata_select",
+    metadata_column = "$metadata_list.metadata_column"
+)
+
+write.table(out, file = "output.txt", quote = FALSE, sep = "\t", row.names = TRUE)
+'
+&amp;&amp;
+Rscript -e '
+library(ggplot2)
+library(ampvis2)
+data &lt;- read.table("output.txt", header = TRUE, sep = "\t")
+ggplot(data, aes(x = Frequency, y = Abundance)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    labs(title = "Frequency vs Read Abundance",
+         x = "Frequency",
+         y = "Read Abundance") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+' &gt; output.png
+&amp;&amp;
+Rscript -e '
+library(htmltools)
+library(ampvis2)
+library(ggplot2)
+data &lt;- read.table("output.txt", header = TRUE, sep = "\t")
+p &lt;- ggplot(data, aes(x = Frequency, y = Abundance)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    labs(title = "Frequency vs Read Abundance",
+         x = "Frequency",
+         y = "Read Abundance") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+saveHTML(p, file = "output.html")
+'
+
+    </command>
+  <inputs>
+    <param argument="--input_dataset" type="data" format="rds" label="Dataset" />
+    <conditional name="metadata_list">
+      <param name="metadata_select" type="select" label="Select metadata variable(s)">
+        <option value="none">None</option>
+        <option value="select">Select</option>
+      </param>
+      <when value="none" />
+      <when value="select">
+        <repeat name="metadata_columns" title="Metadata columns">
+          <param name="name" type="text" label="Name" value="" />
+          <param name="value" type="text" label="Value" value="" />
+        </repeat>
+      </when>
+    </conditional>
+    <param argument="--freq" type="integer" value="1" label="Frequency step size" />
+    <param argument="--min_abund" type="integer" value="0" label="Minimum abundance" />
+    <param argument="--max_abund" type="integer" value="100000" label="Maximum abundance" />
+    <param argument="--log_scale" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Log scale" />
+  </inputs>
+  <outputs>
+    <data name="output_txt" format="tabular" from_work_dir="output.txt" label="${tool.name} on ${on_string}: Frequency vs Read Abundance" />
+    <data name="output_png" format="png" from_work_dir="output.png" label="${tool.name} on ${on_string}: Frequency vs Read Abundance" />
+    <data name="output_html" format="html" from_work_dir="output.html" label="${tool.name} on ${on_string}: Frequency vs Read Abundance" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_dataset" ftype="rds" value="AalborgWWTPs.rds" />
+      <param name="metadata_select" value="select" />
+      <repeat name="metadata_columns">
+        <param name="name" value="SampleID" />
+        <param name="value" value="S01" />
+      </repeat>
+      <param name="freq" value="1" />
+      <param name="min_abund" value="0" />
+      <param name="max_abund" value="100000" />
+      <param name="log_scale" value="false" />
+      <output name="output_txt" file="frequency_output.txt" compare="sim_size" />
+      <output name="output_png" file="frequency_output.png" compare="sim_size" />
+      <output name="output_html" file="frequency_output.html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates a barplot with frequency vs read abundance.
+
+The Galaxy tool calls the `amp_frequency
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_frequency.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+A frequency plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-016-0103-y</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,1477 @@
+{
+  "created_at": "2026-08-10T14:50:31.608158+00:00",
+  "corpus_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.generation.records.shards/shard-001/corpus.jsonl",
+  "provider": "local",
+  "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+  "attempted": 25,
+  "succeeded": 22,
+  "failed": 3,
+  "wrappers_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001",
+  "generation_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.generation.records.shards/shard-001/generation.records.json",
+  "evaluation_report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.generation.records.shards/shard-001/evaluation.summary.json",
+  "artifact_format": "xml",
+  "progress": {
+    "started_at": "2026-08-10T14:01:51.575450+00:00",
+    "now_at": "2026-08-10T14:50:31.608104+00:00",
+    "completed_units": 25,
+    "total_units": 25,
+    "elapsed_seconds": 2920.032654,
+    "units_per_second": 0.008561548092879649,
+    "eta_seconds": null,
+    "eta_timestamp": null
+  },
+  "startup": {
+    "started_at": "2026-08-10T14:01:51.575450+00:00",
+    "artifact_format": "xml",
+    "source_context": {
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "source_root": "",
+      "source_file": "",
+      "test_context_mode": "none",
+      "test_context_max_chars": 4000,
+      "test_context_max_files": 4,
+      "test_context_max_file_bytes": 64000
+    },
+    "local_gpu_topology": "per-process",
+    "local_offload_policy": "allow",
+    "local_gpu_memory_reserve_gib": 2.0,
+    "ollama_context_tokens": null,
+    "resume_existing": true,
+    "checkpoint_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.generation.records.shards/shard-001/checkpoint.records.jsonl",
+    "checkpoint_records_loaded": 0,
+    "skipped_existing": 0,
+    "cuda_visible_devices": "3",
+    "allow_compact_fallback": false,
+    "model_load_started_at": "2026-08-10T14:01:51.575538+00:00",
+    "model_ready_at": "2026-08-10T14:02:10.438610+00:00",
+    "model_load_seconds": 18.8631,
+    "startup_seconds": 18.8632,
+    "model_loaded": true,
+    "backend": "local-peft",
+    "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+    "adapter_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-qwen-lora2-sharding-sidecars-fixtures-20260727-full-4096-all-raw-deepspeed-zero3/output",
+    "offload_policy": "allow",
+    "gpu_memory_reserve_gib": 2.0,
+    "max_memory": {
+      "0": 39728447488
+    },
+    "device_map": {},
+    "offloaded_devices": {},
+    "has_offload": false,
+    "first_generation_started_at": "2026-08-10T14:02:10.439045+00:00",
+    "time_to_first_generation_seconds": 18.8636
+  },
+  "failures": [
+    {
+      "tool_name": "ampvis2 timeseries plot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_timeseries_plot-4b6c95e8b2.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_timeseries_plot-4b6c95e8b2.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+      "error": "Generated XML is not well formed. XML parse error: mismatched tag: line 51, column 78",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: mismatched tag: line 51, column 78')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: mismatched tag: line 51, column 78",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: mismatched tag: line 51, column 78"
+        ],
+        "artifact_format": "xml"
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": false,
+      "corpus_index": 37,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_timeseries",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/timeseries.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/timeseries.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: unclosed token: line 174, column 8; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-shinyvalidate</requirement>'.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: unclosed token: line 174, column 8; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-shinyvalidate</requirement>'.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: unclosed token: line 174, column 8",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML appears to end mid-tag, likely due to output truncation.",
+            "Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-shinyvalidate</requirement>'."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML appears to end mid-tag, likely due to output truncation.",
+              "Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-shinyvalidate</requirement>'."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [
+              "<requirement type=\"package\" version=\"1.4.0\">r-shinyvalidate</requirement>"
+            ],
+            "repeated_xml_line_count": 1,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": true,
+            "unclosed_cdata": false
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "ampvis2 venn diagram",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_venn_diagram-54b8f01b36.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_venn_diagram-54b8f01b36.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+      "error": "Generated XML is not well formed. XML parse error: mismatched tag: line 47, column 72",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: mismatched tag: line 47, column 72')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: mismatched tag: line 47, column 72",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: mismatched tag: line 47, column 72"
+        ],
+        "artifact_format": "xml"
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": false,
+      "corpus_index": 39,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_venn",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/venn.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/venn.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: unclosed token: line 181, column 8; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-cli</requirement>'.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: unclosed token: line 181, column 8; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-cli</requirement>'.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: unclosed token: line 181, column 8",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML appears to end mid-tag, likely due to output truncation.",
+            "Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-cli</requirement>'."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML appears to end mid-tag, likely due to output truncation.",
+              "Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.4.0\">r-cli</requirement>'."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [
+              "<requirement type=\"package\" version=\"1.4.0\">r-cli</requirement>",
+              "<requirement type=\"package\" version=\"1.4.0\">r-rlang</requirement>"
+            ],
+            "repeated_xml_line_count": 2,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": true,
+            "unclosed_cdata": false
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "ampvis2 core community analysis",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_core_community_analysis-739c364026.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_core_community_analysis-739c364026.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-4096-deepspeed-zero3-qwen-lora2-sharding-sidecars-fixtures-20260727",
+      "error": "Generated XML is not well formed. XML parse error: unclosed token: line 174, column 59; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.6.0\">r-vegan</requirement>'.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: unclosed token: line 174, column 59; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: \\'<requirement type=\"package\" version=\"1.6.0\">r-vegan</requirement>\\'.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: unclosed token: line 174, column 59; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.6.0\">r-vegan</requirement>'.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: unclosed token: line 174, column 59",
+          "Generated XML does not contain a closing </tool> tag.",
+          "Generated XML appears to end mid-tag, likely due to output truncation.",
+          "Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.6.0\">r-vegan</requirement>'."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML appears to end mid-tag, likely due to output truncation.",
+            "Generated XML contains repeated identical XML lines: '<requirement type=\"package\" version=\"1.6.0\">r-vegan</requirement>'."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [
+            "<requirement type=\"package\" version=\"1.6.0\">r-vegan</requirement>"
+          ],
+          "repeated_xml_line_count": 1,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": true,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 49,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_core",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/core.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/core.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 137, column 345; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 137, column 345; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 137, column 345",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    }
+  ],
+  "quality": {
+    "throughput": {
+      "elapsed_seconds": 2920.0327,
+      "wrappers_per_minute": 0.5137,
+      "seconds_per_attempted_wrapper": 116.8013
+    },
+    "validity": {
+      "artifact_format": "xml",
+      "success_rate": 0.88,
+      "artifact_valid_rate": 0.88,
+      "xml_well_formed_rate": 0.88,
+      "tool_root_rate": 0.88,
+      "yaml_well_formed_rate": 0.0,
+      "udt_schema_valid_rate": 0.0,
+      "user_tool_root_rate": 0.0
+    },
+    "repair": {
+      "repair_attempt_rate": 0.16,
+      "repair_success_rate": 0.25,
+      "truncation_failure_rate": 0.04
+    },
+    "structural": {
+      "mean_structural_score_successes": 1.0,
+      "effective_mean_structural_score_all_attempted": 0.88
+    },
+    "reference_fidelity": {
+      "compared_records": 22,
+      "avg_input_count_abs_error": 7.9545,
+      "avg_output_count_abs_error": 1.8636,
+      "input_datatype_jaccard_mean": 0.5043,
+      "output_datatype_jaccard_mean": 0.4144,
+      "requirement_package_jaccard_mean": 0.4224,
+      "test_presence_match_rate": 1.0,
+      "primary_command_checks": 10,
+      "primary_command_presence_rate": 1.0,
+      "records": [
+        {
+          "tool_name": "Barcode Splitter",
+          "corpus_index": 1,
+          "package_id": "iuc/barcode_splitter",
+          "tool_id": "barcode_splitter",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Barcode_Splitter-cce006dc1d.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Barcode_Splitter-cce006dc1d.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/barcode_splitter/barcode_splitter.xml",
+          "input_count_reference": 17,
+          "input_count_generated": 5,
+          "input_count_abs_error": 12,
+          "output_count_reference": 6,
+          "output_count_generated": 3,
+          "output_count_abs_error": 3,
+          "input_datatypes_reference": [
+            "fastq",
+            "fastqillumina",
+            "fastqsanger",
+            "fastqsolexa",
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "fastq",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.4,
+          "output_datatypes_reference": [
+            "list",
+            "list:paired",
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "fastq",
+            "tsv",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "barcode_splitter"
+          ],
+          "requirement_packages_generated": [
+            "barcode_splitter"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "barcode_splitter",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "AEGeAn GAEVAL",
+          "corpus_index": 3,
+          "package_id": "iuc/aegean",
+          "tool_id": "aegean_gaeval",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AEGeAn_GAEVAL-2cd61ad8ec.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AEGeAn_GAEVAL-2cd61ad8ec.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/gaeval.expanded.xml",
+          "input_count_reference": 9,
+          "input_count_generated": 2,
+          "input_count_abs_error": 7,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "gff3"
+          ],
+          "input_datatypes_generated": [
+            "gff"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "gff"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "aegean"
+          ],
+          "requirement_packages_generated": [
+            "aegean"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "gaeval",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "AEGeAn CanonGFF3",
+          "corpus_index": 5,
+          "package_id": "iuc/aegean",
+          "tool_id": "aegean_canongff3",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AEGeAn_CanonGFF3-3e946130f7.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AEGeAn_CanonGFF3-3e946130f7.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/canongff3.expanded.xml",
+          "input_count_reference": 3,
+          "input_count_generated": 1,
+          "input_count_abs_error": 2,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "gff3"
+          ],
+          "input_datatypes_generated": [
+            "gff3"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "gff3"
+          ],
+          "output_datatypes_generated": [
+            "gff3"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "aegean"
+          ],
+          "requirement_packages_generated": [
+            "aegean"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "canon-gff3",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "Allegro",
+          "corpus_index": 7,
+          "package_id": "iuc/allegro",
+          "tool_id": "allegro",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Allegro-381bbb888a.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Allegro-381bbb888a.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/allegro/allegro.expanded.xml",
+          "input_count_reference": 32,
+          "input_count_generated": 6,
+          "input_count_abs_error": 26,
+          "output_count_reference": 5,
+          "output_count_generated": 2,
+          "output_count_abs_error": 3,
+          "input_datatypes_reference": [
+            "linkage_datain",
+            "linkage_map",
+            "linkage_pedin",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "hap",
+            "map",
+            "ped"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "allegro_descent",
+            "allegro_fparam",
+            "allegro_ihaplo",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "log",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.2,
+          "requirement_packages_reference": [
+            "allegro"
+          ],
+          "requirement_packages_generated": [
+            "iuc-allegro"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "allegro",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "abriTAMR",
+          "corpus_index": 9,
+          "package_id": "iuc/abritamr",
+          "tool_id": "abritamr",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/abriTAMR-62489a9974.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/abriTAMR-62489a9974.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abritamr/abritamr.expanded.xml",
+          "input_count_reference": 4,
+          "input_count_generated": 6,
+          "input_count_abs_error": 2,
+          "output_count_reference": 5,
+          "output_count_generated": 1,
+          "output_count_abs_error": 4,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "directory"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "abritamr"
+          ],
+          "requirement_packages_generated": [
+            "abritamr"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abritamr",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "b2bTools: Biophysical predictors for single sequences",
+          "corpus_index": 11,
+          "package_id": "iuc/b2btools",
+          "tool_id": "b2btools_single_sequence",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/b2bTools_Biophysical_predictors_for_single_sequences-9cb7ba5aea.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/b2bTools_Biophysical_predictors_for_single_sequences-9cb7ba5aea.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/b2btools/b2btools_single_sequence.xml",
+          "input_count_reference": 8,
+          "input_count_generated": 6,
+          "input_count_abs_error": 2,
+          "output_count_reference": 3,
+          "output_count_generated": 2,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "json",
+            "list"
+          ],
+          "output_datatypes_generated": [
+            "json",
+            "tabular"
+          ],
+          "output_datatype_jaccard": 0.3333,
+          "requirement_packages_reference": [
+            "b2btools"
+          ],
+          "requirement_packages_generated": [
+            "b2btools"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "AlphaGenome ISM Scanner",
+          "corpus_index": 13,
+          "package_id": "iuc/alphagenome",
+          "tool_id": "alphagenome_ism_scanner",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AlphaGenome_ISM_Scanner-d6f40b8dc1.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AlphaGenome_ISM_Scanner-d6f40b8dc1.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_ism_scanner.expanded.xml",
+          "input_count_reference": 8,
+          "input_count_generated": 2,
+          "input_count_abs_error": 6,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "bed"
+          ],
+          "input_datatypes_generated": [
+            "bed"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "alphagenome",
+            "cyvcf2",
+            "pandas"
+          ],
+          "requirement_packages_generated": [
+            "alphagenome"
+          ],
+          "requirement_package_jaccard": 0.3333,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "AlphaGenome Sequence Predictor",
+          "corpus_index": 15,
+          "package_id": "iuc/alphagenome",
+          "tool_id": "alphagenome_sequence_predictor",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AlphaGenome_Sequence_Predictor-fc83b9588f.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AlphaGenome_Sequence_Predictor-fc83b9588f.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_sequence_predictor.expanded.xml",
+          "input_count_reference": 9,
+          "input_count_generated": 3,
+          "input_count_abs_error": 6,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "alphagenome",
+            "cyvcf2",
+            "pandas"
+          ],
+          "requirement_packages_generated": [
+            "alphagenome"
+          ],
+          "requirement_package_jaccard": 0.3333,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "AlphaGenome Variant Scorer",
+          "corpus_index": 17,
+          "package_id": "iuc/alphagenome",
+          "tool_id": "alphagenome_variant_scorer",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AlphaGenome_Variant_Scorer-cb49ad2f89.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/AlphaGenome_Variant_Scorer-cb49ad2f89.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_variant_scorer.expanded.xml",
+          "input_count_reference": 6,
+          "input_count_generated": 12,
+          "input_count_abs_error": 6,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "vcf"
+          ],
+          "input_datatypes_generated": [
+            "h5ad"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "alphagenome",
+            "cyvcf2",
+            "pandas"
+          ],
+          "requirement_packages_generated": [
+            "alphagenome"
+          ],
+          "requirement_package_jaccard": 0.3333,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ART 454",
+          "corpus_index": 19,
+          "package_id": "iuc/art",
+          "tool_id": "art_454",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ART_454-60bb57973b.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ART_454-60bb57973b.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/art/art_454.expanded.xml",
+          "input_count_reference": 14,
+          "input_count_generated": 8,
+          "input_count_abs_error": 6,
+          "output_count_reference": 7,
+          "output_count_generated": 2,
+          "output_count_abs_error": 5,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fastq"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "fastq",
+            "sam",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "fastq"
+          ],
+          "output_datatype_jaccard": 0.3333,
+          "requirement_packages_reference": [
+            "art"
+          ],
+          "requirement_packages_generated": [
+            "iuc/art"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "art_454",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "TrimN",
+          "corpus_index": 21,
+          "package_id": "iuc/trimns",
+          "tool_id": "trimns",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/TrimN-2eb2d114d7.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/TrimN-2eb2d114d7.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/TrimNs/TrimNs.xml",
+          "input_count_reference": 1,
+          "input_count_generated": 1,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 2,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "fasta"
+          ],
+          "output_datatypes_generated": [
+            "fasta",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.5,
+          "requirement_packages_reference": [
+            "trimns_vgp"
+          ],
+          "requirement_packages_generated": [
+            "trimns"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "remove_fake_cut_sites_dnanexus.py",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "Bandage Image",
+          "corpus_index": 23,
+          "package_id": "iuc/bandage",
+          "tool_id": "bandage_image",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Bandage_Image-9cf8ac93bb.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Bandage_Image-9cf8ac93bb.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/bandage/bandage_image.expanded.xml",
+          "input_count_reference": 8,
+          "input_count_generated": 2,
+          "input_count_abs_error": 6,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "fastg",
+            "gfa1",
+            "gfa2",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "gfa"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "jpg"
+          ],
+          "output_datatypes_generated": [
+            "png"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bandage_ng"
+          ],
+          "requirement_packages_generated": [
+            "iuc_bandage"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "bandage",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "Inspect AnnData",
+          "corpus_index": 25,
+          "package_id": "iuc/anndata",
+          "tool_id": "anndata_inspect",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Inspect_AnnData-8948f82c16.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Inspect_AnnData-8948f82c16.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/inspect.expanded.xml",
+          "input_count_reference": 9,
+          "input_count_generated": 1,
+          "input_count_abs_error": 8,
+          "output_count_reference": 22,
+          "output_count_generated": 1,
+          "output_count_abs_error": 21,
+          "input_datatypes_reference": [
+            "h5ad"
+          ],
+          "input_datatypes_generated": [
+            "h5ad"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "list",
+            "mtx",
+            "tabular",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.25,
+          "requirement_packages_reference": [
+            "anndata",
+            "loompy",
+            "pandas",
+            "scanpy"
+          ],
+          "requirement_packages_generated": [
+            "anndata"
+          ],
+          "requirement_package_jaccard": 0.25,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "Import Anndata",
+          "corpus_index": 27,
+          "package_id": "iuc/anndata",
+          "tool_id": "anndata_import",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Import_Anndata-f48bab69f6.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/Import_Anndata-f48bab69f6.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/import.expanded.xml",
+          "input_count_reference": 26,
+          "input_count_generated": 2,
+          "input_count_abs_error": 24,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "csv",
+            "h5",
+            "loom",
+            "mtx",
+            "tabular",
+            "tabular.gz",
+            "tsv",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "html",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.1111,
+          "output_datatypes_reference": [
+            "h5ad"
+          ],
+          "output_datatypes_generated": [
+            "h5ad"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "anndata",
+            "loompy",
+            "pandas",
+            "scanpy"
+          ],
+          "requirement_packages_generated": [
+            "anndata",
+            "loompy"
+          ],
+          "requirement_package_jaccard": 0.5,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ABRicate Summary",
+          "corpus_index": 29,
+          "package_id": "iuc/abricate",
+          "tool_id": "abricate_summary",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ABRicate_Summary-1a22cb3ccf.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ABRicate_Summary-1a22cb3ccf.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abricate/abricate_summary.expanded.xml",
+          "input_count_reference": 1,
+          "input_count_generated": 1,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "tabular"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "abricate"
+          ],
+          "requirement_packages_generated": [
+            "abricate"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abricate",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "ABRicate",
+          "corpus_index": 31,
+          "package_id": "iuc/abricate",
+          "tool_id": "abricate",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ABRicate-55e56c2e72.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ABRicate-55e56c2e72.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abricate/abricate.expanded.xml",
+          "input_count_reference": 5,
+          "input_count_generated": 2,
+          "input_count_abs_error": 3,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "embl",
+            "fasta",
+            "fasta.bz2",
+            "fasta.gz",
+            "genbank",
+            "genbank.gz"
+          ],
+          "input_datatypes_generated": [
+            "fasta",
+            "genbank"
+          ],
+          "input_datatype_jaccard": 0.3333,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "abricate"
+          ],
+          "requirement_packages_generated": [
+            "abricate"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abricate",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "annotateMyIDs",
+          "corpus_index": 33,
+          "package_id": "iuc/annotatemyids",
+          "tool_id": "annotatemyids",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/annotateMyIDs-85babc2f5b.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/annotateMyIDs-85babc2f5b.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/annotatemyids/annotateMyIDs.expanded.xml",
+          "input_count_reference": 7,
+          "input_count_generated": 3,
+          "input_count_abs_error": 4,
+          "output_count_reference": 2,
+          "output_count_generated": 1,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "tabular"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 0.5,
+          "requirement_packages_reference": [
+            "bioconductor-org.at.tair.db",
+            "bioconductor-org.bt.eg.db",
+            "bioconductor-org.dm.eg.db",
+            "bioconductor-org.dr.eg.db",
+            "bioconductor-org.gg.eg.db",
+            "bioconductor-org.hs.eg.db",
+            "bioconductor-org.mm.eg.db",
+            "bioconductor-org.rn.eg.db"
+          ],
+          "requirement_packages_generated": [
+            "R",
+            "r-annotate-my-ids",
+            "r-base"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 merge ampvis2 data sets",
+          "corpus_index": 35,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_merge_ampvis2",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_merge_ampvis2_data_sets-d544432b32.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_merge_ampvis2_data_sets-d544432b32.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/merge_ampvis2.expanded.xml",
+          "input_count_reference": 2,
+          "input_count_generated": 2,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "ampvis2"
+          ],
+          "input_datatypes_generated": [
+            "rds"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "ampvis2"
+          ],
+          "output_datatypes_generated": [
+            "html"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "R",
+            "r-ampvis2",
+            "r-ape",
+            "r-base",
+            "r-dplyr",
+            "r-ggplot2",
+            "r-phyloseq",
+            "r-tidyverse",
+            "r-vegan"
+          ],
+          "requirement_package_jaccard": 0.0909,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 octave plot",
+          "corpus_index": 41,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_octave",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_octave_plot-c9423042f7.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_octave_plot-c9423042f7.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/octave.expanded.xml",
+          "input_count_reference": 8,
+          "input_count_generated": 3,
+          "input_count_abs_error": 5,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "ampvis2",
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "rds",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.3333,
+          "output_datatypes_reference": [
+            "pdf"
+          ],
+          "output_datatypes_generated": [
+            "html"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "R",
+            "R-base",
+            "R-devtools",
+            "R-ggplot2",
+            "R-knitr",
+            "R-reshape2",
+            "R-tidyverse",
+            "R-vegan",
+            "iuc/ampvis2"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 boxplot",
+          "corpus_index": 43,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_boxplot",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_boxplot-7199649f04.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_boxplot-7199649f04.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/boxplot.expanded.xml",
+          "input_count_reference": 20,
+          "input_count_generated": 3,
+          "input_count_abs_error": 17,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "ampvis2",
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "rds",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.3333,
+          "output_datatypes_reference": [
+            "pdf"
+          ],
+          "output_datatypes_generated": [
+            "${format}"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "R",
+            "r-ampr",
+            "r-base",
+            "r-dplyr",
+            "r-forcats",
+            "r-ggplot2",
+            "r-htmltools",
+            "r-knitr",
+            "r-lubridate",
+            "r-magrittr",
+            "r-purrr",
+            "r-readr",
+            "r-rmarkdown",
+            "r-scales",
+            "r-stringr",
+            "r-tidyr",
+            "r-xtable"
+          ],
+          "requirement_package_jaccard": 0.0526,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 heatmap",
+          "corpus_index": 45,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_heatmap",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_heatmap-512d26e7d3.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_heatmap-512d26e7d3.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/heatmap.expanded.xml",
+          "input_count_reference": 38,
+          "input_count_generated": 6,
+          "input_count_abs_error": 32,
+          "output_count_reference": 2,
+          "output_count_generated": 1,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "ampvis2",
+            "tabular",
+            "tsv"
+          ],
+          "input_datatypes_generated": [
+            "rds",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.25,
+          "output_datatypes_reference": [
+            "pdf",
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "html"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "R",
+            "r-ampvis2",
+            "r-base"
+          ],
+          "requirement_package_jaccard": 0.2,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 merge replicates",
+          "corpus_index": 47,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_mergereplicates",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_merge_replicates-9fe7d97c83.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-001/ampvis2_merge_replicates-9fe7d97c83.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/mergereplicates.expanded.xml",
+          "input_count_reference": 4,
+          "input_count_generated": 3,
+          "input_count_abs_error": 1,
+          "output_count_reference": 2,
+          "output_count_generated": 1,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "ampvis2",
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "rds",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.3333,
+          "output_datatypes_reference": [
+            "ampvis2",
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "html"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "R",
+            "r-ampvis2",
+            "r-base"
+          ],
+          "requirement_package_jaccard": 0.2,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        }
+      ]
+    },
+    "startup": {
+      "started_at": "2026-08-10T14:01:51.575450+00:00",
+      "artifact_format": "xml",
+      "source_context": {
+        "mode": "none",
+        "max_chars": 8000,
+        "max_files": 12,
+        "source_root": "",
+        "source_file": "",
+        "test_context_mode": "none",
+        "test_context_max_chars": 4000,
+        "test_context_max_files": 4,
+        "test_context_max_file_bytes": 64000
+      },
+      "local_gpu_topology": "per-process",
+      "local_offload_policy": "allow",
+      "local_gpu_memory_reserve_gib": 2.0,
+      "ollama_context_tokens": null,
+      "resume_existing": true,
+      "checkpoint_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.generation.records.shards/shard-001/checkpoint.records.jsonl",
+      "checkpoint_records_loaded": 0,
+      "skipped_existing": 0,
+      "cuda_visible_devices": "3",
+      "allow_compact_fallback": false,
+      "model_load_started_at": "2026-08-10T14:01:51.575538+00:00",
+      "model_ready_at": "2026-08-10T14:02:10.438610+00:00",
+      "model_load_seconds": 18.8631,
+      "startup_seconds": 18.8632,
+      "model_loaded": true,
+      "backend": "local-peft",
+      "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "adapter_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-qwen-lora2-sharding-sidecars-fixtures-20260727-full-4096-all-raw-deepspeed-zero3/output",
+      "offload_policy": "allow",
+      "gpu_memory_reserve_gib": 2.0,
+      "max_memory": {
+        "0": 39728447488
+      },
+      "device_map": {},
+      "offloaded_devices": {},
+      "has_offload": false,
+      "first_generation_started_at": "2026-08-10T14:02:10.439045+00:00",
+      "time_to_first_generation_seconds": 18.8636
+    }
+  },
+  "suite_generation": "single",
+  "suite_count": 0,
+  "suite_member_count": 0
+}

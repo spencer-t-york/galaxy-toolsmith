@@ -1,0 +1,67 @@
+<tool id="ampvis2_merge_ampvis2_data_sets" name="ampvis2 merge ampvis2 data sets" version="0.1.0" profile="21.05">
+  <description>merge ampvis2 data sets</description>
+  <macros />
+  <requirements>
+    <requirement type="package" version="0.1.0">ampvis2</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        Rscript '$__tool_directory__/ampvis2.R' 'merge_ampvis2' '$input' '$output' '$merge_by_exact_matches'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" multiple="true" label="Input" help="An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the ``ampvis2: subset ...`` tools)." />
+    <param name="merge_by_exact_matches" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Merge by exact matches between DNA reference sequences" help="If checked, the full DNA sequences will be used as the new OTU ID's. If not checked, the OTU ID's are used as is. It's important to ensure that the taxonomy for all OTU's across data sets is generated in the exact same way with the same database. When **Merge by exact matches between DNA reference sequences** is not checked it's likewise important to ensure that OTU ID's are not arbitrary between data sets and that they are corresponding to the same sequences across data sets (objects)." />
+  </inputs>
+  <outputs>
+    <data name="output" format="rds" label="${tool.name} on ${on_string}: ampvis2 dataset" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="AalborgWWTPs.rds,AalborgWWTPs.rds" />
+      <param name="merge_by_exact_matches" value="TRUE" />
+      <output name="output" file="AalborgWWTPs_merged.rds" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Merge any number of ampvis2 data sets into a single data set.
+
+The Galaxy tool calls the `amp_merge_ampvis2
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_merge_ampvis2.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+Details
+=======
+
+It's important to ensure that the taxonomy for all OTU's across data sets is
+generated in the exact same way with the same database. When **Merge by exact matches between DNA reference sequences** is not checked
+it's likewise important to ensure that OTU ID's are not arbitrary between data
+sets and that they are corresponding to the same sequences across data sets
+(objects). When **Merge by exact matches between DNA reference sequences** is checked the full DNA sequences will be used as the new
+OTU ID's.
+
+Currently, phylogenetic trees are not merged.
+
+Output
+======
+
+The merged data set
+    </help>
+  <citations>
+    <citation type="doi">10.1101/2020.09.28.317097</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

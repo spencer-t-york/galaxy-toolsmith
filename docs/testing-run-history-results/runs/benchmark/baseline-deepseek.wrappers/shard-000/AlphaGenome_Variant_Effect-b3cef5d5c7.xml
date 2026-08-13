@@ -1,0 +1,63 @@
+<tool id="alphagenome_variant_effect" name="AlphaGenome Variant Effect" version="0.1.0" profile="25.0">
+  <description>Predicts variant effects using AlphaGenome model</description>
+  <requirements>
+    <requirement type="package">python &gt;=3.7</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        alphagenome_variant_effect.py \
+            --input_vcf $input_vcf \
+            --output_vcf $output_vcf \
+            --organism $organism \
+            --ontology_term $ontology_term \
+            --window_size $window_size
+    </command>
+  <inputs>
+    <input type="file" name="input_vcf" format="vcf" label="Input VCF file" />
+    <param type="select" name="organism" label="Organism" optional="true">
+      <option value="hg38">Human (hg38)</option>
+      <option value="mm10">Mouse (mm10)</option>
+    </param>
+    <param type="select" name="ontology_term" label="Ontology term" optional="true">
+      <option value="UBERON:0001157">Peyer's patch</option>
+      <option value="UBERON:0002107">Liver</option>
+      <option value="UBERON:0000955">Brain</option>
+      <option value="CL:0000746">Cardiac muscle cell</option>
+      <option value="CL:0000540">Neuron</option>
+    </param>
+    <param type="select" name="window_size" label="Prediction window size" optional="true">
+      <option value="16KB">16 KB (Fast, minimal context)</option>
+      <option value="128KB">128 KB (Good for most variants)</option>
+      <option value="512KB">512 KB (Extended regulatory context)</option>
+      <option value="1MB" selected="true">1 MB (Maximum context)</option>
+    </param>
+  </inputs>
+  <outputs>
+    <output name="output_vcf" format="vcf" label="Annotated VCF output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <input name="input_vcf" file="test_input.vcf" />
+      <output name="output_vcf" file="test_output.vcf">
+        <has_text>AG_RNA_LFC</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AlphaGenome Variant Effect Predictor
+        
+        Predicts genetic variant effects using AlphaGenome model.
+        
+        ## Input requirements
+        - Input VCF file containing variants to predict
+        
+        ## Output
+        - Annotated VCF file with effect scores
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

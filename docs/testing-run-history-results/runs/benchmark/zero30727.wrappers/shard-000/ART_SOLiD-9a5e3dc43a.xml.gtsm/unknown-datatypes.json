@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "list"
+  ],
+  "records": [
+    {
+      "datatype": "list",
+      "tool_name": "ART SOLiD",
+      "tool_id": "art_solid",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/zero30727.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

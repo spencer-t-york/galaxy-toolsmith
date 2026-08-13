@@ -1,0 +1,119 @@
+<tool id="alphagenome_variant_scorer" name="AlphaGenome Variant Scorer" version="0.6.1+galaxy0" profile="21.05">
+    <description>server-side variant scoring with AlphaGenome</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">alphagenome</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="0.6.1">alphagenome</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        python '$__tool_directory__/alphagenome_variant_scorer.py'
+            --api_key '$api_key'
+            --input '$input'
+            --output '$output'
+            --scorers '$scorers'
+            --genome '$genome'
+            --max_variants $max_variants
+            --max_genes $max_genes
+            --max_tracks $max_tracks
+            --max_scores $max_scores
+            --max_rows $max_rows
+            --max_cols $max_cols
+            --max_cells $max_cells
+            --max_time $max_time
+            --max_memory $max_memory
+            --max_retries $max_retries
+            --max_backoff $max_backoff
+            --max_sleep $max_sleep
+            --max_parallel $max_parallel
+            --max_parallel_per_scorer $max_parallel_per_scorer
+            --max_parallel_per_gene $max_parallel_per_gene
+            --max_parallel_per_track $max_parallel_per_track
+            --max_parallel_per_scorer_gene $max_parallel_per_scorer_gene
+            --max_parallel_per_scorer_track $max_parallel_per_scorer_track
+            --max_parallel_per_gene_track $max_parallel_per_gene_track
+            --max_parallel_per_scorer_gene_track $max_parallel_per_scorer_gene_track
+            --max_parallel_per_scorer_gene_track_scorer $max_parallel_per_scorer_gene_track_scorer
+            --max_parallel_per_scorer_gene_track_scorer_output $max_parallel_per_scorer_gene_track_scorer_output
+            --max_parallel_per_scorer_gene_track_scorer_output_type $max_parallel_per_scorer_gene_track_scorer_output_type
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene $max_parallel_per_scorer_gene_track_scorer_output_type_gene
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name $max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output_type_gene_strand_scorer_track_name_raw_score_quantile_score_ontology_curie_gtex_tissue_biosample_name Biosample name
+            --max_parallel_per_scorer_gene_track_scorer_output

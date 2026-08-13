@@ -1,0 +1,37 @@
+<tool id="abricate_list" name="ABRicate List" version="0.1.0" profile="25.0">
+  <description>List all antibiotic databases used by ABRicate.</description>
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abricate --list
+    </command>
+  <inputs>
+    <param name="database" type="select" label="Database">
+      <option value="resfinder">ResFinder</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="txt" label="ABRicate Database List" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="database" value="resfinder" />
+      <output name="output">
+        <assert_contents>
+          <has_text>resfinder</has_text>
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        Lists all antibiotic databases used by ABRicate.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

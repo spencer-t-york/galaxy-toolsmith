@@ -1,0 +1,113 @@
+<tool id="allegro" name="Allegro" version="1.0+galaxy0" profile="24.1">
+  <description>for multipoint genetic linkage analysis</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">allegro</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.0">iuc-allegro</requirement>
+  </requirements>
+  <version_command>echo "1.0"</version_command>
+  <command detect_errors="exit_code">
+        #if $input.is_of_type("pedigree"):
+            cp '$input' input.ped &amp;&amp;
+        #else if $input.is_of_type("genotype"):
+            cp '$input' input.gen &amp;&amp;
+        #end if
+
+        allegro -p input.ped -g input.gen -m input.map -o output -t $threads -n $maxiter -r $recombination_rate -c $convergence_threshold -e $error_rate -f $family_size -k $kinship_matrix -l $linkage_map -q $quantitative_trait -s $simulation_count -u $unlinked_markers -v $verbose -w $window_size -x $xover_window_size -y $y_value -z $z_value
+    </command>
+  <inputs>
+    <param argument="-p" type="data" format="pedigree" label="Input pedigree file" />
+    <conditional name="input">
+      <param name="type" type="select" label="Select input data type">
+        <option value="genotype">Genotype</option>
+        <option value="allele">Allele</option>
+      </param>
+      <when value="genotype">
+        <param argument="-g" type="data" format="genotype" label="Input genotype file" />
+      </when>
+      <when value="allele">
+        <param argument="-g" type="data" format="allele" label="Input allele file" />
+      </when>
+    </conditional>
+    <param argument="-m" type="data" format="map" label="Input map file" />
+    <param argument="-t" type="integer" min="1" max="16" value="1" label="Number of threads" />
+    <param argument="-n" type="integer" min="1" value="1000" label="Maximum iterations" />
+    <param argument="-r" type="float" min="0.0" max="1.0" value="0.001" label="Recombination rate" />
+    <param argument="-c" type="float" min="0.0" max="1.0" value="0.0001" label="Convergence threshold" />
+    <param argument="-e" type="float" min="0.0" max="1.0" value="0.0001" label="Error rate" />
+    <param argument="-f" type="integer" min="1" value="1" label="Family size" />
+    <param argument="-k" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Kinship matrix" />
+    <param argument="-l" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Linkage map" />
+    <param argument="-q" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Quantitative trait" />
+    <param argument="-s" type="integer" min="0" value="0" label="Simulation count" />
+    <param argument="-u" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Unlinked markers" />
+    <param argument="-v" type="boolean" truevalue="yes" falsevalue="no" checked="true" label="Verbose" />
+    <param argument="-w" type="integer" min="1" value="1" label="Window size" />
+    <param argument="-x" type="integer" min="1" value="1" label="Xover window size" />
+    <param argument="-y" type="float" min="0.0" max="1.0" value="0.0001" label="Y value" />
+    <param argument="-z" type="float" min="0.0" max="1.0" value="0.0001" label="Z value" />
+  </inputs>
+  <outputs>
+    <data name="output_ped" format="pedigree" from_work_dir="output.ped" label="${tool.name} on ${on_string}: Pedigree" />
+    <data name="output_gen" format="genotype" from_work_dir="output.gen" label="${tool.name} on ${on_string}: Genotype" />
+    <data name="output_map" format="map" from_work_dir="output.map" label="${tool.name} on ${on_string}: Map" />
+    <data name="output_log" format="txt" from_work_dir="output.log" label="${tool.name} on ${on_string}: Log" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="type" value="genotype" />
+      <param name="p" value="input.ped" />
+      <param name="g" value="input.gen" />
+      <param name="m" value="input.map" />
+      <param name="t" value="1" />
+      <param name="n" value="1000" />
+      <param name="r" value="0.001" />
+      <param name="c" value="0.0001" />
+      <param name="e" value="0.0001" />
+      <param name="f" value="1" />
+      <param name="k" value="no" />
+      <param name="l" value="no" />
+      <param name="q" value="no" />
+      <param name="s" value="0" />
+      <param name="u" value="no" />
+      <param name="v" value="yes" />
+      <param name="w" value="1" />
+      <param name="x" value="1" />
+      <param name="y" value="0.0001" />
+      <param name="z" value="0.0001" />
+      <output name="output_ped" ftype="pedigree">
+        <assert_contents>
+          <has_line line="FID IID FATHER MOTHER SEX PHENO" />
+        </assert_contents>
+      </output>
+      <output name="output_gen" ftype="genotype">
+        <assert_contents>
+          <has_line line="FID IID GENO" />
+        </assert_contents>
+      </output>
+      <output name="output_map" ftype="map">
+        <assert_contents>
+          <has_line line="MARKER CM POS" />
+        </assert_contents>
+      </output>
+      <output name="output_log" ftype="txt">
+        <assert_contents>
+          <has_line line="LOGFILE" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+Allegro is a computer program for multipoint genetic linkage analysis and related calculations. Allegro can do both classical parametric linkage analysis and analysis based on allele sharing models. In addition, Allegro estimates total number of recombinations between markers, computes posterior IBD sharing probabilities, re-constructs haplotypes and does two types of simulation. Thus Allegro includes the basic functionality of the well known Genehunter program (Kruglyak et al. 1996). It can analyse pedigrees of moderate size,and it can handle many markers. The biggest advantages of Allegro over Genehunterar the allele sharing models that it provides and a much shorter execution time.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/12.10.775</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

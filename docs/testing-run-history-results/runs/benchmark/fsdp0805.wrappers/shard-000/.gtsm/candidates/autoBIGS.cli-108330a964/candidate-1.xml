@@ -1,0 +1,62 @@
+<tool id="autobigs-cli" name="autoBIGS.cli" version="0.6.2+galaxy0" profile="24.1">
+    <description>Automatically performs multi-locus sequence typing (MLST)</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">autoBIGS</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="0.6.2">iuc.autobigs</requirement>
+    </requirements>
+    <version_command>autoBIGS --version</version_command>
+    <command detect_errors="exit_code">
+        mkdir -p ./input_fasta_files &amp;&amp;
+        #for $fasta_file in $fasta_files
+            ln -s '$fasta_file' './input_fasta_files/${fasta_file.element_identifier}.fasta' &amp;&amp;
+        #end for
+        autoBIGS
+            --operation $operation.operation
+            --database-name '$operation.database_name'
+            --schema-id '$operation.schema_id'
+            --input-directory ./input_fasta_files
+            --output-csv '$output_csv'
+            --log-level debug
+    </command>
+    <inputs>
+        <param argument="--operation" type="select" label="Select Operation">
+            <option value="retrieve_available_schemes_for_database" selected="true">Retrieve Available Schemes For Database</option>
+            <option value="perform_sequence_typing">Perform Sequence Typing</option>
+        </param>
+        <conditional name="operation">
+            <when value="retrieve_available_schemes_for_database"/>
+            <when value="perform_sequence_typing">
+                <param argument="--database-name" type="text" label="Database Name" help="Enter the name of the database you want to query."/>
+                <param argument="--schema-id" type="text" label="Schema ID" help="Enter the schema ID you want to query."/>
+            </when>
+        </conditional>
+        <param argument="--fasta-files" type="data_collection" collection_type="list" format="fasta" label="FASTA Files" help="Input FASTA files containing the sequences you wish to type."/>
+    </inputs>
+    <outputs>
+        <data name="output_csv" format="csv" label="${tool.name} on ${on_string}: Output CSV File"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="operation" value="retrieve_available_schemes_for_database"/>
+            <output name="output_csv" ftype="csv">
+                <assert_contents>
+                    <has_line line="scheme_id,scheme_name,scheme_description,scheme_url"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="operation" value="perform_sequence_typing"/>
+            <param name="database_name" value="ecoli"/>
+            <param name="schema_id" value="952"/>
+            <param name="fasta_files">
+                <collection type="list">
+                    <element name="sequence_1" value="sequence_1.fasta" ftype="fasta"/>
+                    <element name="sequence_2" value="sequence_2.fasta" ftype="fasta"/>
+                </collection>
+            </param>
+            <output name="output_csv" ftype="csv">
+                <assert_contents>
+                    <has_n_lines n="3"/>
+                    <has_line line="sample_id,scheme_id,scheme_name,scheme_description,scheme_url,allele_1,allele_2,allele_3,allele_4,allele_5,allele_6,allele_7,allele_8,allele_9,allele_10,allele_11,allele_12,allele_13,allele_14,allele_15,allele_16,allele_17,allele_18,allele_19,allele_20,allele_21,allele_22,allele_23,allele_24,allele_25,allele_26,allele_27,allele_28,allele_29,allele_30,allele_31,allele_32,allele_33,allele_34,allele_35,allele_36,allele_37,allele_38,allele_39,allele_40,allele_41,allele_42,allele_43,allele_44,allele_45,allele_46,allele_47,allele_48,allele_49,allele_50,allele_51,allele_52,allele_53,allele_54,allele_55,allele_56,allele_57,allele_58,allele_59,allele_60,allele_61,allele_62,allele_63,allele_64,allele_65,allele_66,allele_67,allele_68,allele_69,allele_70,allele_71,allele_72,allele_73,allele_74,allele_75,allele_76,allele_77,allele_78,allele_79,allele_80,allele_81,allele_82,allele_83,allele_84,allele_85,allele_86,allele_87,allele_88,allele_89,allele_90,allele_91,allele_92,allele_93,allele_94,allele_95,allele_96,allele_97,allele_98,allele_99,allele_100,allele_101,allele_102,allele_103,allele_104,allele_105,allele_106,allele_107,allele_108,allele_109,allele_110,allele_111,allele_112,allele_113,allele_114,allele_115,allele_116,allele_117,allele_118,allele_119,allele_120,allele_121,allele_122,allele_123,allele_124,allele_125,allele_126,allele_127,allele_128,allele_129,allele_130,allele_131,allele_132,allele_133,allele_134,allele_135,allele_136,allele_137,allele_138,allele_139,allele_140,allele_141,allele_142,allele_143,allele_144,allele_145,allele_146,allele_147,allele_148,allele_149,allele_150,allele_151,allele_152,allele_153,allele_154,allele_155,allele_156,allele_157,allele_158,allele_159,allele_160,allele_161,allele_162,allele_163,allele_164,allele_165,allele_166,allele_167,allele_168,allele_169,allele_170,allele_171,allele_172,allele_173,allele_174,allele_175,allele_176,allele_177,allele_178,allele_179,allele_180,allele_181,allele_182,allele_183,allele_184,allele_185,allele_186,allele_187,allele_188,allele_189,allele_190,allele_191,allele_192,allele_193,allele_194,allele_195,allele_196,allele_197,allele_198,allele_199,allele_200,allele_201,allele_202,allele_203,allele_204,allele_205,allele_206,allele_207,allele_208,allele_209,allele_210,allele_211,allele_212,allele_213,allele_214,allele_215,allele_216,allele_217,allele_218,allele_219,allele_220,allele_221,allele_222,allele_223,allele_224,allele_225,allele_226,allele_227,allele_228,allele_229,allele_230,allele_231,allele_232,allele_233,allele_234,allele_235,allele_236,allele_237,allele_238,allele_239,allele_240,allele_241,allele_242,allele_243,allele_244,allele_245,allele_246,allele_247,allele_248,allele_249,allele_250,allele_251,allele_252,allele_253,allele_254,allele_255,allele_256,allele_257,allele_258,allele_259,allele_260,allele_261,allele_262,allele_263,allele_264,allele_265,allele_266,allele_267,allele_268,allele_269,allele_270,allele_271,allele_272,allele_273,allele_274,allele_275,allele_276,allele_277,allele_278,allele_279,allele_280,allele_281,allele_282,allele_283,allele_284,allele_285,allele_286,allele_287,allele_288,allele_289,allele_290,allele_291,allele_292,allele_293,allele_294,allele_295,allele_296,allele_297,allele_298,allele_299,allele_300,allele_301,allele_302,allele_303,allele_304,allele_305,allele_306,allele_307,allele_308,allele_309,allele_310,allele_311,allele_312,allele_313,allele_314,allele_315,allele_316,allele_317,allele_318,allele_319,allele_320,allele_321,allele_322,allele_323,allele_324,allele_325,allele_326,allele_327,allele_328,allele_329,allele_330,allele_331,allele_332,allele_333,allele_334,allele_335,allele_336,allele_337,allele_338,allele_339,allele_340,allele_341,allele_342,allele_343,allele_344,allele_345,allele_346,allele_347,allele_348,allele_349,allele_350,allele_351,allele_352,allele_353,allele_354,allele_355,allele_356,allele_357,allele_358,allele_359,allele_360,allele_361,allele_362,allele_363,allele_364,allele_365,allele_366,allele_367,allele_368,allele_369,allele_370,allele_371,allele_372,allele_373,allele_374,allele_375,allele_376,allele_377,allele_378,allele_379,allele_380,allele_381,allele_382,allele_383,allele_384,allele_385,allele_386,allele_387,allele_388,allele_389,allele_390,allele_391,allele_392,allele_393,allele_394,allele_395,allele_396,allele_397,allele_398,allele_399,allele_400,allele_401,allele_402,allele_403,allele_404,allele_405,allele_406,allele_407,allele_408,allele_409,allele_410,allele_411,allele_412,allele_413,allele_414,allele_415,allele_416,allele_417,allele_418,allele_419,allele_420,allele_421,allele_422,allele_423,allele_424,allele_425,allele_426,allele_427,allele_428,allele_429,allele_430,allele_431,allele_432,allele_433,allele_434,allele_435,allele_436,allele_437,allele_438,allele_439,allele_440,allele_441,allele_442,allele_443,allele_444,allele_445,allele_446,allele_447,allele_448,allele_449,allele_450,allele_451,allele_452,allele_453,allele_454,allele_455,allele_456,allele_457,allele_458,allele_459,allele_460,allele_461,allele_462,allele_463,allele_464,allele_465,allele_466,allele_467,allele_468,allele_469,allele_470,allele_471,allele_472,allele_473,allele_474,allele_475,allele_476,allele_477,allele_478,allele_479,allele_480,allele_481,allele_482,allele_483,allele_484,allele_485,allele_486,allele_487,allele_488,allele_489,allele_490,allele_491,allele_492,allele_493,allele_494,allele_495,allele_496,allele_497,allele_498,allele_499,allele_500,allele_501,allele_502,allele_503,allele_504,allele_505,allele_506,allele_507,allele_508,allele_509,allele_510,allele_511,allele_512,allele_513,allele_514,allele_515,allele_516,allele_517,allele_518,allele_519,allele_520,allele_521,allele_522,allele_523,allele_524,allele_525,allele_526,allele_527,allele_528,allele_529,allele_530,allele_531,allele_532,allele_533,allele_534,allele_535,allele_536,allele_537,allele_538,allele_539,allele_540,allele_541,allele_542,allele_543,allele_544,allele_545,allele_546,allele_547,allele_548,allele_549,allele_550,allele_551,allele_552,allele_553,allele_554,allele_555,allele_556,allele_557,allele_558,allele_559,allele_560,allele_561,allele_562,allele_563,allele_564,allele_565,allele_566,allele_567,allele_568,allele_569,allele_570,allele_571,allele_572,allele_573,allele_574,allele_575,allele_576,allele_577,allele_57

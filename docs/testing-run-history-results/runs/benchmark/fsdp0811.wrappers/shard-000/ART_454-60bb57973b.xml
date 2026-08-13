@@ -1,0 +1,145 @@
+<tool id="art_454" name="ART 454" version="4.5.0">
+  <description>Pyrosequencing simulator</description>
+  <xrefs>
+    <xref type="bio.tools">art</xref>
+  </xrefs>
+  <macros />
+  <requirements>
+    <requirement type="package" version="4.5.0">art</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        art_454
+        -i '$input'
+        -o '$output'
+        -l $length
+        -n $number
+        -m $m
+        -s $s
+        -p $p
+        -a $a
+        -r $r
+        -q $q
+        -t $t
+        -c $c
+        -e $e
+        -f $f
+        -g $g
+        -h $h
+        -o $o
+        -d $d
+        -u $u
+        -b $b
+        -y $y
+        -z $z
+        -x $x
+        -k $k
+        -j $j
+        -i '$input'
+        -o '$output'
+        -l $length
+        -n $number
+        -m $m
+        -s $s
+        -p $p
+        -a $a
+        -r $r
+        -q $q
+        -t $t
+        -c $c
+        -e $e
+        -f $f
+        -g $g
+        -h $h
+        -o $o
+        -d $d
+        -u $u
+        -b $b
+        -y $y
+        -z $z
+        -x $x
+        -k $k
+        -j $j
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fasta" label="Input file" />
+    <param name="length" type="integer" value="100" label="Average read length" />
+    <param name="number" type="integer" value="100000" label="Number of reads" />
+    <param name="m" type="integer" value="100" label="Maximum read length" />
+    <param name="s" type="integer" value="100" label="Standard deviation of read length" />
+    <param name="p" type="float" value="0.0" label="Probability of a read being paired" />
+    <param name="a" type="float" value="0.0" label="Probability of a read being a single read" />
+    <param name="r" type="float" value="0.0" label="Probability of a read being a reverse read" />
+    <param name="q" type="float" value="0.0" label="Probability of a read being a forward read" />
+    <param name="t" type="float" value="0.0" label="Probability of a read being a template read" />
+    <param name="c" type="float" value="0.0" label="Probability of a read being a control read" />
+    <param name="e" type="float" value="0.0" label="Probability of a read being a error read" />
+    <param name="f" type="float" value="0.0" label="Probability of a read being a forward read" />
+    <param name="g" type="float" value="0.0" label="Probability of a read being a reverse read" />
+    <param name="h" type="float" value="0.0" label="Probability of a read being a template read" />
+    <param name="o" type="float" value="0.0" label="Probability of a read being a control read" />
+    <param name="d" type="float" value="0.0" label="Probability of a read being a error read" />
+    <param name="u" type="float" value="0.0" label="Probability of a read being a forward read" />
+    <param name="b" type="float" value="0.0" label="Probability of a read being a reverse read" />
+    <param name="y" type="float" value="0.0" label="Probability of a read being a template read" />
+    <param name="z" type="float" value="0.0" label="Probability of a read being a control read" />
+    <param name="x" type="float" value="0.0" label="Probability of a read being a error read" />
+    <param name="k" type="float" value="0.0" label="Probability of a read being a forward read" />
+    <param name="j" type="float" value="0.0" label="Probability of a read being a reverse read" />
+  </inputs>
+  <outputs>
+    <data name="output" format="fastq" label="${tool.name} on ${on_string}: Output" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="art_454_input.fasta" />
+      <param name="length" value="100" />
+      <param name="number" value="100000" />
+      <param name="m" value="100" />
+      <param name="s" value="100" />
+      <param name="p" value="0.0" />
+      <param name="a" value="0.0" />
+      <param name="r" value="0.0" />
+      <param name="q" value="0.0" />
+      <param name="t" value="0.0" />
+      <param name="c" value="0.0" />
+      <param name="e" value="0.0" />
+      <param name="f" value="0.0" />
+      <param name="g" value="0.0" />
+      <param name="h" value="0.0" />
+      <param name="o" value="0.0" />
+      <param name="d" value="0.0" />
+      <param name="u" value="0.0" />
+      <param name="b" value="0.0" />
+      <param name="y" value="0.0" />
+      <param name="z" value="0.0" />
+      <param name="x" value="0.0" />
+      <param name="k" value="0.0" />
+      <param name="j" value="0.0" />
+      <output name="output" file="art_454_output.fastq" ftype="fastq" />
+    </test>
+  </tests>
+  <help>
+Art 454 Pyrosequencing Simulator
+================================
+
+ART_454 is a simulation program to generate sequence read data of Roche 454
+Pyrosequencing sequencers. ART generates reads according to the empirical read
+quality profile and the calibrated error profile of uncall/overcall
+homopolymers from real 454 read data. ART has been using for testing or
+benchmarking a variety of method or tools for next-generation sequencing data
+analysis, including read alignment, de novo assembly, detection of SNP, CNV, or
+other structure variation.
+
+art_454 can generate both single-end and paired-end of 454 sequencing platform.
+Besides for regular genome DNA and cDNA sequencing simulation, art_454 also
+supports amplicon sequencing. The reference sequences can be either DNA or RNA.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btr388</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

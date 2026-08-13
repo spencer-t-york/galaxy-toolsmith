@@ -1,0 +1,7 @@
+<datatypes>
+  <!-- Review these placeholders before installing into a Galaxy instance. -->
+  <datatype extension="hap" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="log" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="map" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="ped" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+</datatypes>

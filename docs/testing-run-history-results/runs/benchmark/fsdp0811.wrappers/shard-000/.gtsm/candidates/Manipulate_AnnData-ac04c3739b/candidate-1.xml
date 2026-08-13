@@ -1,0 +1,259 @@
+<tool id="anndata_manipulate" name="Manipulate AnnData" version="0.1.0" profile="21.05">
+    <description>Concatenate, filter, transpose, rename categories, remove keys, make names unique, flag genes, transform strings to categoricals, split, freeze raw</description>
+    <macros/><requirements>
+        <requirement type="package" version="0.11.4">anndata</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        python3 '$__tool_directory__/manipulate.py'
+        --input '$input'
+        --output '$output'
+        --method '$method'
+        #if $method == 'concatenate':
+            --input2 '$input2'
+            --join '$join'
+        #end if
+        #if $method == 'obs_names_make_unique':
+            --obs_names_make_unique
+        #end if
+        #if $method == 'var_names_make_unique':
+            --var_names_make_unique
+        #end if
+        #if $method == 'rename_categories':
+            --key '$key'
+            --categories '$categories'
+        #end if
+        #if $method == 'remove_keys':
+            --keys '$keys'
+            --keys_type '$keys_type'
+        #end if
+        #if $method == 'flag_genes':
+            --pattern '$pattern'
+        #end if
+        #if $method == 'strings_to_categoricals':
+            --strings_to_categoricals
+        #end if
+        #if $method == 'transpose':
+            --transpose
+        #end if
+        #if $method == 'add_annotation':
+            --annotation_type '$annotation_type'
+            --annotation_key '$annotation_key'
+            --annotation_value '$annotation_value'
+        #end if
+        #if $method == 'split':
+            --split_key '$split_key'
+        #end if
+        #if $method == 'filter':
+            --axis '$axis'
+            --index '$index'
+            --key '$key'
+            --value '$value'
+        #end if
+        #if $method == 'freeze':
+            --freeze
+        #end if
+    </command>
+    <inputs>
+        <param name="input" type="data" format="h5ad" label="Input AnnData dataset"/>
+        <param name="method" type="select" label="Method">
+            <option value="concatenate">Concatenate</option>
+            <option value="obs_names_make_unique">Obs names make unique</option>
+            <option value="var_names_make_unique">Var names make unique</option>
+            <option value="rename_categories">Rename categories</option>
+            <option value="remove_keys">Remove keys</option>
+            <option value="flag_genes">Flag genes</option>
+            <option value="strings_to_categoricals">Strings to categoricals</option>
+            <option value="transpose">Transpose</option>
+            <option value="add_annotation">Add annotation</option>
+            <option value="split">Split</option>
+            <option value="filter">Filter</option>
+            <option value="freeze">Freeze</option>
+        </param>
+        <param name="input2" type="data" format="h5ad" label="Input AnnData dataset 2" optional="true"/>
+        <param name="join" type="select" label="Join" optional="true">
+            <option value="inner">Inner</option>
+            <option value="outer">Outer</option>
+        </param>
+        <param name="key" type="text" label="Key" optional="true"/>
+        <param name="categories" type="text" label="Categories" optional="true"/>
+        <param name="keys" type="text" label="Keys" optional="true"/>
+        <param name="keys_type" type="select" label="Keys type" optional="true">
+            <option value="obs">Obs</option>
+            <option value="var">Var</option>
+        </param>
+        <param name="pattern" type="text" label="Pattern" optional="true"/>
+        <param name="annotation_type" type="select" label="Annotation type" optional="true">
+            <option value="obs">Obs</option>
+            <option value="var">Var</option>
+        </param>
+        <param name="annotation_key" type="text" label="Annotation key" optional="true"/>
+        <param name="annotation_value" type="text" label="Annotation value" optional="true"/>
+        <param name="split_key" type="text" label="Split key" optional="true"/>
+        <param name="axis" type="select" label="Axis" optional="true">
+            <option value="obs">Obs</option>
+            <option value="var">Var</option>
+        </param>
+        <param name="value" type="text" label="Value" optional="true"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="h5ad" label="${tool.name} on ${on_string}: ${method}"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="concatenate"/>
+            <param name="input2" value="input.h5ad"/>
+            <param name="join" value="inner"/>
+            <output name="output" file="concatenate.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="obs_names_make_unique"/>
+            <output name="output" file="obs_names_make_unique.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="var_names_make_unique"/>
+            <output name="output" file="var_names_make_unique.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="rename_categories"/>
+            <param name="key" value="clusters"/>
+            <param name="categories" value="0,1,2"/>
+            <output name="output" file="rename_categories.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="remove_keys"/>
+            <param name="keys" value="clusters"/>
+            <param name="keys_type" value="obs"/>
+            <output name="output" file="remove_keys.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="flag_genes"/>
+            <param name="pattern" value="MT-"/>
+            <output name="output" file="flag_genes.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="strings_to_categoricals"/>
+            <output name="output" file="strings_to_categoricals.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="transpose"/>
+            <output name="output" file="transpose.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="add_annotation"/>
+            <param name="annotation_type" value="obs"/>
+            <param name="annotation_key" value="clusters"/>
+            <param name="annotation_value" value="0"/>
+            <output name="output" file="add_annotation.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="split"/>
+            <param name="split_key" value="clusters"/>
+            <output name="output" file="split.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="filter"/>
+            <param name="axis" value="obs"/>
+            <param name="key" value="clusters"/>
+            <param name="value" value="0"/>
+            <output name="output" file="filter.h5ad" compare="sim_size"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="freeze"/>
+            <output name="output" file="freeze.h5ad" compare="sim_size"/>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+This tool takes an AnnData dataset, manipulates it and returns it.
+
+The possible manipulations are:
+
+- Concatenate along the observations axis (`concatenate method &lt;https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.concatenate.html&gt;`__)
+
+    The `uns`, `varm` and `obsm` attributes are ignored.
+
+    If you use `join='outer'` this fills 0s for sparse data when variables are absent in a batch. Use this with care. Dense data is filled with `NaN`
+
+- Makes the obs index unique by appending '1', '2', etc (`obs_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.obs_names_make_unique.html&gt;`__)
+
+    The first occurrence of a non-unique value is ignored.
+
+- Makes the var index unique by appending '1', '2', etc (`var_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.var_names_make_unique.html&gt;`__)
+
+    The first occurrence of a non-unique value is ignored.
+
+- Rename categories of annotation `key` in `obs`, `var` and `uns` (`rename_categories method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.rename_categories.html&gt;`__)
+
+    Besides calling `self.obs[key].cat.categories = categories` - similar for `var` - this also renames categories in unstructured annotation that uses the categorical annotation `key`
+
+- Remove keys from obs or var annotations
+
+    Helps in cleaning up andata with many annotations. For example, helps in removing qc metrics calculated during the preprocesing or already existing cluster annotations.
+
+- Flag genes start with a pattern
+
+    Useful for flagging the mitochondrial or ribosomal protein genes
+
+- Transform string annotations to categoricals (`strings_to_categoricals method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.strings_to_categoricals.html&gt;`__)
+
+    Only affects string annotations that lead to less categories than the total number of observations.
+
+- Transpose the data matrix, leaving observations and variables interchanged (`transpose method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.transpose.html&gt;`__)
+
+    Data matrix is transposed, observations and variables are interchanged.
+
+- Add annotation for variables or
+
+- Split the AnnData object into multiple AnnData objects based on the values of a given obs key
+
+    For example, helps in splitting an anndata objects based on cluster annotation. This function generates a collection with a number of elements equal to the number of categories in the input obs key.
+
+- Filter data variables or observations, by index or key
+
+- Freeze the current state into the 'raw' attribute
+
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy &lt;https://github.com/theislab/scanpy&gt;`__, for which it was initially developed.
+
+AnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.
+
+.. image:: https://falexwolf.de/img/scanpy/anndata.svg
+
+
+AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics
+of statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics
+and machine learning packages in Python (statsmodels, scikit-learn).
+
+More details on the `AnnData documentation 
+&lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html&gt;`__
+
+
+**Loom data**
+
+Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+
+.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png
+
+
+Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes
+and cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).
+    </help>
+    <citations>
+        <citation type="bibtex">
+            @misc{githubanndata,
+            author = {Theis, F. and Wolf, F.A. and Hafemeister, C. and Buettner, F. and Pratanwanich, N. and Saeys, Y. and Stoeckius, M. and Hie, B. and Schiebinger, G. and Shifaz, U. and Luebbert, C. and Angerer, P. and Djebbar, I. and Reini, J. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and Bittner, R. and Luebbert, C. and Angerer, P. and

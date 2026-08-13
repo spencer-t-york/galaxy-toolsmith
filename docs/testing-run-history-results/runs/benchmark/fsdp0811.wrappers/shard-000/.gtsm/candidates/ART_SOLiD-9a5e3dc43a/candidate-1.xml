@@ -1,0 +1,92 @@
+<tool id="art_solid" name="ART SOLiD" version="20160715+galaxy0" profile="21.05">
+  <description>Simulate SOLiD sequencing reads</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">art</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="20160715">art</requirement>
+  </requirements>
+  <version_command>echo "20160715"</version_command>
+  <command detect_errors="exit_code">
+        art_SOLiD
+        -i '$input'
+        -o output
+        -l $length
+        -n $number
+        -m $mismatches
+        -s $substitution
+        -i $insertion
+        -d $deletion
+        -p $pair
+        -a $amplicon
+        -r $random
+        -f $fastq
+        -q $quality
+        -t $threads
+        #if $profile:
+            -e '$profile'
+        #end if
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fasta" label="Input reference sequence" />
+    <param name="length" type="integer" value="50" label="Read length" />
+    <param name="number" type="integer" value="1000000" label="Number of reads" />
+    <param name="mismatches" type="integer" value="0" label="Number of mismatches" />
+    <param name="substitution" type="integer" value="0" label="Number of substitutions" />
+    <param name="insertion" type="integer" value="0" label="Number of insertions" />
+    <param name="deletion" type="integer" value="0" label="Number of deletions" />
+    <param name="pair" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Generate paired-end reads" />
+    <param name="amplicon" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Generate amplicon reads" />
+    <param name="random" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Generate random reads" />
+    <param name="fastq" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Output in fastq format" />
+    <param name="quality" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Output quality scores" />
+    <param name="threads" type="integer" value="1" label="Number of threads" />
+    <param name="profile" type="data" format="txt" optional="true" label="Error profile" />
+  </inputs>
+  <outputs>
+    <data name="output" format="fastq" from_work_dir="output.fastq" label="${tool.name} on ${on_string}: SOLiD reads" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="art_solid.fa" />
+      <param name="length" value="50" />
+      <param name="number" value="1000000" />
+      <param name="mismatches" value="0" />
+      <param name="substitution" value="0" />
+      <param name="insertion" value="0" />
+      <param name="deletion" value="0" />
+      <param name="pair" value="1" />
+      <param name="amplicon" value="0" />
+      <param name="random" value="0" />
+      <param name="fastq" value="1" />
+      <param name="quality" value="1" />
+      <param name="threads" value="1" />
+      <output name="output" file="art_solid.fastq" ftype="fastq" lines_diff="4" />
+    </test>
+  </tests>
+  <help>
+Art SOLiD Simulator
+===================
+
+ART_SOLiD  is a simulation program to generate sequence read data of SOLiD
+sequencing reads. ART generates reads according to a SOLiD read error profile.
+The built-in error profile is an empiricial error profile summarized from large
+SOLiD sequencing data. ART has been using for testing or benchmarking a variety
+of method or tools for next-generation sequencing data analysis, including read
+alignment, de novo assembly, detection of SNP, CNV, or other structure
+variation.
+
+art_SOLiD can generate both single-end, matepair, and paired-end of SOLiD
+sequencing platform. art_SOLiD also support amplicon sequencing simulation with
+RNA references.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btr303</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

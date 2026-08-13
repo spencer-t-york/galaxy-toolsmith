@@ -1,0 +1,121 @@
+<tool> tag, including id, name, version, and profile.
+
+2. **Description**: A brief description of what the tool does.
+
+3. **Requirements**: Since it's a Bioconductor tool, I'll include a requirement for the R package AnnotationDbi.
+
+4. **Command**: The command needs to execute an R script. The script will read the input file, process the annotations, and write the output. I'll use a <configfile> to handle the R script, which will include parameters for the input file, header, organism, and output columns.
+
+5. **Inputs**: The main input is the tab-delimited file. There's a checkbox for the header. The organism is a select option with the supported species. The output columns are checkboxes for each available column.
+
+6. **Outputs**: The output is a tabular file with the annotated data.
+
+7. **Tests**: Include a test case with an input file and expected output. The test will check for specific text in the output file.
+
+8. **Help**: The help section will include the provided help text, formatted as markdown.
+
+I need to ensure that the command is concise and doesn't exceed 35 lines. The help section should be under 18 lines. I'll structure the inputs with the necessary parameters, using select for the organism and checkboxes for the output columns.
+
+Potential issues to consider: Ensuring that the R script correctly handles all parameters, especially the output columns. Also, making sure that the tool doesn't reference external files unless necessary.
+
+I'll structure the command to use a configfile for the R script, which will handle the logic of reading inputs, processing, and writing outputs. This keeps the command section clean and within the line limit.
+
+For the inputs, I'll include a <param> for the input file, a checkbox for the header, a select for the organism, and checkboxes for each output column. The output is a single file in tabular format.
+
+In the tests, I'll provide a simple input example and check for the presence of expected columns in the output.
+
+Finally, the help section will be a concise markdown that explains the tool's purpose, inputs, and outputs, based on the provided help text.
+
+Putting it all together, I'll ensure the XML is self-contained, under 120 lines, and adheres to all the specified constraints.
+</think>
+
+```xml
+<tool id="annotatemyids" name="Annotate My IDs" version="0.1.0" profile="25.0">
+    <description>Annotation tool using Bioconductor packages for mapping gene identifiers</description>
+    <requirements>
+        <requirement type="package">AnnotationDbi</requirement>
+    </requirements>
+    <command detect_errors="aggressive"><![CDATA[
+        Rscript --vanilla <<__RSCRIPT__
+        library(AnnotationDbi)
+        args <- commandArgs(trailingOnly=TRUE)
+        input_file <- args[1]
+        output_file <- args[2]
+        has_header <- args[3] == "true"
+        organism <- args[4]
+        columns <- unlist(strsplit(args[5], ","))
+        
+        # Load appropriate organism database
+        db <- getAnnotationDb(organism)
+        
+        # Read input
+        input_data <- read.delim(input_file, header=has_header, stringsAsFactors=FALSE)
+        ids <- input_data[,1]
+        
+        # Get annotations
+        annotations <- select(db, keys=ids, columns=columns, keytype="ENSEMBL")
+        
+        # Write output
+        write.table(annotations, file=output_file, sep="\t", row.names=FALSE, col.names=TRUE)
+        __RSCRIPT__
+    ]]></command>
+    <inputs>
+        <param name="input_file" type="data" format="tabular" label="Input file" />
+        <param name="has_header" type="boolean" label="File has header" />
+        <param name="organism" type="select" label="Organism">
+            <option value="human">Human</option>
+            <option value="mouse">Mouse</option>
+            <option value="rat">Rat</option>
+            <option value="fruitfly">Fruit Fly</option>
+            <option value="zebrafish">Zebrafish</option>
+        </param>
+        <param name="columns" type="text" label="Output columns" help="Comma-separated list of columns to include" />
+    </inputs>
+    <outputs>
+        <data name="output_file" format="tabular" />
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="input_file" value="test_input.tab" />
+            <param name="has_header" value="true" />
+            <param name="organism" value="human" />
+            <param name="columns" value="ENSEMBL,ENTREZID,SYMBOL" />
+            <output name="output_file">
+                <has_text>ENSEMBL</has_text>
+                <has_text>ENTREZID</has_text>
+                <has_text>SYMBOL</has_text>
+            </output>
+        </test>
+    </tests>
+    <help format="markdown"><![CDATA[
+        # Annotate My IDs
+        
+        This tool retrieves annotations for a set of gene identifiers using Bioconductor annotation packages.
+        
+        ## Inputs
+        
+        - **Input file**: Tab-delimited file with identifiers in the first column.
+        - **Has header**: Check if the input file includes a header row.
+        - **Organism**: Select the organism for annotation.
+        - **Output columns**: Specify columns to include in the output (e.g., ENSEMBL, ENTREZID, SYMBOL).
+        
+        ## Outputs
+        
+        - **Output file**: Tab-delimited file with annotated data.
+        
+        ## Example
+        
+        Input:
+        ```
+        ENSG00000091831
+        ENSG00000082175
+        ```
+        
+        Output:
+        ```
+        ENSEMBL    ENTREZID  SYMBOL
+        ENSG00000091831  2099        ESR1
+        ENSG00000082175  5241        PGR
+        ```
+    ]]></help>
+</tool>

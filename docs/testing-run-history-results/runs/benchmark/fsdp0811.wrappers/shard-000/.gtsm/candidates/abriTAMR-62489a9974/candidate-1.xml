@@ -1,0 +1,50 @@
+<tool id="abritamr" name="abriTAMR" version="1.3.0+galaxy0" profile="21.05">
+  <description>Antimicrobial resistance gene detection</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">abritamr</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.3.0">abritamr</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        abritamr run
+        --input '$input'
+        --output '$output'
+        --sop '$sop'
+        --threads \${GALAXY_SLOTS:-1}
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fasta" label="Input sequence(s)" />
+    <param name="sop" type="select" label="Standard operating procedure">
+      <option value="general">General</option>
+      <option value="plus">Plus</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: abriTAMR output" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="test.fasta" />
+      <param name="sop" value="general" />
+      <output name="output" file="general_test.tabular" />
+    </test>
+  </tests>
+  <help>
+*Taming the AMR beast*
+
+abriTAMR is an AMR gene detection pipeline that runs AMRFinderPlus on a single (or list ) of given isolates and collates the results into a table, separating genes identified into functionally relevant groups. abriTAMR is accredited by NATA for use in reporting the presence of reportable AMR genes in Victoria Australia.
+    + Acquired resistance mechanims in the form of point mutations (restricted to subset of species)
+    + Streamlined output.
+    + Presence of virulence factors
+    </help>
+  <citations>
+    <citation type="doi">10.1093/genevo/gov010</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

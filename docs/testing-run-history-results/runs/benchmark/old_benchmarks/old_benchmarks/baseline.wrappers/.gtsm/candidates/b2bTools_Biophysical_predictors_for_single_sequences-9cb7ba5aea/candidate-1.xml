@@ -1,0 +1,62 @@
+<tool id="b2btools_biophysical_predictors_for_single_sequences" name="b2bTools: Biophysical predictors for single sequences" version="0.1.0" profile="25.0">
+  <description>Biophysical predictors for single protein sequences</description>
+  <requirements>
+    <requirement type="package" version="3.0.5">b2btools</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        b2btools --predictors dynamine,disomine,effectmine,agmata --input $input_fasta --output_json $output_json --output_tsv $output_tsv --plot $plot --plot_all $plot_all
+    </command>
+  <inputs>
+    <param name="input_fasta" type="data" format="fasta" label="Input FASTA File" help="Valid FASTA file containing at least one sequence of amino acids." />
+    <param name="predictors" type="select" multiple="true" label="Select Predictors" help="Choose the biophysical predictors to run.">
+      <option value="dynamine">DynaMine</option>
+      <option value="disomine">DisoMine</option>
+      <option value="effectmine">EFoldMine</option>
+      <option value="agmata">Agmata</option>
+    </param>
+    <param name="plot" type="boolean" truevalue="--plot" falsevalue="" label="Plot predicted features by sequence" help="Check to plot predicted features for each sequence in separate files." />
+    <param name="plot_all" type="boolean" truevalue="--plot_all" falsevalue="" label="Plot all predicted features together" help="Check to plot all predicted features for all sequences in a single file." />
+  </inputs>
+  <outputs>
+    <data name="output_json" format="json" label="Predicted Features JSON" />
+    <data name="output_tsv" format="tabular" label="Predicted Features TSV" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="input_fasta" value="sample_input.fa" ftype="fasta" />
+      <param name="predictors" value="dynamine" />
+      <param name="plot" value="false" />
+      <param name="plot_all" value="false" />
+      <output name="output_json" file="expected_output.json" />
+      <output name="output_tsv" file="expected_output.tsv" />
+    </test>
+  </tests>
+  <help format="markdown">
+# B2BTools: Single Sequence Analysis
+
+## Description
+The current Galaxy Tool is the implementation of the Bio2Byte tools for single protein sequence analysis. It receives amino-acid sequences in FASTA format and returns biophysical predictions based on the selected predictors.
+
+## Inputs
+- **Input FASTA File**: Valid FASTA file containing at least one sequence of amino acids.
+- **Select Predictors**: Choose the biophysical predictors to run.
+- **Plot predicted features by sequence**: Check to plot predicted features for each sequence in separate files.
+- **Plot all predicted features together**: Check to plot all predicted features for all sequences in a single file.
+
+## Outputs
+- **Predicted Features JSON**: Contains predicted features for each sequence in JSON format.
+- **Predicted Features TSV**: Contains predicted features for each sequence in tabular format.
+
+## Example
+Checking **Plot** parameter implies that predicted features will be plotted in different files by input sequence. 11 input sequences x 9 predicted features = 99 plots in PNG format.
+Checking **Plot all** parameter implies that all the input sequences will be plotted together in order to compare predicted features. 9 predicted features = 9 plots in PNG format.
+
+</help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

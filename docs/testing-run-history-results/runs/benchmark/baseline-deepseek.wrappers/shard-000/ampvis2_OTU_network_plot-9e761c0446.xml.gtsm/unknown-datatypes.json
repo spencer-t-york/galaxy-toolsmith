@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "RData"
+  ],
+  "records": [
+    {
+      "datatype": "RData",
+      "tool_name": "ampvis2 OTU network plot",
+      "tool_id": "ampvis2_otu_network_plot",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/ampvis2_OTU_network_plot-9e761c0446.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

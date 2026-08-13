@@ -1,0 +1,32 @@
+<tool id="ampvis2_export_fasta" name="ampvis2 export fasta" version="0.1.0" profile="25.0">
+  <description>Export sequences from an ampvis2 object and optionally add taxonomy to the fasta header lines.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=1.0">iuc/ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        amp_export_fasta --input $input --output $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="AmpVis2 RDS Dataset" />
+    <param name="output" type="data" format="fasta" label="Output FASTA File" />
+  </inputs>
+  <outputs>
+    <data name="output" format="fasta" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="example.rds" />
+      <output name="output" file="example.fasta" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Export sequences from an ampvis2 object and optionally add taxonomy to the fasta header lines.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

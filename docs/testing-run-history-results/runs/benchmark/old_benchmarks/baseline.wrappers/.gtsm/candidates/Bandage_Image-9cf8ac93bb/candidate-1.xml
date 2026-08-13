@@ -1,0 +1,39 @@
+<tool id="bandage_image" name="Bandage Image" version="0.1.0" profile="25.0">
+  <description>Generates an image file of the graph visualisation using Bandage-NG.</description>
+  <requirements>
+    <requirement type="package" version="2022.09">bandage-ng</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Bandage image --output $output $input_gfa
+    </command>
+  <inputs>
+    <param name="input_gfa" type="data" format="gfa" label="Input GFA File" />
+    <param name="output" type="text" value="graph.png" label="Output Image File Name" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_gfa" value="sample.gfa" ftype="gfa" />
+      <param name="output" value="sample_graph.png" />
+      <assert_contents filename="sample_graph.png" has_text="Graph visualization" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Generates an image file of the graph visualisation using Bandage-NG.
+        
+        **Inputs**
+        - Input GFA File: A Graphical Fragment Assembly (GFA) file.
+        
+        **Outputs**
+        - Output Image File: An image file representing the graph visualization.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

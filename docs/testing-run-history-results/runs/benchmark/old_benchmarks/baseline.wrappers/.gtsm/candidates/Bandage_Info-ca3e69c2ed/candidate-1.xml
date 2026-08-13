@@ -1,0 +1,31 @@
+<tool id="bandage_info" name="Bandage Info" version="0.1.0" profile="25.0">
+  <description>Outputs statistics about a GFA graph.</description>
+  <requirements>
+    <requirement type="package" version="2022.09">bandage-ng</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Bandage info $input_gfa &gt; $output_html
+    </command>
+  <inputs>
+    <param name="input_gfa" type="data" format="gfa" label="Input GFA File" />
+  </inputs>
+  <outputs>
+    <data name="output_html" format="html" label="Graph Statistics" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_gfa" value="sample.gfa" />
+      <output name="output_html" file="sample_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Outputs statistics about a GFA graph.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

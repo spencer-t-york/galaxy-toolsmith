@@ -1,0 +1,96 @@
+<tool>, <description>, <requirements>, <command>, <inputs>, <outputs>, <tests>, and <help>. 
+
+The tool id is given as "addName", so I'll set the id attribute accordingly. The name should be descriptive, maybe "Add input name as column". The version can be 0.1.0, and the profile should be 25.0 as per the instructions.
+
+For the description, I'll keep it concise, something like "Adds a new column with the input file name to a tabular dataset."
+
+Next, the requirements. Since the tool is simple and doesn't require any specific software beyond Python, I'll include a <requirement> for Python. But wait, the user didn't specify any particular Python version, so maybe it's better to omit it unless necessary. Alternatively, I can include a generic Python requirement.
+
+Moving on to the command section. The tool needs to process the input file and add a new column. I'll use a Python script here. The command should take the input file, read its contents, add the filename as a new column, and write the output. 
+
+I'll structure the command using a <command> tag with detect_errors set to aggressive. Inside, I'll use a <when> condition to check if the input is tabular. The script will read each line, split by tabs, append the filename, and write each line to the output.
+
+For inputs, I need an input dataset. I'll define a <param> of type "data" with the name "input" and format "tabular". The label should be clear, like "Input dataset".
+
+Outputs will include a single file, so I'll define an <output> with name "output" and format "tabular".
+
+Testing is important. I'll create a test case where the input is a small tabular file, and the output should have an additional column with the filename. I'll use <has_text> assertions to check for the presence of the new column and some expected data.
+
+The help section should guide the user. I'll explain what the tool does, mention that the input should be tabular, and provide an example. I'll also include a tip about converting non-tab delimited data.
+
+I need to ensure the XML is self-contained, so I'll include the Python script directly in the command using a <script> tag. This way, there's no need for external files.
+
+I should also consider the output datatype. Since the output is tabular, I'll set the format to "tabular".
+
+Putting it all together, I'll structure the XML with all these elements, making sure it's under 120 lines, the command is concise, and the help is clear and within the line limit.
+
+I think that covers all the necessary parts. Now, I'll draft the XML, ensuring each section is correctly placed and all requirements are met.
+</think>
+
+```xml
+<tool id="addName" name="Add input name as column" version="0.1.0" profile="25.0">
+    <description>Adds a new column with the input file name to a tabular dataset</description>
+    <requirements>
+        <requirement type="package">python</requirement>
+    </requirements>
+    <command detect_errors="aggressive"><![CDATA[
+        python <<__END__
+        import sys
+        from galaxy.datatypes.util import get_file_name
+
+        input_path = sys.argv[1]
+        output_path = sys.argv[2]
+        file_name = get_file_name(input_path)
+
+        with open(input_path, 'r') as infile, open(output_path, 'w') as outfile:
+            for line in infile:
+                parts = line.strip().split('\t')
+                parts.append(file_name)
+                outfile.write('\t'.join(parts) + '\n')
+        __END__
+    ]]></command>
+    <inputs>
+        <param name="input" type="data" format="tabular" label="Input dataset"/>
+    </inputs>
+    <outputs>
+        <output name="output" format="tabular"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="input">
+                <file name="test_input.txt">a\tb\tc</file>
+            </param>
+            <output name="output">
+                <has_text>test_input.txt</has_text>
+                <has_text>a\tb\tc\ttest_input.txt</has_text>
+            </output>
+        </test>
+    </tests>
+    <help format="markdown"><![CDATA[
+        # Add input name as column
+
+        This tool adds a new column containing the input file name to a tabular dataset.
+
+        ## Input
+        - **Input dataset**: Tabular dataset to which the file name column will be added
+
+        ## Output
+        - Tabular dataset with an additional column containing the input file name
+
+        ## Example
+
+        Input:
+        ```
+        a   b   c
+        ```
+
+        Output:
+        ```
+        a   b   c   input_file.txt
+        ```
+
+        ## Notes
+        - The input dataset must be in tabular format
+        - The file name is taken from the history item name
+    ]]></help>
+</tool>

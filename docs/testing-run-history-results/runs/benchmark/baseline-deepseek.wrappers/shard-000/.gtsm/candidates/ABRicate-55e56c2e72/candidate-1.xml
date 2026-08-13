@@ -1,0 +1,55 @@
+<tool id="abricate" name="ABRicate" version="0.1.0" profile="25.0">
+  <description>Screen for antibiotic resistance genes in FASTA or GenBank files</description>
+  <requirements>
+    <requirement type="package">abricate=1.4.0</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abricate $input1 &gt; $output1
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="fasta,genbank" label="Input sequence file" help="Provide a FASTA or GenBank formatted file containing contigs or sequences to analyze." />
+  </inputs>
+  <outputs>
+    <data name="output1" format="tabular" label="ABRicate results" description="Tab-separated output containing antibiotic resistance gene screening results" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="test.fna" />
+      <output name="output1">
+        <has_text regex="^#FILE\s+SEQUENCE\s+START\s+END\s+GENE" />
+        <has_text regex="^.*mecA_15.*" />
+        <has_text regex="^.*resfinder.*" />
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ABRicate: Antibiotic Resistance Gene Screening
+
+        **What it does**
+        ABRicate screens DNA sequences for antibiotic resistance genes using a collection of specialized databases. It supports both FASTA and GenBank input formats.
+
+        **Output**
+        The tool produces a tab-separated file with the following columns:
+        - FILE: Source filename
+        - SEQUENCE: Sequence identifier
+        - START/END: Gene coordinates
+        - GENE: Resistance gene identifier
+        - COVERAGE: Alignment coverage
+        - %COVERAGE/%IDENTITY: Coverage and identity percentages
+        - DATABASE: Source database
+        - ACCESSION: Gene accession number
+
+        **Example Output**
+        ```
+        #FILE     SEQUENCE     START   END     GENE     COVERAGE     COVERAGE_MAP     GAPS  %COVERAGE  %IDENTITY  DATABASE   ACCESSION
+        test.fna  NC_017338.1  39177   41186   mecA_15  1-2010/2010  ===============  0/0   100.00     100.000    resfinder  AB505628
+        ```
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

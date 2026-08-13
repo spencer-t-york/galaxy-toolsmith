@@ -1,0 +1,15 @@
+timestamp	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	token_p99
+2026-07-31T17:15:49Z	65536	all-raw	192000	512	deepspeed-zero3	failed	84750
+2026-07-31T17:37:12Z	65536	all-filtered	192000	512	deepspeed-zero3	failed	85356
+2026-07-31T18:10:31Z	32768	all-raw	96000	256	deepspeed-zero3	failed	58804
+2026-07-31T18:32:22Z	32768	all-filtered	96000	256	deepspeed-zero3	failed	59410
+2026-07-31T19:05:40Z	16384	all-raw	36000	128	deepspeed-zero3	failed	42588
+2026-07-31T19:26:35Z	16384	all-filtered	36000	128	deepspeed-zero3	failed	43194
+2026-07-31T19:59:53Z	12288	all-raw	24000	96	deepspeed-zero3	failed	39345
+2026-07-31T20:21:06Z	12288	all-filtered	24000	96	deepspeed-zero3	failed	39950
+2026-07-31T20:54:11Z	8192	all-raw	12000	64	deepspeed-zero3	failed	36101
+2026-07-31T21:15:24Z	8192	all-filtered	12000	64	deepspeed-zero3	failed	36707
+2026-07-31T21:48:26Z	4096	all-raw	6000	32	deepspeed-zero3	failed	34480
+2026-07-31T22:09:26Z	4096	all-filtered	6000	32	deepspeed-zero3	failed	35085
+2026-07-31T22:42:33Z	2048	all-raw	3000	16	deepspeed-zero3	failed	33669
+2026-07-31T23:05:44Z	2048	all-filtered	3000	16	deepspeed-zero3	failed	34275

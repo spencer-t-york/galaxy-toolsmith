@@ -1,0 +1,38 @@
+<tool id="bayescan" name="BayeScan" version="2.1.0" profile="25.0">
+  <description>Identifies candidate loci under natural selection from genetic data.</description>
+  <requirements>
+    <requirement type="package" version="2.1">bayescan</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        bayescan2 $input_file -n $num_loci -s $num_snp
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="txt" label="BayeScan input file" />
+    <param name="num_loci" type="integer" value="10" label="Number of loci" />
+    <param name="num_snp" type="integer" value="100" label="Number of SNPs" />
+  </inputs>
+  <outputs>
+    <data name="output_log" format="txt" label="BayeScan log" />
+    <data name="output_results" format="tabular" label="BayeScan results" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="input_file" value="test_input.txt" />
+      <param name="num_loci" value="5" />
+      <param name="num_snp" value="50" />
+      <output name="output_log" file="test_output.log" />
+      <output name="output_results" file="test_output.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+        BayeScan identifies candidate loci under natural selection from genetic data.
+        For more details, see the [BayeScan manual](http://cmpg.unibe.ch/software/BayeScan/files/BayeScan2.1_manual.pdf).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

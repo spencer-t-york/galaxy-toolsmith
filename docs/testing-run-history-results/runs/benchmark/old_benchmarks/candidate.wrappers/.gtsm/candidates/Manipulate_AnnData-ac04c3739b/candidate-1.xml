@@ -1,0 +1,50 @@
+<tool id="manipulate_anndata" name="Manipulate AnnData" version="0.1.0" profile="25.0">
+  <description>Manipulate AnnData dataset</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+python -m anndata manipulate $input_file --method $method --output $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="h5ad" label="Input AnnData file" />
+    <param name="method" type="select" label="Method">
+      <option value="concatenate">Concatenate along the observations axis</option>
+      <option value="make_unique_obs">Makes the obs index unique</option>
+      <option value="make_unique_var">Makes the var index unique</option>
+      <option value="rename_categories">Rename categories of annotation</option>
+      <option value="remove_keys">Remove keys from obs or var annotations</option>
+      <option value="flag_genes">Flag genes start with a pattern</option>
+      <option value="strings_to_categoricals">Transform string annotations to categoricals</option>
+      <option value="transpose">Transpose the data matrix</option>
+      <option value="add_annotation">Add annotation for variables</option>
+      <option value="split_by_key">Split the AnnData object into multiple AnnData objects</option>
+      <option value="filter_data">Filter data variables or observations</option>
+      <option value="freeze_state">Freeze the current state into the 'raw' attribute</option>
+    </param>
+    <param name="output_file" type="data" format="h5ad" label="Output AnnData file" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="h5ad" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample.h5ad" />
+      <param name="method" value="concatenate" />
+      <param name="output_file" value="output_concatenated.h5ad" />
+      <assert_contents>
+        <has_text filename="output_concatenated.h5ad" substring="concatenated" />
+      </assert_contents>
+    </test>
+  </tests>
+  <help format="markdown">
+This tool takes an AnnData dataset, manipulates it according to the selected method, and returns the modified dataset.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

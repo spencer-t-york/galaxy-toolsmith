@@ -1,0 +1,52 @@
+<tool id="ampvis2_merge_ampvis2_data_sets" name="ampvis2 merge ampvis2 data sets" version="0.1.0" profile="25.0">
+  <description>Merge ampvis2 data sets into a single dataset</description>
+  <requirements>
+    <requirement type="package">ampvis2</requirement>
+    <requirement type="package">r-base</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla $(which amp_merge_ampvis2) \
+            --input1 $input1 \
+            --input2 $input2 \
+            --output $output
+    </command>
+  <inputs>
+    <repeat name="inputs" min="1" max="100">
+      <data format="rds" name="input" label="Input ampvis2 dataset" />
+    </repeat>
+  </inputs>
+  <outputs>
+    <data format="rds" name="output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="inputs">
+        <param name="input" value="test1.rds" />
+        <param name="input" value="test2.rds" />
+      </param>
+      <output name="output">
+        <has_text>^Merged ampvis2 dataset</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # What it does
+        Merge any number of ampvis2 data sets into a single data set.
+
+        # Input
+        One or more ampvis2 RDS datasets obtained from previous ampvis2 tools.
+
+        # Details
+        Ensure all datasets use the same taxonomy database and OTU IDs correspond to the same sequences. Phylogenetic trees are not merged.
+
+        # Output
+        A merged ampvis2 RDS dataset
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

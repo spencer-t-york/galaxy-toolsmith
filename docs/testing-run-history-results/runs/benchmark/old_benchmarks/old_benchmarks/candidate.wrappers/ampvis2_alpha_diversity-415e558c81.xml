@@ -1,0 +1,34 @@
+<tool id="ampvis2_alpha_diversity" name="ampvis2 alpha diversity" version="0.1.0" profile="25.0">
+  <description>Calculate alpha-diversity indices for each sample and combine with metadata.</description>
+  <requirements>
+    <requirement type="package" version="1.0">R</requirement>
+    <requirement type="package" version="1.0">vegan</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e "library(ampvis2); library(vegan); data &lt;- readRDS('$input'); result &lt;- amp_alpha_diversity(data, rarefy = $rarefy); write.table(result, file='$output', sep='\t', quote=FALSE, row.names=TRUE)"
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="rarefy" type="integer" value="100" min="1" label="Rarefaction Size" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="Alpha-Diversity Results" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="example.rds" />
+      <param name="rarefy" value="50" />
+      <output name="output" file="alpha_diversity_results.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Calculates alpha-diversity indices for each sample and combines with metadata using the `amp_alpha_diversity` function from the ampvis2 package.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

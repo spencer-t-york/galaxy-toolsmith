@@ -1,0 +1,104 @@
+<tool id="add_input_name_as_column" name="Add input name as column" version="0.1.0+galaxy0" profile="24.1">
+  <description>to a dataset</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">mvdbeek_add_input_name_as_column</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.1.0">mvdbeek-add-input-name-as-column</requirement>
+  </requirements>
+  <version_command>mvdbeek-add-input-name-as-column --version</version_command>
+  <command detect_errors="exit_code">
+        #import re
+        mkdir -p 'output' &amp;&amp;
+        #for $i,$input in enumerate($inputs):
+            #set $name = re.sub('[^\w\-\.]', '_', str($input.element_identifier))
+            mvdbeek-add-input-name-as-column
+                '$input'
+                'output/$name'
+                --column-name '$column_name'
+                --append-to '$append_to'
+                --delimiter '$delimiter'
+                --quotechar '$quotechar'
+                --escapechar '$escapechar'
+                --skip-lines '$skip_lines'
+                --header '$header'
+                --no-header '$no_header'
+                --force-output
+            &amp;&amp;
+        #end for
+    </command>
+  <inputs>
+    <param argument="--inputs" type="data" multiple="true" format="txt" label="Input datasets" />
+    <param argument="--column-name" type="text" value="filename" label="Column name" />
+    <param argument="--append-to" type="select" label="Append to">
+      <option value="right">Right</option>
+      <option value="left">Left</option>
+    </param>
+    <param argument="--delimiter" type="text" value="\t" label="Delimiter" />
+    <param argument="--quotechar" type="text" value="&quot;" label="Quotechar" />
+    <param argument="--escapechar" type="text" value="\\\\" label="Escapechar" />
+    <param argument="--skip-lines" type="integer" min="0" value="0" label="Skip lines" />
+    <param argument="--header" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Header" />
+    <param argument="--no-header" type="boolean" truevalue="True" falsevalue="False" checked="false" label="No header" />
+  </inputs>
+  <outputs>
+    <collection name="output" type="list" label="${tool.name} on ${on_string}">
+      <discover_datasets pattern="__designation_and_ext__" directory="output" visible="false" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="inputs" value="in1.txt,in2.txt" />
+      <param name="column_name" value="filename" />
+      <param name="append_to" value="right" />
+      <param name="delimiter" value="\t" />
+      <param name="quotechar" value="&quot;" />
+      <param name="escapechar" value="\\\\\\" />
+      <param name="skip_lines" value="0" />
+      <param name="header" value="False" />
+      <param name="no_header" value="False" />
+      <output_collection name="output" count="2">
+        <element name="in1.txt" ftype="tabular">
+          <assert_contents>
+            <has_n_columns n="2" />
+            <has_line_matching expression="^filename\t.*$" />
+          </assert_contents>
+        </element>
+        <element name="in2.txt" ftype="tabular">
+          <assert_contents>
+            <has_n_columns n="2" />
+            <has_line_matching expression="^filename\t.*$" />
+          </assert_contents>
+        </element>
+      </output_collection>
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+Adds a new column with the name of the input file as it appears in the history.
+By default the column is appended.
+
+-----
+
+.. class:: infomark
+
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{github,
+            author = {MvDBeek},
+            year = {2023},
+            title = {mvdbeek/add-input-name-as-column},
+            publisher = {GitHub},
+            journal = {GitHub repository},
+            url = {https://github.com/mvdbeek/add-input-name-as-column}
+        }</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

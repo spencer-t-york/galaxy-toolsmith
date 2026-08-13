@@ -1,0 +1,6 @@
+timestamp	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	token_p99
+2026-08-05T15:23:33Z	65536	all-raw	192000	512	fsdp	failed	84750
+2026-08-05T15:54:35Z	65536	all-filtered	192000	512	fsdp	failed	85356
+2026-08-05T16:37:42Z	32768	all-raw	96000	256	fsdp	failed	58804
+2026-08-05T17:08:23Z	32768	all-filtered	96000	256	fsdp	failed	59410
+2026-08-05T17:51:20Z	16384	all-raw	36000	128	fsdp	passed	42588

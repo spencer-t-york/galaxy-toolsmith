@@ -1,0 +1,63 @@
+<tool id="bandage_info" name="Bandage Info" version="0.1.0" profile="25.0">
+  <description>Extracts statistics from a GFA assembly graph using Bandage</description>
+  <requirements>
+    <requirement type="package">bandage</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Bandage info $input1 &gt; $output1
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="gfa" label="Input GFA file" />
+  </inputs>
+  <outputs>
+    <data name="output1" format="html" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="test.gfa" />
+      <output name="output1">
+        <has_text>Node count:</has_text>
+        <has_text>Edge count:</has_text>
+        <has_text>Total length (bp):</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # Bandage Info
+        
+        Bandage is a tool for visualizing and analyzing assembly graphs. This tool extracts basic statistics from a GFA file.
+        
+        ## Input
+        
+        - **Input GFA file**: The assembly graph in GFA format.
+        
+        ## Output
+        
+        - **Output HTML**: A file containing various statistics about the graph, including node and edge counts, total length, dead ends, connected components, and more.
+        
+        ## Example Output
+        
+        ```
+        Node count:               561
+        Edge count:               734
+        Total length (bp):        4878380
+        Dead ends:                33
+        Percentage dead ends:     2.94118%
+        Connected components:     19
+        Largest component (bp):   4821329
+        N50 (bp):                 90360
+        Shortest node (bp):       1
+        Lower quartile node (bp): 17
+        Median node (bp):         87
+        Upper quartile node (bp): 404
+        Longest node (bp):        205425
+        ```
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

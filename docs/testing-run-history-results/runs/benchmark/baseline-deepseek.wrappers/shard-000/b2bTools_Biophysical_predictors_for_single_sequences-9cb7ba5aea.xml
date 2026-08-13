@@ -1,0 +1,81 @@
+<tool id="b2btools_biophysical_predictors_for_single_sequences" name="b2bTools: Biophysical predictors for single sequences" version="0.1.0" profile="25.0">
+  <description>Biophysical predictors for single protein sequences</description>
+  <requirements>
+    <requirement type="package">python</requirement>
+    <requirement type="package">b2btools</requirement>
+    <requirement type="package">matplotlib</requirement>
+    <requirement type="package">numpy</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        b2btools-single-sequence \
+            --fasta $fasta_input \
+            --output-dir $output_dir \
+            --dynamine $dynamine \
+            --disomine $disomine \
+            --efoldmine $efoldmine \
+            --agmata $agmata \
+            --plot $plot \
+            --plot_all $plot_all
+    </command>
+  <inputs>
+    <param name="fasta_input" type="data" format="fasta" label="Input FASTA file" />
+    <param name="dynamine" type="boolean" label="Enable DynaMine predictor" truevalue="--dynamine" falsevalue="" />
+    <param name="disomine" type="boolean" label="Enable DisoMine predictor" truevalue="--disomine" falsevalue="" />
+    <param name="efoldmine" type="boolean" label="Enable EFoldMine predictor" truevalue="--efoldmine" falsevalue="" />
+    <param name="agmata" type="boolean" label="Enable AgMata predictor" truevalue="--agmata" falsevalue="" />
+    <param name="plot" type="boolean" label="Generate plots per sequence" truevalue="--plot" falsevalue="" />
+    <param name="plot_all" type="boolean" label="Generate plots for all sequences" truevalue="--plot_all" falsevalue="" />
+  </inputs>
+  <outputs>
+    <data name="json_output" format="json" />
+    <data name="tabular_output" format="tabular" />
+    <data name="plot_output" format="png" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="fasta_input" value="test.fasta" />
+      <param name="dynamine" value="true" />
+      <param name="disomine" value="true" />
+      <param name="efoldmine" value="true" />
+      <param name="agmata" value="true" />
+      <param name="plot" value="true" />
+      <param name="plot_all" value="true" />
+      <output name="json_output">
+        <has_text>random_sequence_01</has_text>
+      </output>
+      <output name="tabular_output">
+        <has_text>residue_index</has_text>
+      </output>
+      <output name="plot_output">
+        <has_text>sequence_01</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # Biophysical predictors for single protein sequences
+        
+        This tool predicts various biophysical features from protein sequences using the b2bTools suite.
+        
+        ## Input requirements
+        - Provide a valid FASTA file containing one or more protein sequences.
+        - Sequences must be at least 5 residues long.
+        
+        ## Available predictors
+        - **DynaMine**: Predicts backbone and side-chain dynamics, secondary structure propensities.
+        - **DisoMine**: Predicts protein disorder.
+        - **EFoldMine**: Predicts early folding events.
+        - **AgMata**: Predicts beta-sheet aggregation propensity.
+        
+        ## Output
+        - **JSON file**: Contains all predicted features for each sequence.
+        - **Tabular files**: Per-sequence TSV files with residue-level predictions.
+        - **Plots**: PNG plots of predicted features (per sequence or combined).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

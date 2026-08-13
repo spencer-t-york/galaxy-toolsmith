@@ -1,0 +1,68 @@
+<tool id="art_454" name="ART 454" version="0.1.0" profile="25.0">
+  <description>Simulate Roche 454 Pyrosequencing reads using empirical quality profiles</description>
+  <requirements>
+    <requirement type="package">iuc/art</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        mkdir -p $reads_output_dir
+        art_454 \
+            -i $input_reference \
+            -o $output_prefix \
+            -l $read_length \
+            -f $coverage \
+            -p $paired_end \
+            -a $amplicon \
+            &gt; $reads_output_dir/art_454.log 2&gt;&amp;1
+    </command>
+  <inputs>
+    <param name="input_reference" type="data" format="fasta" label="Reference sequence" />
+    <param name="read_length" type="integer" min="1" value="100" label="Read length" />
+    <param name="coverage" type="integer" min="1" value="10" label="Coverage" />
+    <param name="paired_end" type="boolean" label="Generate paired-end reads" />
+    <param name="amplicon" type="boolean" label="Generate amplicon sequencing reads" />
+    <param name="output_prefix" type="text" value="art_454_output" label="Output prefix" />
+  </inputs>
+  <outputs>
+    <output name="reads_output_dir" type="directory" format="fastq" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_reference" value="test_reference.fasta" />
+      <param name="read_length" value="100" />
+      <param name="coverage" value="10" />
+      <param name="paired_end" value="false" />
+      <param name="amplicon" value="false" />
+      <param name="output_prefix" value="test_output" />
+      <output name="reads_output_dir">
+        <has_text>test_output.read1.fastq</has_text>
+        <has_text>test_output.read2.fastq</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ART 454 Pyrosequencing Simulator
+        
+        ART_454 simulates Roche 454 Pyrosequencing reads based on empirical quality profiles. It supports:
+        
+        - Single-end and paired-end read simulation
+        - Amplicon sequencing simulation
+        - Both DNA and RNA reference sequences
+        
+        ### Parameters
+        - **Reference sequence**: Input FASTA file for read simulation
+        - **Read length**: Length of generated reads
+        - **Coverage**: Target coverage depth
+        - **Paired-end reads**: Enable paired-end read generation
+        - **Amplicon sequencing**: Enable amplicon sequencing simulation
+        
+        ### Output
+        - Directory containing simulated reads in FASTQ format
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

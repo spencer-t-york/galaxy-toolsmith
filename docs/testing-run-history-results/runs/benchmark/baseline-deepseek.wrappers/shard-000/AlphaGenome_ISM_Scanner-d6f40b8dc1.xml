@@ -1,0 +1,66 @@
+<tool id="alphagenome_ism_scanner" name="AlphaGenome ISM Scanner" version="0.1.0" profile="25.0">
+  <description>Perform in-silico saturation mutagenesis using AlphaGenome API</description>
+  <requirements>
+    <requirement type="package">iuc/alphagenome</requirement>
+    <requirement type="python-module">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        alphagenome_ism_scanner.py \
+            --input $input1 \
+            --output $output1
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="bed" label="Input BED file" />
+  </inputs>
+  <outputs>
+    <data name="output1" format="tabular" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1">
+        <file name="test_regions.bed">chr1    100    200    region1</file>
+      </param>
+      <output name="output1">
+        <has_text>region</has_text>
+        <has_text>position</has_text>
+        <has_text>mutation_index</has_text>
+        <has_text>gene_id</has_text>
+        <has_text>gene_name</has_text>
+        <has_text>output_type</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AlphaGenome ISM Scanner
+
+        Perform in-silico saturation mutagenesis (ISM) using AlphaGenome's API.
+
+        ## What it does
+
+        For each region in the input BED file:
+
+        1. Creates a prediction window encompassing the region
+        2. Scores all possible single-base substitutions (3 per position)
+        3. Converts results to tabular format
+
+        ## Output columns
+
+        - `region`: Region name from BED
+        - `position`: Genomic position of the mutation
+        - `mutation_index`: Index of the alternate base (0-2)
+        - `gene_id`: Ensembl gene ID
+        - `gene_name`: Gene symbol
+        - `output_type`: RNA_SEQ, ATAC, etc.
+
+        ## Compute cost
+
+        Each region generates **3 x width** API calls. Start with small regions to verify results.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,64 @@
+<tool id="ampvis2_octave_plot" name="ampvis2 octave plot" version="0.1.0" profile="25.0">
+  <description>Generates an octave plot to assess alpha diversity using ampvis2</description>
+  <requirements>
+    <requirement type="package">ampvis2</requirement>
+    <requirement type="package">R</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla $tool_dir/ampvis2_octave.R \
+            --input_rds ${input_rds} \
+            --metadata ${metadata} \
+            --output ${output} \
+            --format ${format}
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="ampvis2" label="Ampvis2 RDS dataset" />
+    <param name="metadata" type="data" format="list" label="Metadata list" />
+    <param name="format" type="select" label="Output format">
+      <option value="pdf">PDF</option>
+      <option value="png">PNG</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="${format}" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="test_input.rds" />
+      <param name="metadata" value="metadata.txt" />
+      <param name="format" value="pdf" />
+      <output name="output" file="test_output.pdf" />
+    </test>
+  </tests>
+  <help format="markdown">
+        # Ampvis2 Octave Plot
+
+        Generates an octave plot to assess alpha diversity. An octave plot is a
+        histogram of the number of taxa observed by bins of read counts, where the bin
+        ranges increase exponentially.
+
+        ## Details
+
+        The n-th bin in the histogram has the range ``r(n)=2n...2n+1-1``. The height of the
+        bars reflects the number of unique taxa with read counts in each bin. A full
+        symmetrical bell-shaped distribution with the left part far from the y-axis is
+        ideal. A high amount of OTUs with low read counts indicates noise, chimeras, and
+        cross-talk.
+
+        ## Input
+
+        - Ampvis2 RDS dataset from previous steps
+        - Metadata list for sample selection
+
+        ## Output
+
+        Octave plot in PDF or PNG format.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

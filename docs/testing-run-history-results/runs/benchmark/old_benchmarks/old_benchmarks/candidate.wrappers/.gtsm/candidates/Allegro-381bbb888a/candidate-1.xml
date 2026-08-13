@@ -1,0 +1,33 @@
+<tool id="allegro" name="Allegro" version="0.1.0" profile="25.0">
+  <description>Computer program for multipoint genetic linkage analysis</description>
+  <requirements>
+    <requirement type="package" version="1.0">iuc/allegro</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        allegro -input $input_file -output $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="txt" label="Input file" />
+    <param name="output_file" type="text" label="Output file name" />
+  </inputs>
+  <outputs>
+    <data name="output" format="txt" label="Allegro output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample_input.txt" />
+      <param name="output_file" value="sample_output.txt" />
+      <output name="output" file="expected_output.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Allegro performs genetic linkage analysis. Provide input file and specify output file name.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

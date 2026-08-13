@@ -1,0 +1,47 @@
+<tool id="argnorm" name="argNorm" version="1.0.0" profile="25.0">
+  <description>Normalize antibiotic resistance gene annotations to the ARO ontology and enhance with drug categorization</description>
+  <requirements>
+    <requirement type="package">argnorm=1.0.0</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        argNorm --input $input_file --output $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="txt" label="Annotation file" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="txt" label="Normalized ARG annotations" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file">
+        <file>test_input.txt</file>
+      </param>
+      <output name="output_file">
+        <has_text>Normalized ARG annotations</has_text>
+        <has_text>ARO accession</has_text>
+        <has_text>drug categorization</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # argNorm: Normalize ARG Annotations
+        
+        argNorm is a tool to normalize antibiotic resistance gene (ARG) annotations to the Antibiotic Resistance Ontology (ARO) and enhance annotations with drug categorization.
+        
+        ## Features
+        - Maps ARG annotations to ARO accessions
+        - Adds drug categorization based on ARO ontology
+        - Accepts outputs from various ARG annotation tools
+        
+        ## Usage
+        Provide an annotation file as input. The tool will output a normalized version with ARO mappings and drug categories.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

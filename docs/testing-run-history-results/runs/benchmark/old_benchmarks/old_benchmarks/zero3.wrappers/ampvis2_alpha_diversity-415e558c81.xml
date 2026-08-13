@@ -1,0 +1,76 @@
+<tool id="ampvis2_alpha_diversity" name="ampvis2 alpha diversity" version="0.1.0+galaxy0" profile="22.09">
+    <description>calculate alpha diversity indices</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">ampvis2</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="1.4.0">r-cli</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+Rscript '$__tool_directory__/ampvis2_alpha_diversity.R'
+--input '${input}'
+--output '${output}'
+--index '${index}'
+--rarefy '${rarefy}'
+    </command>
+    <inputs>
+        <param name="input" type="data" format="rds" label="An ampvis2 RDS dataset"/>
+        <param name="index" type="select" label="Alpha diversity index">
+            <option value="shannon">Shannon entropy</option>
+            <option value="simpson">Simpson's reciprocal</option>
+            <option value="invsimpson">Inverse Simpson's reciprocal</option>
+            <option value="pielou">Pielou's evenness</option>
+            <option value="fisher">Fisher's alpha</option>
+            <option value="menhinick">Menhinick's index</option>
+            <option value="ace">ACE estimator</option>
+            <option value="observed">Number of observed species</option>
+        </param>
+        <param name="rarefy" type="integer" min="1" value="1000" label="Rarefaction depth"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="tabular" label="${tool.name} on ${on_string}: Alpha Diversity"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" ftype="rds" value="alpha.rds"/>
+            <param name="index" value="shannon"/>
+            <param name="rarefy" value="1000"/>
+            <output name="output" file="alpha_shannon.tabular" compare="sim_size"/>
+        </test>
+    </tests>
+    <help>
+What it does
+============
+
+Calculate alpha-diversity indices for each sample and combines with the metadata.
+
+The Galaxy tool calls the `amp_alpha_diversity
+<https://kasperskytte.github.io/ampvis2/reference/amp_alphadiv.html>`_ function
+of the ampvis2 package.
+
+Usage
+=====
+
+The alpha-diversity indices are calculated per sample using the vegan function `diversity <https://rdrr.io/pkg/vegan/man/diversity.html>`_,
+where the read abundances are first rarefied using `rrarefy <https://rdrr.io/pkg/vegan/man/rarefy.html>`_ by the size of the rarefy argument.
+Refer to the vegan documentation for details about the different indices and how they are
+calculated.
+
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+Output
+======
+
+A tabular dataset containing the chosen alpha-diversity measures per sample.
+    </help>
+    <citations>
+        <citation type="doi">10.1038/s41597-021-00654-0</citation>
+    </citations>
+</tool>

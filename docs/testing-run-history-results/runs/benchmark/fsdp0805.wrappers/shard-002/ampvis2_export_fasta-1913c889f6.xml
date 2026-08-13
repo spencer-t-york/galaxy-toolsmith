@@ -1,0 +1,82 @@
+<tool id="ampvis2_export_fasta" name="ampvis2 export fasta" version="0.1.0" profile="24.1">
+  <description>export sequences from an ampvis2 object</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.9.6">R</requirement>
+    <requirement type="package" version="0.9.6">r-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+        Rscript -e '
+            library(ampvis2)
+            ampdata &lt;- readRDS('${input_rds}')
+            # check if there are any sequences
+            if ("seqs" %in% names(ampdata)) {
+                # write out the fasta file
+                amp_export_fasta(
+                    ampdata,
+                    outfile = "${output_fasta}",
+                    taxon = ${taxon},
+                    seqtype = "${seqtype}"
+                )
+            } else {
+                stop("No sequences found in the input dataset.")
+            }
+        '
+    </command>
+  <inputs>
+    <param argument="--input_rds" type="data" format="rds" label="Ampvis2 dataset" />
+    <param argument="--taxon" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Add taxonomy to the fasta header lines?" />
+    <param argument="--seqtype" type="select" label="Sequence type">
+      <option value="dna">DNA</option>
+      <option value="rna">RNA</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_fasta" format="fasta" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_rds" ftype="rds" value="export_fasta_test.rds" />
+      <param name="taxon" value="true" />
+      <param name="seqtype" value="dna" />
+      <output name="output_fasta" file="export_fasta_test.fasta" compare="sim_size" delta="1000" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Export sequences from an ampvis2 object and optionally add taxonomy to the fasta header lines.
+
+The Galaxy tool calls the `amp_export_fasta
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_export_fasta.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+In order to work the ampvis2 rds data set needs to contain sequence information.
+
+Output
+======
+
+The sequences contained in the input as fasta.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-016-0103-y</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

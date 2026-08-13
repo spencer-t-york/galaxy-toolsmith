@@ -1,0 +1,86 @@
+<tool id="alphagenome_variant_scorer" name="AlphaGenome Variant Scorer" version="0.1.0" profile="25.0">
+  <description>Scores genetic variants using AlphaGenome's score_variant() API</description>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m alphagenome_variant_scorer \
+            --variant_id $variant_id \
+            --scored_interval $scored_interval \
+            --gene_id $gene_id \
+            --gene_name $gene_name \
+            --gene_type $gene_type \
+            --gene_strand $gene_strand \
+            --output_type $output_type \
+            --variant_scorer $variant_scorer \
+            --track_name $track_name \
+            --raw_score $raw_score \
+            --quantile_score $quantile_score \
+            $metadata_columns \
+            &gt; $output_file
+    </command>
+  <inputs>
+    <param name="variant_id" type="text" label="Variant ID" help="chr:pos:ref&gt;alt" />
+    <param name="scored_interval" type="text" label="Scored Interval" help="genomic interval used for scoring" />
+    <param name="gene_id" type="text" label="Gene ID" help="Ensembl gene ID" />
+    <param name="gene_name" type="text" label="Gene Name" help="gene symbol" />
+    <param name="gene_type" type="select" label="Gene Type">
+      <option value="protein_coding">Protein Coding</option>
+      <option value="lncRNA">lncRNA</option>
+    </param>
+    <param name="gene_strand" type="select" label="Gene Strand">
+      <option value="+">+</option>
+      <option value="-">-</option>
+    </param>
+    <param name="output_type" type="select" label="Output Type">
+      <option value="RNA_SEQ">RNA_SEQ</option>
+      <option value="ATAC">ATAC</option>
+    </param>
+    <param name="variant_scorer" type="select" label="Variant Scorer">
+      <option value="scorer1">scorer1</option>
+      <option value="scorer2">scorer2</option>
+    </param>
+    <param name="track_name" type="text" label="Track Name" help="specific track" />
+    <param name="raw_score" type="float" label="Raw Score" help="raw effect score" />
+    <param name="quantile_score" type="float" label="Quantile Score" help="empirical quantile (0-1)" />
+    <repeat name="metadata_columns" title="Optional Metadata Columns">
+      <param name="ontology_curie" type="text" label="Ontology CURIE" />
+      <param name="gtex_tissue" type="text" label="GTEx Tissue" />
+      <param name="biosample_name" type="text" label="Biosample Name" />
+    </repeat>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Variant Scorer Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="variant_id" value="chr1:100:A&gt;T" />
+      <param name="scored_interval" value="chr1:90-110" />
+      <param name="gene_id" value="ENSG00000123456" />
+      <param name="gene_name" value="BRCA1" />
+      <param name="gene_type" value="protein_coding" />
+      <param name="gene_strand" value="+" />
+      <param name="output_type" value="RNA_SEQ" />
+      <param name="variant_scorer" value="scorer1" />
+      <param name="track_name" value="track1" />
+      <param name="raw_score" value="0.75" />
+      <param name="quantile_score" value="0.9" />
+      <output name="output_file" file="expected_output.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Scores genetic variants using AlphaGenome's score_variant() API.
+        
+        For each variant, creates a prediction window centered on the variant,
+        calls score_variant() with selected scorers from RECOMMENDED_VARIANT_SCORERS,
+        converts structured AnnData results to tabular format using tidy_scores(),
+        and outputs one row per variant x gene x track x scorer combination.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

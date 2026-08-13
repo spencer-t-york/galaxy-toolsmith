@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "genbank"
+  ],
+  "records": [
+    {
+      "datatype": "genbank",
+      "tool_name": "ABRicate",
+      "tool_id": "abricate",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/ABRicate-55e56c2e72.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

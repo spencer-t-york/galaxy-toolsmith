@@ -1,0 +1,31 @@
+<tool id="abricate_summary" name="ABRicate Summary" version="0.1.0" profile="25.0">
+  <description>Combine ABRicate results into a summary matrix.</description>
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abricate --summary $input_files &gt; $output_file
+    </command>
+  <inputs>
+    <param name="input_files" type="data" format="tabular" multiple="true" label="Input ABRicate Reports" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Summary Matrix" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_files" value="sample1.tab,sample2.tab" />
+      <output name="output_file" file="expected_output.tab" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Combine ABRicate results into a simple matrix of gene presence/absence.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

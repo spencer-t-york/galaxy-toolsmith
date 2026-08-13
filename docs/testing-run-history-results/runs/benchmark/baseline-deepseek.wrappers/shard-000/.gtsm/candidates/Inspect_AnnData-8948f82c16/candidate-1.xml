@@ -1,0 +1,124 @@
+<tool id="inspect_anndata" name="Inspect AnnData" version="0.1.0" profile="25.0">
+  <description>Inspect AnnData dataset and extract components</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+    <script language="python3">
+            
+                import sys
+                import pandas as pd
+                import anndata as ad
+                import json
+                
+                # Read input
+                input_path = sys.argv[1]
+                output_info = sys.argv[2]
+                output_x = sys.argv[3]
+                output_x_chunk = sys.argv[4]
+                output_obs = sys.argv[5]
+                output_var = sys.argv[6]
+                
+                # Load AnnData
+                adata = ad.read(input_path)
+                
+                # General info
+                info = {
+                    'shape': adata.shape,
+                    'n_obs': adata.n_obs,
+                    'n_vars': adata.n_vars,
+                    'n_vars': adata.n_vars,
+                    'isbacked': adata.isbacked
+                }
+                with open(output_info, 'w') as f:
+                    json.dump(info, f, indent=2)
+                
+                # Full X matrix
+                pd.DataFrame(adata.X).to_csv(output_x, index=False)
+                
+                # Chunked X matrix
+                chunk = next(adata.chunk_X(1000))
+                pd.DataFrame(chunk).to_csv(output_x_chunk, index=False)
+                
+                # Obs and Var
+                adata.obs.to_csv(output_obs, index=False)
+                adata.var.to_csv(output_var, index=False)
+            
+        </script>
+  </command>
+  <inputs>
+    <param name="input" type="data" format="anndata" label="AnnData file" />
+  </inputs>
+  <outputs>
+    <data name="output_info" format="txt" label="General Information" />
+    <data name="output_x" format="tabular" label="Full X Matrix" />
+    <data name="output_x_chunk" format="tabular" label="Chunked X Matrix" />
+    <data name="output_obs" format="tabular" label="Observations (obs)" />
+    <data name="output_var" format="tabular" label="Variables (var)" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="5">
+      <param name="input" value="test.loom" />
+      <output name="output_info">
+        <has_text>shape</has_text>
+        <has_text>n_obs</has_text>
+        <has_text>n_vars</has_text>
+      </output>
+      <output name="output_x">
+        <has_text>Full X Matrix</has_text>
+      </output>
+      <output name="output_obs">
+        <has_text>Observations</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        
+            # AnnData Inspector
+            
+            This tool extracts and inspects components of an AnnData object:
+            
+            - **General Information**: Basic metadata about the dataset
+            - **Full X Matrix**: Complete data matrix as CSV
+            - **Chunked X Matrix**: Sampled portion of the data matrix
+            - **Observations (obs)**: Row annotations
+            - **Variables (var)**: Column annotations
+            
+            ## AnnData Overview
+            
+            AnnData is a Python package for handling annotated data matrices, widely used in single-cell analysis. It stores:
+            
+            - `X`: Main data matrix
+            - `obs`: Row annotations (observations)
+            - `var`: Column annotations (variables)
+            - `uns`: Unstructured annotations
+            
+            ## Input
+            
+            Requires an AnnData file (`.loom` or `.h5ad` format).
+            
+            ## Output
+            
+            - `output_info`: JSON file with dataset metadata
+            - `output_x`: Full data matrix as CSV
+            - `output_x_chunk`: Sampled data matrix as CSV
+            - `output_obs`: Observations table as CSV
+            - `output_var`: Variables table as CSV
+            
+            ## Example
+            
+            Processing a typical single-cell RNA-seq dataset will yield:
+            
+            - Basic statistics about cells and genes
+            - Expression values matrix
+            - Metadata for cells and genes
+        
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

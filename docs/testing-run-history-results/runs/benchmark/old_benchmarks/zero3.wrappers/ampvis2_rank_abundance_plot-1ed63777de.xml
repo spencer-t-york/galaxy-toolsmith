@@ -1,0 +1,153 @@
+<tool id="ampvis2_rank_abundance_plot" name="ampvis2 rank abundance plot" version="0.1.0+galaxy0" profile="22.09">
+  <description>generate rank abundance curve</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.4.0">R</requirement>
+    <requirement type="package" version="1.4.0">r-base</requirement>
+    <requirement type="package" version="1.4.0">r-ggplot2</requirement>
+    <requirement type="package" version="1.4.0">r-dplyr</requirement>
+    <requirement type="package" version="1.4.0">r-tidyr</requirement>
+    <requirement type="package" version="1.4.0">r-readr</requirement>
+    <requirement type="package" version="1.4.0">r-forcats</requirement>
+    <requirement type="package" version="1.4.0">r-stringr</requirement>
+    <requirement type="package" version="1.4.0">r-magrittr</requirement>
+    <requirement type="package" version="1.4.0">r-purrr</requirement>
+    <requirement type="package" version="1.4.0">r-lubridate</requirement>
+    <requirement type="package" version="1.4.0">r-scales</requirement>
+    <requirement type="package" version="1.4.0">r-hms</requirement>
+    <requirement type="package" version="1.4.0">r-glue</requirement>
+    <requirement type="package" version="1.4.0">r-viridisLite</requirement>
+    <requirement type="package" version="1.4.0">r-cowplot</requirement>
+    <requirement type="package" version="1.4.0">r-reshape2</requirement>
+    <requirement type="package" version="1.4.0">r-gridExtra</requirement>
+    <requirement type="package" version="1.4.0">r-ape</requirement>
+    <requirement type="package" version="1.4.0">r-biostrings</requirement>
+    <requirement type="package" version="1.4.0">r-genomeinfodbdata</requirement>
+    <requirement type="package" version="1.4.0">r-rtracklayer</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome.hg19</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome.mm10</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome.rheMac8</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome.sacCer3</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome.tetNigre</requirement>
+    <requirement type="package" version="1.4.0">r-bsgenome.yeast</requirement>
+    <requirement type="package" version="1.4.0">r-genomicfeatures</requirement>
+    <requirement type="package" version="1.4.0">r-genomicalignments</requirement>
+    <requirement type="package" version="1.4.0">r-summarizedexperiment</requirement>
+    <requirement type="package" version="1.4.0">r-variantannotation</requirement>
+    <requirement type="package" version="1.4.0">r-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript '$__tool_directory__/get_version.R'</version_command>
+  <command detect_errors="exit_code">
+Rscript '$__tool_directory__/run.R'
+--input_rds '${input_rds}'
+--output_plot '${output_plot}'
+--metadata '${metadata}'
+--otu_level ${otu_level}
+--cumulative_abundance ${cumulative_abundance}
+--standard_deviation ${standard_deviation}
+--title '${title}'
+--xlab '${xlab}'
+--ylab '${ylab}'
+--theme '${theme}'
+--width ${width}
+--height ${height}
+--dpi ${dpi}
+    </command>
+  <inputs>
+    <param argument="--input_rds" type="data" format="rds" label="Ampvis2 RDS dataset" />
+    <param argument="--metadata" type="data" format="tabular" label="Metadata table" />
+    <param argument="--otu_level" type="integer" value="1" min="1" max="10" label="OTU level" />
+    <conditional name="cumulative_abundance">
+      <param argument="--cumulative_abundance" type="select" label="Cumulative abundance">
+        <option value="TRUE">Yes</option>
+        <option value="FALSE">No</option>
+      </param>
+      <when value="TRUE">
+        <param argument="--standard_deviation" type="select" label="Standard deviation">
+          <option value="TRUE">Yes</option>
+          <option value="FALSE">No</option>
+        </param>
+      </when>
+    </conditional>
+    <param argument="--title" type="text" value="" label="Plot title" />
+    <param argument="--xlab" type="text" value="Rank" label="X-axis label" />
+    <param argument="--ylab" type="text" value="Abundance" label="Y-axis label" />
+    <param argument="--theme" type="select" label="Theme">
+      <option value="theme_bw()">Black and white theme</option>
+      <option value="theme_gray()">Gray theme</option>
+      <option value="theme_light()">Light theme</option>
+      <option value="theme_minimal()">Minimal theme</option>
+      <option value="theme_classic()">Classic theme</option>
+      <option value="theme_dark()">Dark theme</option>
+      <option value="theme_void()">Void theme</option>
+    </param>
+    <param argument="--width" type="integer" value="6" min="1" label="Width" />
+    <param argument="--height" type="integer" value="4" min="1" label="Height" />
+    <param argument="--dpi" type="integer" value="300" min="1" label="DPI" />
+  </inputs>
+  <outputs>
+    <data name="output_plot" format="html" label="${tool.name} on ${on_string}: Rank abundance plot" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_rds" ftype="rds" value="ampvis2_load_output.rds" />
+      <param name="metadata" ftype="tabular" value="ampvis2_load_metadata.tabular" />
+      <param name="otu_level" value="1" />
+      <param name="cumulative_abundance" value="TRUE" />
+      <param name="standard_deviation" value="TRUE" />
+      <param name="title" value="Rank abundance plot" />
+      <param name="xlab" value="Rank" />
+      <param name="ylab" value="Abundance" />
+      <param name="theme" value="theme_bw()" />
+      <param name="width" value="6" />
+      <param name="height" value="4" />
+      <param name="dpi" value="300" />
+      <output name="output_plot" file="ampvis2_rankabundance_output.html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates a rank abundance curve (rank abundance vs cumulative read abundance),
+optionally with standard deviation from mean intervals.
+
+The Galaxy tool calls the `amp_rankabundance
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_rankabundance.html&gt;`_
+function
+of the ampvis2 package.
+
+Currently only OTU level is supported.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+An rank abundance plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-020-00750-0</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

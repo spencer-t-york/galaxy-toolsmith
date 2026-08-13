@@ -1,0 +1,42 @@
+<tool id="import_anndata" name="Import Anndata" version="0.1.0" profile="25.0">
+  <description>Create an AnnData from various input formats</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m scanpy.read_10x_h5 $input_file --output $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="h5ad" label="Input file" />
+    <param name="output_file" type="text" value="output.h5ad" label="Output file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="h5ad" label="Anndata file" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample_input.h5ad" />
+      <output name="output" file="sample_output.h5ad" />
+    </test>
+  </tests>
+  <help format="markdown">
+        **What it does**
+        
+        This tool creates an AnnData from several input types, including Loom, Tabular, Matrix Market, and UMI tools.
+        
+        **AnnData**
+        
+        AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within Scanpy for which it was initially developed.
+        
+        **Loom data**
+        
+        Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

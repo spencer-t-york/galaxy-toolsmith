@@ -1,0 +1,98 @@
+<tool id="alphagenome_ism_scanner" name="AlphaGenome ISM Scanner" version="0.1.0+galaxy0" profile="21.09">
+  <description>in-silico saturation mutagenesis</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">alphagenome</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <version_command>python -c "import alphagenome; print(alphagenome.__version__)"</version_command>
+  <command detect_errors="exit_code">
+        python '$__tool_directory__/alphagenome_ism_scanner.py'
+            --input_bed '$input_bed'
+            --genome_fasta '$genome_fasta'
+            --output_tsv '$output_tsv'
+            --scorer '$scorer'
+            --regions '$regions'
+            --threads \${GALAXY_SLOTS:-1}
+    </command>
+  <inputs>
+    <param argument="--input_bed" type="data" format="bed" label="Input BED file" />
+    <param argument="--genome_fasta" type="data" format="fasta" label="Genome FASTA file" />
+    <param argument="--scorer" type="select" label="Variant Scorer">
+      <options from_data_table="alphagenome_variant_scorers" />
+    </param>
+    <param argument="--regions" type="text" value="" label="Regions to scan" help="Comma-separated list of regions to scan. Leave blank to scan all regions." />
+  </inputs>
+  <outputs>
+    <data name="output_tsv" format="tabular" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_bed" value="input.bed" />
+      <param name="genome_fasta" value="genome.fasta.gz" />
+      <param name="scorer" value="RECOMMENDED_VARIANT_SCORERS['DeepSEA']" />
+      <output name="output_tsv" ftype="tabular">
+        <assert_contents>
+          <has_n_lines n="7" />
+          <has_line_matching expression="^region\tposition\tmutation_index\tgene_id\tgene_name\toutput_type\tvariant_scorer\ttrack_name\traw_score\tquantile_score$" />
+          <has_line_matching expression="^chr1\t10000\t0\tENSG00000139618\tBRCA1\tRNA_SEQ\tDeepSEA\t.*\t0\.000000\t0\.000000$" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+**AlphaGenome ISM Scanner**
+
+Performs in-silico saturation mutagenesis (ISM) using AlphaGenome's
+``score_ism_variants()`` API. Every position in each input region is
+systematically mutated to all 3 alternative bases and scored, replacing
+expensive wet-lab saturation mutagenesis experiments.
+
+-----
+
+**What it does**
+
+For each region in the input BED file:
+
+1. Creates a prediction window encompassing the region
+2. Calls ``score_ism_variants()`` which auto-splits regions &gt;10bp into chunks
+3. Scores all possible single-base substitutions (3 per position)
+4. Converts results to tabular format using ``tidy_scores()``
+
+-----
+
+**Output columns**
+
+- ``region`` — region name from BED
+- ``position`` — genomic position of the mutation
+- ``mutation_index`` — index of the alternate base (0-2)
+- ``gene_id`` — Ensembl gene ID
+- ``gene_name`` — gene symbol
+- ``output_type`` — RNA_SEQ, ATAC, etc.
+- ``variant_scorer`` — scorer name
+- ``track_name`` — specific track
+- ``raw_score`` — raw effect score
+- ``quantile_score`` — empirical quantile (0-1)
+
+
+**Compute cost**
+
+Each region generates **3 x width** API calls. A 200bp region = 600 mutations.
+Start with small regions and few scorers to verify results before scaling up.
+
+- 10bp region: 30 mutations (fast)
+- 100bp region: 300 mutations
+- 200bp region: 600 mutations (default limit)
+- 1000bp region: 3000 mutations (maximum, use with caution)
+    </help>
+  <citations>
+    <citation type="doi">10.1101/gr.256000.120</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

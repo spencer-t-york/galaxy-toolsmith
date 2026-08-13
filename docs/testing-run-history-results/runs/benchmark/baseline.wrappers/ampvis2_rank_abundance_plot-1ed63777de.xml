@@ -1,0 +1,33 @@
+<tool id="ampvis2_rank_abundance_plot" name="ampvis2 rank abundance plot" version="0.1.0" profile="25.0">
+  <description>Generates a rank abundance curve.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=2.0">iuc/ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        amp_rankabundance --input $input_rds --metadata $metadata --output $output_html
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="metadata" type="data" format="txt" label="Metadata List" />
+  </inputs>
+  <outputs>
+    <data name="output_html" format="html" label="Rank Abundance Plot" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="example.rds" />
+      <param name="metadata" value="example_metadata.txt" />
+      <output name="output_html" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Generates a rank abundance curve from an Ampvis2 RDS dataset and metadata.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

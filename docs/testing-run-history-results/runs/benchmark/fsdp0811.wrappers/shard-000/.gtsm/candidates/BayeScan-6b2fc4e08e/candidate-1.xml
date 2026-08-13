@@ -1,0 +1,98 @@
+<tool id="BayeScan" name="BayeScan" version="2.1.0">
+    <description>Identify candidate loci under natural selection from genetic data</description>
+    <xrefs>
+        <xref type="bio.tools">bayescan</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="2.1">bayescan</requirement>
+    </requirement>
+    <command detect_errors="exit_code">
+        bayescan2
+        -i '$input'
+        -o '$output'
+        -n $n
+        -p $p
+        -t $t
+        -s $s
+        -m $m
+        -r $r
+        -a $a
+        -b $b
+        -c $c
+        -d $d
+        -e $e
+        -f $f
+        -g $g
+        -h $h
+        -k $k
+        -l $l
+        -q $q
+        -u $u
+        -v $v
+        -w $w
+        -x $x
+        -y $y
+        -z $z
+    </command>
+    <inputs>
+        <param name="input" type="data" format="txt" label="Input file" help="BayeScan uses its own input file formats, which depend on the type of data used. All input files are simply in text format. Read the manual to create the input file."/>
+        <param name="n" type="integer" value="100000" label="Number of MCMC iterations" help="Number of MCMC iterations (default: 100000)"/>
+        <param name="p" type="integer" value="10000" label="Number of MCMC iterations for the burn-in period" help="Number of MCMC iterations for the burn-in period (default: 10000)"/>
+        <param name="t" type="integer" value="1000" label="Number of MCMC iterations between two samplings" help="Number of MCMC iterations between two samplings (default: 1000)"/>
+        <param name="s" type="integer" value="1" label="Number of MCMC samplings" help="Number of MCMC samplings (default: 1)"/>
+        <param name="m" type="float" value="0.5" label="Prior probability that a locus is under selection" help="Prior probability that a locus is under selection (default: 0.5)"/>
+        <param name="r" type="float" value="0.5" label="Prior probability that a locus is under selection in a given population" help="Prior probability that a locus is under selection in a given population (default: 0.5)"/>
+        <param name="a" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="b" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="c" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="d" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="e" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="f" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="g" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="h" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="k" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="l" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="q" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="u" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="v" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="w" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="x" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="y" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+        <param name="z" type="float" value="1.0" label="Prior parameter for the Dirichlet distribution" help="Prior parameter for the Dirichlet distribution (default: 1.0)"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="txt" label="${tool.name} on ${on_string}: Output"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="input.txt"/>
+            <output name="output" file="output.txt" ftype="txt"/>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+This program, BayeScan aims at identifying candidate loci under natural selection from genetic data, using differences in allele frequencies between populations.
+
+`BayeScan`_ is based on the multinomial-Dirichlet model.
+
+One of the simplest possible scenarios covered consists of an island model in which subpopulation allele frequencies are correlated through a common migrant gene pool from which they differ in varying degrees. The difference in allele frequency between this common gene pool and each subpopulation is measured by a subpopulation specific FST coefficient.
+
+Therefore, this formulation can consider realistic ecological scenarios where the effective size and the immigration rate may differ among subpopulations.
+
+.. _Bayescan: http://cmpg.unibe.ch/software/BayeScan/
+
+.. class:: infomark
+
+**Input file**
+
+BayeScan uses its own input file formats, which depend on the type of data used. All input files are simply in text format.
+
+Read the `manual`_ to create the input file.
+
+.. _manual: http://cmpg.unibe.ch/software/BayeScan/files/BayeScan2.1_manual.pdf
+    </help>
+    <citations>
+        <citation type="doi">10.1093/molbev/msn188</citation>
+    </citations>
+</tool>

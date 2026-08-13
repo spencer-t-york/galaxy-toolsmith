@@ -1,0 +1,44 @@
+<tool id="trimn" name="TrimN" version="0.1.0" profile="25.0">
+  <description>Remove fake cut sites and trim Ns from FASTA files</description>
+  <requirements>
+    <requirement type="package" version="1.0">python3</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python3 remove_fake_cut_sites_DNAnexus.py $input $output_fasta $output_log
+        python3 trim_Ns_DNAnexus.py $input $output_list
+    </command>
+  <inputs>
+    <param name="input" type="fasta" label="Input FASTA file" />
+  </inputs>
+  <outputs>
+    <data name="output_fasta" format="fasta" label="Output FASTA file" />
+    <data name="output_log" format="txt" label="Log file" />
+    <data name="output_list" format="tabular" label="Trimming locations list" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="input" value="example.fasta" />
+      <output name="output_fasta" file="expected_output.fasta" />
+      <output name="output_log" file="expected_output.log" />
+      <output name="output_list" file="expected_output.list" />
+    </test>
+  </tests>
+  <help format="markdown">
+        **What it does**
+        
+        TrimNs is part of the VGP pipeline, removing fake cut sites and trimming Ns from FASTA files.
+        
+        **Usage**
+        
+        The tool consists of two scripts:
+        - `remove_fake_cut_sites_DNAnexus.py`: Removes spurious BioNano cut sites.
+        - `trim_Ns_DNAnexus.py`: Identifies and records runs of Ns near the ends of sequences.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

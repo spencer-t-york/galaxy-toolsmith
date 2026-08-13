@@ -1,0 +1,320 @@
+{
+  "created_at": "2026-08-10T15:55:08.164923+00:00",
+  "total_wrappers": 11,
+  "xml_well_formed_count": 11,
+  "tool_root_count": 11,
+  "wrappers_with_unknown_datatypes": 1,
+  "artifact_format": "xml",
+  "artifact_valid_count": 11,
+  "yaml_well_formed_count": 0,
+  "udt_schema_valid_count": 0,
+  "user_tool_root_count": 0,
+  "xsd_status": "not_configured",
+  "planemo_status": "not_run",
+  "planemo_test_status": "not_run",
+  "mean_structural_score": 1.0,
+  "wrapper_reports": [
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/Barcode_Splitter-cce006dc1d.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [
+        "fastqsanger",
+        "list"
+      ],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 3,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "Unknown datatypes detected; create Galaxy datatype scaffold/TODO entries.",
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/AEGeAn_CanonGFF3-3e946130f7.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 1,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/AlphaGenome_ISM_Scanner-d6f40b8dc1.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 4,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/AlphaGenome_Variant_Scorer-cb49ad2f89.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 5,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/Inspect_AnnData-8948f82c16.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 1,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/ABRicate_Summary-1a22cb3ccf.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 1,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/annotateMyIDs-85babc2f5b.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 6,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/ampvis2_timeseries_plot-4b6c95e8b2.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 10,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/ampvis2_octave_plot-c9423042f7.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 8,
+        "output_count": 3,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/ampvis2_heatmap-512d26e7d3.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 7,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    },
+    {
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-001/ampvis2_core_community_analysis-739c364026.xml",
+      "artifact_format": "xml",
+      "artifact_valid": true,
+      "xml_well_formed": true,
+      "root_tag": "tool",
+      "root_is_tool": true,
+      "unknown_datatypes": [],
+      "xsd_status": "not_configured",
+      "planemo_status": "not_run",
+      "planemo_test_status": "not_run",
+      "planemo_test": {},
+      "structural": {
+        "input_count": 22,
+        "output_count": 1,
+        "test_count": 1,
+        "has_help": true,
+        "has_command": true,
+        "has_citations": true,
+        "structural_score": 1.0
+      },
+      "notes": [
+        "xsd: No XSD path provided.",
+        "planemo: Planemo lint disabled.",
+        "planemo test: Planemo test disabled."
+      ]
+    }
+  ],
+  "notes": []
+}

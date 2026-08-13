@@ -1,0 +1,102 @@
+<tool id="ampvis2_frequency" name="ampvis2 frequency plot" version="0.1.0+galaxy0">
+    <description>frequency vs read abundance</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">ampvis2</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="1.4.0">R</requirement>
+        <requirement type="package" version="1.4.0">r-base</requirement>
+        <requirement type="package" version="1.4.0">r-ggplot2</requirement>
+        <requirement type="package" version="1.4.0">r-dplyr</requirement>
+        <requirement type="package" version="1.4.0">r-tidyr</requirement>
+        <requirement type="package" version="1.4.0">r-readr</requirement>
+        <requirement type="package" version="1.4.0">r-forcats</requirement>
+        <requirement type="package" version="1.4.0">r-stringr</requirement>
+        <requirement type="package" version="1.4.0">r-purrr</requirement>
+        <requirement type="package" version="1.4.0">r-magrittr</requirement>
+        <requirement type="package" version="1.4.0">r-lubridate</requirement>
+        <requirement type="package" version="1.4.0">r-scales</requirement>
+        <requirement type="package" version="1.4.0">r-hms</requirement>
+        <requirement type="package" version="1.4.0">r-glue</requirement>
+        <requirement type="package" version="1.4.0">r-viridisLite</requirement>
+        <requirement type="package" version="1.4.0">r-cowplot</requirement>
+        <requirement type="package" version="1.4.0">r-reshape2</requirement>
+        <requirement type="package" version="1.4.0">r-gridExtra</requirement>
+        <requirement type="package" version="1.4.0">r-ape</requirement>
+        <requirement type="package" version="1.4.0">r-biostrings</requirement>
+        <requirement type="package" version="1.4.0">r-genomeinfodbdata</requirement>
+        <requirement type="package" version="1.4.0">r-rtracklayer</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome.hg19</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome.mm10</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome.rheMac8</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome.sacCer3</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome.tair10</requirement>
+        <requirement type="package" version="1.4.0">r-bsgenome.yeast</requirement>
+        <requirement type="package" version="1.4.0">r-genomicfeatures</requirement>
+        <requirement type="package" version="1.4.0">r-genomicranges</requirement>
+        <requirement type="package" version="1.4.0">r-summarizedexperiment</requirement>
+        <requirement type="package" version="1.4.0">r-variantannotation</requirement>
+        <requirement type="package" version="1.4.0">r-ampvis2</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+Rscript '$__tool_directory__/ampvis2_frequency.R'
+--input '$input_ampvis2'
+--metadata '$metadata'
+--output '$output_plot'
+--format '$format'
+    </command>
+    <inputs>
+        <param argument="--input" type="data" format="rds" label="Ampvis2 dataset"/>
+        <param argument="--metadata" type="data" format="tabular" label="Metadata table"/>
+        <param argument="--format" type="select" label="Plot format">
+            <option value="png" selected="true">PNG</option>
+            <option value="pdf">PDF</option>
+            <option value="svg">SVG</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output_plot" format="html" label="${tool.name} on ${on_string}: Frequency plot"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input_ampvis2" ftype="rds" value="ampvis2_subset_sample.rds"/>
+            <param name="metadata" ftype="tabular" value="meta_subset_sample.txt"/>
+            <param name="format" value="png"/>
+            <output name="output_plot" file="ampvis2_frequency.png" compare="sim_size"/>
+        </test>
+    </tests>
+    <help>
+What it does
+============
+
+Generates a barplot with frequency vs read abundance.
+
+The Galaxy tool calls the `amp_frequency
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_frequency.html&gt;</a>`_
+function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+A frequency plot in the chosen output format.
+    </help>
+    <citations>
+        <citation type="doi">10.1093/bib/bbv067</citation>
+    </citations>
+</tool>

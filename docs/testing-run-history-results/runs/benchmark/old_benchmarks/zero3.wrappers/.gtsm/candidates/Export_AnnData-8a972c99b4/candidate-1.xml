@@ -1,0 +1,69 @@
+<tool id="anndata_export" name="Export AnnData" version="0.1.0+galaxy0" profile="25.0">
+    <description>to CSV</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">anndata_export</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="0.11.4">anndata</requirement>
+        <requirement type="package" version="3.0.8">loompy</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        python '$__tool_directory__/export_anndata.py'
+            --input_file '${input}'
+            --output_dir '${output_dir}'
+            --output_prefix '${output_prefix}'
+            --method 'write_csvs'
+            &gt; '$log'
+    </command>
+    <inputs>
+        <param name="input" type="data" format="h5ad" label="Input AnnData"/>
+        <param name="output_prefix" type="text" value="anndata" label="Prefix for output files"/>
+    </inputs>
+    <outputs>
+        <collection name="output_files" type="list" label="${tool.name} on ${on_string}">
+            <discover_datasets pattern=".*\.csv$" ext="csv" directory="${output_dir}" />
+        </collection>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" ftype="h5ad" value="adata.h5ad"/>
+            <output_collection name="output_files" type="list">
+                <element name="obs.csv" ftype="csv" value="adata.obs.csv"/>
+                <element name="var.csv" ftype="csv" value="adata.var.csv"/>
+                <element name="X.csv" ftype="csv" value="adata.X.csv"/>
+            </output_collection>
+        </test>
+    </tests>
+    <help>
+This tool exports an AnnData dataset to a tabular files (`write_csvs method <https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.write_csvs.html>`__)
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy <https://github.com/theislab/scanpy>`__, for which it was initially developed.
+
+AnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.
+
+.. image:: https://falexwolf.de/img/scanpy/anndata.svg
+
+
+AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics
+of statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics
+and machine learning packages in Python (statsmodels, scikit-learn).
+
+More details on the `AnnData documentation
+<https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html>`__
+
+**Loom data**
+
+Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+
+.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png
+
+
+Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes
+and cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).
+    </help>
+    <citations>
+        <citation type="doi">10.1038/s41586-019-1701-7</citation>
+    </citations>
+</tool>

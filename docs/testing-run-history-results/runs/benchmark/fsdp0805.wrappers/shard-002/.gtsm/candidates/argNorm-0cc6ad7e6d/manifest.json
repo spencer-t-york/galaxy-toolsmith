@@ -1,0 +1,62 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "selected_candidate_attempt": 2,
+  "selected_candidate_index": 1,
+  "primary_output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-002/argNorm-0cc6ad7e6d.xml",
+  "candidates": [
+    {
+      "attempt": 2,
+      "candidate_index": 1,
+      "path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-002/.gtsm/candidates/argNorm-0cc6ad7e6d/candidate-attempt-2-1.xml",
+      "selected": true,
+      "score": -1660,
+      "score_reasons": [
+        "xml_parse_failed:-1000",
+        "root_not_tool:-500",
+        "no_generation_diagnostics:+50",
+        "missing_command:-120",
+        "missing_outputs:-80",
+        "missing_inputs:-10"
+      ],
+      "features": {
+        "has_command": false,
+        "has_inputs": false,
+        "has_outputs": false,
+        "has_requirements": false,
+        "has_tests": false,
+        "has_help": false,
+        "command_chars": 0,
+        "input_count": 0,
+        "output_count": 0,
+        "requirement_count": 0,
+        "test_count": 0
+      },
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: not well-formed (invalid token): line 34, column 36"
+        ],
+        "artifact_format": "xml"
+      },
+      "postprocess": {
+        "artifact_format": "xml",
+        "citation_mode": "direct",
+        "citation_added": false,
+        "tool_id_applied": false,
+        "tool_name_applied": false,
+        "macros_import_added": false,
+        "tests_pruned": false,
+        "test_count_before": 0,
+        "test_count_after": 0,
+        "changed": false,
+        "error": "XML parse error: not well-formed (invalid token): line 34, column 36"
+      },
+      "bytes": 2189
+    }
+  ]
+}

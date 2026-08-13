@@ -1,0 +1,58 @@
+<tool id="ampvis2_load" name="ampvis2 load" version="0.1.0" profile="25.0">
+  <description>Reads an OTU or ASV table and corresponding sample metadata, and returns a RDS data set for use in all ampvis2 tools.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=2.0">R</requirement>
+    <requirement type="package" version="&gt;=1.0">readr</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e 'library(ampvis2); amp_load(input_otu_table, input_metadata, input_taxonomy, input_tree, input_fasta, guess_types=$guess_types, output_list_datasets=$output_list_datasets)'
+    </command>
+  <inputs>
+    <param name="input_otu_table" type="tabular" label="OTU Table" help="Tabular data set or BIOM version (1 and 2)" />
+    <param name="input_metadata" type="tabular" label="Sample Metadata" optional="true" help="Additional information about the samples" />
+    <param name="input_taxonomy" type="tabular" label="Taxonomy Table" optional="true" help="Tabular data set with 7 columns" />
+    <param name="input_tree" type="data" format="newick" optional="true" label="Phylogenetic Tree" help="Newick format" />
+    <param name="input_fasta" type="fasta" optional="true" label="Fasta File" help="FASTA file containing the sequences of the OTUs" />
+    <param name="guess_types" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Guess metadata column types" help="Automatically guess data types for metadata columns" />
+    <param name="output_list_datasets" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Output list data sets" help="Disable output of list datasets" />
+  </inputs>
+  <outputs>
+    <data name="output_rds" format="rds" label="RDS Data Set" />
+    <data name="output_taxonomy_list" format="tabular" label="Taxonomy List" optional="true" />
+    <data name="output_metadata_list" format="tabular" label="Metadata List" optional="true" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_otu_table" value="sample_otu_table.tsv" />
+      <param name="input_metadata" value="sample_metadata.tsv" />
+      <param name="input_taxonomy" value="sample_taxonomy.tsv" />
+      <output name="output_rds" file="expected_output.rds" />
+    </test>
+  </tests>
+  <help format="markdown">
+# Ampvis2 Load
+
+This tool reads an OTU or ASV table and corresponding sample metadata, and returns a RDS data set for use in all ampvis2 tools.
+
+## Inputs
+
+- **OTU Table**: Tabular data set or BIOM version (1 and 2).
+- **Sample Metadata**: Additional information about the samples.
+- **Taxonomy Table**: Tabular data set with 7 columns.
+- **Phylogenetic Tree**: Newick format.
+- **Fasta File**: FASTA file containing the sequences of the OTUs.
+
+## Outputs
+
+- **RDS Data Set**: Main output of the tool.
+- **Taxonomy List**: Summarizes the taxonomy information.
+- **Metadata List**: Summarizes the metadata information.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

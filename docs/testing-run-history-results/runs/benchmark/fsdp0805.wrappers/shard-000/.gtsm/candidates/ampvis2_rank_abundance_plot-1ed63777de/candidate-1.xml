@@ -1,0 +1,106 @@
+<tool id="ampvis2_rank_abundance_plot" name="ampvis2 rank abundance plot" version="2.4+galaxy0" profile="21.05">
+  <description>generates a rank abundance curve</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.4">iuc-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+        Rscript '$__tool_directory__/rankabundance.R'
+            --input '$input'
+            --metadata '$metadata'
+            #if $advanced.advanced == 'yes':
+                --otu_level $advanced.otu_level
+                --min_abund $advanced.min_abund
+                --max_abund $advanced.max_abund
+                --step $advanced.step
+                #if str($advanced.plot_type) != '':
+                    --plot_type '$advanced.plot_type'
+                #end if
+                #if str($advanced.std_dev) != '':
+                    --std_dev '$advanced.std_dev'
+                #end if
+            #end if
+            --output '$output'
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="rds" label="AmpVis2 dataset" />
+    <param argument="--metadata" type="data" format="tabular" label="Metadata table" help="Metadata table produced by the &quot;load&quot; tool." />
+    <conditional name="advanced">
+      <param name="advanced" type="select" label="Advanced options">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </param>
+      <when value="no" />
+      <when value="yes">
+        <param argument="--otu_level" type="integer" min="1" max="9" value="1" label="OTU level" help="Level of the OTUs to consider." />
+        <param argument="--min_abund" type="integer" min="0" value="0" label="Minimum abundance" help="Only OTUs with abundance greater or equal to this value will be considered." />
+        <param argument="--max_abund" type="integer" min="0" value="0" label="Maximum abundance" help="Only OTUs with abundance lower or equal to this value will be considered." />
+        <param argument="--step" type="integer" min="0" value="0" label="Step size" help="Step size between each interval." />
+        <param argument="--plot_type" type="select" label="Plot type">
+          <option value="">None</option>
+          <option value="bar">Bar chart</option>
+          <option value="line">Line graph</option>
+        </param>
+        <param argument="--std_dev" type="select" label="Standard deviation">
+          <option value="">None</option>
+          <option value="mean">Mean</option>
+          <option value="median">Median</option>
+        </param>
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output" format="html" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" ftype="rds" value="rankabundance.rds" />
+      <param name="metadata" ftype="tabular" value="rankabundance.tabular" />
+      <output name="output" file="rankabundance.html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates a rank abundance curve (rank abundance vs cumulative read abundance),
+optionally with standard deviation from mean intervals.
+
+The Galaxy tool calls the `amp_rankabundance
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_rankabundance.html&gt;`_ function
+of the ampvis2 package.
+
+Currently only OTU level is supported.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+An rank abundance plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-015-0076-x</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

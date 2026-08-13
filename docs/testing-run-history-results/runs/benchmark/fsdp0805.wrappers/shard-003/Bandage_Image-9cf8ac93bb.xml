@@ -1,0 +1,51 @@
+<tool id="bandage_image" name="Bandage Image" version="2022.09+galaxy0" profile="24.0">
+  <description>generate an image of the assembly graph</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">bandage</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2022.09">iuc/bandage</requirement>
+  </requirements>
+  <version_command>Bandage --version</version_command>
+  <command detect_errors="exit_code">
+        Bandage image '$input_gfa' '$output'
+            --size $size
+            --dpi $dpi
+            --quality $quality
+            --threads \${GALAXY_SLOTS:-1}
+    </command>
+  <inputs>
+    <param argument="--input_gfa" type="data" format="gfa1,gfa2" label="Input GFA file" />
+    <param argument="--size" type="integer" value="600" min="1" label="Image size in pixels" />
+    <param argument="--dpi" type="integer" value="72" min="1" label="DPI" />
+    <param argument="--quality" type="integer" value="90" min="1" max="100" label="JPEG quality" />
+  </inputs>
+  <outputs>
+    <data name="output" format="png" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_gfa" ftype="gfa1" value="test.gfa" />
+      <output name="output" file="image.png" compare="sim_size" delta="10000" />
+    </test>
+  </tests>
+  <help>
+*THE NEW BANDAGE: As of version 2022.09, the Bandage tool is now built on `Bandage-NG &lt;https://github.com/asl/BandageNG&gt;`_. This fork of the original Bandage is better maintained with additional features and performance upgrades.*
+
+
+
+**Bandage Overview**
+
+Bandage is a GUI program that allows users to interact with the assembly graphs made by de novo assemblers such as Velvet, SPAdes, MEGAHIT and others.
+- bandage_ng BandageNG-2022.09/README.md: [![GitHub Downloads](https://img.shields.io/github/downloads/asl/BandageNG/total.svg?style=social&amp;logo=github&amp;label=Download)](https://github.com/asl/BandageNG/releases) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asl/BandageNG/build-test?label=checks) # &lt;img src="http://rrwick.github.io/Bandage/images/logo.png" alt="Bandage" width="115" height="115" align="middle"&gt;Bandage-NG ## IMPORTANT: This is a fork of original Bandage repo. It may contain new features, new bugs and otherwise be not compatible with the Bandage by Ryan Wick. The documentation, instructions, etc. might be incomplete, missed and inaccurate as well ## Table of Contents * [Intro](https://github.com/asl/BandageNG#intro) * [Help](https://github.com/asl/BandageNG#help) * [Pre-built binaries](https://github.com/asl/BandageNG#pre-built-binaries)
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btv080</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

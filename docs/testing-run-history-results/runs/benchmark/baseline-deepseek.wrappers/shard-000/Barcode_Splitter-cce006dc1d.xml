@@ -1,0 +1,62 @@
+<tool id="barcode_splitter" name="Barcode Splitter" version="0.1.0" profile="25.0">
+  <description>Split FASTQ files using barcodes as criteria</description>
+  <requirements>
+    <requirement type="package">barcode_splitter</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        barcode_splitter \\
+        -i $FASTQ \\
+        -b $BARCODES \\
+        -m $mismatches \\
+        -o $output_dir
+    </command>
+  <inputs>
+    <param name="FASTQ" type="data" format="fastq" label="Input FASTQ file" />
+    <param name="BARCODES" type="data" format="tabular" label="Barcode file" help="Tab-delimited file with identifiers and barcodes. First column is identifier, subsequent columns are barcodes." />
+    <param name="mismatches" type="integer" label="Number of allowed mismatches" default="0" help="Number of mismatches allowed per barcode (default: 0)" />
+  </inputs>
+  <outputs>
+    <output name="summary" format="tabular" label="Summary table" />
+    <output name="split_files" format="directory" label="Split FASTQ files" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="FASTQ" value="test.fastq" />
+      <param name="BARCODES" value="barcodes.txt" />
+      <param name="mismatches" value="0" />
+      <output name="summary">
+        <has_text>Sample1</has_text>
+        <has_text>Sample2</has_text>
+        <has_text>unmatched</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # Barcode Splitter
+        
+        ## What it does
+        Splits a FASTQ file into multiple files based on barcodes. Creates separate files for unmatched and multimatched reads.
+        
+        ## Input Requirements
+        - Input FASTQ file
+        - Barcode file (tab-delimited with identifiers and barcodes)
+        
+        ## Output
+        - Summary table of split counts
+        - Directory of split FASTQ files
+        
+        ## Barcode File Format
+        ```
+        # comments start with #
+        Sample1    GATCT    TTGCAT
+        Sample2    ATCGT    GCGCAT
+        ```
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "gfa"
+  ],
+  "records": [
+    {
+      "datatype": "gfa",
+      "tool_name": "Bandage Info",
+      "tool_id": "bandage_info",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/Bandage_Info-ca3e69c2ed.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

@@ -1,0 +1,78 @@
+<tool id="ampvis2_alpha_diversity" name="ampvis2 alpha diversity" version="0.1.0" profile="21.05">
+    <description>Calculate alpha-diversity indices for each sample and combines with the metadata</description>
+    <macros/><requirements>
+        <requirement type="package" version="4.0.3">r-ampvis2</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+Rscript -e 'library(ampvis2);
+load(&quot;${input}&quot;);
+amp_alpha_diversity(
+    input = loaded,
+    measures = c(${",".join([str($measures.element) for $measures in $measures])}),
+    rarefy = ${rarefy},
+    output = &quot;${output}&quot;
+);'
+    </command>
+    <inputs>
+        <param name="input" type="data" format="rdata" label="Input dataset"/>
+        <param name="measures" type="select" multiple="true" label="Alpha diversity measures">
+            <option value="shannon">Shannon</option>
+            <option value="simpson">Simpson</option>
+            <option value="invsimpson">Inverse Simpson</option>
+            <option value="sor">Sorensen</option>
+            <option value="chao1">Chao1</option>
+            <option value="chao1_ci">Chao1 confidence interval</option>
+            <option value="chao1_ci_low">Chao1 confidence interval lower bound</option>
+            <option value="chao1_ci_high">Chao1 confidence interval upper bound</option>
+            <option value="chao1_ci_width">Chao1 confidence interval width</option>
+            <option value="chao1_ci_relwidth">Chao1 confidence interval relative width</option>
+            <option value="chao1_ci_relwidth_log">Chao1 confidence interval relative width (log)</option>
+            <option value="chao1_ci_relwidth_log10">Chao1 confidence interval relative width (log10)</option>
+            <option value="chao1_ci_relwidth_log2">Chao1 confidence interval relative width (log2)</option>
+            <option value="chao1_ci_relwidth_log100">Chao1 confidence interval relative width (log100)</option>
+            <option value="chao1_ci_relwidth_log1000">Chao1 confidence interval relative width (log1000)</option>
+            <option value="chao1_ci_relwidth_log10000">Chao1 confidence interval relative width (log10000)</option>
+            <option value="chao1_ci_relwidth_log100000">Chao1 confidence interval relative width (log100000)</option>
+            <option value="chao1_ci_relwidth_log1000000">Chao1 confidence interval relative width (log1000000)</option>
+            <option value="chao1_ci_relwidth_log10000000">Chao1 confidence interval relative width (log10000000)</option>
+            <option value="chao1_ci_relwidth_log100000000">Chao1 confidence interval relative width (log100000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000">Chao1 confidence interval relative width (log1000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000">Chao1 confidence interval relative width (log10000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000">Chao1 confidence interval relative width (log100000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000">Chao1 confidence interval relative width (log1000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000">Chao1 confidence interval relative width (log10000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000">Chao1 confidence interval relative width (log100000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000">Chao1 confidence interval relative width (log1000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000">Chao1 confidence interval relative width (log10000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000">Chao1 confidence interval relative width (log100000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000">Chao1 confidence interval relative width (log1000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000">Chao1 confidence interval relative width (log10000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000">Chao1 confidence interval relative width (log100000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log10000000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log10000000000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log100000000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log100000000000000000000000000000000000000000000000)</option>
+            <option value="chao1_ci_relwidth_log1000000000000000000000000000000000000000000000000">Chao1 confidence interval relative width (log1000000000000000000000000000000000000000000

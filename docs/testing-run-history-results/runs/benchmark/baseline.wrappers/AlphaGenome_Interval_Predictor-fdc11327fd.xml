@@ -1,0 +1,69 @@
+<tool id="alphagenome_interval_predictor" name="AlphaGenome Interval Predictor" version="0.1.0" profile="25.0">
+  <description>Predicts regulatory tracks for genomic intervals using AlphaGenome's predict_interval() API.</description>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+python /path/to/alphagenome_interval_predictor.py -i $input_bed -o $output_file -t $output_type -b $bin_size
+</command>
+  <inputs>
+    <param name="input_bed" type="bed" label="Input BED File" help="BED file containing genomic intervals." />
+    <param name="output_type" type="select" label="Output Type" help="Type of data to predict." multiple="true">
+      <option value="RNA_SEQ">RNA Seq</option>
+      <option value="ATAC">ATAC</option>
+    </param>
+    <param name="bin_size" type="integer" label="Bin Size" help="Size of bins for binned output (default 128bp)." value="128" min="1" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Prediction Results" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_bed" value="sample.bed" />
+      <param name="output_type" value="RNA_SEQ" />
+      <param name="bin_size" value="128" />
+      <output name="output_file" file="expected_output.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+**AlphaGenome Interval Predictor**
+
+Predicts regulatory tracks for genomic intervals using AlphaGenome's `predict_interval()` API. No variants — just baseline characterization of the chromatin, expression, and splicing landscape at each region.
+
+**Output modes**
+
+- **Summary** (default): One row per interval x track with mean and max signal.
+- **Binned**: Divides each interval into fixed-width bins (default 128bp) and reports mean signal per bin. Provides spatial resolution for visualizing signal patterns across a region.
+
+**Output columns — summary mode**
+
+- `chrom`, `start`, `end` — interval coordinates
+- `name` — region name from BED
+- `output_type` — RNA_SEQ, ATAC, etc.
+- `track_name` — specific experimental track
+- `ontology_curie` — tissue/cell type ontology term
+- `mean_signal` — mean predicted signal across the region
+- `max_signal` — maximum predicted signal in the region
+
+**Output columns — binned mode**
+
+- `chrom`, `bin_start`, `bin_end` — bin coordinates
+- `region_name` — original region name
+- `output_type`, `track_name`, `ontology_curie` — as above
+- `mean_signal` — mean predicted signal in the bin
+
+**Use cases**
+
+- Characterize regulatory activity at GWAS loci
+- Compare predicted chromatin landscapes between regions
+- Identify active promoters, enhancers, or splice sites
+- Generate baseline predictions for regions of interest
+</help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

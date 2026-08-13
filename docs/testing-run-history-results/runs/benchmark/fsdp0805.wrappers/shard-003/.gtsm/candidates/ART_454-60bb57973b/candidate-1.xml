@@ -1,0 +1,117 @@
+<tool id="art_454" name="ART 454" version="4.0+galaxy1" profile="21.05">
+    <description>Simulator for 454 pyrosequencing</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">art</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="4.0">iuc/art</requirement>
+    </requirements>
+    <version_command>echo "4.0"</version_command>
+    <command detect_errors="exit_code">
+        #if $input.is_of_type("fasta")
+            ln -s '$input' 'input.fasta' &amp;&amp;
+        #else if $input.is_of_type("fastqsanger.gz") or $input.is_of_type("fastqsolexa.gz") or $input.is_of_type("fastqillumina.gz")
+            gunzip -c '$input' &gt; 'input.fastq' &amp;&amp;
+        #end if
+        mkdir -p 'output' &amp;&amp;
+
+        ## TODO: add support for other modes
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/README
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L67-L90
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L100-L102
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L112-L114
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L122-L124
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L132-L134
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L142-L144
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L152-L154
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L162-L164
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L172-L174
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L182-L184
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L192-L194
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L202-L204
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L212-L214
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L222-L224
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L232-L234
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L242-L244
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L252-L254
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L262-L264
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L272-L274
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L282-L284
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L292-L294
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L302-L304
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L312-L314
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L322-L324
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L332-L334
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L342-L344
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L352-L354
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L362-L364
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L372-L374
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L382-L384
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L392-L394
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L402-L404
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L412-L414
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L422-L424
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L432-L434
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L442-L444
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L452-L454
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L462-L464
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L472-L474
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L482-L484
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L492-L494
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L502-L504
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L512-L514
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L522-L524
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L532-L534
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L542-L544
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L552-L554
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L562-L564
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L572-L574
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L582-L584
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L592-L594
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L602-L604
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L612-L614
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L622-L624
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L632-L634
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L642-L644
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L652-L654
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L662-L664
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L672-L674
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L682-L684
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L692-L694
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L702-L704
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L712-L714
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L722-L724
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L732-L734
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L742-L744
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L752-L754
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L762-L764
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L772-L774
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L782-L784
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L792-L794
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L802-L804
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L812-L814
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L822-L824
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L832-L834
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L842-L844
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L852-L854
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L862-L864
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L872-L874
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L882-L884
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L892-L894
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L902-L904
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L912-L914
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L922-L924
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L932-L934
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L942-L944
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L952-L954
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L962-L964
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L972-L974
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L982-L984
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L992-L994
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1002-L1004
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1012-L1014
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1022-L1024
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1032-L1034
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1042-L1044
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1052-L1054
+        ## https://github.com/jts/ART/blob/master/ART_profiler_454/ART_profiler_454.cpp#L1

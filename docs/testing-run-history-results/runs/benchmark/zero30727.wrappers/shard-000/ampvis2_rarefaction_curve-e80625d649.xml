@@ -1,0 +1,100 @@
+<tool id="ampvis2_rarefaction_curve" name="ampvis2 rarefaction curve" version="0.1.0+galaxy0" profile="22.09">
+  <description>generating rarefaction curves</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.4.0">R</requirement>
+    <requirement type="package" version="1.4.0">r-base</requirement>
+    <requirement type="package" version="1.4.0">r-ggplot2</requirement>
+    <requirement type="package" version="1.4.0">r-vegan</requirement>
+    <requirement type="package" version="1.4.0">r-ampr</requirement>
+  </requirements>
+  <version_command>Rscript '$__tool_directory__/get_version.R'</version_command>
+  <command detect_errors="exit_code">
+Rscript '$__tool_directory__/rarecurve.R'
+--input '$input'
+--metadata '$metadata'
+--output '$output'
+--facet '$facet'
+--color '$color'
+--title '$title'
+--xlabel '$xlabel'
+--ylabel '$ylabel'
+--width '$width'
+--height '$height'
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="rds" label="Ampvis2 dataset" />
+    <param argument="--metadata" type="data" format="tabular" label="Metadata table" />
+    <param argument="--facet" type="select" label="Facet by" help="Split the plot into multiple panels based on a metadata variable">
+      <option value="none" selected="true">None</option>
+      <options from_data_table="metadata_columns" />
+    </param>
+    <param argument="--color" type="select" label="Color by" help="Color the points based on a metadata variable">
+      <option value="none" selected="true">None</option>
+      <options from_data_table="metadata_columns" />
+    </param>
+    <param argument="--title" type="text" label="Plot title" help="Title of the plot" value="Rarefaction Curve" />
+    <param argument="--xlabel" type="text" label="X-axis label" help="Label for the X-axis" value="Number of reads" />
+    <param argument="--ylabel" type="text" label="Y-axis label" help="Label for the Y-axis" value="Number of observed OTUs" />
+    <param argument="--width" type="integer" label="Width" help="Width of the plot in inches" value="6" />
+    <param argument="--height" type="integer" label="Height" help="Height of the plot in inches" value="4" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="${tool.name} on ${on_string}: Rarefaction Curve" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" ftype="rds" value="ampvis2.rds" />
+      <param name="metadata" ftype="tabular" value="metadata.tabular" />
+      <param name="facet" value="none" />
+      <param name="color" value="none" />
+      <param name="title" value="Rarefaction Curve" />
+      <param name="xlabel" value="Number of reads" />
+      <param name="ylabel" value="Number of observed OTUs" />
+      <param name="width" value="6" />
+      <param name="height" value="4" />
+      <output name="output" file="rarecurve.html" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates a rarefaction curve (number of reads vs number of observed OTUs) for each sample.
+The plot can be colored or faceted (i.e. split into multiple panels) by metadata
+
+The Galaxy tool calls the `amp_rarecurve
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_rarecurve.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+Rarefaction curves in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-022-01401-0</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,93 @@
+<tool id="barcode_splitter" name="Barcode Splitter" version="0.1.0" profile="25.0">
+  <description>Splits a FASTQ file into several files using barcodes.</description>
+  <requirements>
+    <requirement type="package" version="1.0">barcode_splitter</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        barcode_splitter --bcfile $bcfile --mismatches $mismatches --index_files $index_files --output_dir $output_dir
+    </command>
+  <inputs>
+    <param name="bcfile" type="data" format="txt" label="Barcode File" />
+    <param name="mismatches" type="integer" value="0" min="0" label="Number of Mismatches" />
+    <param name="index_files" type="data_collection" collection_type="list" label="Index Files">
+      <collection_param name="element_identifier" type="text" label="Element Identifier" />
+      <collection_param name="format" type="select" label="Format">
+        <option value="fastq">FASTQ</option>
+      </collection_param>
+    </param>
+    <param name="output_dir" type="text" value="split_output" label="Output Directory" />
+  </inputs>
+  <outputs>
+    <collection name="output_files" type="list" label="Split Output Files">
+      <discover_datasets pattern=".*" directory="$output_dir" />
+    </collection>
+    <data name="summary_table" format="tabular" label="Summary Table" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="bcfile" value="barcode_file.txt" />
+      <param name="mismatches" value="1" />
+      <param name="index_files" value="index_files" />
+      <param name="output_dir" value="split_output_test" />
+      <output name="summary_table" file="summary_table_test.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+        **What it does**
+        
+        Splits a FASTQ file into several files using barcodes as the split criteria. Barcodes in one file can be used to split multiple sorted files. Multiple sets of barcodes, each located in a different file, can be used.
+        
+        **How it works**
+        
+        Given a number of allowed mismatches, all possible mismatching barcode combinations are pre-computed and stored in a hash lookup table. Each barcode column in the barcode file adds another level to the hash table data structure. For each read group, the index sequence(s) are used to look up the sample they belong to. No pattern matching takes place - it's a simple hash table lookup where the keys being looked up are taken from the sequences in the index files. Barcode collisions are detected during the construction of the hash table before any sequences are processed, which results in warnings and/or errors and reads that match collided barcodes end up in a "multimatched" file.
+        
+        The length of the barcode sequences in the barcodes file must be less than or equal to the length of the sequences in the corresponding index files and all barcodes in 1 column must be the same length (though the lengths of the barcodes between columns may differ).
+        
+        There can only be 1 number of mismatches and it is applied per barcode. E.g. If the number of mismatches is set to 1, and there are 2 barcode columns, then two barcodes on the same row may each have 1 mismatch. There is no way (currently) to set a different number of mismatches for different barcode columns.
+        
+        If there are 2 barcode columns, the output summary table can have multiple rows where a single sample could not be identified. Ignoring multimatched and error states for the moment, the following 4 rows are possible, but only those with counts greater than 0 will be included in the summary table:
+        
+            unmatched	unmatched	unmatched	1
+            unmatched	matched	unmatched	2
+            unmatched	unmatched	matched	3
+            unmatched	matched	matched	4
+        
+        The first column is the ID, which is 'unmatched' in all cases (except the error row). Here's what each row means in the above example:
+        
+            1. For 1 read group, neither of the index sequences matched any barcodes in either barcode column.
+            2. For 2 read groups, a barcode in the first barcode column matched but none from the second were matched.
+            3. For 3 read groups, no barcodes in the first column matched but a barcode in the second barcode column did match.
+            4. For 4 read groups, a barcode from each column matched, but they were not in the same row.
+        
+        If you encounter large counts in case 4, then barcodes are likely not paired correctly in the barcodes file.
+        
+        Two other states can also be reported: multimatched &amp; error. Read groups with 'multimatch' in one or more columns means that with the allowed number of mismatches, the affected index read can match multiple barcodes in the corresponding column. A multimatch will only be reported if the number of mismatches in the 2 matched barcodes are the same. If they are different, barcode_splitter will assign the read group to the better match. If you have any multimatch barcodes or barcode collision warnings, then the barcode design should be improved. The number of differences between any pair of barcodes in a single column should be greater than double the number of allowed mismatches, or else you may end up with numerous multimatch scenarios. A match in another barcode column will not resolve a multimatch in a different column.
+        
+        **Barcode file Format**
+        
+        Barcode files are simple text files. Each line should contain an identifier (descriptive name for the barcode), and at least 1 barcode, separated by TAB characters. Multiple columns of barcodes are supported (each corresponding to a separate barcoded read file), though there's usually just 1. An example of the usage of multiple sets of barcodes could be the first set of barcodes can denote user and the second set can be each user's sample barcodes.
+        Example::
+        
+            #This line is a comment (starts with a 'number' sign)
+            BC1	GATCT	TTGCAT
+            BC2	ATCGT	GCGCAT
+            BC3	GTGAT	AGGTCA
+            BC4	TGTCT	CTTTGG
+        
+        For each barcode, a new FASTQ file will be created (with the barcodes' identifier as part of the file name). Sequences matching the barcodes in a row will be stored in the appropriate file.
+        
+        The first sequence file submitted must contain sequences with the barcodes in the first column of the barcode file. The second sequence file must contain sequences with the barcodes in the second column, and so on. The Number of Index Files supplied must match the number of actual columns in the barcode file and the order in which they are supplied must match the order of the barcode columns as well.
+        
+        As many as 2 additional FASTQ output files will be created for each read/index file: the 'unmatched' file and the 'multimatched' file, where sequences not matching any barcode or matching more than 1 barcode (when mismatches are taken into account) will be stored.
+        
+        The output of this tool is a summary table displaying the split counts for each barcode identifier and the percentage of the total reads those represent.
+        In addition, each FASTQ file produced will be loaded into the galaxy history as part of a collection list.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

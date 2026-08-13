@@ -1,0 +1,31 @@
+<tool id="anndata2ri" name="anndata2ri" version="1.3.2">
+  <description>Convert between Anndata and SingleCellExperiment objects.</description>
+  <requirements>
+    <requirement type="package" version="1.3.2">anndata2ri</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m anndata2ri $input_file &gt; $output_file
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="txt" label="Input Anndata file" />
+  </inputs>
+  <outputs>
+    <data name="output_file" format="html" label="Converted SingleCellExperiment object" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample_anndata.txt" />
+      <output name="output_file" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Convert between Anndata and SingleCellExperiment objects. For conversion of further single-cell file formats, consider using **SCEasy Converter** tool.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

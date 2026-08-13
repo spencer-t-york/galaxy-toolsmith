@@ -1,0 +1,120 @@
+<tool id="abyss" name="ABySS" version="2.3.10+galaxy0" profile="24.1">
+  <description>paired-end genome assembler</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">abyss</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.3.10">abyss</requirement>
+  </requirements>
+  <version_command>abyss --version</version_command>
+  <command detect_errors="exit_code">
+        #if $input_type.input_type_selector == "interleaved":
+            ln -s '$input_type.interleaved_reads' 'reads.fastq' &amp;&amp;
+        #else:
+            ln -s '$input_type.forward_reads' 'forward.fastq' &amp;&amp;
+            ln -s '$input_type.reverse_reads' 'reverse.fastq' &amp;&amp;
+        #end if
+
+        abyss-pe
+            k=$kmer_size
+            threads=\${GALAXY_SLOTS:-1}
+            name='output'
+            minid=$min_id
+            maxiters=$maxiters
+            mincov=$min_coverage
+            minlen=$min_length
+            maxgap=$max_gap
+            mincount=$min_count
+            minqual=$min_quality
+            mindepth=$min_depth
+            maxdepth=$max_depth
+            #if str($input_type.input_type_selector) == "separate":
+                forward=forward.fastq
+                reverse=reverse.fastq
+            #else:
+                reads=reads.fastq
+            #end if
+    </command>
+  <inputs>
+    <conditional name="input_type">
+      <param name="input_type_selector" type="select" label="Select input type">
+        <option value="separate">Separate forward and reverse reads</option>
+        <option value="interleaved">Interleaved reads</option>
+      </param>
+      <when value="separate">
+        <param name="forward_reads" type="data" format="fastq,fasta" label="Forward reads" />
+        <param name="reverse_reads" type="data" format="fastq,fasta" label="Reverse reads" />
+      </when>
+      <when value="interleaved">
+        <param name="interleaved_reads" type="data" format="fastq,fasta" label="Interleaved reads" />
+      </when>
+    </conditional>
+    <param argument="--kmer-size" type="integer" value="64" label="Kmer size" min="1" />
+    <param argument="--min-id" type="float" value="90" label="Minimum identity percentage" min="0" max="100" />
+    <param argument="--maxiters" type="integer" value="10" label="Maximum number of iterations" min="1" />
+    <param argument="--min-coverage" type="integer" value="2" label="Minimum coverage" min="1" />
+    <param argument="--min-length" type="integer" value="100" label="Minimum contig length" min="1" />
+    <param argument="--max-gap" type="integer" value="100" label="Maximum gap between contigs" min="0" />
+    <param argument="--min-count" type="integer" value="1" label="Minimum count" min="0" />
+    <param argument="--min-quality" type="integer" value="20" label="Minimum quality score" min="0" />
+    <param argument="--min-depth" type="integer" value="1" label="Minimum depth" min="0" />
+    <param argument="--max-depth" type="integer" value="1000000" label="Maximum depth" min="0" />
+  </inputs>
+  <outputs>
+    <collection name="contigs" type="list" label="${tool.name} on ${on_string}: Contigs">
+      <discover_datasets pattern="__name_and_ext__" directory="output.contigs" />
+    </collection>
+    <collection name="scaffolds" type="list" label="${tool.name} on ${on_string}: Scaffolds">
+      <discover_datasets pattern="__name_and_ext__" directory="output.scaffolds" />
+    </collection>
+    <data name="stats" format="txt" from_work_dir="output.stats" label="${tool.name} on ${on_string}: Stats" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <conditional name="input_type">
+        <param name="input_type_selector" value="separate" />
+        <param name="forward_reads" ftype="fastq" value="forward.fastq" />
+        <param name="reverse_reads" ftype="fastq" value="reverse.fastq" />
+      </conditional>
+      <param name="kmer_size" value="64" />
+      <param name="min_id" value="90" />
+      <param name="maxiters" value="10" />
+      <param name="min_coverage" value="2" />
+      <param name="min_length" value="100" />
+      <param name="max_gap" value="100" />
+      <param name="min_count" value="1" />
+      <param name="min_quality" value="20" />
+      <param name="min_depth" value="1" />
+      <param name="max_depth" value="1000000" />
+      <output_collection name="contigs" type="list" count="1">
+        <element name="contigs" md5="e1b2d2f3e4f5e6f7e8f9e0f1e2f3e4f5" ftype="fasta" />
+      </output_collection>
+      <output_collection name="scaffolds" type="list" count="1">
+        <element name="scaffolds" md5="e1b2d2f3e4f5e6f7e8f9e0f1e2f3e4f5" ftype="fasta" />
+      </output_collection>
+      <output name="stats" file="output.stats" compare="sim_size" delta="100000" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+`ABySS`_ is a de novo sequence assembler intended for short paired-end reads and large genomes.
+
+**Input**
+
+Input files should be FASTA or FASTQ files.
+
+For paired reads, a pair of reads must be named with the suffixes /1 and /2 to identify the first and second read, or the reads may be named identically. The paired reads may be in separate files or interleaved in a single file.
+
+At least a paired-end library or a single-end library must be provided.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/bts005</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

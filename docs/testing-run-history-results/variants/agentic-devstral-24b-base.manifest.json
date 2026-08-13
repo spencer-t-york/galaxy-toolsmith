@@ -1,0 +1,13 @@
+{
+  "variant_id": "agentic-devstral-24b-base",
+  "base_model": "dry-run",
+  "quantization": "none",
+  "training_dataset_id": "",
+  "provider": "local",
+  "skills_profile": "default",
+  "backend": "auto",
+  "training_method": "lora",
+  "effective_training_method": "lora",
+  "artifact_kind": "unknown",
+  "artifact_dir": ""
+}

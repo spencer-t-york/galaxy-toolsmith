@@ -1,0 +1,33 @@
+<tool id="aegean_parseval" name="AEGeAn ParsEval" version="0.1.0" profile="25.0">
+  <description>Compare two sets of gene annotations in GFF3 format.</description>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        parseval "$input1" "$input2"
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="gff3" label="First Annotation" />
+    <param name="input2" type="data" format="gff3" label="Second Annotation" />
+  </inputs>
+  <outputs>
+    <data name="output" format="txt" label="ParsEval Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="sample1.gff3" ftype="gff3" />
+      <param name="input2" value="sample2.gff3" ftype="gff3" />
+      <output name="output" file="parseval_output.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Compare two sets of gene annotations in GFF3 format.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

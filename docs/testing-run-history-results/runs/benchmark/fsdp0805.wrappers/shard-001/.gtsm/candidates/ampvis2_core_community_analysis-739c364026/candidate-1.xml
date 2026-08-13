@@ -1,0 +1,290 @@
+<tool id="ampvis2_core_community_analysis" name="ampvis2 core community analysis" version="2.4+galaxy0" profile="21.05">
+  <description>plot the core community of a set of samples</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.4">iuc-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript -e 'cat(system.file("DESCRIPTION", package = "ampvis2"), sep = "\n")'</version_command>
+  <command detect_errors="exit_code">
+Rscript -e '
+library(ampvis2)
+load("$input_abundance_matrix")
+
+#if $metadata_selector.metadata_source_selector == "metadata_list":
+    meta &lt;- read.table("$metadata_selector.metadata_source.metadata_list.fields.path", header = TRUE, row.names = 1)
+#end if
+
+#if str($metadata_selector.grouping_variable):
+    grouping_variable &lt;- "$metadata_selector.grouping_variable"
+#else:
+    grouping_variable &lt;- NULL
+#end if
+
+#if str($metadata_selector.grouping_value):
+    grouping_value &lt;- "$metadata_selector.grouping_value"
+#else:
+    grouping_value &lt;- NULL
+#end if
+
+#if str($metadata_selector.normalisation_variable):
+    normalisation_variable &lt;- "$metadata_selector.normalisation_variable"
+#else:
+    normalisation_variable &lt;- NULL
+#end if
+
+#if str($metadata_selector.normalisation_value):
+    normalisation_value &lt;- "$metadata_selector.normalisation_value"
+#else:
+    normalisation_value &lt;- NULL
+#end if
+
+#if str($metadata_selector.abundance_cutoff):
+    abundance_cutoff &lt;- $metadata_selector.abundance_cutoff
+#else:
+    abundance_cutoff &lt;- 0
+#end if
+
+#if str($metadata_selector.min_samples):
+    min_samples &lt;- $metadata_selector.min_samples
+#else:
+    min_samples &lt;- 0
+#end if
+
+#if str($metadata_selector.max_samples):
+    max_samples &lt;- $metadata_selector.max_samples
+#else:
+    max_samples &lt;- Inf
+#end if
+
+#if str($metadata_selector.min_abundance):
+    min_abundance &lt;- $metadata_selector.min_abundance
+#else:
+    min_abundance &lt;- 0
+#end if
+
+#if str($metadata_selector.max_abundance):
+    max_abundance &lt;- $metadata_selector.max_abundance
+#else:
+    max_abundance &lt;- Inf
+#end if
+
+#if str($metadata_selector.min_relative_abundance):
+    min_relative_abundance &lt;- $metadata_selector.min_relative_abundance
+#else:
+    min_relative_abundance &lt;- 0
+#end if
+
+#if str($metadata_selector.max_relative_abundance):
+    max_relative_abundance &lt;- $metadata_selector.max_relative_abundance
+#else:
+    max_relative_abundance &lt;- Inf
+#end if
+
+#if str($metadata_selector.min_group_size):
+    min_group_size &lt;- $metadata_selector.min_group_size
+#else:
+    min_group_size &lt;- 0
+#end if
+
+#if str($metadata_selector.max_group_size):
+    max_group_size &lt;- $metadata_selector.max_group_size
+#else:
+    max_group_size &lt;- Inf
+#end if
+
+#if str($metadata_selector.min_group_abundance):
+    min_group_abundance &lt;- $metadata_selector.min_group_abundance
+#else:
+    min_group_abundance &lt;- 0
+#end if
+
+#if str($metadata_selector.max_group_abundance):
+    max_group_abundance &lt;- $metadata_selector.max_group_abundance
+#else:
+    max_group_abundance &lt;- Inf
+#end if
+
+#if str($metadata_selector.min_group_relative_abundance):
+    min_group_relative_abundance &lt;- $metadata_selector.min_group_relative_abundance
+#else:
+    min_group_relative_abundance &lt;- 0
+#end if
+
+#if str($metadata_selector.max_group_relative_abundance):
+    max_group_relative_abundance &lt;- $metadata_selector.max_group_relative_abundance
+#else:
+    max_group_relative_abundance &lt;- Inf
+#end if
+
+#if str($output_format.output_format_selector) == "html":
+    out_file_name &lt;- paste0("$out_file_name", ".html")
+    amp_core(
+        data,
+        grouping_variable = grouping_variable,
+        grouping_value = grouping_value,
+        normalisation_variable = normalisation_variable,
+        normalisation_value = normalisation_value,
+        abundance_cutoff = abundance_cutoff,
+        min_samples = min_samples,
+        max_samples = max_samples,
+        min_abundance = min_abundance,
+        max_abundance = max_abundance,
+        min_relative_abundance = min_relative_abundance,
+        max_relative_abundance = max_relative_abundance,
+        min_group_size = min_group_size,
+        max_group_size = max_group_size,
+        min_group_abundance = min_group_abundance,
+        max_group_abundance = max_group_abundance,
+        min_group_relative_abundance = min_group_relative_abundance,
+        max_group_relative_abundance = max_group_relative_abundance,
+        plot = FALSE,
+        file = out_file_name
+    )
+#else:
+    amp_core(
+        data,
+        grouping_variable = grouping_variable,
+        grouping_value = grouping_value,
+        normalisation_variable = normalisation_variable,
+        normalisation_value = normalisation_value,
+        abundance_cutoff = abundance_cutoff,
+        min_samples = min_samples,
+        max_samples = max_samples,
+        min_abundance = min_abundance,
+        max_abundance = max_abundance,
+        min_relative_abundance = min_relative_abundance,
+        max_relative_abundance = max_relative_abundance,
+        min_group_size = min_group_size,
+        max_group_size = max_group_size,
+        min_group_abundance = min_group_abundance,
+        max_group_abundance = max_group_abundance,
+        min_group_relative_abundance = min_group_relative_abundance,
+        max_group_relative_abundance = max_group_relative_abundance,
+        plot = TRUE,
+        file = "$out_file_name"
+    )
+#end if
+'
+    </command>
+  <inputs>
+    <param argument="--input_abundance_matrix" type="data" format="rds" label="Abundance matrix" />
+    <conditional name="metadata_selector">
+      <param name="metadata_source_selector" type="select" label="Select the source of the metadata">
+        <option value="none">None</option>
+        <option value="metadata_list">Load metadata from a metadata list</option>
+      </param>
+      <when value="none" />
+      <when value="metadata_list">
+        <param argument="--metadata_list" type="data" format="tabular" label="Metadata list" />
+      </when>
+    </conditional>
+    <section name="grouping" title="Grouping" expanded="false">
+      <param argument="--grouping_variable" type="text" optional="true" label="Variable to group by" help="The variable to group by" />
+      <param argument="--grouping_value" type="text" optional="true" label="Value to filter by" help="The value to filter by" />
+    </section>
+    <section name="normalisation" title="Normalisation" expanded="false">
+      <param argument="--normalisation_variable" type="text" optional="true" label="Variable to normalise by" help="The variable to normalise by" />
+      <param argument="--normalisation_value" type="text" optional="true" label="Value to filter by" help="The value to filter by" />
+    </section>
+    <section name="filtering" title="Filtering" expanded="false">
+      <param argument="--abundance_cutoff" type="integer" optional="true" value="" label="Cutoff for the number of reads per OTU" help="Cutoff for the number of reads per OTU" />
+      <param argument="--min_samples" type="integer" optional="true" value="" label="Minimum number of samples" help="Minimum number of samples" />
+      <param argument="--max_samples" type="integer" optional="true" value="" label="Maximum number of samples" help="Maximum number of samples" />
+      <param argument="--min_abundance" type="float" optional="true" value="" label="Minimum abundance" help="Minimum abundance" />
+      <param argument="--max_abundance" type="float" optional="true" value="" label="Maximum abundance" help="Maximum abundance" />
+      <param argument="--min_relative_abundance" type="float" optional="true" value="" label="Minimum relative abundance" help="Minimum relative abundance" />
+      <param argument="--max_relative_abundance" type="float" optional="true" value="" label="Maximum relative abundance" help="Maximum relative abundance" />
+      <param argument="--min_group_size" type="integer" optional="true" value="" label="Minimum group size" help="Minimum group size" />
+      <param argument="--max_group_size" type="integer" optional="true" value="" label="Maximum group size" help="Maximum group size" />
+      <param argument="--min_group_abundance" type="float" optional="true" value="" label="Minimum group abundance" help="Minimum group abundance" />
+      <param argument="--max_group_abundance" type="float" optional="true" value="" label="Maximum group abundance" help="Maximum group abundance" />
+      <param argument="--min_group_relative_abundance" type="float" optional="true" value="" label="Minimum group relative abundance" help="Minimum group relative abundance" />
+      <param argument="--max_group_relative_abundance" type="float" optional="true" value="" label="Maximum group relative abundance" help="Maximum group relative abundance" />
+    </section>
+    <param name="output_format" type="select" label="Output format">
+      <option value="png">PNG</option>
+      <option value="svg">SVG</option>
+      <option value="pdf">PDF</option>
+      <option value="html">HTML</option>
+    </param>
+    <param name="out_file_name" type="text" value="core_community" label="Output filename" help="Filename for the output image" />
+  </inputs>
+  <outputs>
+    <data name="out_image" format="png" from_work_dir="core_community.png" label="${tool.name} on ${on_string}: Core community plot">
+      <change_format>
+        <when input="output_format" value="svg" format="svg" />
+        <when input="output_format" value="pdf" format="pdf" />
+        <when input="output_format" value="html" format="html" />
+      </change_format>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_abundance_matrix" ftype="rds" value="core_community.rds" />
+      <param name="output_format" value="png" />
+      <output name="out_image" file="core_community.png" compare="sim_size" delta="10000" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Core community plot to investigate how many of the most abundant OTU's comprise
+the "core" of groups of samples, their abundances etc.
+
+The Galaxy tool calls the `amp_core
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_core.html&gt;`_ function
+of the ampvis2 package.
+
+This analysis only makes sense without aggregating OTU's to any taxonomic level,
+or else it will be biased by taxonomy and only be done on OTU's that have been
+classified, which is rarely all.
+
+
+
+Preserving relative abundances in a subset of larger data
+=========================================================
+
+By default the raw read counts in the abundance matrix are normalised
+(transformed to percentages) by some ampvis2 plotting tools (for
+example ``ampvis2: heatmap``, ``ampvis2: timeseries``, and more).
+If this is applied to data generated by one of the ``ampvis2: subset ...`` tools
+this means that the relative
+abundances shown will be calculated based on the remaining taxa after the
+subset, not including the removed taxa, if any. To circumvent this, enable
+``normalise`` when subsetting with the ``ampvis2: subset ...``` tools,
+and then disable ``normalise`` in the plotting tool. This will
+transform the OTU counts to relative abundances BEFORE the subset.
+
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+A core community plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1186/s13742-019-0121-0</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

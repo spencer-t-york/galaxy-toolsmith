@@ -1,0 +1,81 @@
+<tool id="b2btools_biophysical_predictors_for_single_sequences" name="b2bTools: Biophysical predictors for single sequences" version="0.1.0" profile="25.0">
+  <description>Biophysical predictors for single sequences</description>
+  <macros>
+    <macro name="predictor_options">
+      <param name="predictors" type="select" multiple="true" label="Select Predictors">
+        <option value="dynamine">DynaMine</option>
+        <option value="disomine">DisoMine</option>
+        <option value="efoldmine">EFoldMine</option>
+        <option value="agmata">Agmata</option>
+      </param>
+    </macro>
+    <macro name="output_options">
+      <param name="output_format" type="select" label="Output Format">
+        <option value="json">JSON</option>
+        <option value="tabular">Tabular</option>
+        <option value="html">HTML</option>
+      </param>
+    </macro>
+  </macros>
+  <requirements>
+    <requirement type="package" version="3.0.5">b2btools</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        b2btools predict --input $input --predictors $predictors --output-format $output_format
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fasta" label="Input FASTA File" />
+    <insert_macro name="predictor_options" />
+    <insert_macro name="output_options" />
+  </inputs>
+  <outputs>
+    <collection name="results" type="list" label="Analysis Results">
+      <element name="result" type="data" format="txt" label="Result" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample_input.fa" />
+      <param name="predictors" value="dynamine,disomine" />
+      <param name="output_format" value="json" />
+      <output_collection name="results">
+        <element name="result" path="results/dynamine.json" />
+        <element name="result" path="results/disomine.json" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+# B2BTools: Single Sequence Analysis
+
+## Description
+The current Galaxy Tool is the implementation of the Bio2Byte tools for single protein sequence analysis. It receives amino-acid sequences in FASTA format and returns biophysical predictions depending on the predictors selected.
+
+## Input Sequences
+The tool works with either single or multiple input files, just keeping in mind that the file must be a valid FASTA containing at least one sequence of amino acids. There is no limitation on the number of sequences per file, however, all the sequences must have at least 5 residues.
+
+## Available Biophysical Predictors
+- **DynaMine**: Fast predictor of protein backbone dynamics using only sequence information as input.
+- **DisoMine**: Predicts protein disorder with recurrent neural networks.
+- **EFoldMine**: Predicts early folding events.
+- **Agmata**: Beta-sheet aggregation.
+
+## Expected Results
+From a single FASTA file with N sequences, the process will produce:
+- Single JSON output
+- N tabular results
+- N predicted features plots (if `plot` parameter is checked)
+- Predicted feature plots (if `plot_all` parameter is checked)
+
+## Example
+Checking `Plot` parameter implies that predicted features will be plotted in different files by input sequence. 11 input sequences x 9 predicted features = 99 plots in PNG format.
+Checking `Plot all` parameter implies that all the input sequences will be plotted together in order to compare predicted features. 9 predicted features = 9 plots in PNG format.
+
+</help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

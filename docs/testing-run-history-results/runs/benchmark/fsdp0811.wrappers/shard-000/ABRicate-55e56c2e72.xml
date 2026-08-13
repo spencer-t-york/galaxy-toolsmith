@@ -1,0 +1,72 @@
+<tool id="abricate" name="ABRicate" version="1.4.0+galaxy0" profile="21.05">
+  <description>Antibiotic Resistance Genes</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">abricate</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        abricate
+        -d '$database'
+        -o '$output'
+        '$input'
+    </command>
+  <inputs>
+    <param name="input" type="data" format="fasta,genbank" label="Input file" />
+    <param name="database" type="select" label="Database to use">
+      <option value="ncbi">NCBI</option>
+      <option value="card">CARD</option>
+      <option value="argannot">ARGANNOT</option>
+      <option value="megares">MEGARES</option>
+      <option value="resfinder">ResFinder</option>
+      <option value="plasmidfinder">PlasmidFinder</option>
+      <option value="vfdb">VFDB</option>
+      <option value="abricate">ABRicate</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="test.fna" />
+      <param name="database" value="ncbi" />
+      <output name="output" file="test.tab" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+Given a FASTA contig file or a genbank file, ABRicate will perform a mass screening of contigs and identify the presence of antibiotic resistance genes. The user can choose which database to search from a list of available AMR databases.
+
+**Output**
+
+ABRicate will produce a tab-seperated output file with the following outputs:
+
++---------------+------------------------------------------------+
+|  Column       | Description                                    |
++===============+================================================+
+|  FILE         | The filename this hit came from                |
+|  SEQUENCE     | The sequence in the filename                   |
+|  START        | Start coordinate in the sequence               |
+|  END          | End coordinate                                 |
+|  GENE         | ABR gene                                       |
+|  COVERAGE     | What proportion of the gene is in our sequence |
+|  COVERAGE_MAP | A visual represenation                         |
+|  GAPS         | Was there any gaps in the                      |
+|               | alignment - possible pseudogene?               |
+|  %COVERAGE    | Proportion of gene covered                     |
+|  %IDENTITY    | Proportion of exact nucleotide matches         |
+|  DATABASE     | The database this sequence comes from          |
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btw701</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,11 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-07-27T20:56:58Z	probe	16384	all-raw	36000	128	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-16384-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-27T21:26:19Z	probe	16384	all-filtered	36000	128	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-16384-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-27T22:08:47Z	probe	12288	all-raw	24000	96	ddp	completed	tools-iuc-devstral-24b-mixed-all-raw-12288-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-27T23:20:53Z	full	12288	all-raw	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-12288-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-27T23:50:01Z	probe	12288	all-filtered	24000	96	ddp	completed	tools-iuc-devstral-24b-mixed-all-filtered-12288-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-28T00:32:37Z	full	12288	all-filtered	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-12288-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-28T01:14:38Z	probe	8192	all-raw	12000	64	ddp	completed	tools-iuc-devstral-24b-mixed-all-raw-8192-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-28T02:14:49Z	full	8192	all-raw	12000	64	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-8192-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-28T02:43:55Z	probe	8192	all-filtered	12000	64	ddp	completed	tools-iuc-devstral-24b-mixed-all-filtered-8192-ddp-qwen-lora-sharding-sidecars-fixtures-20260727
+2026-07-28T03:50:53Z	full	8192	all-filtered	12000	64	ddp	post-export-failed	tools-iuc-devstral-24b-mixed-all-filtered-8192-ddp-qwen-lora-sharding-sidecars-fixtures-20260727

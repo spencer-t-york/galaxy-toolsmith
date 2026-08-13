@@ -1,0 +1,111 @@
+<tool id="abyss" name="ABySS" version="2.3.10+galaxy0" profile="21.05">
+  <description>de novo sequence assembler for short paired-end reads and large genomes</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">abyss</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="2.3.10">abyss</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        #if $input_type == "paired":
+            #set $input = " ".join([str($input_paired)])
+        #else:
+            #set $input = " ".join([str($input_single)])
+        #end if
+        abyss-pe
+            -n $kmer_size
+            -s $seed_size
+            -m $memory
+            -t \${GALAXY_SLOTS:-1}
+            -o '$output_prefix'
+            $input
+    </command>
+  <inputs>
+    <conditional name="input_type">
+      <param name="input_type" type="select" label="Input type">
+        <option value="paired">Paired-end reads</option>
+        <option value="single">Single-end reads</option>
+      </param>
+      <when value="paired">
+        <param name="input_paired" type="data" format="fastq,fasta" multiple="true" label="Input paired-end reads" />
+      </when>
+      <when value="single">
+        <param name="input_single" type="data" format="fastq,fasta" multiple="true" label="Input single-end reads" />
+      </when>
+    </conditional>
+    <param name="kmer_size" type="integer" value="96" min="1" label="Kmer size" />
+    <param name="seed_size" type="integer" value="100" min="1" label="Seed size" />
+    <param name="memory" type="integer" value="1000000" min="1" label="Memory (in MB)" />
+  </inputs>
+  <outputs>
+    <data name="contigs" format="fasta" from_work_dir="contigs.fa" label="${tool.name} on ${on_string}: Contigs" />
+    <data name="scaffolds" format="fasta" from_work_dir="scaffolds.fa" label="${tool.name} on ${on_string}: Scaffolds" />
+    <data name="unitigs" format="fasta" from_work_dir="unitigs.fa" label="${tool.name} on ${on_string}: Unitigs" />
+    <data name="unitigs_csv" format="csv" from_work_dir="unitigs.csv" label="${tool.name} on ${on_string}: Unitigs CSV" />
+    <data name="contigs_csv" format="csv" from_work_dir="contigs.csv" label="${tool.name} on ${on_string}: Contigs CSV" />
+    <data name="scaffolds_csv" format="csv" from_work_dir="scaffolds.csv" label="${tool.name} on ${on_string}: Scaffolds CSV" />
+    <data name="unitigs_txt" format="txt" from_work_dir="unitigs.txt" label="${tool.name} on ${on_string}: Unitigs TXT" />
+    <data name="contigs_txt" format="txt" from_work_dir="contigs.txt" label="${tool.name} on ${on_string}: Contigs TXT" />
+    <data name="scaffolds_txt" format="txt" from_work_dir="scaffolds.txt" label="${tool.name} on ${on_string}: Scaffolds TXT" />
+    <data name="unitigs_html" format="html" from_work_dir="unitigs.html" label="${tool.name} on ${on_string}: Unitigs HTML" />
+    <data name="contigs_html" format="html" from_work_dir="contigs.html" label="${tool.name} on ${on_string}: Contigs HTML" />
+    <data name="scaffolds_html" format="html" from_work_dir="scaffolds.html" label="${tool.name} on ${on_string}: Scaffolds HTML" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_type" value="paired" />
+      <param name="input_paired" value="test_paired_1.fastq,test_paired_2.fastq" />
+      <param name="kmer_size" value="96" />
+      <param name="seed_size" value="100" />
+      <param name="memory" value="1000000" />
+      <output name="contigs" file="contigs.fa" ftype="fasta" />
+      <output name="scaffolds" file="scaffolds.fa" ftype="fasta" />
+      <output name="unitigs" file="unitigs.fa" ftype="fasta" />
+      <output name="unitigs_csv" file="unitigs.csv" ftype="csv" />
+      <output name="contigs_csv" file="contigs.csv" ftype="csv" />
+      <output name="scaffolds_csv" file="scaffolds.csv" ftype="csv" />
+      <output name="unitigs_txt" file="unitigs.txt" ftype="txt" />
+      <output name="contigs_txt" file="contigs.txt" ftype="txt" />
+      <output name="scaffolds_txt" file="scaffolds.txt" ftype="txt" />
+      <output name="unitigs_html" file="unitigs.html" ftype="html" />
+      <output name="contigs_html" file="contigs.html" ftype="html" />
+      <output name="scaffolds_html" file="scaffolds.html" ftype="html" />
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+`ABySS`_ is a de novo sequence assembler intended for short paired-end reads and large genomes.
+
+**Input**
+
+Input files should be FASTA or FASTQ files.
+
+For paired reads, a pair of reads must be named with the suffixes /1 and /2 to identify the first and second read, or the reads may be named identically. The paired reads may be in separate files or interleaved in a single file.
+
+At least a paired-end library or a single-end library must be provided.
+
+Contigs are generated only if at least a paired-end library is provided. Scaffolds are generated only if at least a paired-end library or a mate-pair library is provided.
+
+**Description**
+
+This tool performs the complete ABySS pipeline using abyss-pe, described in https://github.com/bcgsc/abyss/blob/master/doc/flowchart.pdf .
+
+**License and citation**
+
+This Galaxy tool is Copyright © 2015-2021 `Earlham Institute`_
+
+.. _Earlham Institute: http://www.earlham.ac.uk/
+
+.. _ABySS: https://github.com/bcgsc/abyss
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btr504</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,43 @@
+<tool id="inspect_anndata" name="Inspect AnnData" version="0.1.0" profile="25.0">
+  <description>Inspects an AnnData dataset</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m anndata inspect $input --output $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="h5ad" label="AnnData file" />
+  </inputs>
+  <outputs>
+    <collection name="output" type="list" label="Output">
+      <element name="general_info" type="data" format="txt" label="General Information" />
+      <element name="X" type="tabular" label="Full Data Matrix X" />
+      <element name="chunk_X" type="tabular" label="Chunk of Data Matrix X" />
+      <element name="obs" type="tabular" label="Observations Annotation" />
+      <element name="var" type="tabular" label="Variables/Features Annotation" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.h5ad" />
+      <output_collection name="output">
+        <element name="general_info" file="general_info.txt" />
+        <element name="X" file="X.tabular" />
+        <element name="chunk_X" file="chunk_X.tabular" />
+        <element name="obs" file="obs.tabular" />
+        <element name="var" file="var.tabular" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+        Inspects an AnnData dataset and returns general information, the full data matrix, a chunk of the data matrix, observations annotation, and variables/features annotation.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

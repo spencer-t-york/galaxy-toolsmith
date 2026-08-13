@@ -1,0 +1,9 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-07-24T15:42:46Z	probe	12288	all-raw	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-12288-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T16:12:03Z	probe	12288	all-filtered	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-12288-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T16:53:44Z	probe	8192	all-raw	12000	64	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-8192-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T17:22:55Z	probe	8192	all-filtered	12000	64	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-8192-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T18:04:11Z	probe	4096	all-raw	6000	32	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-4096-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T18:36:31Z	probe	4096	all-filtered	6000	32	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-4096-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T19:18:09Z	probe	2048	all-raw	3000	16	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-2048-ddp-qwen-sidecars-fixtures-20260724
+2026-07-24T19:47:29Z	probe	2048	all-filtered	3000	16	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-2048-ddp-qwen-sidecars-fixtures-20260724

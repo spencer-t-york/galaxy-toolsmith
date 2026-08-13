@@ -1,0 +1,129 @@
+<tool id="import_anndata" name="Import Anndata" version="0.1.0+galaxy0" profile="21.05">
+  <description>from various formats</description>
+  <macros />
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+    <requirement type="package" version="3.0.8">loompy</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+import anndata
+import loompy
+import pandas as pd
+import numpy as np
+import os
+
+#if $input_type.input_type_selector == 'loom':
+    loom = loompy.connect('${input_type.file}', mode='r')
+    obs = loom.ca['row_names']
+    var = loom.ca['col_names']
+
+    X = loom[:,:]
+
+    if 'layer' in loom.layers.keys():
+        X = loom.layers['layer'][:]
+
+    adata = anndata.AnnData(X=X, obs=pd.DataFrame(index=obs), var=pd.DataFrame(index=var))
+#elif $input_type.input_type_selector == 'tabular':
+    adata = anndata.read_csv('${input_type.file}')
+#elif $input_type.input_type_selector == 'matrix_market':
+    adata = anndata.read_mtx('${input_type.file}')
+#elif $input_type.input_type_selector == 'umi_tools':
+    adata = anndata.read_umi_tools('${input_type.file}')
+#else:
+    import scanpy.api as sc
+    adata = sc.read_10x_h5('${input_type.file}')
+
+adata.write_h5ad('output.h5ad')
+
+    </command>
+  <inputs>
+    <conditional name="input_type">
+      <param name="input_type_selector" type="select" label="Input type">
+        <option value="loom">Loom</option>
+        <option value="tabular">Tabular</option>
+        <option value="matrix_market">Matrix Market</option>
+        <option value="umi_tools">UMI Tools</option>
+        <option value="h5">10x H5</option>
+      </param>
+      <when value="loom">
+        <param name="file" type="data" format="loom" label="File" />
+      </when>
+      <when value="tabular">
+        <param name="file" type="data" format="csv" label="File" />
+      </when>
+      <when value="matrix_market">
+        <param name="file" type="data" format="mtx" label="File" />
+      </when>
+      <when value="umi_tools">
+        <param name="file" type="data" format="txt" label="File" />
+      </when>
+      <when value="h5">
+        <param name="file" type="data" format="h5" label="File" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="out" format="h5ad" from_work_dir="output.h5ad" label="${tool.name} on ${on_string}: h5ad" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <conditional name="input_type">
+        <param name="input_type_selector" value="loom" />
+        <param name="file" ftype="loom" value="test.loom" />
+      </conditional>
+      <output name="out" ftype="h5ad">
+        <assert_contents>
+          <has_size min="100000" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+This tool creates an AnnData from several input types:
+
+- Loom (`read_loom method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.io.read_loom.html&gt;`__)
+- Tabular (`read_csv method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.io.read_csv.html&gt;`__)
+- Matrix Market (mtx), from Cell ranger or not (`read_mtx method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.io.read_mtx.html&gt;`__)
+- UMI tools (`read_umi_tools method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.io.read_umi_tools.html&gt;`__)
+
+
+
+
+**AnnData**
+
+AnnData provides a scalable way of keeping track of data together with learned annotations. It is used within `Scanpy &lt;https://github.com/theislab/scanpy&gt;`__, for which it was initially developed.
+
+AnnData stores a data matrix `X` together with annotations of observations `obs`, variables `var` and unstructured annotations `uns`.
+
+.. image:: https://falexwolf.de/img/scanpy/anndata.svg
+
+
+AnnData stores observations (samples) of variables (features) in the rows of a matrix. This is the convention of the modern classics
+of statistics (Hastie et al., 2009)  and machine learning (Murphy, 2012), the convention of dataframes both in R and Python and the established statistics
+and machine learning packages in Python (statsmodels, scikit-learn).
+
+More details on the `AnnData documentation
+&lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.html&gt;`__
+
+
+**Loom data**
+
+Loom files are an efficient file format for very large omics datasets, consisting of a main matrix, optional additional layers, a variable number of row and column annotations, and sparse graph objects.
+
+.. image:: https://linnarssonlab.org/loompy/_images/Loom_components.png
+
+
+Loom files to store single-cell gene expression data: the main matrix contains the actual expression values (one column per cell, one row per gene); row and column annotations contain metadata for genes
+and cells, such as Name, Chromosome, Position (for genes), and Strain, Sex, Age (for cells).
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-019-0666-0</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,33 @@
+<tool id="ampvis2_merge_ampvis2_data_sets" name="ampvis2 merge ampvis2 data sets" version="0.1.0" profile="25.0">
+  <description>Merge any number of ampvis2 data sets into a single data set.</description>
+  <requirements>
+    <requirement type="package" version="&gt;=1.0">iuc/ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        amp_merge_ampvis2 $input --output $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="Ampvis2 RDS Dataset" />
+    <param name="merge_by_exact_matches" type="boolean" truevalue="--exact-matches" falsevalue="" label="Merge by exact matches between DNA reference sequences" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="Merged Ampvis2 Data Set" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="example.rds" />
+      <param name="merge_by_exact_matches" value="false" />
+      <output name="output" file="merged_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Merge any number of ampvis2 data sets into a single data set. Ensure consistent taxonomy and OTU IDs if merging by exact matches.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

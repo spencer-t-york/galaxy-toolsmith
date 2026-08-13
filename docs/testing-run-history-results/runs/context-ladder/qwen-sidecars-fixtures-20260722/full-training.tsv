@@ -1,0 +1,5 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-07-23T15:20:22Z	probe	16384	all-raw	36000	128	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-16384-ddp-qwen-sidecars-fixtures-20260722
+2026-07-23T15:49:08Z	probe	16384	all-filtered	36000	128	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-16384-ddp-qwen-sidecars-fixtures-20260722
+2026-07-23T16:30:16Z	probe	12288	all-raw	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-12288-ddp-qwen-sidecars-fixtures-20260722
+2026-07-23T16:58:55Z	probe	12288	all-filtered	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-12288-ddp-qwen-sidecars-fixtures-20260722

@@ -1,0 +1,77 @@
+<tool id="autobigs.cli" name="autoBIGS.cli" version="0.6.2+galaxy0">
+  <description>A command-line interface (CLI) based program that allows quickly batched requests for obtaining MLST profiles on multiple FASTA sequences and exporting it as a convenient CSV.</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">autobigs</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="0.6.2">autobigs-cli</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        autoBIGS
+            --operation $operation
+            --fasta $input_fasta
+            --output $output_csv
+            --db $database
+            --schema_id $schema_id
+            --force
+    </command>
+  <inputs>
+    <param argument="--operation" type="select" label="Operation">
+      <option value="perform_sequence_typing">Perform Sequence Typing</option>
+      <option value="retrieve_available_schemes_for_database">Retrieve Available Schemes For Database</option>
+    </param>
+    <param argument="--fasta" type="data" format="fasta" label="Input Fasta File(s)" multiple="true" />
+    <param argument="--db" type="text" label="Database" help="Name of the database you want to query against." />
+    <param argument="--schema_id" type="text" label="Schema ID" help="ID of the scheme you want to query against." />
+  </inputs>
+  <outputs>
+    <data name="output_csv" format="csv" label="${tool.name} on ${on_string}: Output CSV" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="operation" value="perform_sequence_typing" />
+      <param name="input_fasta" ftype="fasta" value="input.fasta" />
+      <param name="database" value="pubmlst_e_coli" />
+      <param name="schema_id" value="ecoli" />
+      <output name="output_csv" ftype="csv" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What is autoBIGS
+================
+autoBIGS is a tool to help automatically performes multi-locus sequence typing (MLST) on given data by performing calls to necessary web BIGS database web APIs.
+
+Support for typing schemes other than MLST
+==========================================
+AutoBIGS is capable of performing typing for any available schemes given a database. To retrieve a list of available schemes in the form of a spreadsheet (CSV), under operation, select "retrieve available schemes for database" and run the tool.
+
+Performing Sequence Typing
+==========================
+Simply select "Perform Sequence Typing" for the "Operation" and select your FASTA files. Then, enter your SeqDef Database name (see "Obtaining Database Name and Schema ID" above) and schema ID.
+
+Special behaviour for FASTAs with multiple sequences
+====================================================
+AutoBIGS will treat multiple sequences in the same FASTA file as part of the same sample. This will result in a fasta with multiple sequences within the same row with the final sequence type being retrieved from the resulting alleles of the individual sequences within the FASTA. This is helpful if the input FASTA was obtained from a targetted form of sequencing for the specific needed regions (e.g., Sanger sequencing of 7 house keeping genes), rather than a whole genome sequence. If your data is a whole genome sequence (WGS) of the entire genome or similar, each WGS should have it's own FASTA.
+
+In the case all sequences in a given FASTA have the same ID, autoBIGS will not repeat these names in the output row.
+
+More Information
+================
+For more information on the tool being wrapped itself, please see the `autoBIGS.cli Github repository`_. Issues, bugs, and feature requests for the tool itself should be submitted to the `autoBIGS.cli issues`_. If the issue/bug/feature request is solely pertanent to the Galaxy wrapper, please check out the `autoBIGS.galaxy issues`_ tracker on GitHub.
+
+
+.. _autoBIGS.cli GitHub repository: https://github.com/Syph-and-VPD-Lab/autoBIGS.cli
+.. _autoBIGS.cli issues: https://github.com/Syph-and-VPD-Lab/autoBIGS.cli/issues
+.. _autoBIGS.galaxy: https://github.com/Syph-and-VPD-Lab/autoBIGS.galaxy
+.. _autoBIGS.galaxy issues: https://github.com/Syph-and-VPD-Lab/autoBIGS.galaxy/issues
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz400</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

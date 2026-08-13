@@ -1,0 +1,42 @@
+<tool id="ampvis2_merge_replicates" name="ampvis2 merge replicates" version="0.1.0" profile="25.0">
+  <description>Merge replicate samples by calculating mean abundances of OTUs</description>
+  <requirements>
+    <requirement type="package" version="&gt;=2.0">R</requirement>
+    <requirement type="package" version="&gt;=1.0">ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e "library(ampvis2); amp_mergereplicates(input_rds='$input_rds', metadata_list='$metadata_list', output_format='$output_format')"
+    </command>
+  <inputs>
+    <param name="input_rds" type="data" format="rds" label="AmpVis2 RDS Dataset" />
+    <param name="metadata_list" type="data" format="txt" label="Metadata List" />
+    <param name="output_format" type="select" label="Output Format">
+      <option value="html">HTML</option>
+      <option value="png">PNG</option>
+      <option value="pdf">PDF</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="rank_abundance_plot" format="html" label="Rank Abundance Plot" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_rds" value="sample_input.rds" />
+      <param name="metadata_list" value="sample_metadata.txt" />
+      <param name="output_format" value="html" />
+      <output name="rank_abundance_plot" file="expected_output.html" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Aggregates read counts in replicate samples by calculating the mean abundances of OTUs.
+        
+        The Galaxy tool calls the `amp_mergereplicates` function of the ampvis2 package.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

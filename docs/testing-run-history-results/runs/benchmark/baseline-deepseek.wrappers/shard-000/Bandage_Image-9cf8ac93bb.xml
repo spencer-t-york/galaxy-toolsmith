@@ -1,0 +1,45 @@
+<tool id="bandage_image" name="Bandage Image" version="0.1.0" profile="25.0">
+  <description>Generate an image of an assembly graph from a GFA file using Bandage-NG</description>
+  <requirements>
+    <requirement type="package">bandage_ng</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Bandage image ${input_gfa} ${output_image}
+    </command>
+  <inputs>
+    <param name="input_gfa" type="data" format="gfa" label="Input GFA file" />
+  </inputs>
+  <outputs>
+    <data name="output_image" format="png" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_gfa" value="test.gfa" />
+      <output name="output_image">
+        <has_text>Bandage image</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # Bandage Image
+        
+        Bandage-NG is a tool for visualizing assembly graphs from GFA files. This tool generates an image file of the graph visualization.
+        
+        ## Input
+        
+        - **Input GFA file**: The GFA file containing the assembly graph.
+        
+        ## Output
+        
+        - **Output image**: A PNG file showing the graph visualization.
+        
+        For more details, visit the [Bandage-NG documentation](https://github.com/asl/BandageNG).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

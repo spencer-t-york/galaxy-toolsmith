@@ -1,0 +1,104 @@
+<tool id="ampvis2_octave_plot" name="ampvis2 octave plot" version="0.1.0" profile="25.0">
+  <description>alpha diversity assessment</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.4.0">R</requirement>
+    <requirement type="package" version="1.4.0">R-base</requirement>
+    <requirement type="package" version="1.4.0">R-devtools</requirement>
+    <requirement type="package" version="1.4.0">R-ggplot2</requirement>
+    <requirement type="package" version="1.4.0">R-knitr</requirement>
+    <requirement type="package" version="1.4.0">R-reshape2</requirement>
+    <requirement type="package" version="1.4.0">R-tidyverse</requirement>
+    <requirement type="package" version="1.4.0">R-vegan</requirement>
+    <requirement type="package" version="1.4.0">iuc/ampvis2</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+Rscript '$__tool_directory__/ampvis2_octave.R'
+--input_rds '${input_rds}'
+--metadata '${metadata}'
+--output_plot '${output_plot}'
+--output_format '${output_format}'
+    </command>
+  <inputs>
+    <param argument="--input_rds" type="data" format="rds" label="Ampvis2 RDS dataset" />
+    <param argument="--metadata" type="data" format="tabular" label="Metadata table" />
+    <param argument="--output_format" type="select" label="Output format">
+      <option value="png" selected="true">PNG</option>
+      <option value="pdf">PDF</option>
+      <option value="svg">SVG</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_plot" format="html" label="${tool.name} on ${on_string}: Ampvis2 Octave Plot" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input_rds" ftype="rds" value="ampvis2.rds" />
+      <param name="metadata" ftype="tabular" value="metadata.tabular" />
+      <param name="output_format" value="png" />
+      <output name="output_plot" file="ampvis2_octave.png" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Generates an octave plot to assess alpha diversity. An octave plot is a
+histogram of the number of taxa observed by bins of read counts, where the bin
+ranges increase exponentially, see details.
+
+The Galaxy tool calls the `amp_octave
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_octave.html&gt;`_ function
+of the ampvis2 package.
+
+
+Details
+=======
+
+The n-th bin in the histogram has the range ``r(n)=2n...2n+1-1``. The height of the
+bars then reflect the number of unique taxa with read counts in each bin. By
+judging the distribution one can assess whether the samples have been sequenced
+deeply enough at the chosen taxonomic level. A full symmetrical bell-shaped
+distribution with the left part far from the y-axis is the ideal. A high amount
+of OTU's with a low amount of reads indicates noise, chimeras, and even cross
+talk.
+
+Aggregating OTU's using ``tax_aggregate`` is useful to assess whether the samples
+have been sequenced deep enough to capture the full diversity at the given
+level, but ONLY applies to OTU's that have assigned taxonomy at the given level.
+
+It is recommended to look at samples individually as grouping samples will
+almost always look ideal. It is better to identify "bad" samples individually
+and remove them.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+
+        The metadata list output of the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or the
+        ``ampvis2: subset sample`` tool).  This input is only used for providing
+        values to the parameters alowing to select metadata variables or values.
+
+
+Output
+======
+
+Octave plot in the chosen output format.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz674</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

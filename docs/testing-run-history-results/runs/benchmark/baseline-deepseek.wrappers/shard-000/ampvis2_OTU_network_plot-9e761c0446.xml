@@ -1,0 +1,57 @@
+<tool id="ampvis2_otu_network_plot" name="ampvis2 OTU network plot" version="0.1.0" profile="25.0">
+  <description>Generates network plot of taxa and samples using ampvis2</description>
+  <requirements>
+    <requirement type="package">ampvis2</requirement>
+    <requirement type="package">ggnet2</requirement>
+    <requirement type="package">ggplot2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript $(which ampvis2_wrapper.R) \
+            --input_rds '$input1' \
+            --metadata '$input2' \
+            --output_plot '$output1'
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="RData" label="ampvis2 RDS dataset" optional="false" />
+    <param name="input2" type="data" format="RData" label="Metadata list" optional="false" />
+  </inputs>
+  <outputs>
+    <data name="output1" format="png" label="OTU network plot">
+      <select>
+        <option value="png" selected="true">PNG</option>
+        <option value="pdf">PDF</option>
+      </select>
+    </data>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="test_input1.RData" />
+      <param name="input2" value="test_input2.RData" />
+      <output name="output1" file="test_output.png">
+        <has_size>1000</has_size>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ampvis2 OTU Network Plot
+
+        ## What it does
+        Generates a network plot visualizing interactions between taxa and samples using the ampvis2 package.
+
+        ## Input
+        - ampvis2 RDS dataset: Output from ampvis2: load or related tools
+        - Metadata list: Metadata output from ampvis2 tools
+
+        ## Output
+        - OTU network plot in PNG or PDF format
+
+        For more details, see the [ampvis2 documentation](https://kasperskytte.github.io/ampvis2/reference/amp_otu_network.html).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

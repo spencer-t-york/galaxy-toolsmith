@@ -1,0 +1,102 @@
+<tool id="abyss_pe" name="ABySS" version="2.3.10+galaxy1" profile="21.09">
+    <description>paired-end assembly</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">abyss</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="2.3.10">abyss</requirement>
+    </requirements>
+    <version_command>abyss --version</version_command>
+    <command detect_errors="exit_code">
+## Create symlinks to input datasets
+ln -s '$input_reads' input_reads &amp;&amp;
+ln -s '$input_reads.metadata.forward' input_reads_forward &amp;&amp;
+ln -s '$input_reads.metadata.reverse' input_reads_reverse &amp;&amp;
+
+## Run ABySS
+mkdir -p ./logs &amp;&amp;
+abyss-pe
+    k=$kmer_size
+    n=$threads
+    memory=$memory
+    out=assembly
+    logfile=./logs/abyss.log
+    #if $library_type == 'single':
+        lib='lib'
+        libsize=$libsize
+        libtype=$libtype
+        libinsert=$libinsert
+        libstddev=$libstddev
+        libmin=$libmin
+        libmax=$libmax
+        libqual=$libqual
+        libqualmin=$libqualmin
+        libqualmax=$libqualmax
+        libqualmean=$libqualmean
+        libqualstdev=$libqualstdev
+        libqualmode=$libqualmode
+        libqualmedian=$libqualmedian
+        libqualrange=$libqualrange
+        libqualiqr=$libqualiqr
+        libqualiqrstdev=$libqualiqrstdev
+        libqualiqrmode=$libqualiqrmode
+        libqualiqrmedian=$libqualiqrmedian
+        libqualiqrrange=$libqualiqrrange
+        libqualiqrskew=$libqualiqrskew
+        libqualiqrkurtosis=$libqualiqrkurtosis
+        libqualiqrshapiro=$libqualiqrshapiro
+        libqualiqrpearson=$libqualiqrpearson
+        libqualiqrskewness=$libqualiqrskewness
+        libqualiqrkurtosisskewness=$libqualiqrkurtosisskewness
+        libqualiqrshapirowilk=$libqualiqrshapirowilk
+        libqualiqrpearsonskewness=$libqualiqrpearsonskewness
+        libqualiqrskewnesskurtosis=$libqualiqrskewnesskurtosis
+        libqualiqrkurtosisskewnesskurtosis=$libqualiqrkurtosisskewnesskurtosis
+        libqualiqrshapirowilkskewness=$libqualiqrshapirowilkskewness
+        libqualiqrpearsonskewnesskurtosis=$libqualiqrpearsonskewnesskurtosis
+        libqualiqrskewnesskurtosisskewness=$libqualiqrskewnesskurtosisskewness
+        libqualiqrkurtosisskewnesskurtosis=$libqualiqrkurtosisskewnesskurtosis
+        libqualiqrshapirowilkskewnesskurtosis=$libqualiqrshapirowilkskewnesskurtosis
+        libqualiqrpearsonskewnesskurtosisskewness=$libqualiqrpearsonskewnesskurtosisskewness
+        libqualiqrskewnesskurtosisskewnesskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrpearsonskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrskewnesskurtosisskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis=$libqualiqrshapirowilkskewnesskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosiskurtosis
+        libqualiqrpearsonskewnesskurtosisskewnesskurtosis

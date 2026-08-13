@@ -1,0 +1,31 @@
+<tool id="aegean_canongff3" name="AEGeAn CanonGFF3" version="0.1.0" profile="25.0">
+  <description>Pre-processes GFF3 data to encode canonical protein-coding genes.</description>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        canon-gff3 $input &gt; $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="gff3" label="Input GFF3 File" />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" label="Processed GFF3 File" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.gff3" />
+      <output name="output" file="expected_output.gff3" />
+    </test>
+  </tests>
+  <help format="markdown">
+        CanonGFF3 processes GFF3 data to encode canonical protein-coding genes.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

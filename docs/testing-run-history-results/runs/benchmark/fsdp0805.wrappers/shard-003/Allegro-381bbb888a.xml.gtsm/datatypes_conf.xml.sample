@@ -1,0 +1,7 @@
+<datatypes>
+  <!-- Review these placeholders before installing into a Galaxy instance. -->
+  <datatype extension="allele" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="genotype" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="map" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+  <datatype extension="pedigree" type="galaxy.datatypes.data:Text" display_in_upload="true"/>
+</datatypes>

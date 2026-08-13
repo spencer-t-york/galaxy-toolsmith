@@ -1,0 +1,80 @@
+<tool id="abritamr" name="abriTAMR" version="1.3.0+galaxy0" profile="22.05">
+  <description>Antimicrobial Resistance Gene Detection Pipeline</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">abritamr</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.3.0">abritamr</requirement>
+  </requirements>
+  <version_command>abritamr --version</version_command>
+  <command detect_errors="exit_code">
+        mkdir -p '$output_dir' &amp;&amp;
+        abritamr run 
+            #if $input_type == 'single':
+                -i '$input'
+            #else:
+                -I '$input_list'
+            #end if
+            -o '$output_dir'
+            -t '$threads'
+            -d '$database'
+            -f '$format'
+            -m '$mode'
+            -v
+    </command>
+  <inputs>
+    <param argument="-i" type="data" format="fasta" label="Single FASTA file" />
+    <param argument="-I" type="data_collection" collection_type="list" min_items="1" max_items="100" label="List of FASTA files" />
+    <param argument="-t" type="integer" value="1" min="1" label="Number of threads" />
+    <param argument="-d" type="select" label="Database" help="Select the database you want to use">
+      <option value="nt" selected="true">nt</option>
+      <option value="bacteria">bacteria</option>
+      <option value="fungi">fungi</option>
+      <option value="viruses">viruses</option>
+    </param>
+    <param argument="-f" type="select" label="Format" help="Select the format you want to use">
+      <option value="txt" selected="true">Tab-delimited</option>
+      <option value="xlsx">Excel</option>
+    </param>
+    <param argument="-m" type="select" label="Mode" help="Select the mode you want to use">
+      <option value="full" selected="true">Full</option>
+      <option value="partial">Partial</option>
+    </param>
+  </inputs>
+  <outputs>
+    <collection name="output_dir" type="directory" ftype="tabular" label="${tool.name} on ${on_string}: Output Directory">
+      <discover_datasets pattern=".*\.txt$" ext="txt" />
+    </collection>
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="input.fasta" />
+      <param name="threads" value="1" />
+      <param name="database" value="nt" />
+      <param name="format" value="txt" />
+      <param name="mode" value="full" />
+      <output_collection name="output_dir" type="directory">
+        <element name="summary_matches.txt" ftype="txt" compare="sim_size" />
+      </output_collection>
+    </test>
+  </tests>
+  <help>
+    
+    *Taming the AMR beast*
+    
+    abriTAMR is an AMR gene detection pipeline that runs AMRFinderPlus on a single (or list ) of given isolates and collates the results into a table, separating genes identified into functionally relevant groups. abriTAMR is accredited by NATA for use in reporting the presence of reportable AMR genes in Victoria Australia.
+        + Acquired resistance mechanims in the form of point mutations (restricted to subset of species)
+        + Streamlined output.
+        + Presence of virulence factors
+    
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz600</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

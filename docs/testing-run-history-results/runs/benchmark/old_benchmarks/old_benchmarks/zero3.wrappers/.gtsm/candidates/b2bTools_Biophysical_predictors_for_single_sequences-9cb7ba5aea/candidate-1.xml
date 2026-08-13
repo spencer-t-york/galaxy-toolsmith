@@ -1,0 +1,181 @@
+<tool id="b2btools_biophysical_predictors_for_single_sequences" name="b2bTools: Biophysical predictors for single sequences" version="3.0.5+galaxy0" profile="22.05">
+  <description>predicting secondary structure, disorder, and early folding</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">b2btools</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="3.0.5">b2btools</requirement>
+  </requirements>
+  <version_command>python -m b2bTools --version</version_command>
+  <command detect_errors="exit_code">
+        python -m b2bTools
+        #if $input.type == 'fasta':
+            -f '$input.file'
+        #end if
+        #if $input.type == 'string':
+            -s '${input.sequence}'
+        #end if
+        -t ${', '.join($selected_predictors)}
+        #if $output_json:
+            -j '$output_json'
+        #end if
+        #for $i in range(len($output_tsv)):
+            -o${i} '$output_tsv[$i]'
+        #end for
+        #if $plot:
+            -p
+        #end if
+        #if $plot_all:
+            -pa
+        #end if
+    </command>
+  <inputs>
+    <conditional name="input">
+      <param name="type" type="select" label="Type of input">
+        <option value="fasta" selected="true">FASTA file</option>
+        <option value="string">Sequence string</option>
+      </param>
+      <when value="fasta">
+        <param name="file" type="data" format="fasta" label="Input FASTA file" />
+      </when>
+      <when value="string">
+        <param name="sequence" type="text" area="true" label="Input sequence" />
+      </when>
+    </conditional>
+    <param name="selected_predictors" type="checkboxes" label="Select predictors" min="1">
+      <option value="dynamine" selected="true">DynaMine</option>
+      <option value="disomine">DisoMine</option>
+      <option value="efoldmine">EFoldMine</option>
+      <option value="agmata">Agmata</option>
+    </param>
+    <param name="plot" type="boolean" truevalue="-p" falsevalue="" label="Create plots for each sequence?" />
+    <param name="plot_all" type="boolean" truevalue="-pa" falsevalue="" label="Create plots for all sequences?" />
+  </inputs>
+  <outputs>
+    <data name="output_json" format="json" label="${tool.name} on ${on_string}: JSON output" />
+    <repeat name="output_tsv" title="Output TSV files" min="1" max="11">
+      <data name="tsv_file" format="tabular" label="${tool.name} on ${on_string}: TSV output for sequence ${output_tsv.count + 1}" />
+    </repeat>
+  </outputs>
+  <tests>
+    <test>
+      <param name="type" value="fasta" />
+      <param name="file" value="sequences.fa" />
+      <param name="selected_predictors" value="dynamine,disomine,efoldmine,agmata" />
+      <output name="output_json" ftype="json">
+        <assert_contents>
+          <has_text text="&quot;random_sequence_01_consisting_of_40_residues&quot;" />
+          <has_text text="&quot;random_sequence_02_consisting_of_40_residues&quot;" />
+          <has_text text="&quot;random_sequence_03_consisting_of_30_residues&quot;" />
+          <has_text text="&quot;random_sequence_04_consisting_of_40_residues&quot;" />
+          <has_text text="&quot;random_sequence_05_consisting_of_30_residues&quot;" />
+          <has_text text="&quot;random_sequence_06_consisting_of_45_residues&quot;" />
+          <has_text text="&quot;random_sequence_07_consisting_of_30_residues&quot;" />
+          <has_text text="&quot;random_sequence_08_consisting_of_40_residues&quot;" />
+          <has_text text="&quot;random_sequence_09_consisting_of_30_residues&quot;" />
+          <has_text text="&quot;random_sequence_10_consisting_of_65_residues&quot;" />
+          <has_text text="&quot;random_sequence_11_consisting_of_30_residues&quot;" />
+        </assert_contents>
+      </output>
+      <output name="tsv_file" ftype="tabular">
+        <assert_contents>
+          <has_text text="residue_index" />
+          <has_text text="residue" />
+          <has_text text="agmata" />
+          <has_text text="backbone" />
+          <has_text text="coil" />
+          <has_text text="disoMine" />
+          <has_text text="earlyFolding" />
+          <has_text text="helix" />
+          <has_text text="ppII" />
+          <has_text text="sheet" />
+          <has_text text="sidechain" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+Single protein sequence analysis
+--------------------------------
+The **current Galaxy Tool** is the implementation of the Bio2Byte tools for **single protein sequence analysis**.
+It means that this tool receives amino-acid sequences in FASTA format and
+will return the biophysical predictions depending on the predictors selected.
+
+Input sequences
+'''''''''''''''
+The tool works with either single or multiple input files, just keeping in mind that
+the file must be a valid FASTA containing at least one sequence of amino acids.
+
+There is no limitation on the number of sequences per file, however, all
+the sequences must have at least 5 residues.
+
+Available biophysical predictors
+''''''''''''''''''''''''''''''''
+This is the list of the available Bio2Byte tools. As you can see, each prediction tool contains a subset of
+predicted features, for instance, DynaMine produces six features which will appear as column in the tabular output and as keys in the JSON output:
+
+- **DynaMine**: Fast predictor of protein backbone dynamics using only sequence information as input. The version here also predicts side-chain dynamics and secondary structure predictors using the same principle.
+    - *Backbone dynamics*: found as ``backbone`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Side chain dynamics*: found as ``sidechain`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Helix propensity*: found as ``helix`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Sheet propensity*: found as ``sheet`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Coil propensity*: found as ``coil`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Polyproline-II propensity*: found as ``ppII`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+- **DisoMine**: Predicts protein disorder with recurrent neural networks not directly from the amino acid sequence, but instead from more generic predictions of key biophysical properties, here protein dynamics, secondary structure, and early folding.
+    - *Disorder*: found as ``disomine`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+- **EFoldMine**: Predicts from the primary amino acid sequence of a protein, which amino acids are likely involved in early folding events.
+    - *Early folding*: found as ``efoldmine`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+- **Agmata**: Beta-sheet aggregation with the following predicted features:
+    - *Beta-sheet aggregation*: found as ``agmata`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+
+Expected results
+''''''''''''''''
+From a single FASTA file with N sequences, the process will produce:
+
+- **single JSON output**: it will contain a key per sequence defined in the input FASTA file. Each key contains the predicted features* for that sequence.
+- **N tabular results**: Each tabular result is a table where the columns are the predicted features and the rows are each residue of the sequence
+- **N predicted features plots** (in case the user checked the ``plot`` parameter): Each predicted feature is plotted for each sequence
+- **predicted feature plots** (in case the user checked the ``plot_all`` parameter): For each predicted feature, there will be a plot containing a series per sequence, so all the sequences are plotted in one single png file for each predicted feature
+Example
+- Checking **Plot** parameter implies that predicted features will be plotted in different files by input sequence.
+    - 11 input sequences x 9 predicted features = 99 plots in PNG format
+        - ``sequence_01_agmata`` plot
+        - ``sequence_01_backbone`` plot
+        - ``sequence_01_coil`` plot
+        - ``sequence_01_disoMine`` plot
+        - ``sequence_01_earlyFolding`` plot
+        - ``sequence_01_helix`` plot
+        - ``sequence_01_ppII`` plot
+        - ``sequence_01_sheet`` plot
+        - ``sequence_01_sidechain`` plot
+        - ...
+        - ``sequence_11_sidechain`` plot
+- Checking **Plot all** parameter implies that all the input sequences will be plotted together in order to compare predicted features.
+    - 9 predicted features = 9 plots in PNG format
+        - **agmata plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **backbone plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **coil plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **disoMine plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **earlyFolding plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **helix plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **ppII plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **sheet plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+        - **sidechain plot** containing 11 series (``sequence_01``, ``sequence_02``, ..., ``sequence_11``)
+
+--------------
+- b2btools b2bTools-3.0.5/README.md: The following steps are required in order to install the b2bTools package in your local environment: ### 📦 Pip package installation From the official documentation: &gt; pip is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes. **🔗 Related link:** [Pip official documentation](https://pypi.org/).
+- b2btools b2bTools-3.0.5/README.md: conda install -c bioconda t-coffee ``` ### 📦 Conda package installation &gt; Conda is an open source package management system and environment management system that runs on Windows, macOS and Linux. Conda quickly installs, runs and updates packages and their dependencies. Conda easily creates, saves, loads and switches between environments on your local computer. It was created for Python programs, but it can package and distribute software for any language. **🔗 Related link:** [Conda official documentation](https://docs.conda.io/). To install this package with conda, run:
+- b2btools b2bTools-3.0.5/README.md: - read_fasta_from_string - write_fasta Usage: ```python from b2bTools.general.parsers.fasta import FastaIO ``` #### Multiple Sequences Alignments files
+- b2btools b2bTools-3.0.5/README.md: - json_preds_to_csv_singleseq - json_preds_to_csv_msa Usage: ```python from b2bTools.general.parsers.alignments import AlignmentsIO ``` #### NEF files
+~~~~~~~
+    </help>
+  <citations>
+    <citation type="doi">10.1016/j.jmb.2021.166000</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

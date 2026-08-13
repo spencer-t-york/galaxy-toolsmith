@@ -1,0 +1,50 @@
+<tool id="ampvis2_load" name="ampvis2 load" version="0.1.0" profile="25.0">
+  <description>Reads an OTU or ASV table and corresponding sample metadata, and returns a RDS data set for use in all ampvis2 tools.</description>
+  <requirements>
+    <requirement type="package" version="1.0">ampvis2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e 'library(ampvis2); amp_load(input_otu_table, input_metadata, input_taxonomy, input_tree, input_fasta, output_rds, output_list_datasets)'
+    </command>
+  <inputs>
+    <param name="input_otu_table" type="tabular" label="OTU Table" help="Tabular data set or BIOM version (1 and 2)" />
+    <param name="input_metadata" type="tabular" label="Sample Metadata" optional="true" help="Additional information about the samples" />
+    <param name="input_taxonomy" type="tabular" label="Taxonomy Table" optional="true" help="Tabular data set with 7 columns" />
+    <param name="input_tree" type="data" format="newick" label="Phylogenetic Tree" optional="true" help="Newick formatted tree" />
+    <param name="input_fasta" type="fasta" label="Fasta File" optional="true" help="FASTA file containing the sequences of the OTUs" />
+    <param name="output_rds" type="data" format="rds" label="RDS Data Set" />
+    <param name="output_list_datasets" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Output List Data Sets" help="Disable output of list datasets" />
+  </inputs>
+  <outputs>
+    <collection name="output_files" type="list" label="Output Files">
+      <element name="rds" type="data" format="rds" label="RDS Data Set" />
+      <element name="taxonomy_list" type="tabular" label="Taxonomy List" optional="true" />
+      <element name="metadata_list" type="tabular" label="Metadata List" optional="true" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_otu_table" value="otu_table.tabular" ftype="tabular" />
+      <param name="input_metadata" value="metadata.tabular" ftype="tabular" />
+      <param name="input_taxonomy" value="taxonomy.tabular" ftype="tabular" />
+      <param name="output_rds" value="output.rds" ftype="rds" />
+      <output_collection name="output_files">
+        <element name="rds" path="output.rds" />
+        <element name="taxonomy_list" path="taxonomy_list.tabular" />
+        <element name="metadata_list" path="metadata_list.tabular" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+# Ampvis2 Load
+
+This tool reads an OTU or ASV table and corresponding sample metadata, and returns a RDS data set for use in all ampvis2 tools.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

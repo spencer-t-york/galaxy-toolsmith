@@ -1,0 +1,52 @@
+<tool id="argnorm" name="argNorm" version="1.0.0+galaxy0">
+  <description>Normalize ARG annotations to the ARO</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">argnorm</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.0.0">argnorm</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        argnorm
+            --input $input
+            --output $output
+            --log $log
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="tabular" label="Input ARG annotation" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="${tool.name} on ${on_string}: Normalized ARG annotations" />
+    <data name="log" format="txt" label="${tool.name} on ${on_string}: Log" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="resfinder_output.tsv" />
+      <output name="output" ftype="html" compare="sim_size" />
+      <output name="log" ftype="txt" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+argNorm is a tool to normalize antibiotic resistance genes (ARGs) by mapping them to the antibiotic resistance ontology (ARO) created by the CARD database.
+
+argNorm also enhances antibiotic resistance gene annotations by providing drug categorization of the drugs that antibiotic resistance genes confer resistance to.
+    </help>
+  <citations>
+    <citation type="bibtex">
+@article{perovic2024argnorm,
+  title={argNorm: normalization of antibiotic resistance gene annotations to the Antibiotic Resistance Ontology (ARO)},
+  author={Perovic, Svetlana Ugarcina and Ramji, Vedanth and Chong, Hui and Duan, Yiqian and Maguire, Finlay and Coelho, Luis Pedro},
+  journal={Bioinformatics},
+  pages={btad600},
+  year={2024},
+  publisher={Oxford University Press}
+}
+        </citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

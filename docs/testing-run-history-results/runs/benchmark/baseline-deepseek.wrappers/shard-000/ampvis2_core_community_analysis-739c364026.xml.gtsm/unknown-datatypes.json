@@ -1,0 +1,18 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "list"
+  ],
+  "records": [
+    {
+      "datatype": "list",
+      "tool_name": "ampvis2 core community analysis",
+      "tool_id": "ampvis2_core_community_analysis",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/baseline-deepseek.wrappers/shard-000/ampvis2_core_community_analysis-739c364026.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

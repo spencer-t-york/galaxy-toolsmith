@@ -1,0 +1,54 @@
+<tool id="anndata2ri" name="anndata2ri" version="1.3.2+galaxy0" profile="24.1">
+  <description>Convert between Anndata and SingleCellExperiment objects.</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">anndata2ri</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.3.2">anndata2ri</requirement>
+  </requirements>
+  <version_command>python -m anndata2ri --version</version_command>
+  <command detect_errors="exit_code">
+        python -m anndata2ri
+            '$input'
+            '$output'
+            $to_r
+            $from_r
+            $verbose
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="h5ad" label="Input h5ad file" />
+    <param argument="--to-r" type="boolean" truevalue="--to-r" falsevalue="" checked="false" label="Convert to R?" />
+    <param argument="--from-r" type="boolean" truevalue="--from-r" falsevalue="" checked="false" label="Convert from R?" />
+    <param argument="--verbose" type="boolean" truevalue="--verbose" falsevalue="" checked="false" label="Verbose mode?" />
+  </inputs>
+  <outputs>
+    <data name="output" format="h5ad" label="${tool.name} on ${on_string}: Output h5ad file" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="input.h5ad" />
+      <param name="to_r" value="" />
+      <param name="from_r" value="" />
+      <param name="verbose" value="" />
+      <output name="output" ftype="h5ad">
+        <assert_contents>
+          <has_size value="6700" delta="100" />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+anndata2ri
+==========
+        Convert between Anndata and SingleCellExperiment objects. For conversion of further single-cell file formats, consider using **SCEasy Converter** tool.
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41587-020-00758-5</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

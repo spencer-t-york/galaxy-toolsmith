@@ -1,0 +1,63 @@
+<tool id="alphagenome_sequence_predictor" name="AlphaGenome Sequence Predictor" version="0.1.0" profile="25.0">
+  <description>Predicts regulatory tracks from raw DNA sequence using AlphaGenome's predict_sequence() API.</description>
+  <requirements>
+    <requirement type="package" version="0.6.1">alphagenome</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m alphagenome_sequence_predictor.predict_sequence --input $input_fasta --output $output_file --window_size $window_size --output_mode $output_mode
+    </command>
+  <inputs>
+    <param name="input_fasta" type="fasta" label="Input FASTA File" />
+    <param name="window_size" type="integer" value="16384" min="1" label="Prediction Window Size" help="Size of the sliding window for sequence prediction." />
+    <param name="output_mode" type="select" label="Output Mode">
+      <option value="summary">Summary</option>
+      <option value="binned">Binned</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Output Table" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_fasta" value="sample.fasta" />
+      <param name="window_size" value="16384" />
+      <param name="output_mode" value="summary" />
+      <output name="output_file" file="expected_output.tabular" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Predicts regulatory tracks from raw DNA sequence using AlphaGenome's predict_sequence() API. No genomic coordinates needed — designed for synthetic biology sequences, designed regulatory elements, and non-reference assemblies.
+        
+        For each sequence in the input FASTA file:
+        1. Pads short sequences with N bases (centered) or center-trims long sequences to fit the prediction window size
+        2. Calls predict_sequence() for selected output types
+        3. Computes summary statistics over the actual sequence content (excluding N padding)
+        4. Reports per-track values in tabular format
+        
+        Output modes:
+        - Summary: One row per sequence x track with mean and max signal.
+        - Binned: Divides each sequence into fixed-width bins (default 128bp) and reports mean signal per bin for spatial resolution.
+        
+        Output columns — summary mode:
+        - sequence_id — FASTA header ID
+        - sequence_length — original sequence length before padding/trimming
+        - output_type — RNA_SEQ, ATAC, etc.
+        - track_name — specific experimental track
+        - ontology_curie — tissue/cell type ontology term
+        - mean_signal — mean predicted signal
+        - max_signal — maximum predicted signal
+        
+        Output columns — binned mode:
+        - sequence_id — FASTA header ID
+        - bin_start, bin_end — bin coordinates within the sequence
+        - output_type, track_name, ontology_curie — as above
+        - mean_signal — mean predicted signal in the bin
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

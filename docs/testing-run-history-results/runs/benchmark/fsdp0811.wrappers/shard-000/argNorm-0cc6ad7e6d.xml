@@ -1,0 +1,45 @@
+<tool id="argnorm" name="argNorm" version="1.0.0+galaxy0" profile="21.05">
+  <description>Normalize ARG annotations to the ARO</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">argnorm</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.0.0">argnorm</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        argnorm
+        --input '$input'
+        --output '$output'
+        --threads \${GALAXY_SLOTS:-1}
+        --log '$log'
+        --version
+    </command>
+  <inputs>
+    <param name="input" type="data" format="tabular" label="Input file" help="Input file must be a tabular file with headers" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="${tool.name} on ${on_string}: Normalized ARGs" />
+    <data name="log" format="txt" label="${tool.name} on ${on_string}: Log file" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="argnorm_input.tsv" />
+      <output name="output" file="argnorm_output.tsv" ftype="tabular" lines_diff="2" />
+      <output name="log" file="argnorm_log.txt" ftype="txt" lines_diff="2" />
+    </test>
+  </tests>
+  <help>
+        argNorm is a tool to normalize antibiotic resistance genes (ARGs) by mapping them to the antibiotic resistance ontology (ARO) created by the CARD database.
+
+        argNorm also enhances antibiotic resistance gene annotations by providing drug categorization of the drugs that antibiotic resistance genes confer resistance to.
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btab108</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

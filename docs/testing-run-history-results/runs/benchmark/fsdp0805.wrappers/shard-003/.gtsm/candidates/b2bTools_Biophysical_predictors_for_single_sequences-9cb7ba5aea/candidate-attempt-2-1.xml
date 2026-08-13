@@ -1,0 +1,129 @@
+<tool id="b2btools_biophysical_predictors_for_single_sequences" name="b2bTools: Biophysical predictors for single sequences" version="1.0+galaxy0" profile="21.05">
+  <description>from Bio2Byte</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">b2btools</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.0.0">b2btools</requirement>
+  </requirements>
+  <version_command>b2btools --version</version_command>
+  <command detect_errors="exit_code">
+        #import re
+        mkdir 'output' &amp;&amp;
+        #for $i, $seq in enumerate($sequences):
+            #set $filename = re.sub('[^\w\-\.]', '_', str($seq.element_identifier))
+            ln -s '$seq' 'input_${i}_${filename}.fasta' &amp;&amp;
+        #end for
+        b2btools
+            #if $predictors.dynamine:
+                dynamine
+            #end if
+            #if $predictors.disomine:
+                disomine
+            #end if
+            #if $predictors.efoldmine:
+                efoldmine
+            #end if
+            #if $predictors.agmata:
+                agmata
+            #end if
+            'input_*'
+            -out_dir 'output'
+            -json_output
+            #if $plot:
+                -plot
+            #end if
+            #if $plot_all:
+                -plot_all
+            #end if
+            #if $tabular:
+                -tsv_output
+            #end if
+    </command>
+  <inputs>
+    <param argument="--sequences" type="data" format="fasta" multiple="true" label="Sequences" />
+    <conditional name="predictors">
+      <param name="type" type="select" label="Predictors">
+        <option value="all" selected="True">All</option>
+        <option value="dynamine">DynaMine</option>
+        <option value="disomine">DisoMine</option>
+        <option value="efoldmine">EFoldMine</option>
+        <option value="agmata">Agmata</option>
+      </param>
+      <when value="all">
+        <param name="dynamine" type="boolean" truevalue="-dynamine" falsevalue="" checked="true" label="DynaMine" />
+        <param name="disomine" type="boolean" truevalue="-disomine" falsevalue="" checked="true" label="DisoMine" />
+        <param name="efoldmine" type="boolean" truevalue="-efoldmine" falsevalue="" checked="true" label="EFoldMine" />
+        <param name="agmata" type="boolean" truevalue="-agmata" falsevalue="" checked="true" label="Agmata" />
+      </when>
+      <when value="dynamine">
+        <param name="dynamine" type="boolean" truevalue="-dynamine" falsevalue="" checked="true" label="DynaMine" />
+      </when>
+      <when value="disomine">
+        <param name="disomine" type="boolean" truevalue="-disomine" falsevalue="" checked="true" label="DisoMine" />
+      </when>
+      <when value="efoldmine">
+        <param name="efoldmine" type="boolean" truevalue="-efoldmine" falsevalue="" checked="true" label="EFoldMine" />
+      </when>
+      <when value="agmata">
+        <param name="agmata" type="boolean" truevalue="-agmata" falsevalue="" checked="true" label="Agmata" />
+      </when>
+    </conditional>
+    <param name="plot" type="boolean" truevalue="-plot" falsevalue="" checked="false" label="Plot" />
+    <param name="plot_all" type="boolean" truevalue="-plot_all" falsevalue="" checked="false" label="Plot all" />
+    <param name="tabular" type="boolean" truevalue="-tsv_output" falsevalue="" checked="false" label="Tabular output" />
+  </inputs>
+  <outputs>
+    <collection name="results_json" type="list" label="${tool.name} on ${on_string}: JSON results">
+      <discover_datasets pattern="__name_and_ext__" directory="output" ext="json" visible="false" />
+    </collection>
+    <collection name="results_tsv" type="list" label="${tool.name} on ${on_string}: TSV results">
+      <discover_datasets pattern="__name_and_ext__" directory="output" ext="tsv" visible="false" />
+    </collection>
+    <collection name="results_png" type="list" label="${tool.name} on ${on_string}: PNG results">
+      <discover_datasets pattern="__name_and_ext__" directory="output" ext="png" visible="false" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="3">
+      <param name="sequences" ftype="fasta" value="input.fasta" />
+      <param name="type" value="all" />
+      <param name="plot" value="False" />
+      <param name="plot_all" value="False" />
+      <param name="tabular" value="False" />
+      <output_collection name="results_json" count="1">
+        <element name="input_01_seq1.json" md5="67e2c9d2f36886888888888888888888" />
+      </output_collection>
+      <output_collection name="results_tsv" count="0" />
+      <output_collection name="results_png" count="0" />
+    </test>
+  </tests>
+  <help>
+Single protein sequence analysis
+--------------------------------
+The **current Galaxy Tool** is the implementation of the Bio2Byte tools for **single protein sequence analysis**.
+It means that this tool receives amino-acid sequences in FASTA format and
+will return the biophysical predictions depending on the predictors selected.
+
+Input sequences
+'''''''''''''''
+The tool works with either single or multiple input files, just keeping in mind that
+the file must be a valid FASTA containing at least one sequence of amino acids.
+
+- **DynaMine**: Fast predictor of protein backbone dynamics using only sequence information as input. The version here also predicts side-chain dynamics and secondary structure predictors using the same principle.
+    - *Backbone dynamics*: found as ``backbone`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Side chain dynamics*: found as ``sidechain`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Helix propensity*: found as ``helix`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+    - *Sheet propensity*: found as ``sheet`` inside either the tabular result, the JSON output file, or the plots in PNG format.
+There is no limitation on the number of sequences per file, however, all
+    </help>
+  <citations>
+    <citation type="doi">10.1093/nar/gkz1000</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

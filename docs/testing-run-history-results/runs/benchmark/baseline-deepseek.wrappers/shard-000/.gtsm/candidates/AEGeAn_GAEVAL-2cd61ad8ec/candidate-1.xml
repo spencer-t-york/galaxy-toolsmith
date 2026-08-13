@@ -1,0 +1,47 @@
+<tool id="aegean_gaeval" name="AEGeAn GAEVAL" version="0.1.0" profile="25.0">
+  <description>Compute coverage and integrity scores for gene models using transcript alignments</description>
+  <requirements>
+    <requirement type="package">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        gaeval $gene_predictions $transcript_alignments &gt; $gaeval_output
+    </command>
+  <inputs>
+    <param name="gene_predictions" type="file" format="gff" label="Gene Predictions/Annotations (GFF3)" help="Input GFF3 file containing gene predictions or annotations" />
+    <param name="transcript_alignments" type="file" format="gff" label="Transcript Alignments (GFF3)" help="Input GFF3 file containing transcript alignment features" />
+  </inputs>
+  <outputs>
+    <data name="gaeval_output" format="gff" label="GAEVAL Output (GFF3)" help="Output GFF3 file with coverage and integrity scores added to mRNA features" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="gene_predictions" value="gene_predictions.gff" />
+      <param name="transcript_alignments" value="transcript_alignments.gff" />
+      <output name="gaeval_output">
+        <has_text>gaeval_coverage</has_text>
+        <has_text>gaeval_integrity</has_text>
+        <has_text>##gff-version 3</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AEGeAn GAEVAL
+
+        ## Purpose
+        GAEVAL computes coverage and integrity scores for gene models using transcript alignments. The integrity score ranges from 0 (no support) to 1 (complete support).
+
+        ## Input
+        - **Gene Predictions/Annotations (GFF3):** File containing gene predictions or annotations in GFF3 format.
+        - **Transcript Alignments (GFF3):** File containing transcript alignment features in GFF3 format. Supported types: cDNA_match, EST_match, nucleotide_match.
+
+        ## Output
+        - **GAEVAL Output (GFF3):** Modified GFF3 file with two new attributes added to each mRNA feature: `gaeval_coverage` and `gaeval_integrity`.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

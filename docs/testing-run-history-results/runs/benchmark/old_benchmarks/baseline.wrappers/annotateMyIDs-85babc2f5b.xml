@@ -1,0 +1,49 @@
+<tool id="annotatemyids" name="annotateMyIDs" version="0.1.0" profile="25.0">
+  <description>Annotate a list of IDs using Bioconductor annotation data packages.</description>
+  <requirements>
+    <requirement type="package" version="1.0">R</requirement>
+    <requirement type="package" version="1.0">BiocManager</requirement>
+    <requirement type="package" version="1.0">AnnotationDbi</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript -e "library(BiocManager); BiocManager::install('org.Hs.eg.db'); library(org.Hs.eg.db); args &lt;- commandArgs(trailingOnly=TRUE); input_file &lt;- args[1]; output_file &lt;- args[2]; header &lt;- as.logical(args[3]); ids &lt;- read.table(input_file, header=header, sep='\t')[,1]; annotations &lt;- mapIds(org.Hs.eg.db, keys=ids, column=c('ENTREZID', 'SYMBOL', 'GENENAME'), keytype='ENSEMBL', multiVals='first'); write.table(annotations, file=output_file, sep='\t', quote=FALSE, col.names=NA)"
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="tabular" label="Input File" help="Tab-delimited file with identifiers in the first column." />
+    <param name="header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="File has header" />
+    <param name="id_type" type="select" label="ID Type">
+      <option value="ENSEMBL">ENSEMBL</option>
+      <option value="ENSEMBLPROT">ENSEMBLPROT</option>
+      <option value="ENSEMBLTRANS">ENSEMBLTRANS</option>
+      <option value="ENTREZID">ENTREZID</option>
+      <option value="FLYBASE">FLYBASE</option>
+      <option value="GO">GO</option>
+      <option value="MGI">MGI</option>
+      <option value="PATH">PATH</option>
+      <option value="REFSEQ">REFSEQ</option>
+      <option value="SYMBOL">SYMBOL</option>
+      <option value="ZFIN">ZFIN</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular" label="Annotated Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample_ids.txt" />
+      <param name="header" value="True" />
+      <param name="id_type" value="ENSEMBL" />
+      <output name="output_file" file="expected_output.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        This tool annotates a list of IDs using Bioconductor annotation data packages. Supported organisms include human, mouse, rat, fruit fly, and zebrafish.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

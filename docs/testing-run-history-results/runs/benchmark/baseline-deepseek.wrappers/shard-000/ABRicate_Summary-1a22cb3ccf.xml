@@ -1,0 +1,49 @@
+<tool id="abricate_summary" name="ABRicate Summary" version="0.1.0" profile="25.0">
+  <description>Generate a summary matrix from ABRicate results</description>
+  <requirements>
+    <requirement type="package">abricate</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abricate --summary $abricate_reports &gt; $output
+    </command>
+  <inputs>
+    <param name="abricate_reports" type="data" format="tabular" label="ABRicate Reports" help="Input file containing ABRicate results to be summarized" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="ABRicate Summary Matrix" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="abricate_reports">
+        <file>test_input.tab</file>
+      </param>
+      <output name="output">
+        <has_text>FILE	NUM_FOUND	AAC3	ANT(4')-Ib</has_text>
+        <has_text>sample1	15	.	100.00</has_text>
+        <has_text>sample2	24	100.00	.</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # ABRicate Summary
+        
+        This tool generates a summary matrix from ABRicate results. The output matrix shows gene presence/absence, where:
+        - `.` indicates the gene is absent
+        - `%COVERAGE` indicates the gene is present
+        
+        ### Example Output
+        
+        ```
+        #FILE	NUM_FOUND	AAC3	ANT(4')-Ib	ANT3-DPRIME	ANT4-PRIME	APH3-PRIME	ARLR	ARLS	BLAI	BLAR	BLAZ	BLE	DHAP	ERMA	ErmA	FOSB	LMRS	MECA	MECI	MEPA	MEPB	MEPR	MGRA	NORA	NORB	PC1_beta-lactamase_(blaZ)	RLMH	Staphylococcus_aureus_FosB	Staphylococcus_aureus_norA	Staphylococcys_aureus_LmrS	TET38	arlR	arlS	mecA	mecI	mecR1	mepA	mepR	mgrA	tet(38)
+        sample1	15	.	100.00	.	.	.	.	.	.	.	.	.	.	.	100.00;100.00	.	.	.	.	.	.	.	.	.	.	100.00	.	100.00	99.91	100.00	.	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00
+        sample2	24	100.00	.	100.00;100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00;100.00	.	100.00	100.00	100.00;100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	.	100.00	.	.	.	100.00	.	.	.	.	.	.	.	.	.
+        ```
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

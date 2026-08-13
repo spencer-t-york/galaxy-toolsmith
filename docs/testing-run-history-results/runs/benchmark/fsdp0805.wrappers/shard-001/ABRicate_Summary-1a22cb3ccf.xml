@@ -1,0 +1,51 @@
+<tool id="abricate_summary" name="ABRicate Summary" version="1.4.0+galaxy0" profile="21.05">
+  <description>combines multiple ABRicate reports into a single summary table</description>
+  <macros />
+  <requirements>
+    <requirement type="package" version="1.4.0">abricate</requirement>
+  </requirements>
+  <command detect_errors="exit_code">
+        abricate --summary '$input'
+        &gt; '$output'
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="tabular" label="Input ABRicate report" />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="abricate_report.tab" />
+      <output name="output" ftype="tabular">
+        <assert_contents>
+          <has_line line="#FILE\tNUM_FOUND\tAAC3\tANT(4')-Ib\tANT3-DPRIME\tANT4-PRIME\tAPH3-PRIME\tARLR\tARLS\tBLAI\tBLAR\tBLAZ\tBLE\tDHAP\tERMA\tErmA\tFOSB\tLMRS\tMECA\tMECI\tMEPA\tMEPB\tMEPR\tMGRA\tNORA\tNORB\tPC1_beta-lactamase_(blaZ)\tRLMH\tStaphylococcus_aureus_FosB\tStaphylococcus_aureus_norA\tStaphylococcys_aureus_LmrS\tTET38\tarlR\tarlS\tsacA\tsacB\ttet(38)" negate="true" />
+          <has_line line="sample1\t15\t.\t100.00\t.\t.\t.\t.\t.\t.\t.\t.\t.\t.\t100.00;100.00\t.\t.\t.\t.\t.\t.\t.\t.\t.\t100.00\t.\t100.00\t99.91\t100.00\t.\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00" />
+          <has_line line="sample2\t24\t100.00\t.\t100.00;100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00;100.00\t.\t100.00\t100.00\t100.00;100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t100.00\t.\t100.00\t.\t.\t.\t100.00\t.\t.\t.\t.\t.\t.\t." />
+        </assert_contents>
+      </output>
+    </test>
+  </tests>
+  <help>
+**What it does**
+
+ABRicate can combine results into a simple matrix of gene presence/absence. An absent gene is denoted by '.' and a present gene is represented by its '%COVERAGE`. This can be individual abricate reports, or a combined one.
+
+**Example Output**
+
+::
+
+        #FILE	NUM_FOUND	AAC3	ANT(4')-Ib	ANT3-DPRIME	ANT4-PRIME	APH3-PRIME	ARLR	ARLS	BLAI	BLAR	BLAZ	BLE	DHAP	ERMA	ErmA	FOSB	LMRS	MECA	MECI	MEPA	MEPB	MEPR	MGRA	NORA	NORB	PC1_beta-lactamase_(blaZ)	RLMH	Staphylococcus_aureus_FosB	Staphylococcus_aureus_norA	Staphylococcys_aureus_LmrS	TET38	arlR	arlS	mecA	mecI	mecR1	mepA	mepR	mgrA	tet(38)
+        sample1	15	.	100.00	.	.	.	.	.	.	.	.	.	.	.	100.00;100.00	.	.	.	.	.	.	.	.	.	.	100.00	.	100.00	99.91	100.00	.	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00
+        sample2	24	100.00	.	100.00;100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00;100.00	.	100.00	100.00	100.00;100.00	100.00	100.00	100.00	100.00	100.00	100.00	100.00	.	100.00	.	.	.	100.00	.	.	.	.	.	.	.	.	.
+
+    </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btz005</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,66 @@
+<tool id="bayescan" name="BayeScan" version="0.1.0" profile="25.0">
+  <description>Identify loci under natural selection using genetic data</description>
+  <requirements>
+    <requirement type="package">python</requirement>
+    <requirement type="package">bayescan</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        bayescan2 -input $input_file
+    </command>
+  <inputs>
+    <param name="input_file" type="file" format="txt" label="Input file" help="BayeScan input file in text format. Read the manual to create the input file." />
+    <param name="advanced_options" type="boolean" label="Use advanced options" help="Enable to specify additional parameters" />
+    <conditional name="advanced_options">
+      <when value="true">
+        <param name="burnin" type="integer" label="Burn-in period" default="10000" help="Number of burn-in iterations" />
+        <param name="mcmc" type="integer" label="MCMC iterations" default="100000" help="Number of MCMC iterations after burn-in" />
+        <param name="thin" type="integer" label="Thinning interval" default="10" help="Thinning interval for storing results" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output1" format="directory" label="Output directory" help="Directory containing BayeScan results" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="test_input.txt" />
+      <output name="output1">
+        <has_text regex=".*loci.*" />
+        <has_text regex=".*parameters.*" />
+        <has_text regex=".*summary.*" />
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # BayeScan
+
+        BayeScan is a program designed to identify candidate loci under natural selection from genetic data using differences in allele frequencies between populations.
+
+        ## Input
+
+        BayeScan requires a specific input file format. Please refer to the [manual](http://cmpg.unibe.ch/software/BayeScan/files/BayeScan2.1_manual.pdf) for details on how to format your input file.
+
+        ## Output
+
+        The tool produces a directory containing various output files, including:
+        - Loci results
+        - Parameter estimates
+        - Summary statistics
+
+        ## Advanced Options
+
+        You can optionally specify:
+        - Burn-in period (default: 10000)
+        - MCMC iterations (default: 100000)
+        - Thinning interval (default: 10)
+
+        For more details, visit the [BayeScan website](http://cmpg.unibe.ch/software/BayeScan/).
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

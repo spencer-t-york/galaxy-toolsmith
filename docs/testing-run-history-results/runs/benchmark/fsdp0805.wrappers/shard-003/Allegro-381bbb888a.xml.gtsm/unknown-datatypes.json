@@ -1,0 +1,39 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "allele",
+    "genotype",
+    "map",
+    "pedigree"
+  ],
+  "records": [
+    {
+      "datatype": "allele",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-003/Allegro-381bbb888a.xml"
+    },
+    {
+      "datatype": "genotype",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-003/Allegro-381bbb888a.xml"
+    },
+    {
+      "datatype": "map",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-003/Allegro-381bbb888a.xml"
+    },
+    {
+      "datatype": "pedigree",
+      "tool_name": "Allegro",
+      "tool_id": "allegro",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-003/Allegro-381bbb888a.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

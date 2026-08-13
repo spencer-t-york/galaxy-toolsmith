@@ -1,0 +1,304 @@
+<tool id="art_solid" name="ART SOLiD" version="0.1.0+galaxy0" profile="22.09">
+    <description>Simulate SOLiD sequencing reads</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">art</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="4.0.0">art</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+#set input_type = $input.type
+#if $input_type == "single"
+    #if $input.fastq
+        ln -s '$input.fastq' input.fastq &amp;&amp;
+    #end if
+    #if $input.fasta
+        ln -s '$input.fasta' input.fasta &amp;&amp;
+    #end if
+    #if $input.fna
+        ln -s '$input.fna' input.fna &amp;&amp;
+    #end if
+    #if $input.fa
+        ln -s '$input.fa' input.fa &amp;&amp;
+    #end if
+    #if $input.gff
+        ln -s '$input.gff' input.gff &amp;&amp;
+    #end if
+    #if $input.bed
+        ln -s '$input.bed' input.bed &amp;&amp;
+    #end if
+    #if $input.bam
+        ln -s '$input.bam' input.bam &amp;&amp;
+    #end if
+    #if $input.vcf
+        ln -s '$input.vcf' input.vcf &amp;&amp;
+    #end if
+    #if $input.sam
+        ln -s '$input.sam' input.sam &amp;&amp;
+    #end if
+    #if $input.cram
+        ln -s '$input.cram' input.cram &amp;&amp;
+    #end if
+    #if $input.bwa_index
+        ln -s '$input.bwa_index' input.bwa_index &amp;&amp;
+    #end if
+    #if $input.refseq
+        ln -s '$input.refseq' input.refseq &amp;&amp;
+    #end if
+    #if $input.rnaseq
+        ln -s '$input.rnaseq' input.rnaseq &amp;&amp;
+    #end if
+    #if $input.transcriptome
+        ln -s '$input.transcriptome' input.transcriptome &amp;&amp;
+    #end if
+    #if $input.protein
+        ln -s '$input.protein' input.protein &amp;&amp;
+    #end if
+    #if $input.genome
+        ln -s '$input.genome' input.genome &amp;&amp;
+    #end if
+    #if $input.annotation
+        ln -s '$input.annotation' input.annotation &amp;&amp;
+    #end if
+    #if $input.paired_end
+        ln -s '$input.paired_end' input.paired_end &amp;&amp;
+    #end if
+    #if $input.mate_pair
+        ln -s '$input.mate_pair' input.mate_pair &amp;&amp;
+    #end if
+    #if $input.single
+        ln -s '$input.single' input.single &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input.art_profiler_illumina' input.art_profiler_illumina &amp;&amp;
+    #end if
+    #if $input.art_profiler_454
+        ln -s '$input.art_profiler_454' input.art_profiler_454 &amp;&amp;
+    #end if
+    #if $input.art_profiler_illumina
+        ln -s '$input

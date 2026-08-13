@@ -1,0 +1,58 @@
+<tool id="ampvis2_alpha_diversity" name="ampvis2 alpha diversity" version="0.1.0" profile="25.0">
+  <description>Calculate alpha-diversity indices for each sample and combines with the metadata.</description>
+  <requirements>
+    <requirement type="package">ampvis2</requirement>
+    <requirement type="package">vegan</requirement>
+    <requirement type="package">ggplot2</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        Rscript --vanilla &lt;&lt;__RSCRIPT__
+        library(ampvis2)
+        library(vegan)
+        library(ggplot2)
+        
+        input_rds &lt;- readRDS("${input}")
+        alpha_div &lt;- amp_alpha_diversity(input_rds)
+        
+        write.csv(alpha_div, file="${output}", row.names=TRUE)
+        __RSCRIPT__
+    </command>
+  <inputs>
+    <param name="input" type="data" format="rds" label="Input ampvis2 RDS dataset" help="An ampvis2 RDS dataset obtained from previous ampvis2 tools." />
+  </inputs>
+  <outputs>
+    <data name="output" format="tabular" label="Alpha diversity results" description="Tabular dataset containing alpha-diversity measures per sample" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="input.rds" />
+      <output name="output">
+        <has_text>Sample,Observed species,Shannon,Inverse Simpson</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # What it does
+        
+        Calculate alpha-diversity indices for each sample and combines with the metadata.
+        
+        # Usage
+        
+        This tool uses the `amp_alpha_diversity` function from the ampvis2 package to calculate alpha-diversity indices. The indices are calculated using vegan's `diversity` and `rrarefy` functions.
+        
+        # Input
+        
+        An ampvis2 RDS dataset obtained from previous ampvis2 tools.
+        
+        # Output
+        
+        A tabular dataset containing alpha-diversity measures per sample.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

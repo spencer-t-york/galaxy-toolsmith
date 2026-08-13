@@ -1,0 +1,588 @@
+<tool id="adapter_removal" name="AdapterRemoval: remove adapter sequences" version="2.3.4+galaxy0" profile="21.05">
+    <description>and trim low quality bases</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">adapterremoval</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="2.3.4">adapterremoval</requirement>
+    </requirements>
+    <version_command>AdapterRemoval --version</version_command>
+    <command detect_errors="exit_code">
+        AdapterRemoval
+        --file1 '$input1'
+        #if $input2:
+            --file2 '$input2'
+        #end if
+        --output '$output'
+        --settings '$settings'
+        #if $adapter1:
+            --adapter1 '$adapter1'
+        #end if
+        #if $adapter2:
+            --adapter2 '$adapter2'
+        #end if
+        #if $adapter_file:
+            --adapterfile '$adapter_file'
+        #end if
+        --minlength $minlength
+        --minquality $minquality
+        --mismatchrate $mismatchrate
+        --shift $shift
+        --trim5p $trim5p
+        --trim3p $trim3p
+        --trimns
+        --window $window
+        --minalignmentlength $minalignmentlength
+        --mm $mm
+        #if $collapse:
+            --collapse
+            #if $deterministic:
+                --deterministic
+            #end if
+            #if $conservative:
+                --conservative
+            #end if
+        #end if
+        #if $identify_adapters:
+            --identify-adapters
+        #end if
+        #if $interleaved_output:
+            --interleaved-output
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #end if
+        #if $outputDiscarded:
+            --outputdiscarded
+        #end if
+        #if $outputTruncated:
+            --outputtruncated
+        #end if
+        #if $outputSingletonTruncated:
+            --outputsingletontruncated
+        #end if
+        #if $outputInterleavedTruncated:
+            --outputinterleavedtruncated
+        #end if
+        #if $outputForwardTruncated:
+            --outputforwardtruncated
+        #end if
+        #if $outputReverseTruncated:
+            --outputreversedtruncated
+        #end if
+        #if $outputCollapsed:
+            --outputcollapsed
+        #end if
+        #if $outputCollapsedTruncated:
+            --outputcollapsedtruncated
+        #

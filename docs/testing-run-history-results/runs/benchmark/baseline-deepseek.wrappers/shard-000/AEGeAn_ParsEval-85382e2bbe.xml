@@ -1,0 +1,41 @@
+<tool id="aegean_parseval" name="AEGeAn ParsEval" version="0.1.0" profile="25.0">
+  <description>Compare two genome annotations using ParsEval</description>
+  <command detect_errors="aggressive">
+        parseval $reference_gff $prediction_gff &gt; $parseval_report
+    </command>
+  <inputs>
+    <param name="reference_gff" type="data" format="gff3" label="Reference annotation in GFF3 format" />
+    <param name="prediction_gff" type="data" format="gff3" label="Prediction annotation in GFF3 format" />
+  </inputs>
+  <outputs>
+    <data name="parseval_report" format="txt" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="reference_gff" value="test_ref.gff3" />
+      <param name="prediction_gff" value="test_pred.gff3" />
+      <output name="parseval_report">
+        <has_text>Comparison of reference and prediction annotations</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # AEGeAn ParsEval
+
+        Compare two genome annotations in GFF3 format to measure their agreement.
+
+        ## Inputs
+        - **Reference annotation**: GFF3 file representing the reference annotation
+        - **Prediction annotation**: GFF3 file representing the predicted annotation
+
+        ## Output
+        - **ParsEval report**: Text file containing similarity statistics and comparison results
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

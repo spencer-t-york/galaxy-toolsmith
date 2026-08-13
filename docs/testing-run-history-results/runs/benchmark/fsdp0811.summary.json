@@ -1,0 +1,4172 @@
+{
+  "created_at": "2026-08-13T02:47:59.418739+00:00",
+  "corpus_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/tools-iuc-corpus.jsonl",
+  "provider": "local",
+  "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+  "attempted": 50,
+  "succeeded": 25,
+  "failed": 25,
+  "wrappers_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers",
+  "generation_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.generation.records.json",
+  "evaluation_report_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.evaluation.summary.json",
+  "artifact_format": "xml",
+  "progress": {
+    "started_at": "2026-08-12T15:45:32.896131+00:00",
+    "now_at": "2026-08-13T02:47:59.418633+00:00",
+    "completed_units": 50,
+    "total_units": 50,
+    "elapsed_seconds": 39746.522502,
+    "units_per_second": 0.0012579716879000937,
+    "eta_seconds": null,
+    "eta_timestamp": null
+  },
+  "startup": {
+    "started_at": "2026-08-12T15:45:32.896131+00:00",
+    "artifact_format": "xml",
+    "source_context": {
+      "mode": "none",
+      "max_chars": 8000,
+      "max_files": 12,
+      "source_root": "",
+      "source_file": "",
+      "test_context_mode": "none",
+      "test_context_max_chars": 4000,
+      "test_context_max_files": 4,
+      "test_context_max_file_bytes": 64000
+    },
+    "processes": 1,
+    "gpu_devices": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "min_items_per_process": 1,
+    "startup_stagger_seconds": 0.0,
+    "local_gpu_topology": "model-parallel",
+    "local_offload_policy": "fail",
+    "local_gpu_memory_reserve_gib": 2.0,
+    "resume_existing": true,
+    "checkpoint_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.checkpoint.jsonl",
+    "record_timeout_seconds": 0.0,
+    "shards": [
+      {
+        "shard_index": 0,
+        "gpu_device": "0,1,2,3",
+        "started_at": "2026-08-12T15:45:33.373474+00:00",
+        "artifact_format": "xml",
+        "source_context": {
+          "mode": "none",
+          "max_chars": 8000,
+          "max_files": 12,
+          "source_root": "",
+          "source_file": "",
+          "test_context_mode": "none",
+          "test_context_max_chars": 4000,
+          "test_context_max_files": 4,
+          "test_context_max_file_bytes": 64000
+        },
+        "local_gpu_topology": "model-parallel",
+        "local_offload_policy": "fail",
+        "local_gpu_memory_reserve_gib": 2.0,
+        "ollama_context_tokens": null,
+        "resume_existing": true,
+        "checkpoint_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.generation.records.shards/shard-000/checkpoint.records.jsonl",
+        "checkpoint_records_loaded": 0,
+        "skipped_existing": 0,
+        "cuda_visible_devices": "0,1,2,3",
+        "allow_compact_fallback": false,
+        "model_load_started_at": "2026-08-12T15:45:33.373553+00:00",
+        "model_ready_at": "2026-08-12T15:46:19.357373+00:00",
+        "model_load_seconds": 45.9838,
+        "startup_seconds": 45.9839,
+        "model_loaded": true,
+        "backend": "local-peft",
+        "base_model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+        "adapter_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810-full-8192-all-raw-fsdp/output",
+        "offload_policy": "fail",
+        "gpu_memory_reserve_gib": 2.0,
+        "max_memory": {
+          "0": 39728447488,
+          "1": 39728447488,
+          "2": 39728447488,
+          "3": 39728447488
+        },
+        "device_map": {
+          "model.embed_tokens": "0",
+          "model.layers.0": "0",
+          "model.layers.1": "0",
+          "model.layers.2": "0",
+          "model.layers.3": "0",
+          "model.layers.4": "0",
+          "model.layers.5": "0",
+          "model.layers.6": "0",
+          "model.layers.7": "0",
+          "model.layers.8": "0",
+          "model.layers.9": "0",
+          "model.layers.10": "0",
+          "model.layers.11": "0",
+          "model.layers.12": "0",
+          "model.layers.13": "0",
+          "model.layers.14": "1",
+          "model.layers.15": "1",
+          "model.layers.16": "1",
+          "model.layers.17": "1",
+          "model.layers.18": "1",
+          "model.layers.19": "1",
+          "model.layers.20": "1",
+          "model.layers.21": "1",
+          "model.layers.22": "1",
+          "model.layers.23": "1",
+          "model.layers.24": "1",
+          "model.layers.25": "1",
+          "model.layers.26": "1",
+          "model.layers.27": "1",
+          "model.layers.28": "1",
+          "model.layers.29": "1",
+          "model.layers.30": "1",
+          "model.layers.31": "1",
+          "model.layers.32": "2",
+          "model.layers.33": "2",
+          "model.layers.34": "2",
+          "model.layers.35": "2",
+          "model.layers.36": "2",
+          "model.layers.37": "2",
+          "model.layers.38": "2",
+          "model.layers.39": "2",
+          "model.layers.40": "2",
+          "model.layers.41": "2",
+          "model.layers.42": "2",
+          "model.layers.43": "2",
+          "model.layers.44": "2",
+          "model.layers.45": "2",
+          "model.layers.46": "2",
+          "model.layers.47": "2",
+          "model.layers.48": "2",
+          "model.layers.49": "2",
+          "model.layers.50": "3",
+          "model.layers.51": "3",
+          "model.layers.52": "3",
+          "model.layers.53": "3",
+          "model.layers.54": "3",
+          "model.layers.55": "3",
+          "model.layers.56": "3",
+          "model.layers.57": "3",
+          "model.layers.58": "3",
+          "model.layers.59": "3",
+          "model.layers.60": "3",
+          "model.layers.61": "3",
+          "model.layers.62": "3",
+          "model.layers.63": "3",
+          "model.norm": "3",
+          "model.rotary_emb": "3",
+          "lm_head": "3",
+          "model.model.embed_tokens": "0",
+          "model.model.layers.0": "0",
+          "model.model.layers.1": "0",
+          "model.model.layers.2": "0",
+          "model.model.layers.3": "0",
+          "model.model.layers.4": "0",
+          "model.model.layers.5": "0",
+          "model.model.layers.6": "0",
+          "model.model.layers.7": "0",
+          "model.model.layers.8": "0",
+          "model.model.layers.9": "0",
+          "model.model.layers.10": "0",
+          "model.model.layers.11": "0",
+          "model.model.layers.12": "0",
+          "model.model.layers.13": "0",
+          "model.model.layers.14": "1",
+          "model.model.layers.15": "1",
+          "model.model.layers.16": "1",
+          "model.model.layers.17": "1",
+          "model.model.layers.18": "1",
+          "model.model.layers.19": "1",
+          "model.model.layers.20": "1",
+          "model.model.layers.21": "1",
+          "model.model.layers.22": "1",
+          "model.model.layers.23": "1",
+          "model.model.layers.24": "1",
+          "model.model.layers.25": "1",
+          "model.model.layers.26": "1",
+          "model.model.layers.27": "1",
+          "model.model.layers.28": "1",
+          "model.model.layers.29": "1",
+          "model.model.layers.30": "1",
+          "model.model.layers.31": "1",
+          "model.model.layers.32": "2",
+          "model.model.layers.33": "2",
+          "model.model.layers.34": "2",
+          "model.model.layers.35": "2",
+          "model.model.layers.36": "2",
+          "model.model.layers.37": "2",
+          "model.model.layers.38": "2",
+          "model.model.layers.39": "2",
+          "model.model.layers.40": "2",
+          "model.model.layers.41": "2",
+          "model.model.layers.42": "2",
+          "model.model.layers.43": "2",
+          "model.model.layers.44": "2",
+          "model.model.layers.45": "2",
+          "model.model.layers.46": "2",
+          "model.model.layers.47": "2",
+          "model.model.layers.48": "2",
+          "model.model.layers.49": "2",
+          "model.model.layers.50": "3",
+          "model.model.layers.51": "3",
+          "model.model.layers.52": "3",
+          "model.model.layers.53": "3",
+          "model.model.layers.54": "3",
+          "model.model.layers.55": "3",
+          "model.model.layers.56": "3",
+          "model.model.layers.57": "3",
+          "model.model.layers.58": "3",
+          "model.model.layers.59": "3",
+          "model.model.layers.60": "3",
+          "model.model.layers.61": "3",
+          "model.model.layers.62": "3",
+          "model.model.layers.63": "3",
+          "model.model.norm": "3",
+          "model.model.rotary_emb": "3",
+          "model.lm_head": "3",
+          "base_model.model.embed_tokens": "0",
+          "base_model.model.layers.0": "0",
+          "base_model.model.layers.1": "0",
+          "base_model.model.layers.2": "0",
+          "base_model.model.layers.3": "0",
+          "base_model.model.layers.4": "0",
+          "base_model.model.layers.5": "0",
+          "base_model.model.layers.6": "0",
+          "base_model.model.layers.7": "0",
+          "base_model.model.layers.8": "0",
+          "base_model.model.layers.9": "0",
+          "base_model.model.layers.10": "0",
+          "base_model.model.layers.11": "0",
+          "base_model.model.layers.12": "0",
+          "base_model.model.layers.13": "0",
+          "base_model.model.layers.14": "1",
+          "base_model.model.layers.15": "1",
+          "base_model.model.layers.16": "1",
+          "base_model.model.layers.17": "1",
+          "base_model.model.layers.18": "1",
+          "base_model.model.layers.19": "1",
+          "base_model.model.layers.20": "1",
+          "base_model.model.layers.21": "1",
+          "base_model.model.layers.22": "1",
+          "base_model.model.layers.23": "1",
+          "base_model.model.layers.24": "1",
+          "base_model.model.layers.25": "1",
+          "base_model.model.layers.26": "1",
+          "base_model.model.layers.27": "1",
+          "base_model.model.layers.28": "1",
+          "base_model.model.layers.29": "1",
+          "base_model.model.layers.30": "1",
+          "base_model.model.layers.31": "1",
+          "base_model.model.layers.32": "2",
+          "base_model.model.layers.33": "2",
+          "base_model.model.layers.34": "2",
+          "base_model.model.layers.35": "2",
+          "base_model.model.layers.36": "2",
+          "base_model.model.layers.37": "2",
+          "base_model.model.layers.38": "2",
+          "base_model.model.layers.39": "2",
+          "base_model.model.layers.40": "2",
+          "base_model.model.layers.41": "2",
+          "base_model.model.layers.42": "2",
+          "base_model.model.layers.43": "2",
+          "base_model.model.layers.44": "2",
+          "base_model.model.layers.45": "2",
+          "base_model.model.layers.46": "2",
+          "base_model.model.layers.47": "2",
+          "base_model.model.layers.48": "2",
+          "base_model.model.layers.49": "2",
+          "base_model.model.layers.50": "3",
+          "base_model.model.layers.51": "3",
+          "base_model.model.layers.52": "3",
+          "base_model.model.layers.53": "3",
+          "base_model.model.layers.54": "3",
+          "base_model.model.layers.55": "3",
+          "base_model.model.layers.56": "3",
+          "base_model.model.layers.57": "3",
+          "base_model.model.layers.58": "3",
+          "base_model.model.layers.59": "3",
+          "base_model.model.layers.60": "3",
+          "base_model.model.layers.61": "3",
+          "base_model.model.layers.62": "3",
+          "base_model.model.layers.63": "3",
+          "base_model.model.norm": "3",
+          "base_model.model.rotary_emb": "3",
+          "base_model.lm_head": "3"
+        },
+        "offloaded_devices": {},
+        "has_offload": false,
+        "first_generation_started_at": "2026-08-12T15:46:19.357885+00:00",
+        "time_to_first_generation_seconds": 45.9844
+      }
+    ],
+    "model_load_seconds_max": 45.9838,
+    "model_load_seconds_mean": 45.9838
+  },
+  "failures": [
+    {
+      "tool_name": "Barcode Splitter",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Barcode_Splitter-cce006dc1d.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Barcode_Splitter-cce006dc1d.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 508, column 15; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 508, column 15; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 508, column 15; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 508, column 15",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 1,
+      "package_id": "iuc/barcode_splitter",
+      "tool_id": "barcode_splitter",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/barcode_splitter/barcode_splitter.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/barcode_splitter/barcode_splitter.xml",
+      "primary_command": "barcode_splitter",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 605, column 20; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 605, column 20; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 605, column 20",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "AEGeAn LocusPocus",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_LocusPocus-cf8fdaaae1.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_LocusPocus-cf8fdaaae1.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 528, column 9; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 528, column 9; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 528, column 9; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 528, column 9",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 4,
+      "package_id": "iuc/aegean",
+      "tool_id": "aegean_locuspocus",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/aegean/locuspocus.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/locuspocus.expanded.xml",
+      "primary_command": "locuspocus",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 528, column 9; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 528, column 9; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 528, column 9",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "AEGeAn ParsEval",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_ParsEval-85382e2bbe.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 362, column 64; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 362, column 64; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 362, column 64; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 362, column 64",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 6,
+      "package_id": "iuc/aegean",
+      "tool_id": "aegean_parseval",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/aegean/parseval.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/parseval.expanded.xml",
+      "primary_command": "parseval",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 532, column 19; Generated XML does not contain a closing </tool> tag.; Generated XML contains 173 repeated Cheetah output-variable fragments.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 532, column 19; Generated XML does not contain a closing </tool> tag.; Generated XML contains 173 repeated Cheetah output-variable fragments.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 532, column 19",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains 173 repeated Cheetah output-variable fragments."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML contains 173 repeated Cheetah output-variable fragments."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 173,
+            "repeated_cheetah_fragment_details": [
+              {
+                "fragment": "out_format",
+                "count": 173
+              }
+            ],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "Allegro",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Allegro-381bbb888a.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Allegro-381bbb888a.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 672, column 10; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 672, column 10; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 672, column 10; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 672, column 10",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 7,
+      "package_id": "iuc/allegro",
+      "tool_id": "allegro",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/allegro/allegro.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/allegro/allegro.expanded.xml",
+      "primary_command": "allegro",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 670, column 19; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 670, column 19; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 670, column 19",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "AdapterRemoval: remove adapter sequences",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AdapterRemoval_remove_adapter_sequences-b01d2bc961.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AdapterRemoval_remove_adapter_sequences-b01d2bc961.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 452, column 31; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 452, column 31; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 452, column 31; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 452, column 31",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 8,
+      "package_id": "iuc/adapter_removal",
+      "tool_id": "adapter_removal",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/adapter_removal/adapter_removal.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/adapter_removal/adapter_removal.expanded.xml",
+      "primary_command": "AdapterRemoval",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 588, column 9; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 588, column 9; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 588, column 9",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "b2bTools: Biophysical predictors for single sequences",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/b2bTools_Biophysical_predictors_for_single_sequences-9cb7ba5aea.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/b2bTools_Biophysical_predictors_for_single_sequences-9cb7ba5aea.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 173, column 74; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 173, column 74; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 173, column 74; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 173, column 74",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 4,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 1,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 11,
+      "package_id": "iuc/b2btools",
+      "tool_id": "b2btools_single_sequence",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/b2btools/b2btools_single_sequence.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/b2btools/b2btools_single_sequence.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 261, column 42; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 261, column 42; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 261, column 42",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "AlphaGenome ISM Scanner",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_ISM_Scanner-d6f40b8dc1.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_ISM_Scanner-d6f40b8dc1.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: unclosed token: line 112, column 12; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains 93 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated synthetic-looking <option> prefixes: h3k27me1me2me3me0me0me0m, h3k36me1me2me3me0me0me0m, h3k4me1me2me3me0me0me0me.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: unclosed token: line 112, column 12; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains 93 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated synthetic-looking <option> prefixes: h3k27me1me2me3me0me0me0m, h3k36me1me2me3me0me0me0m, h3k4me1me2me3me0me0me0me.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: unclosed token: line 112, column 12; Generated XML does not contain a closing </tool> tag.; Generated XML appears to end mid-tag, likely due to output truncation.; Generated XML contains 93 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated synthetic-looking <option> prefixes: h3k27me1me2me3me0me0me0m, h3k36me1me2me3me0me0me0m, h3k4me1me2me3me0me0me0me.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: unclosed token: line 112, column 12",
+          "Generated XML does not contain a closing </tool> tag.",
+          "Generated XML appears to end mid-tag, likely due to output truncation.",
+          "Generated XML contains 93 <option> tags, which suggests an overlong or hallucinated select list.",
+          "Generated XML contains repeated synthetic-looking <option> prefixes: h3k27me1me2me3me0me0me0m, h3k36me1me2me3me0me0me0m, h3k4me1me2me3me0me0me0me."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML appears to end mid-tag, likely due to output truncation.",
+            "Generated XML contains 93 <option> tags, which suggests an overlong or hallucinated select list.",
+            "Generated XML contains repeated synthetic-looking <option> prefixes: h3k27me1me2me3me0me0me0m, h3k36me1me2me3me0me0me0m, h3k4me1me2me3me0me0me0me."
+          ],
+          "option_count": 93,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [
+            "h3k27me1me2me3me0me0me0m",
+            "h3k36me1me2me3me0me0me0m",
+            "h3k4me1me2me3me0me0me0me",
+            "h3k9me1me2me3me0me0me0me"
+          ],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": true,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 13,
+      "package_id": "iuc/alphagenome",
+      "tool_id": "alphagenome_ism_scanner",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/alphagenome/alphagenome_ism_scanner.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_ism_scanner.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 194, column 40; Generated XML does not contain a closing </tool> tag.; Generated XML contains 176 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated identical XML lines: '<option value=\"H3K27me2\">H3K27me2</option>'.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 194, column 40; Generated XML does not contain a closing </tool> tag.; Generated XML contains 176 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated identical XML lines: '<option value=\"H3K27me2\">H3K27me2</option>'.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 194, column 40",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains 176 <option> tags, which suggests an overlong or hallucinated select list.",
+            "Generated XML contains repeated identical XML lines: '<option value=\"H3K27me2\">H3K27me2</option>'."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML contains 176 <option> tags, which suggests an overlong or hallucinated select list.",
+              "Generated XML contains repeated identical XML lines: '<option value=\"H3K27me2\">H3K27me2</option>'."
+            ],
+            "option_count": 176,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [
+              "<option value=\"H3K27me2\">H3K27me2</option>",
+              "<option value=\"H3K27me3\">H3K27me3</option>",
+              "<option value=\"H3K36me1\">H3K36me1</option>",
+              "<option value=\"H3K36me2\">H3K36me2</option>",
+              "<option value=\"H3K4me1\">H3K4me1</option>",
+              "<option value=\"H3K4me2\">H3K4me2</option>",
+              "<option value=\"H3K9me1\">H3K9me1</option>",
+              "<option value=\"H3K9me2\">H3K9me2</option>"
+            ],
+            "repeated_xml_line_count": 8,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "AlphaGenome Interval Predictor",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Interval_Predictor-fdc11327fd.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 243, column 40; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 243, column 40; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 243, column 40; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 243, column 40",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 14,
+      "package_id": "iuc/alphagenome",
+      "tool_id": "alphagenome_interval_predictor",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/alphagenome/alphagenome_interval_predictor.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_interval_predictor.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 237, column 17; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 237, column 17; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 237, column 17",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "AlphaGenome Sequence Predictor",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Sequence_Predictor-fc83b9588f.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Sequence_Predictor-fc83b9588f.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 319, column 50; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 319, column 50; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 319, column 50; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 319, column 50",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 15,
+      "package_id": "iuc/alphagenome",
+      "tool_id": "alphagenome_sequence_predictor",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/alphagenome/alphagenome_sequence_predictor.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_sequence_predictor.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 203, column 36; Generated XML does not contain a closing </tool> tag.; Generated XML contains 181 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated identical XML lines: '<option value=\"H3K4me1\">H3K4me1</option>'.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 203, column 36; Generated XML does not contain a closing </tool> tag.; Generated XML contains 181 <option> tags, which suggests an overlong or hallucinated select list.; Generated XML contains repeated identical XML lines: '<option value=\"H3K4me1\">H3K4me1</option>'.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 203, column 36",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains 181 <option> tags, which suggests an overlong or hallucinated select list.",
+            "Generated XML contains repeated identical XML lines: '<option value=\"H3K4me1\">H3K4me1</option>'."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML contains 181 <option> tags, which suggests an overlong or hallucinated select list.",
+              "Generated XML contains repeated identical XML lines: '<option value=\"H3K4me1\">H3K4me1</option>'."
+            ],
+            "option_count": 181,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [
+              "<option value=\"H3K4me1\">H3K4me1</option>",
+              "<option value=\"H3K4me3\">H3K4me3</option>",
+              "<option value=\"H3K9me3\">H3K9me3</option>"
+            ],
+            "repeated_xml_line_count": 3,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "anndata2ri",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/anndata2ri-aeea791450.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/anndata2ri-aeea791450.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 454, column 27; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 454, column 27; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 454, column 27; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 454, column 27",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 22,
+      "package_id": "iuc/anndata2ri",
+      "tool_id": "anndata2ri",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/anndata2ri/anndata2ri.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata2ri/anndata2ri.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 673, column 21; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 673, column 21; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 673, column 21",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "Bandage Image",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Bandage_Image-9cf8ac93bb.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Bandage_Image-9cf8ac93bb.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 344, column 58; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 344, column 58; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 344, column 58; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 344, column 58",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 23,
+      "package_id": "iuc/bandage",
+      "tool_id": "bandage_image",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/bandage/bandage_image.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/bandage/bandage_image.expanded.xml",
+      "primary_command": "Bandage",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 129, column 304; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 129, column 304; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 129, column 304",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "Manipulate AnnData",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Manipulate_AnnData-ac04c3739b.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Manipulate_AnnData-ac04c3739b.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 170, column 4196; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.; Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 170, column 4196; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated identical XML lines: \\'<param name=\"input\" value=\"input.h5ad\"/>\\'.; Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 170, column 4196; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.; Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 170, column 4196",
+          "Generated XML does not contain a closing </tool> tag.",
+          "Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.",
+          "Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.",
+            "Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test."
+          ],
+          "option_count": 18,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [
+            "<param name=\"input\" value=\"input.h5ad\"/>"
+          ],
+          "repeated_xml_line_count": 1,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 12,
+          "too_many_tests": true,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 24,
+      "package_id": "iuc/anndata",
+      "tool_id": "anndata_manipulate",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/anndata/manipulate.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/manipulate.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 259, column 2716; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.; Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 259, column 2716; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.; Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 259, column 2716",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.",
+            "Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML contains repeated identical XML lines: '<param name=\"input\" value=\"input.h5ad\"/>'.",
+              "Generated XML contains 12 direct <test> elements; generated wrappers should include one compact test."
+            ],
+            "option_count": 20,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [
+              "<param name=\"input\" value=\"input.h5ad\"/>",
+              "<test expect_num_outputs=\"1\">"
+            ],
+            "repeated_xml_line_count": 2,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 12,
+            "too_many_tests": true,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "Inspect AnnData",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Inspect_AnnData-8948f82c16.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Inspect_AnnData-8948f82c16.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 50, column 7729; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 50, column 7729; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 50, column 7729; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 50, column 7729",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 1,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 25,
+      "package_id": "iuc/anndata",
+      "tool_id": "anndata_inspect",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/anndata/inspect.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/inspect.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 71, column 6153; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 71, column 6153; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 71, column 6153",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 1,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 rank abundance plot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_rank_abundance_plot-1ed63777de.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 10, column 15703; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 10, column 15703; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 10, column 15703; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 10, column 15703",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 36,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_rankabundance",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/rankabundance.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/rankabundance.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 505, column 24; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 505, column 24; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 505, column 24",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 timeseries plot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_timeseries_plot-4b6c95e8b2.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_timeseries_plot-4b6c95e8b2.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 594, column 19; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 594, column 19; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 594, column 19; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 594, column 19",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 37,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_timeseries",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/timeseries.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/timeseries.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 104, column 132; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 104, column 132; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 104, column 132",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 frequency plot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_frequency_plot-e07cb1100d.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_frequency_plot-e07cb1100d.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 467, column 28; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 467, column 28; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 467, column 28; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 467, column 28",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 38,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_frequency",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/frequency.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/frequency.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 467, column 14; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 467, column 14; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 467, column 14",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 load",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_load-9dff6d3c45.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 628, column 24; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 628, column 24; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 628, column 24; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 628, column 24",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 40,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_load",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/load.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/load.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 698, column 28; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 698, column 28; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 698, column 28",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 octave plot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_octave_plot-c9423042f7.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_octave_plot-c9423042f7.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 69, column 386; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 69, column 386; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 69, column 386; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 69, column 386",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 41,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_octave",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/octave.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/octave.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 7, column 12033; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 7, column 12033; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 7, column 12033",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 alpha diversity",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_alpha_diversity-415e558c81.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_alpha_diversity-415e558c81.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 209, column 46; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 209, column 46; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 209, column 46; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 209, column 46",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 42,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_alpha_diversity",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/alpha_diversity.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/alpha_diversity.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 78, column 187; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated synthetic-looking <option> prefixes: chao1cirelwidthlog100000.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 78, column 187; Generated XML does not contain a closing </tool> tag.; Generated XML contains repeated synthetic-looking <option> prefixes: chao1cirelwidthlog100000.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 78, column 187",
+            "Generated XML does not contain a closing </tool> tag.",
+            "Generated XML contains repeated synthetic-looking <option> prefixes: chao1cirelwidthlog100000."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag.",
+              "Generated XML contains repeated synthetic-looking <option> prefixes: chao1cirelwidthlog100000."
+            ],
+            "option_count": 60,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [
+              "chao1cirelwidthlog100000"
+            ],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 boxplot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_boxplot-7199649f04.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_boxplot-7199649f04.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 859, column 7; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 859, column 7; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 859, column 7; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 859, column 7",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 43,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_boxplot",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/boxplot.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/boxplot.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 537, column 20; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 537, column 20; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 537, column 20",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 rarefaction curve",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_rarefaction_curve-e80625d649.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 87, column 146; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 87, column 146; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 87, column 146; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 87, column 146",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 44,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_rarecurve",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/rarecurve.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/rarecurve.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 722, column 29; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 722, column 29; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 722, column 29",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 heatmap",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_heatmap-512d26e7d3.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_heatmap-512d26e7d3.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 7, column 15168; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 7, column 15168; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 7, column 15168; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 7, column 15168",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 45,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_heatmap",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/heatmap.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/heatmap.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 131, column 2; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 131, column 2; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 131, column 2",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 merge replicates",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_merge_replicates-9fe7d97c83.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_merge_replicates-9fe7d97c83.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 16, column 14742; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 16, column 14742; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 16, column 14742; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 16, column 14742",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 47,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_mergereplicates",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/mergereplicates.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/mergereplicates.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 274, column 42; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 274, column 42; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 274, column 42",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 OTU network plot",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_OTU_network_plot-9e761c0446.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_OTU_network_plot-9e761c0446.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 596, column 6; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 596, column 6; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 596, column 6; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 596, column 6",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 48,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_otu_network",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/otu_network.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/otu_network.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 733, column 9; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 733, column 9; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 733, column 9",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    },
+    {
+      "tool_name": "ampvis2 core community analysis",
+      "artifact_format": "xml",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_core_community_analysis-739c364026.xml",
+      "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_core_community_analysis-739c364026.xml",
+      "output_udt_yaml_path": "",
+      "provider": "local",
+      "model_variant": "tools-iuc-devstral-24b-mixed-all-raw-8192-fsdp-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810",
+      "error": "Generated XML is not well formed. XML parse error: no element found: line 510, column 35; Generated XML does not contain a closing </tool> tag.",
+      "error_type": "InvalidGeneratedXmlError",
+      "error_repr": "InvalidGeneratedXmlError('Generated XML is not well formed. XML parse error: no element found: line 510, column 35; Generated XML does not contain a closing </tool> tag.')",
+      "traceback": "galaxy_toolsmith.orchestration.benchmark.InvalidGeneratedXmlError: Generated XML is not well formed. XML parse error: no element found: line 510, column 35; Generated XML does not contain a closing </tool> tag.",
+      "validation": {
+        "xml_well_formed": false,
+        "root_tag": "",
+        "root_is_tool": false,
+        "unknown_datatypes": [],
+        "xsd_status": "not_run",
+        "planemo_status": "not_run",
+        "notes": [
+          "XML parse error: no element found: line 510, column 35",
+          "Generated XML does not contain a closing </tool> tag."
+        ],
+        "artifact_format": "xml",
+        "generation_diagnostics": {
+          "has_problems": true,
+          "problems": [
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "option_count": 0,
+          "long_option_values": 0,
+          "long_option_labels": 0,
+          "repeated_option_prefixes": [],
+          "repeated_xml_lines": [],
+          "repeated_xml_line_count": 0,
+          "repeated_cheetah_fragments": 0,
+          "repeated_cheetah_fragment_details": [],
+          "test_count": 0,
+          "too_many_tests": false,
+          "missing_closing_tool": true,
+          "ends_mid_tag": false,
+          "unclosed_cdata": false
+        }
+      },
+      "attempt_count": 2,
+      "repair_attempted": true,
+      "truncation_suspected": true,
+      "corpus_index": 49,
+      "package_id": "iuc/ampvis2",
+      "tool_id": "ampvis2_core",
+      "wrapper_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/ampvis2/core.xml",
+      "expanded_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/core.expanded.xml",
+      "primary_command": "",
+      "repair_reason": "Generated XML is not well formed. XML parse error: no element found: line 185, column 31; Generated XML does not contain a closing </tool> tag.",
+      "initial_failure": {
+        "error": "Generated XML is not well formed. XML parse error: no element found: line 185, column 31; Generated XML does not contain a closing </tool> tag.",
+        "error_type": "InvalidGeneratedXmlError",
+        "validation": {
+          "xml_well_formed": false,
+          "root_tag": "",
+          "root_is_tool": false,
+          "unknown_datatypes": [],
+          "xsd_status": "not_run",
+          "planemo_status": "not_run",
+          "notes": [
+            "XML parse error: no element found: line 185, column 31",
+            "Generated XML does not contain a closing </tool> tag."
+          ],
+          "artifact_format": "xml",
+          "generation_diagnostics": {
+            "has_problems": true,
+            "problems": [
+              "Generated XML does not contain a closing </tool> tag."
+            ],
+            "option_count": 0,
+            "long_option_values": 0,
+            "long_option_labels": 0,
+            "repeated_option_prefixes": [],
+            "repeated_xml_lines": [],
+            "repeated_xml_line_count": 0,
+            "repeated_cheetah_fragments": 0,
+            "repeated_cheetah_fragment_details": [],
+            "test_count": 0,
+            "too_many_tests": false,
+            "missing_closing_tool": true,
+            "ends_mid_tag": false,
+            "unclosed_cdata": false
+          }
+        }
+      },
+      "compact_fallback_skipped": true,
+      "compact_fallback_skip_reason": "Compact fallback is disabled; malformed/truncated generations are reported as benchmark failures."
+    }
+  ],
+  "quality": {
+    "throughput": {
+      "elapsed_seconds": 39746.5225,
+      "wrappers_per_minute": 0.0755,
+      "seconds_per_attempted_wrapper": 794.9305
+    },
+    "validity": {
+      "artifact_format": "xml",
+      "success_rate": 0.5,
+      "artifact_valid_rate": 0.5,
+      "xml_well_formed_rate": 0.5,
+      "tool_root_rate": 0.5,
+      "yaml_well_formed_rate": 0.0,
+      "udt_schema_valid_rate": 0.0,
+      "user_tool_root_rate": 0.0
+    },
+    "repair": {
+      "repair_attempt_rate": 0.62,
+      "repair_success_rate": 0.1935,
+      "truncation_failure_rate": 0.5
+    },
+    "structural": {
+      "mean_structural_score_successes": 0.99,
+      "effective_mean_structural_score_all_attempted": 0.495
+    },
+    "reference_fidelity": {
+      "compared_records": 25,
+      "avg_input_count_abs_error": 4.68,
+      "avg_output_count_abs_error": 1.48,
+      "input_datatype_jaccard_mean": 0.5507,
+      "output_datatype_jaccard_mean": 0.5547,
+      "requirement_package_jaccard_mean": 0.56,
+      "test_presence_match_rate": 1.0,
+      "primary_command_checks": 16,
+      "primary_command_presence_rate": 1.0,
+      "records": [
+        {
+          "tool_name": "Add input name as column",
+          "corpus_index": 0,
+          "package_id": "mvdbeek/add_input_name_as_column",
+          "tool_id": "addName",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Add_input_name_as_column-bdfce68288.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/add_input_name_as_column/add_input_name_as_column.xml",
+          "input_count_reference": 4,
+          "input_count_generated": 3,
+          "input_count_abs_error": 1,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "python"
+          ],
+          "requirement_packages_generated": [
+            "mvdbeek/add_input_name_as_column"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "AmpliGone",
+          "corpus_index": 2,
+          "package_id": "iuc/ampligone",
+          "tool_id": "ampligone",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AmpliGone-06650ea441.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AmpliGone-06650ea441.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampligone/ampligone.expanded.xml",
+          "input_count_reference": 7,
+          "input_count_generated": 5,
+          "input_count_abs_error": 2,
+          "output_count_reference": 2,
+          "output_count_generated": 3,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "bam",
+            "bed",
+            "fasta",
+            "fastqsanger",
+            "fastqsanger.gz"
+          ],
+          "input_datatypes_generated": [
+            "bam",
+            "bed",
+            "fastq"
+          ],
+          "input_datatype_jaccard": 0.3333,
+          "output_datatypes_reference": [
+            "bed",
+            "fastqsanger"
+          ],
+          "output_datatypes_generated": [
+            "fastq",
+            "html",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "AmpliGone"
+          ],
+          "requirement_packages_generated": [
+            "ampligone"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "ampligone",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "AEGeAn GAEVAL",
+          "corpus_index": 3,
+          "package_id": "iuc/aegean",
+          "tool_id": "aegean_gaeval",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_GAEVAL-2cd61ad8ec.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_GAEVAL-2cd61ad8ec.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/gaeval.expanded.xml",
+          "input_count_reference": 9,
+          "input_count_generated": 2,
+          "input_count_abs_error": 7,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "gff3"
+          ],
+          "input_datatypes_generated": [
+            "gff3"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "gff3"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "aegean"
+          ],
+          "requirement_packages_generated": [
+            "aegean"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "gaeval",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "AEGeAn CanonGFF3",
+          "corpus_index": 5,
+          "package_id": "iuc/aegean",
+          "tool_id": "aegean_canongff3",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_CanonGFF3-3e946130f7.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AEGeAn_CanonGFF3-3e946130f7.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/aegean/canongff3.expanded.xml",
+          "input_count_reference": 3,
+          "input_count_generated": 1,
+          "input_count_abs_error": 2,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "gff3"
+          ],
+          "input_datatypes_generated": [
+            "gff3"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "gff3"
+          ],
+          "output_datatypes_generated": [
+            "gff3"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "aegean"
+          ],
+          "requirement_packages_generated": [
+            "aegean"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "canon-gff3",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "abriTAMR",
+          "corpus_index": 9,
+          "package_id": "iuc/abritamr",
+          "tool_id": "abritamr",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/abriTAMR-62489a9974.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/abriTAMR-62489a9974.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abritamr/abritamr.expanded.xml",
+          "input_count_reference": 4,
+          "input_count_generated": 2,
+          "input_count_abs_error": 2,
+          "output_count_reference": 5,
+          "output_count_generated": 1,
+          "output_count_abs_error": 4,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 0.5,
+          "requirement_packages_reference": [
+            "abritamr"
+          ],
+          "requirement_packages_generated": [
+            "abritamr"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abritamr",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "argNorm",
+          "corpus_index": 10,
+          "package_id": "iuc/argnorm",
+          "tool_id": "argnorm",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/argNorm-0cc6ad7e6d.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/argNorm-0cc6ad7e6d.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/argnorm/argnorm.expanded.xml",
+          "input_count_reference": 5,
+          "input_count_generated": 1,
+          "input_count_abs_error": 4,
+          "output_count_reference": 1,
+          "output_count_generated": 2,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "tsv",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "tsv"
+          ],
+          "output_datatypes_generated": [
+            "tabular",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "argnorm"
+          ],
+          "requirement_packages_generated": [
+            "argnorm"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "argnorm",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "BayeScan",
+          "corpus_index": 12,
+          "package_id": "iuc/bayescan",
+          "tool_id": "BayeScan",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/BayeScan-6b2fc4e08e.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/BayeScan-6b2fc4e08e.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/bayescan/bayescan.xml",
+          "input_count_reference": 16,
+          "input_count_generated": 24,
+          "input_count_abs_error": 8,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "tabular",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "txt"
+          ],
+          "input_datatype_jaccard": 0.5,
+          "output_datatypes_reference": [
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "txt"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "bayescan"
+          ],
+          "requirement_packages_generated": [
+            "bayescan"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "bayescan2",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "AlphaGenome Variant Effect",
+          "corpus_index": 16,
+          "package_id": "iuc/alphagenome",
+          "tool_id": "alphagenome_variant_effect",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Variant_Effect-b3cef5d5c7.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_variant_effect.expanded.xml",
+          "input_count_reference": 7,
+          "input_count_generated": 6,
+          "input_count_abs_error": 1,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "vcf"
+          ],
+          "input_datatypes_generated": [
+            "vcf"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "vcf"
+          ],
+          "output_datatypes_generated": [
+            "vcf"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "alphagenome",
+            "cyvcf2",
+            "pandas"
+          ],
+          "requirement_packages_generated": [
+            "alphagenome"
+          ],
+          "requirement_package_jaccard": 0.3333,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "AlphaGenome Variant Scorer",
+          "corpus_index": 17,
+          "package_id": "iuc/alphagenome",
+          "tool_id": "alphagenome_variant_scorer",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Variant_Scorer-cb49ad2f89.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/AlphaGenome_Variant_Scorer-cb49ad2f89.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/alphagenome/alphagenome_variant_scorer.expanded.xml",
+          "input_count_reference": 6,
+          "input_count_generated": 11,
+          "input_count_abs_error": 5,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "vcf"
+          ],
+          "input_datatypes_generated": [],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "alphagenome",
+            "cyvcf2",
+            "pandas"
+          ],
+          "requirement_packages_generated": [
+            "alphagenome"
+          ],
+          "requirement_package_jaccard": 0.3333,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ART Illumina",
+          "corpus_index": 18,
+          "package_id": "iuc/art",
+          "tool_id": "art_illumina",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ART_Illumina-e396390388.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ART_Illumina-e396390388.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/art/art_illumina.expanded.xml",
+          "input_count_reference": 16,
+          "input_count_generated": 34,
+          "input_count_abs_error": 18,
+          "output_count_reference": 7,
+          "output_count_generated": 1,
+          "output_count_abs_error": 6,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta",
+            "fastq"
+          ],
+          "input_datatype_jaccard": 0.5,
+          "output_datatypes_reference": [
+            "fastq",
+            "sam",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "fastq"
+          ],
+          "output_datatype_jaccard": 0.3333,
+          "requirement_packages_reference": [
+            "art"
+          ],
+          "requirement_packages_generated": [
+            "art"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "art_illumina",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "ART 454",
+          "corpus_index": 19,
+          "package_id": "iuc/art",
+          "tool_id": "art_454",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ART_454-60bb57973b.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ART_454-60bb57973b.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/art/art_454.expanded.xml",
+          "input_count_reference": 14,
+          "input_count_generated": 24,
+          "input_count_abs_error": 10,
+          "output_count_reference": 7,
+          "output_count_generated": 1,
+          "output_count_abs_error": 6,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "fastq",
+            "sam",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "fastq"
+          ],
+          "output_datatype_jaccard": 0.3333,
+          "requirement_packages_reference": [
+            "art"
+          ],
+          "requirement_packages_generated": [
+            "art"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "art_454",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "ART SOLiD",
+          "corpus_index": 20,
+          "package_id": "iuc/art",
+          "tool_id": "art_solid",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ART_SOLiD-9a5e3dc43a.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/art/art_solid.expanded.xml",
+          "input_count_reference": 19,
+          "input_count_generated": 14,
+          "input_count_abs_error": 5,
+          "output_count_reference": 6,
+          "output_count_generated": 1,
+          "output_count_abs_error": 5,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta",
+            "txt"
+          ],
+          "input_datatype_jaccard": 0.5,
+          "output_datatypes_reference": [
+            "fastq",
+            "sam"
+          ],
+          "output_datatypes_generated": [
+            "fastq"
+          ],
+          "output_datatype_jaccard": 0.5,
+          "requirement_packages_reference": [
+            "art"
+          ],
+          "requirement_packages_generated": [
+            "art"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "art_solid",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "TrimN",
+          "corpus_index": 21,
+          "package_id": "iuc/trimns",
+          "tool_id": "trimns",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/TrimN-2eb2d114d7.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/TrimN-2eb2d114d7.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/sources/tools-iuc/tools/TrimNs/TrimNs.xml",
+          "input_count_reference": 1,
+          "input_count_generated": 2,
+          "input_count_abs_error": 1,
+          "output_count_reference": 1,
+          "output_count_generated": 3,
+          "output_count_abs_error": 2,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "fasta"
+          ],
+          "output_datatypes_generated": [
+            "fasta",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.5,
+          "requirement_packages_reference": [
+            "trimns_vgp"
+          ],
+          "requirement_packages_generated": [
+            "python"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "remove_fake_cut_sites_dnanexus.py",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "Bandage Info",
+          "corpus_index": 26,
+          "package_id": "iuc/bandage",
+          "tool_id": "bandage_info",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Bandage_Info-ca3e69c2ed.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Bandage_Info-ca3e69c2ed.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/bandage/bandage_info.expanded.xml",
+          "input_count_reference": 2,
+          "input_count_generated": 1,
+          "input_count_abs_error": 1,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "fastg",
+            "gfa1",
+            "gfa2",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "gfa"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bandage_ng"
+          ],
+          "requirement_packages_generated": [
+            "bandage_ng"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "bandage",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "Import Anndata",
+          "corpus_index": 27,
+          "package_id": "iuc/anndata",
+          "tool_id": "anndata_import",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Import_Anndata-f48bab69f6.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Import_Anndata-f48bab69f6.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/import.expanded.xml",
+          "input_count_reference": 26,
+          "input_count_generated": 9,
+          "input_count_abs_error": 17,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "csv",
+            "h5",
+            "loom",
+            "mtx",
+            "tabular",
+            "tabular.gz",
+            "tsv",
+            "txt"
+          ],
+          "input_datatypes_generated": [
+            "h5",
+            "loom",
+            "mtx",
+            "tabular"
+          ],
+          "input_datatype_jaccard": 0.5,
+          "output_datatypes_reference": [
+            "h5ad"
+          ],
+          "output_datatypes_generated": [
+            "h5ad"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "anndata",
+            "loompy",
+            "pandas",
+            "scanpy"
+          ],
+          "requirement_packages_generated": [
+            "anndata"
+          ],
+          "requirement_package_jaccard": 0.25,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "Export AnnData",
+          "corpus_index": 28,
+          "package_id": "iuc/anndata",
+          "tool_id": "anndata_export",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Export_AnnData-8a972c99b4.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/Export_AnnData-8a972c99b4.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/anndata/export.expanded.xml",
+          "input_count_reference": 1,
+          "input_count_generated": 8,
+          "input_count_abs_error": 7,
+          "output_count_reference": 5,
+          "output_count_generated": 1,
+          "output_count_abs_error": 4,
+          "input_datatypes_reference": [
+            "h5ad"
+          ],
+          "input_datatypes_generated": [
+            "h5ad"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "anndata",
+            "loompy",
+            "pandas",
+            "scanpy"
+          ],
+          "requirement_packages_generated": [
+            "anndata"
+          ],
+          "requirement_package_jaccard": 0.25,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ABRicate Summary",
+          "corpus_index": 29,
+          "package_id": "iuc/abricate",
+          "tool_id": "abricate_summary",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABRicate_Summary-1a22cb3ccf.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABRicate_Summary-1a22cb3ccf.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abricate/abricate_summary.expanded.xml",
+          "input_count_reference": 1,
+          "input_count_generated": 1,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "tabular"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "abricate"
+          ],
+          "requirement_packages_generated": [
+            "abricate"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abricate",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "ABRicate List",
+          "corpus_index": 30,
+          "package_id": "iuc/abricate",
+          "tool_id": "abricate_list",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABRicate_List-90425a1e42.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABRicate_List-90425a1e42.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abricate/abricate_list.expanded.xml",
+          "input_count_reference": 0,
+          "input_count_generated": 0,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [],
+          "input_datatypes_generated": [],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "abricate"
+          ],
+          "requirement_packages_generated": [
+            "abricate"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abricate",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "ABRicate",
+          "corpus_index": 31,
+          "package_id": "iuc/abricate",
+          "tool_id": "abricate",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABRicate-55e56c2e72.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABRicate-55e56c2e72.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abricate/abricate.expanded.xml",
+          "input_count_reference": 5,
+          "input_count_generated": 2,
+          "input_count_abs_error": 3,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "embl",
+            "fasta",
+            "fasta.bz2",
+            "fasta.gz",
+            "genbank",
+            "genbank.gz"
+          ],
+          "input_datatypes_generated": [
+            "fasta",
+            "genbank"
+          ],
+          "input_datatype_jaccard": 0.3333,
+          "output_datatypes_reference": [
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "abricate"
+          ],
+          "requirement_packages_generated": [
+            "abricate"
+          ],
+          "requirement_package_jaccard": 1.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abricate",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "autoBIGS.cli",
+          "corpus_index": 32,
+          "package_id": "iuc/autobigs",
+          "tool_id": "autobigs-cli",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/autoBIGS.cli-108330a964.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/autoBIGS.cli-108330a964.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/autobigs/autobigs-cli.expanded.xml",
+          "input_count_reference": 6,
+          "input_count_generated": 5,
+          "input_count_abs_error": 1,
+          "output_count_reference": 2,
+          "output_count_generated": 1,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "fasta"
+          ],
+          "input_datatypes_generated": [
+            "fasta"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "csv"
+          ],
+          "output_datatypes_generated": [
+            "csv"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "autobigs-cli"
+          ],
+          "requirement_packages_generated": [
+            "autobigs.cli"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "autobigs",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "annotateMyIDs",
+          "corpus_index": 33,
+          "package_id": "iuc/annotatemyids",
+          "tool_id": "annotatemyids",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/annotateMyIDs-85babc2f5b.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/annotateMyIDs-85babc2f5b.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/annotatemyids/annotateMyIDs.expanded.xml",
+          "input_count_reference": 7,
+          "input_count_generated": 5,
+          "input_count_abs_error": 2,
+          "output_count_reference": 2,
+          "output_count_generated": 1,
+          "output_count_abs_error": 1,
+          "input_datatypes_reference": [
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "tabular"
+          ],
+          "input_datatype_jaccard": 1.0,
+          "output_datatypes_reference": [
+            "tabular",
+            "txt"
+          ],
+          "output_datatypes_generated": [
+            "tabular"
+          ],
+          "output_datatype_jaccard": 0.5,
+          "requirement_packages_reference": [
+            "bioconductor-org.at.tair.db",
+            "bioconductor-org.bt.eg.db",
+            "bioconductor-org.dm.eg.db",
+            "bioconductor-org.dr.eg.db",
+            "bioconductor-org.gg.eg.db",
+            "bioconductor-org.hs.eg.db",
+            "bioconductor-org.mm.eg.db",
+            "bioconductor-org.rn.eg.db"
+          ],
+          "requirement_packages_generated": [
+            "python",
+            "r"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ABySS",
+          "corpus_index": 34,
+          "package_id": "iuc/abyss",
+          "tool_id": "abyss-pe",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABySS-ad1ad9f776.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ABySS-ad1ad9f776.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/abyss/abyss-pe.expanded.xml",
+          "input_count_reference": 24,
+          "input_count_generated": 6,
+          "input_count_abs_error": 18,
+          "output_count_reference": 6,
+          "output_count_generated": 12,
+          "output_count_abs_error": 6,
+          "input_datatypes_reference": [
+            "fasta",
+            "fasta.bz2",
+            "fasta.gz",
+            "fastqillumina",
+            "fastqillumina.bz2",
+            "fastqillumina.gz",
+            "fastqsanger",
+            "fastqsanger.bz2",
+            "fastqsanger.gz"
+          ],
+          "input_datatypes_generated": [
+            "fasta",
+            "fastq"
+          ],
+          "input_datatype_jaccard": 0.1,
+          "output_datatypes_reference": [
+            "fasta",
+            "tabular"
+          ],
+          "output_datatypes_generated": [
+            "csv",
+            "fasta",
+            "html",
+            "txt"
+          ],
+          "output_datatype_jaccard": 0.2,
+          "requirement_packages_reference": [
+            "abyss",
+            "bwa"
+          ],
+          "requirement_packages_generated": [
+            "abyss"
+          ],
+          "requirement_package_jaccard": 0.5,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "abyss-pe",
+          "primary_command_present": true
+        },
+        {
+          "tool_name": "ampvis2 merge ampvis2 data sets",
+          "corpus_index": 35,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_merge_ampvis2",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_merge_ampvis2_data_sets-d544432b32.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_merge_ampvis2_data_sets-d544432b32.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/merge_ampvis2.expanded.xml",
+          "input_count_reference": 2,
+          "input_count_generated": 2,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "ampvis2"
+          ],
+          "input_datatypes_generated": [
+            "rds"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "ampvis2"
+          ],
+          "output_datatypes_generated": [
+            "rds"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "ampvis2"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 venn diagram",
+          "corpus_index": 39,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_venn",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_venn_diagram-54b8f01b36.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_venn_diagram-54b8f01b36.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/venn.expanded.xml",
+          "input_count_reference": 10,
+          "input_count_generated": 8,
+          "input_count_abs_error": 2,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "ampvis2",
+            "tabular"
+          ],
+          "input_datatypes_generated": [
+            "rdata"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "pdf"
+          ],
+          "output_datatypes_generated": [
+            "png"
+          ],
+          "output_datatype_jaccard": 0.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "ampvis2",
+            "r"
+          ],
+          "requirement_package_jaccard": 0.0,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        },
+        {
+          "tool_name": "ampvis2 export fasta",
+          "corpus_index": 46,
+          "package_id": "iuc/ampvis2",
+          "tool_id": "ampvis2_export_fasta",
+          "artifact_format": "xml",
+          "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml",
+          "output_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.wrappers/shard-000/ampvis2_export_fasta-1913c889f6.xml",
+          "output_udt_yaml_path": "",
+          "reference_xml_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/datasets/expanded/ampvis2/export_fasta.expanded.xml",
+          "input_count_reference": 2,
+          "input_count_generated": 2,
+          "input_count_abs_error": 0,
+          "output_count_reference": 1,
+          "output_count_generated": 1,
+          "output_count_abs_error": 0,
+          "input_datatypes_reference": [
+            "ampvis2"
+          ],
+          "input_datatypes_generated": [
+            "rdata"
+          ],
+          "input_datatype_jaccard": 0.0,
+          "output_datatypes_reference": [
+            "fasta"
+          ],
+          "output_datatypes_generated": [
+            "fasta"
+          ],
+          "output_datatype_jaccard": 1.0,
+          "requirement_packages_reference": [
+            "bioconductor-phyloseq",
+            "r-ampvis2",
+            "r-readr"
+          ],
+          "requirement_packages_generated": [
+            "r-ampvis2"
+          ],
+          "requirement_package_jaccard": 0.3333,
+          "has_tests_reference": true,
+          "has_tests_generated": true,
+          "test_presence_matches": true,
+          "primary_command": "",
+          "primary_command_present": false
+        }
+      ]
+    },
+    "startup": {
+      "started_at": "2026-08-12T15:45:32.896131+00:00",
+      "artifact_format": "xml",
+      "source_context": {
+        "mode": "none",
+        "max_chars": 8000,
+        "max_files": 12,
+        "source_root": "",
+        "source_file": "",
+        "test_context_mode": "none",
+        "test_context_max_chars": 4000,
+        "test_context_max_files": 4,
+        "test_context_max_file_bytes": 64000
+      },
+      "processes": 1,
+      "gpu_devices": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "min_items_per_process": 1,
+      "startup_stagger_seconds": 0.0,
+      "local_gpu_topology": "model-parallel",
+      "local_offload_policy": "fail",
+      "local_gpu_memory_reserve_gib": 2.0,
+      "resume_existing": true,
+      "checkpoint_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.checkpoint.jsonl",
+      "record_timeout_seconds": 0.0,
+      "shards": [
+        {
+          "shard_index": 0,
+          "gpu_device": "0,1,2,3",
+          "started_at": "2026-08-12T15:45:33.373474+00:00",
+          "artifact_format": "xml",
+          "source_context": {
+            "mode": "none",
+            "max_chars": 8000,
+            "max_files": 12,
+            "source_root": "",
+            "source_file": "",
+            "test_context_mode": "none",
+            "test_context_max_chars": 4000,
+            "test_context_max_files": 4,
+            "test_context_max_file_bytes": 64000
+          },
+          "local_gpu_topology": "model-parallel",
+          "local_offload_policy": "fail",
+          "local_gpu_memory_reserve_gib": 2.0,
+          "ollama_context_tokens": null,
+          "resume_existing": true,
+          "checkpoint_records_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0811.generation.records.shards/shard-000/checkpoint.records.jsonl",
+          "checkpoint_records_loaded": 0,
+          "skipped_existing": 0,
+          "cuda_visible_devices": "0,1,2,3",
+          "allow_compact_fallback": false,
+          "model_load_started_at": "2026-08-12T15:45:33.373553+00:00",
+          "model_ready_at": "2026-08-12T15:46:19.357373+00:00",
+          "model_load_seconds": 45.9838,
+          "startup_seconds": 45.9839,
+          "model_loaded": true,
+          "backend": "local-peft",
+          "base_model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+          "adapter_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-devstral-lora-sharding-4-fsdp-sidecars-fixtures-20260810-full-8192-all-raw-fsdp/output",
+          "offload_policy": "fail",
+          "gpu_memory_reserve_gib": 2.0,
+          "max_memory": {
+            "0": 39728447488,
+            "1": 39728447488,
+            "2": 39728447488,
+            "3": 39728447488
+          },
+          "device_map": {
+            "model.embed_tokens": "0",
+            "model.layers.0": "0",
+            "model.layers.1": "0",
+            "model.layers.2": "0",
+            "model.layers.3": "0",
+            "model.layers.4": "0",
+            "model.layers.5": "0",
+            "model.layers.6": "0",
+            "model.layers.7": "0",
+            "model.layers.8": "0",
+            "model.layers.9": "0",
+            "model.layers.10": "0",
+            "model.layers.11": "0",
+            "model.layers.12": "0",
+            "model.layers.13": "0",
+            "model.layers.14": "1",
+            "model.layers.15": "1",
+            "model.layers.16": "1",
+            "model.layers.17": "1",
+            "model.layers.18": "1",
+            "model.layers.19": "1",
+            "model.layers.20": "1",
+            "model.layers.21": "1",
+            "model.layers.22": "1",
+            "model.layers.23": "1",
+            "model.layers.24": "1",
+            "model.layers.25": "1",
+            "model.layers.26": "1",
+            "model.layers.27": "1",
+            "model.layers.28": "1",
+            "model.layers.29": "1",
+            "model.layers.30": "1",
+            "model.layers.31": "1",
+            "model.layers.32": "2",
+            "model.layers.33": "2",
+            "model.layers.34": "2",
+            "model.layers.35": "2",
+            "model.layers.36": "2",
+            "model.layers.37": "2",
+            "model.layers.38": "2",
+            "model.layers.39": "2",
+            "model.layers.40": "2",
+            "model.layers.41": "2",
+            "model.layers.42": "2",
+            "model.layers.43": "2",
+            "model.layers.44": "2",
+            "model.layers.45": "2",
+            "model.layers.46": "2",
+            "model.layers.47": "2",
+            "model.layers.48": "2",
+            "model.layers.49": "2",
+            "model.layers.50": "3",
+            "model.layers.51": "3",
+            "model.layers.52": "3",
+            "model.layers.53": "3",
+            "model.layers.54": "3",
+            "model.layers.55": "3",
+            "model.layers.56": "3",
+            "model.layers.57": "3",
+            "model.layers.58": "3",
+            "model.layers.59": "3",
+            "model.layers.60": "3",
+            "model.layers.61": "3",
+            "model.layers.62": "3",
+            "model.layers.63": "3",
+            "model.norm": "3",
+            "model.rotary_emb": "3",
+            "lm_head": "3",
+            "model.model.embed_tokens": "0",
+            "model.model.layers.0": "0",
+            "model.model.layers.1": "0",
+            "model.model.layers.2": "0",
+            "model.model.layers.3": "0",
+            "model.model.layers.4": "0",
+            "model.model.layers.5": "0",
+            "model.model.layers.6": "0",
+            "model.model.layers.7": "0",
+            "model.model.layers.8": "0",
+            "model.model.layers.9": "0",
+            "model.model.layers.10": "0",
+            "model.model.layers.11": "0",
+            "model.model.layers.12": "0",
+            "model.model.layers.13": "0",
+            "model.model.layers.14": "1",
+            "model.model.layers.15": "1",
+            "model.model.layers.16": "1",
+            "model.model.layers.17": "1",
+            "model.model.layers.18": "1",
+            "model.model.layers.19": "1",
+            "model.model.layers.20": "1",
+            "model.model.layers.21": "1",
+            "model.model.layers.22": "1",
+            "model.model.layers.23": "1",
+            "model.model.layers.24": "1",
+            "model.model.layers.25": "1",
+            "model.model.layers.26": "1",
+            "model.model.layers.27": "1",
+            "model.model.layers.28": "1",
+            "model.model.layers.29": "1",
+            "model.model.layers.30": "1",
+            "model.model.layers.31": "1",
+            "model.model.layers.32": "2",
+            "model.model.layers.33": "2",
+            "model.model.layers.34": "2",
+            "model.model.layers.35": "2",
+            "model.model.layers.36": "2",
+            "model.model.layers.37": "2",
+            "model.model.layers.38": "2",
+            "model.model.layers.39": "2",
+            "model.model.layers.40": "2",
+            "model.model.layers.41": "2",
+            "model.model.layers.42": "2",
+            "model.model.layers.43": "2",
+            "model.model.layers.44": "2",
+            "model.model.layers.45": "2",
+            "model.model.layers.46": "2",
+            "model.model.layers.47": "2",
+            "model.model.layers.48": "2",
+            "model.model.layers.49": "2",
+            "model.model.layers.50": "3",
+            "model.model.layers.51": "3",
+            "model.model.layers.52": "3",
+            "model.model.layers.53": "3",
+            "model.model.layers.54": "3",
+            "model.model.layers.55": "3",
+            "model.model.layers.56": "3",
+            "model.model.layers.57": "3",
+            "model.model.layers.58": "3",
+            "model.model.layers.59": "3",
+            "model.model.layers.60": "3",
+            "model.model.layers.61": "3",
+            "model.model.layers.62": "3",
+            "model.model.layers.63": "3",
+            "model.model.norm": "3",
+            "model.model.rotary_emb": "3",
+            "model.lm_head": "3",
+            "base_model.model.embed_tokens": "0",
+            "base_model.model.layers.0": "0",
+            "base_model.model.layers.1": "0",
+            "base_model.model.layers.2": "0",
+            "base_model.model.layers.3": "0",
+            "base_model.model.layers.4": "0",
+            "base_model.model.layers.5": "0",
+            "base_model.model.layers.6": "0",
+            "base_model.model.layers.7": "0",
+            "base_model.model.layers.8": "0",
+            "base_model.model.layers.9": "0",
+            "base_model.model.layers.10": "0",
+            "base_model.model.layers.11": "0",
+            "base_model.model.layers.12": "0",
+            "base_model.model.layers.13": "0",
+            "base_model.model.layers.14": "1",
+            "base_model.model.layers.15": "1",
+            "base_model.model.layers.16": "1",
+            "base_model.model.layers.17": "1",
+            "base_model.model.layers.18": "1",
+            "base_model.model.layers.19": "1",
+            "base_model.model.layers.20": "1",
+            "base_model.model.layers.21": "1",
+            "base_model.model.layers.22": "1",
+            "base_model.model.layers.23": "1",
+            "base_model.model.layers.24": "1",
+            "base_model.model.layers.25": "1",
+            "base_model.model.layers.26": "1",
+            "base_model.model.layers.27": "1",
+            "base_model.model.layers.28": "1",
+            "base_model.model.layers.29": "1",
+            "base_model.model.layers.30": "1",
+            "base_model.model.layers.31": "1",
+            "base_model.model.layers.32": "2",
+            "base_model.model.layers.33": "2",
+            "base_model.model.layers.34": "2",
+            "base_model.model.layers.35": "2",
+            "base_model.model.layers.36": "2",
+            "base_model.model.layers.37": "2",
+            "base_model.model.layers.38": "2",
+            "base_model.model.layers.39": "2",
+            "base_model.model.layers.40": "2",
+            "base_model.model.layers.41": "2",
+            "base_model.model.layers.42": "2",
+            "base_model.model.layers.43": "2",
+            "base_model.model.layers.44": "2",
+            "base_model.model.layers.45": "2",
+            "base_model.model.layers.46": "2",
+            "base_model.model.layers.47": "2",
+            "base_model.model.layers.48": "2",
+            "base_model.model.layers.49": "2",
+            "base_model.model.layers.50": "3",
+            "base_model.model.layers.51": "3",
+            "base_model.model.layers.52": "3",
+            "base_model.model.layers.53": "3",
+            "base_model.model.layers.54": "3",
+            "base_model.model.layers.55": "3",
+            "base_model.model.layers.56": "3",
+            "base_model.model.layers.57": "3",
+            "base_model.model.layers.58": "3",
+            "base_model.model.layers.59": "3",
+            "base_model.model.layers.60": "3",
+            "base_model.model.layers.61": "3",
+            "base_model.model.layers.62": "3",
+            "base_model.model.layers.63": "3",
+            "base_model.model.norm": "3",
+            "base_model.model.rotary_emb": "3",
+            "base_model.lm_head": "3"
+          },
+          "offloaded_devices": {},
+          "has_offload": false,
+          "first_generation_started_at": "2026-08-12T15:46:19.357885+00:00",
+          "time_to_first_generation_seconds": 45.9844
+        }
+      ],
+      "model_load_seconds_max": 45.9838,
+      "model_load_seconds_mean": 45.9838
+    }
+  },
+  "suite_generation": "single",
+  "suite_count": 0,
+  "suite_member_count": 0
+}

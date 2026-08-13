@@ -1,0 +1,170 @@
+<tool id="anndata_manipulate" name="Manipulate AnnData" version="0.1.0">
+    <description>dataset</description>
+    <requirements>
+        <requirement type="package" version="0.11.4">anndata</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
+        python3 '$__tool_directory__/manipulate.py'
+        --input '$input'
+        --output '$output'
+        --method '$method'
+        #if $method == 'concatenate':
+            --input2 '$input2'
+            --join '$join'
+        #end if
+        #if $method == 'rename_categories':
+            --key '$key'
+            --mapping '$mapping'
+        #end if
+        #if $method == 'remove_keys':
+            --keys '$keys'
+            --level '$level'
+        #end if
+        #if $method == 'flag_genes':
+            --pattern '$pattern'
+        #end if
+        #if $method == 'split':
+            --key '$key'
+        #end if
+        #if $method == 'filter':
+            --axis '$axis'
+            --index '$index'
+        #end if
+    </command>
+    <inputs>
+        <param name="input" type="data" format="h5ad" label="Input AnnData dataset"/>
+        <param name="method" type="select" label="Method">
+            <option value="concatenate">Concatenate</option>
+            <option value="obs_names_make_unique">Obs names make unique</option>
+            <option value="var_names_make_unique">Var names make unique</option>
+            <option value="rename_categories">Rename categories</option>
+            <option value="remove_keys">Remove keys</option>
+            <option value="flag_genes">Flag genes</option>
+            <option value="strings_to_categoricals">Strings to categoricals</option>
+            <option value="transpose">Transpose</option>
+            <option value="add_annotation">Add annotation</option>
+            <option value="split">Split</option>
+            <option value="filter">Filter</option>
+            <option value="freeze">Freeze</option>
+        </param>
+        <param name="input2" type="data" format="h5ad" label="Input AnnData dataset" help="Only for concatenate method" optional="true"/>
+        <param name="join" type="select" label="Join" help="Only for concatenate method">
+            <option value="inner">inner</option>
+            <option value="outer">outer</option>
+        </param>
+        <param name="key" type="text" label="Key" help="Only for rename categories, remove keys and split methods" optional="true"/>
+        <param name="mapping" type="data" format="txt" label="Mapping" help="Only for rename categories method" optional="true"/>
+        <param name="keys" type="text" label="Keys" help="Only for remove keys method" optional="true"/>
+        <param name="level" type="select" label="Level" help="Only for remove keys method">
+            <option value="obs">obs</option>
+            <option value="var">var</option>
+        </param>
+        <param name="pattern" type="text" label="Pattern" help="Only for flag genes method" optional="true"/>
+        <param name="axis" type="select" label="Axis" help="Only for filter method">
+            <option value="obs">obs</option>
+            <option value="var">var</option>
+        </param>
+        <param name="index" type="text" label="Index" help="Only for filter method" optional="true"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="h5ad" label="${tool.name} on ${on_string}: AnnData dataset"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="concatenate"/>
+            <param name="input2" value="input.h5ad"/>
+            <param name="join" value="inner"/>
+            <output name="output" file="output_concatenate.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="obs_names_make_unique"/>
+            <output name="output" file="output_obs_names_make_unique.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="var_names_make_unique"/>
+            <output name="output" file="output_var_names_make_unique.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="rename_categories"/>
+            <param name="key" value="clusters"/>
+            <param name="mapping" value="mapping.txt"/>
+            <output name="output" file="output_rename_categories.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="remove_keys"/>
+            <param name="keys" value="clusters"/>
+            <param name="level" value="obs"/>
+            <output name="output" file="output_remove_keys.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="flag_genes"/>
+            <param name="pattern" value="gene"/>
+            <output name="output" file="output_flag_genes.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="strings_to_categoricals"/>
+            <output name="output" file="output_strings_to_categoricals.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="transpose"/>
+            <output name="output" file="output_transpose.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="add_annotation"/>
+            <output name="output" file="output_add_annotation.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="split"/>
+            <param name="key" value="clusters"/>
+            <output name="output" file="output_split.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="filter"/>
+            <param name="axis" value="obs"/>
+            <param name="index" value="0,1,2"/>
+            <output name="output" file="output_filter.h5ad" compare="sim_size"/>
+        </test>
+        <test>
+            <param name="input" value="input.h5ad"/>
+            <param name="method" value="freeze"/>
+            <output name="output" file="output_freeze.h5ad" compare="sim_size"/>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+This tool takes an AnnData dataset, manipulates it and returns it.
+
+The possible manipulations are:
+
+- Concatenate along the observations axis (`concatenate method &lt;https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.concatenate.html&gt;`__)
+
+    The `uns`, `varm` and `obsm` attributes are ignored.
+
+    If you use `join='outer'` this fills 0s for sparse data when variables are absent in a batch. Use this with care. Dense data is filled with `NaN`
+
+- Makes the obs index unique by appending '1', '2', etc (`obs_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.obs_names_make_unique.html&gt;`__)
+- Makes the var index unique by appending '1', '2', etc (`var_names_make_unique method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.var_names_make_unique.html&gt;`__)
+- Rename categories of annotation `key` in `obs`, `var` and `uns` (`rename_categories method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.rename_categories.html&gt;`__)
+- Remove keys from obs or var annotations
+- Flag genes start with a pattern
+- Transform string annotations to categoricals (`strings_to_categoricals method &lt;https://anndata.readthedocs.io/en/latest/generated/anndata.AnnData.strings_to_categoricals.html&gt;`__)
+    The first occurrence of a non-unique value is ignored.
+
+[Toolsmith note: help text was shortened for prompting; use the preserved usage/options/examples as source of truth.]
+    </help>
+    <citations>
+        <citation type="bibtex">
+            @misc{githubanndata,
+            author = {Theis, F. J. and Wolf, F. A. and Hafemeister, C. and Buettner, F. and Pratanwanich, N. and S. A. A. Hofmeier and M. Buettner and M. F. L. and L. C. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M. D. and M.

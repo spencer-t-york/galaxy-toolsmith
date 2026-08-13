@@ -1,0 +1,33 @@
+<tool id="aegean_gaeval" name="AEGeAn GAEVAL" version="0.1.0" profile="25.0">
+  <description>Computes coverage and integrity scores for gene models using transcript alignments.</description>
+  <requirements>
+    <requirement type="package" version="0.16.0">aegean</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        gaeval "$input1" "$input2"
+    </command>
+  <inputs>
+    <param name="input1" type="data" format="gff3" label="Gene Predictions/Gene Annotations" />
+    <param name="input2" type="data" format="gff3" label="Transcript Alignments" />
+  </inputs>
+  <outputs>
+    <data name="output" format="gff3" label="GAEVAL Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input1" value="example.gff3" />
+      <param name="input2" value="example_alignments.gff3" />
+      <output name="output" file="gaeval_output.gff3" />
+    </test>
+  </tests>
+  <help format="markdown">
+        GAEVAL computes coverage and integrity scores for each mRNA feature in the gene prediction input.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

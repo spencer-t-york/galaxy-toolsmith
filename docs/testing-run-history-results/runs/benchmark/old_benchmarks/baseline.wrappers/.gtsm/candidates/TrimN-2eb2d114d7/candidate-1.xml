@@ -1,0 +1,39 @@
+<tool id="trimn" name="TrimN" version="0.1.0" profile="25.0">
+  <description>Trims off large stretches of N bases and removes fake cut sites from FASTA files.</description>
+  <requirements>
+    <requirement type="package" version="1.0">python3</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python3 remove_fake_cut_sites_DNAnexus.py $input $output $log
+    </command>
+  <inputs>
+    <param name="input" type="fasta" label="Input FASTA file" />
+    <param name="output" type="fasta" label="Output FASTA file" />
+    <param name="log" type="data" format="txt" label="Log file" />
+  </inputs>
+  <outputs>
+    <data name="output" format="fasta" />
+    <data name="log" format="txt" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="2">
+      <param name="input" value="test_input.fa" />
+      <param name="output" value="test_output.fa" />
+      <param name="log" value="test_log.txt" />
+      <assert_contents filename="test_output.fa" />
+      <assert_contents filename="test_log.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        **What it does**
+        
+        Trims off large stretches of N bases and removes fake cut sites from FASTA files.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

@@ -1,0 +1,42 @@
+<tool id="art_solid" name="ART SOLiD" version="0.1.0" profile="25.0">
+  <description>Simulate SOLiD sequencing reads.</description>
+  <requirements>
+    <requirement type="package" version="4.0.0">art</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        art_SOLiD $reads $output_prefix --lenSeq $length --numReads $num_reads --errorProfile $error_profile
+    </command>
+  <inputs>
+    <param name="reads" type="data" format="fastq" label="Input FASTQ file(s)" />
+    <param name="output_prefix" type="text" value="simulated_reads" label="Output prefix" />
+    <param name="length" type="integer" value="100" label="Read length" min="1" />
+    <param name="num_reads" type="integer" value="1000" label="Number of reads" min="1" />
+    <param name="error_profile" type="select" label="Error profile">
+      <option value="solid">Solid</option>
+      <option value="illumina">Illumina</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output_fasta" format="fasta" label="Simulated FASTA file" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="reads" value="sample.fastq" />
+      <param name="output_prefix" value="test_output" />
+      <param name="length" value="100" />
+      <param name="num_reads" value="1000" />
+      <param name="error_profile" value="solid" />
+      <output name="output_fasta" file="test_output_simulated_reads.fasta" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Simulates SOLiD sequencing reads based on input FASTQ files.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

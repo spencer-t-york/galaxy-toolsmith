@@ -1,0 +1,532 @@
+<tool id="aegean_parseval" name="AEGeAn ParsEval" version="0.16.0+galaxy0" profile="21.05">
+    <description>compare two gene annotations</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">aegean</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="0.16.0">aegean</requirement>
+    </requirements>
+    <version_command>parseval --version</version_command>
+    <command detect_errors="exit_code">
+        parseval
+        -r '$ref'
+        -p '$pred'
+        -o '$out'
+        #if $out_format == 'tabular':
+            --tabular
+        #end if
+        #if $out_format == 'html':
+            --html
+        #end if
+        #if $out_format == 'latex':
+            --latex
+        #end if
+        #if $out_format == 'xml':
+            --xml
+        #end if
+        #if $out_format == 'json':
+            --json
+        #end if
+        #if $out_format == 'csv':
+            --csv
+        #end if
+        #if $out_format == 'tsv':
+            --tsv
+        #end if
+        #if $out_format == 'txt':
+            --txt
+        #end if
+        #if $out_format == 'gff3':
+            --gff3
+        #end if
+        #if $out_format == 'bed':
+            --bed
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12
+        #end if
+        #if $out_format == 'bed12':
+            --bed12

@@ -1,0 +1,11 @@
+timestamp	label	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	variant_id
+2026-07-20T21:10:30Z	probe	16384	all-raw	36000	128	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-16384-ddp-devstral-sidecars-fixtures-20260720
+2026-07-20T21:32:16Z	probe	16384	all-filtered	36000	128	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-16384-ddp-devstral-sidecars-fixtures-20260720
+2026-07-20T22:06:14Z	probe	12288	all-raw	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-12288-ddp-devstral-sidecars-fixtures-20260720
+2026-07-20T22:27:56Z	probe	12288	all-filtered	24000	96	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-12288-ddp-devstral-sidecars-fixtures-20260720
+2026-07-20T23:02:24Z	probe	8192	all-raw	12000	64	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-8192-ddp-devstral-sidecars-fixtures-20260720
+2026-07-20T23:25:49Z	probe	8192	all-filtered	12000	64	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-8192-ddp-devstral-sidecars-fixtures-20260720
+2026-07-21T00:00:11Z	probe	4096	all-raw	6000	32	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-4096-ddp-devstral-sidecars-fixtures-20260720
+2026-07-21T00:22:29Z	probe	4096	all-filtered	6000	32	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-4096-ddp-devstral-sidecars-fixtures-20260720
+2026-07-21T00:57:01Z	probe	2048	all-raw	3000	16	ddp	failed	tools-iuc-devstral-24b-mixed-all-raw-2048-ddp-devstral-sidecars-fixtures-20260720
+2026-07-21T01:19:21Z	probe	2048	all-filtered	3000	16	ddp	failed	tools-iuc-devstral-24b-mixed-all-filtered-2048-ddp-devstral-sidecars-fixtures-20260720

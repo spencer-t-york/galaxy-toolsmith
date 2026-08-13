@@ -1,0 +1,46 @@
+<tool id="art_illumina" name="ART Illumina" version="0.1.0" profile="25.0">
+  <description>Simulate Illumina sequencing reads</description>
+  <requirements>
+    <requirement type="package" version="454">art_profiler_454</requirement>
+    <requirement type="package" version="illumina">art_profiler_illumina</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        art_illumina $output_prefix $input_fastq $output_format $other_options
+    </command>
+  <inputs>
+    <param name="input_fastq" type="data" format="fastq" label="Input FastQ file" />
+    <param name="output_prefix" type="text" value="simulated_reads" label="Output prefix" />
+    <param name="output_format" type="select" label="Output format">
+      <option value="fastq">FASTQ</option>
+      <option value="sam">SAM</option>
+    </param>
+    <param name="other_options" type="text" optional="true" label="Additional options" />
+  </inputs>
+  <outputs>
+    <collection name="output_files" type="list" label="Simulation results">
+      <element name="reads" type="data" format="fastq" label="Reads" />
+      <element name="alignment" type="data" format="sam" label="Alignment" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_fastq" value="sample.fastq" />
+      <param name="output_prefix" value="test_sim" />
+      <param name="output_format" value="fastq" />
+      <output_collection name="output_files">
+        <element name="reads" file="test_sim_R1.fastq" />
+        <element name="alignment" file="test_sim.sam" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+        Simulates Illumina sequencing reads based on input FastQ file.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

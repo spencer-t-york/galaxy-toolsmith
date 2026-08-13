@@ -1,0 +1,40 @@
+<tool id="abritamr" name="abriTAMR" version="0.1.0" profile="25.0">
+  <description>AMR gene detection pipeline</description>
+  <requirements>
+    <requirement type="package" version="1.3.0">abritamr</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abritamr run --input $input_file --output_dir $output_dir
+    </command>
+  <inputs>
+    <param name="input_file" type="data" format="fasta" label="Input FASTA file" />
+    <param name="output_dir" type="text" value="results" label="Output directory" />
+  </inputs>
+  <outputs>
+    <collection name="output_files" type="list" label="Output files">
+      <element name="amrfinder_out" path="$output_dir/amrfinder.out" format="txt" />
+      <element name="summary_matches" path="$output_dir/summary_matches.txt" format="tabular" />
+    </collection>
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input_file" value="sample.fasta" />
+      <output_collection name="output_files">
+        <element name="amrfinder_out" file="expected_amrfinder.out" />
+        <element name="summary_matches" file="expected_summary_matches.txt" />
+      </output_collection>
+    </test>
+  </tests>
+  <help format="markdown">
+        Taming the AMR beast
+
+        abriTAMR is an AMR gene detection pipeline that runs AMRFinderPlus on a single (or list ) of given isolates and collates the results into a table, separating genes identified into functionally relevant groups. abriTAMR is accredited by NATA for use in reporting the presence of reportable AMR genes in Victoria Australia.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

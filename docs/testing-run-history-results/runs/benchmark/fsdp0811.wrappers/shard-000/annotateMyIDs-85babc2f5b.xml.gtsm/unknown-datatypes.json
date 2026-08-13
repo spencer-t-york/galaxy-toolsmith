@@ -1,0 +1,9 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [],
+  "records": [],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

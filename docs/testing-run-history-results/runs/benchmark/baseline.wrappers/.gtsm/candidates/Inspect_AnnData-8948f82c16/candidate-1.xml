@@ -1,0 +1,39 @@
+<tool id="inspect_anndata" name="Inspect AnnData" version="0.1.0" profile="25.0">
+  <description>Inspects an AnnData dataset</description>
+  <requirements>
+    <requirement type="package" version="0.11.4">anndata</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        python -m anndata inspect $input --output $output
+    </command>
+  <inputs>
+    <param name="input" type="data" format="h5ad" label="AnnData file" />
+    <param name="output_type" type="select" label="Output Type">
+      <option value="general_info">General Information</option>
+      <option value="full_matrix">Full Data Matrix</option>
+      <option value="chunk_matrix">Chunk of Data Matrix</option>
+      <option value="obs_annotations">Observations Annotations</option>
+      <option value="var_annotations">Variables Annotations</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="txt" label="Output" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="1">
+      <param name="input" value="sample.h5ad" />
+      <param name="output_type" value="general_info" />
+      <output name="output" file="general_info.txt" />
+    </test>
+  </tests>
+  <help format="markdown">
+        Inspects an AnnData dataset and returns general information, the full data matrix, a chunk of the data matrix, key-indexed observations annotations, and key-indexed annotations of variables/features.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

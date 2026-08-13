@@ -1,0 +1,65 @@
+<tool id="ampvis2_export_fasta" name="ampvis2 export fasta" version="0.1.0+galaxy0" profile="23.09">
+  <description>export sequences from an ampvis2 object and optionally add taxonomy to the fasta header lines.</description>
+  <macros />
+  <xrefs>
+    <xref type="bio.tools">ampvis2</xref>
+  </xrefs>
+  <requirements>
+    <requirement type="package" version="1.4.0">R</requirement>
+    <requirement type="package" version="1.4.0">r-base</requirement>
+    <requirement type="package" version="1.4.0">r-ampvis2</requirement>
+  </requirements>
+  <version_command>Rscript '$__tool_directory__/get_version.R'</version_command>
+  <command detect_errors="exit_code">
+Rscript '$__tool_directory__/ampvis2_export_fasta.R'
+--input '${input}'
+--output '${output}'
+--add_taxonomy ${add_taxonomy}
+    </command>
+  <inputs>
+    <param argument="--input" type="data" format="rds" label="An ampvis2 RDS dataset" />
+    <param argument="--add_taxonomy" type="boolean" truevalue="--add_taxonomy" falsevalue="" checked="false" label="Add taxonomy to the fasta header lines." />
+  </inputs>
+  <outputs>
+    <data name="output" format="fasta" label="${tool.name} on ${on_string}: Fasta sequences" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="ampvis2.rds" />
+      <output name="output" file="ampvis2.fasta" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+What it does
+============
+
+Export sequences from an ampvis2 object and optionally add taxonomy to the fasta header lines.
+
+The Galaxy tool calls the `amp_export_fasta
+&lt;https://kasperskytte.github.io/ampvis2/reference/amp_export_fasta.html&gt;`_ function
+of the ampvis2 package.
+
+Input
+=====
+
+
+        An ampvis2 RDS dataset obtained by the ``ampvis2: load`` tool (or ``ampvis2: mergereplicates`` or one of the
+        ``ampvis2: subset ...`` tools).
+
+
+In order to work the ampvis2 rds data set needs to contain sequence information.
+
+Output
+======
+
+The sequences contained in the input as fasta.
+    </help>
+  <citations>
+    <citation type="doi">10.1038/s41586-022-05701-0</citation>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>

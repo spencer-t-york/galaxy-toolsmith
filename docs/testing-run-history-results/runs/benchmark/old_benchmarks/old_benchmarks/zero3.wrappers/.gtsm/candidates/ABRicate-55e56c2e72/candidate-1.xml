@@ -1,0 +1,208 @@
+<tool id="abricate" name="ABRicate" version="1.4.0+galaxy0">
+    <description>Antibiotic Resistance Gene Identification</description>
+    <macros/><xrefs>
+        <xref type="bio.tools">abricate</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="1.4.0">abricate</requirement>
+    </requirements>
+    <version_command>abricate --version</version_command>
+    <command detect_errors="exit_code">
+abricate
+#if $input.type == "fasta":
+    '$input.fasta'
+#end if
+#if $input.type == "genbank":
+    '$input.gbff'
+#end if
+--db '${__app__.config.tool_data_path}/abricate_databases/${database}'
+#if $output_type == 'individual':
+    -o '$output_individual'
+#else:
+    --summary '$output_summary'
+#end if
+    </command>
+    <inputs>
+        <param argument="-i" type="data" name="input" label="Input File" help="This can be either a FASTA or GenBank file." display="text_field">
+            <options from_data_table="abricate_input_types"/>
+            <filter type="data_column_filter" column="ext" value="fasta,gbff"/>
+        </param>
+        <conditional name="database">
+            <param name="type" type="select" label="Database">
+                <option value="resfinder" selected="true">ResFinder</option>
+                <option value="card">CARD</option>
+                <option value="eggnog">EGGNog</option>
+                <option value="plasmidfinder">PlasmidFinder</option>
+                <option value="virulencefinder">VirulenceFinder</option>
+                <option value="uniprot">UniProt</option>
+            </param>
+            <when value="resfinder">
+                <param name="resfinder" type="hidden" value="resfinder"/>
+            </when>
+            <when value="card">
+                <param name="card" type="hidden" value="card"/>
+            </when>
+            <when value="eggnog">
+                <param name="eggnog" type="hidden" value="eggnog"/>
+            </when>
+            <when value="plasmidfinder">
+                <param name="plasmidfinder" type="hidden" value="plasmidfinder"/>
+            </when>
+            <when value="virulencefinder">
+                <param name="virulencefinder" type="hidden" value="virulencefinder"/>
+            </when>
+            <when value="uniprot">
+                <param name="uniprot" type="hidden" value="uniprot"/>
+            </when>
+        </conditional>
+        <param argument="--mincov" type="float" value="0.5" min="0.0" max="1.0" step="0.1" label="Minimum Coverage" help="Coverage threshold for hits"/>
+        <param argument="--minid" type="float" value="0.8" min="0.0" max="1.0" step="0.1" label="Minimum Identity" help="Identity threshold for hits"/>
+        <param argument="--maxindel" type="integer" value="10" min="0" label="Maximum Indels" help="Indel threshold for hits"/>
+        <param argument="--threads" type="integer" value="1" min="1" label="Number of Threads" help="Number of threads to use"/>
+        <param argument="--quiet" type="boolean" truevalue="--quiet" falsevalue="" checked="false" label="Suppress all output except errors"/>
+        <param argument="--fullpath" type="boolean" truevalue="--fullpath" falsevalue="" checked="false" label="Report full path of input file"/>
+        <param argument="--prefix" type="text" value="" label="Prefix for output files"/>
+        <param argument="--outfmt" type="select" label="Output Format">
+            <option value="tabular" selected="true">Tabular</option>
+            <option value="json">JSON</option>
+            <option value="xml">XML</option>
+            <option value="csv">CSV</option>
+        </param>
+        <param argument="--summary" type="boolean" truevalue="--summary" falsevalue="" checked="false" label="Summarize results"/>
+        <param argument="--threshold" type="float" value="0.0" min="0.0" max="1.0" step="0.1" label="Threshold for summary"/>
+        <param argument="--top" type="integer" value="0" min="0" label="Top N results per file"/>
+        <param argument="--exclude" type="text" value="" label="Exclude these genes"/>
+        <param argument="--include" type="text" value="" label="Only include these genes"/>
+        <param argument="--exclude-database" type="text" value="" label="Exclude these databases"/>
+        <param argument="--include-database" type="text" value="" label="Only include these databases"/>
+        <param argument="--exclude-hit" type="text" value="" label="Exclude these hits"/>
+        <param argument="--include-hit" type="text" value="" label="Only include these hits"/>
+        <param argument="--exclude-gene" type="text" value="" label="Exclude these genes"/>
+        <param argument="--include-gene" type="text" value="" label="Only include these genes"/>
+        <param argument="--exclude-db" type="text" value="" label="Exclude these databases"/>
+        <param argument="--include-db" type="text" value="" label="Only include these databases"/>
+        <param argument="--exclude-hit-type" type="text" value="" label="Exclude these hit types"/>
+        <param argument="--include-hit-type" type="text" value="" label="Only include these hit types"/>
+        <param argument="--exclude-hit-source" type="text" value="" label="Exclude these hit sources"/>
+        <param argument="--include-hit-source" type="text" value="" label="Only include these hit sources"/>
+        <param argument="--exclude-hit-database" type="text" value="" label="Exclude these hit databases"/>
+        <param argument="--include-hit-database" type="text" value="" label="Only include these hit databases"/>
+        <param argument="--exclude-hit-gene" type="text" value="" label="Exclude these hit genes"/>
+        <param argument="--include-hit-gene" type="text" value="" label="Only include these hit genes"/>
+        <param argument="--exclude-hit-accession" type="text" value="" label="Exclude these hit accessions"/>
+        <param argument="--include-hit-accession" type="text" value="" label="Only include these hit accessions"/>
+        <param argument="--exclude-hit-version" type="text" value="" label="Exclude these hit versions"/>
+        <param argument="--include-hit-version" type="text" value="" label="Only include these hit versions"/>
+        <param argument="--exclude-hit-score" type="text" value="" label="Exclude these hit scores"/>
+        <param argument="--include-hit-score" type="text" value="" label="Only include these hit scores"/>
+        <param argument="--exclude-hit-evalue" type="text" value="" label="Exclude these hit e-values"/>
+        <param argument="--include-hit-evalue" type="text" value="" label="Only include these hit e-values"/>
+        <param argument="--exclude-hit-length" type="text" value="" label="Exclude these hit lengths"/>
+        <param argument="--include-hit-length" type="text" value="" label="Only include these hit lengths"/>
+        <param argument="--exclude-hit-start" type="text" value="" label="Exclude these hit starts"/>
+        <param argument="--include-hit-start" type="text" value="" label="Only include these hit starts"/>
+        <param argument="--exclude-hit-end" type="text" value="" label="Exclude these hit ends"/>
+        <param argument="--include-hit-end" type="text" value="" label="Only include these hit ends"/>
+        <param argument="--exclude-hit-strand" type="text" value="" label="Exclude these hit strands"/>
+        <param argument="--include-hit-strand" type="text" value="" label="Only include these hit strands"/>
+        <param argument="--exclude-hit-frame" type="text" value="" label="Exclude these hit frames"/>
+        <param argument="--include-hit-frame" type="text" value="" label="Only include these hit frames"/>
+        <param argument="--exclude-hit-cov" type="text" value="" label="Exclude these hit coverages"/>
+        <param argument="--include-hit-cov" type="text" value="" label="Only include these hit coverages"/>
+        <param argument="--exclude-hit-id" type="text" value="" label="Exclude these hit IDs"/>
+        <param argument="--include-hit-id" type="text" value="" label="Only include these hit IDs"/>
+        <param argument="--exclude-hit-name" type="text" value="" label="Exclude these hit names"/>
+        <param argument="--include-hit-name" type="text" value="" label="Only include these hit names"/>
+        <param argument="--exclude-hit-def" type="text" value="" label="Exclude these hit definitions"/>
+        <param argument="--include-hit-def" type="text" value="" label="Only include these hit definitions"/>
+        <param argument="--exclude-hit-source" type="text" value="" label="Exclude these hit sources"/>
+        <param argument="--include-hit-source" type="text" value="" label="Only include these hit sources"/>
+        <param argument="--exclude-hit-database" type="text" value="" label="Exclude these hit databases"/>
+        <param argument="--include-hit-database" type="text" value="" label="Only include these hit databases"/>
+        <param argument="--exclude-hit-gene" type="text" value="" label="Exclude these hit genes"/>
+        <param argument="--include-hit-gene" type="text" value="" label="Only include these hit genes"/>
+        <param argument="--exclude-hit-accession" type="text" value="" label="Exclude these hit accessions"/>
+        <param argument="--include-hit-accession" type="text" value="" label="Only include these hit accessions"/>
+        <param argument="--exclude-hit-version" type="text" value="" label="Exclude these hit versions"/>
+        <param argument="--include-hit-version" type="text" value="" label="Only include these hit versions"/>
+        <param argument="--exclude-hit-score" type="text" value="" label="Exclude these hit scores"/>
+        <param argument="--include-hit-score" type="text" value="" label="Only include these hit scores"/>
+        <param argument="--exclude-hit-evalue" type="text" value="" label="Exclude these hit e-values"/>
+        <param argument="--include-hit-evalue" type="text" value="" label="Only include these hit e-values"/>
+        <param argument="--exclude-hit-length" type="text" value="" label="Exclude these hit lengths"/>
+        <param argument="--include-hit-length" type="text" value="" label="Only include these hit lengths"/>
+        <param argument="--exclude-hit-start" type="text" value="" label="Exclude these hit starts"/>
+        <param argument="--include-hit-start" type="text" value="" label="Only include these hit starts"/>
+        <param argument="--exclude-hit-end" type="text" value="" label="Exclude these hit ends"/>
+        <param argument="--include-hit-end" type="text" value="" label="Only include these hit ends"/>
+        <param argument="--exclude-hit-strand" type="text" value="" label="Exclude these hit strands"/>
+        <param argument="--include-hit-strand" type="text" value="" label="Only include these hit strands"/>
+        <param argument="--exclude-hit-frame" type="text" value="" label="Exclude these hit frames"/>
+        <param argument="--include-hit-frame" type="text" value="" label="Only include these hit frames"/>
+        <param argument="--exclude-hit-cov" type="text" value="" label="Exclude these hit coverages"/>
+        <param argument="--include-hit-cov" type="text" value="" label="Only include these hit coverages"/>
+        <param argument="--exclude-hit-id" type="text" value="" label="Exclude these hit IDs"/>
+        <param argument="--include-hit-id" type="text" value="" label="Only include these hit IDs"/>
+        <param argument="--exclude-hit-name" type="text" value="" label="Exclude these hit names"/>
+        <param argument="--include-hit-name" type="text" value="" label="Only include these hit names"/>
+        <param argument="--exclude-hit-def" type="text" value="" label="Exclude these hit definitions"/>
+        <param argument="--include-hit-def" type="text" value="" label="Only include these hit definitions"/>
+        <param argument="--exclude-hit-source" type="text" value="" label="Exclude these hit sources"/>
+        <param argument="--include-hit-source" type="text" value="" label="Only include these hit sources"/>
+        <param argument="--exclude-hit-database" type="text" value="" label="Exclude these hit databases"/>
+        <param argument="--include-hit-database" type="text" value="" label="Only include these hit databases"/>
+        <param argument="--exclude-hit-gene" type="text" value="" label="Exclude these hit genes"/>
+        <param argument="--include-hit-gene" type="text" value="" label="Only include these hit genes"/>
+        <param argument="--exclude-hit-accession" type="text" value="" label="Exclude these hit accessions"/>
+        <param argument="--include-hit-accession" type="text" value="" label="Only include these hit accessions"/>
+        <param argument="--exclude-hit-version" type="text" value="" label="Exclude these hit versions"/>
+        <param argument="--include-hit-version" type="text" value="" label="Only include these hit versions"/>
+        <param argument="--exclude-hit-score" type="text" value="" label="Exclude these hit scores"/>
+        <param argument="--include-hit-score" type="text" value="" label="Only include these hit scores"/>
+        <param argument="--exclude-hit-evalue" type="text" value="" label="Exclude these hit e-values"/>
+        <param argument="--include-hit-evalue" type="text" value="" label="Only include these hit e-values"/>
+        <param argument="--exclude-hit-length" type="text" value="" label="Exclude these hit lengths"/>
+        <param argument="--include-hit-length" type="text" value="" label="Only include these hit lengths"/>
+        <param argument="--exclude-hit-start" type="text" value="" label="Exclude these hit starts"/>
+        <param argument="--include-hit-start" type="text" value="" label="Only include these hit starts"/>
+        <param argument="--exclude-hit-end" type="text" value="" label="Exclude these hit ends"/>
+        <param argument="--include-hit-end" type="text" value="" label="Only include these hit ends"/>
+        <param argument="--exclude-hit-strand" type="text" value="" label="Exclude these hit strands"/>
+        <param argument="--include-hit-strand" type="text" value="" label="Only include these hit strands"/>
+        <param argument="--exclude-hit-frame" type="text" value="" label="Exclude these hit frames"/>
+        <param argument="--include-hit-frame" type="text" value="" label="Only include these hit frames"/>
+        <param argument="--exclude-hit-cov" type="text" value="" label="Exclude these hit coverages"/>
+        <param argument="--include-hit-cov" type="text" value="" label="Only include these hit coverages"/>
+        <param argument="--exclude-hit-id" type="text" value="" label="Exclude these hit IDs"/>
+        <param argument="--include-hit-id" type="text" value="" label="Only include these hit IDs"/>
+        <param argument="--exclude-hit-name" type="text" value="" label="Exclude these hit names"/>
+        <param argument="--include-hit-name" type="text" value="" label="Only include these hit names"/>
+        <param argument="--exclude-hit-def" type="text" value="" label="Exclude these hit definitions"/>
+        <param argument="--include-hit-def" type="text" value="" label="Only include these hit definitions"/>
+        <param argument="--exclude-hit-source" type="text" value="" label="Exclude these hit sources"/>
+        <param argument="--include-hit-source" type="text" value="" label="Only include these hit sources"/>
+        <param argument="--exclude-hit-database" type="text" value="" label="Exclude these hit databases"/>
+        <param argument="--include-hit-database" type="text" value="" label="Only include these hit databases"/>
+        <param argument="--exclude-hit-gene" type="text" value="" label="Exclude these hit genes"/>
+        <param argument="--include-hit-gene" type="text" value="" label="Only include these hit genes"/>
+        <param argument="--exclude-hit-accession" type="text" value="" label="Exclude these hit accessions"/>
+        <param argument="--include-hit-accession" type="text" value="" label="Only include these hit accessions"/>
+        <param argument="--exclude-hit-version" type="text" value="" label="Exclude these hit versions"/>
+        <param argument="--include-hit-version" type="text" value="" label="Only include these hit versions"/>
+        <param argument="--exclude-hit-score" type="text" value="" label="Exclude these hit scores"/>
+        <param argument="--include-hit-score" type="text" value="" label="Only include these hit scores"/>
+        <param argument="--exclude-hit-evalue" type="text" value="" label="Exclude these hit e-values"/>
+        <param argument="--include-hit-evalue" type="text" value="" label="Only include these hit e-values"/>
+        <param argument="--exclude-hit-length" type="text" value="" label="Exclude these hit lengths"/>
+        <param argument="--include-hit-length" type="text" value="" label="Only include these hit lengths"/>
+        <param argument="--exclude-hit-start" type="text" value="" label="Exclude these hit starts"/>
+        <param argument="--include-hit-start" type="text" value="" label="Only include these hit starts"/>
+        <param argument="--exclude-hit-end" type="text" value="" label="Exclude these hit ends"/>
+        <param argument="--include-hit-end" type="text" value="" label="Only include these hit ends"/>
+        <param argument="--exclude-hit-strand" type="text" value="" label="Exclude these hit strands"/>
+        <param argument="--include-hit-strand" type="text" value="" label="Only include these hit strands"/>
+        <param argument="--exclude-hit-frame" type="text" value="" label="Exclude these hit frames"/>
+        <param argument="--include-hit-frame" type="text" value="" label="Only include these hit frames"/>
+        <param argument="--exclude-hit-cov" type="text" value="" label="Exclude these hit coverages"/>
+        <param argument="--include-hit-cov" type="text" value="" label="Only include these hit coverages"/>
+        <param argument="--exclude-hit-id" type="text" value="" label="Exclude

@@ -1,0 +1,19 @@
+{
+  "variant_id": "tools-iuc-devstral-24b-mixed-all-raw-12288-fsdp-devstral-lora-sharding-4-zero3-fsdp-sidecars-fixtures-20260810",
+  "schema_version": "0.1.0",
+  "created_at": "2026-08-11T04:09:48.076058+00:00",
+  "base_model": "mistralai/Devstral-Small-2505",
+  "quantization": "none",
+  "training_dataset_id": "bootstrap-dataset",
+  "provider": "local",
+  "skills_profile": "default",
+  "backend": "axolotl",
+  "training_method": "lora",
+  "effective_training_method": "lora",
+  "artifact_kind": "peft_adapter",
+  "artifact_dir": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/training/train-devstral-lora-sharding-4-zero3-fsdp-sidecars-fixtures-20260810-probe-12288-all-raw-fsdp/output",
+  "export_quantizations": [],
+  "ollama_model_name": "",
+  "requested_ollama_model_name": "",
+  "ollama_modelfile_path": ""
+}

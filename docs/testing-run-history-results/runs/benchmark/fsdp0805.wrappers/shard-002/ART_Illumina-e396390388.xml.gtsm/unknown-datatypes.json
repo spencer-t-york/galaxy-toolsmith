@@ -1,0 +1,32 @@
+{
+  "generated_by": "galaxy-toolsmith",
+  "datatypes": [
+    "fastqsanger",
+    "fastqsanger.gz",
+    "list"
+  ],
+  "records": [
+    {
+      "datatype": "fastqsanger",
+      "tool_name": "ART Illumina",
+      "tool_id": "art_illumina",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-002/ART_Illumina-e396390388.xml"
+    },
+    {
+      "datatype": "fastqsanger.gz",
+      "tool_name": "ART Illumina",
+      "tool_id": "art_illumina",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-002/ART_Illumina-e396390388.xml"
+    },
+    {
+      "datatype": "list",
+      "tool_name": "ART Illumina",
+      "tool_id": "art_illumina",
+      "output_path": "/data/home/yorks7/git/galaxy-toolsmith/.gtsm-cache/runs/benchmark/fsdp0805.wrappers/shard-002/ART_Illumina-e396390388.xml"
+    }
+  ],
+  "notes": [
+    "This scaffold is intentionally conservative.",
+    "Review each extension and replace Text with a more specific Galaxy datatype when appropriate."
+  ]
+}

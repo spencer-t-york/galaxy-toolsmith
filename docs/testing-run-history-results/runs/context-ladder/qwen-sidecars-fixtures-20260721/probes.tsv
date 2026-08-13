@@ -1,0 +1,11 @@
+timestamp	max_seq_length	source_mode	source_max_chars	source_max_files	strategy	status	token_p99
+2026-07-21T19:26:07Z	16384	all-raw	36000	128	ddp	failed	42588
+2026-07-21T19:55:17Z	16384	all-filtered	36000	128	ddp	failed	43194
+2026-07-21T20:36:42Z	12288	all-raw	24000	96	ddp	failed	39345
+2026-07-21T21:05:38Z	12288	all-filtered	24000	96	ddp	failed	39950
+2026-07-21T21:46:40Z	8192	all-raw	12000	64	ddp	failed	36101
+2026-07-21T22:16:00Z	8192	all-filtered	12000	64	ddp	failed	36707
+2026-07-21T22:57:01Z	4096	all-raw	6000	32	ddp	failed	34480
+2026-07-21T23:25:57Z	4096	all-filtered	6000	32	ddp	failed	35085
+2026-07-22T00:07:00Z	2048	all-raw	3000	16	ddp	failed	33669
+2026-07-22T00:35:53Z	2048	all-filtered	3000	16	ddp	failed	34275

@@ -1,0 +1,61 @@
+<tool id="abritamr" name="abriTAMR" version="0.1.0" profile="25.0">
+  <description>AMR gene detection pipeline using AMRFinderPlus</description>
+  <requirements>
+    <requirement type="package">abritamr</requirement>
+  </requirements>
+  <command detect_errors="aggressive">
+        abritamr run \
+            --isolate $input_isolate \
+            --database $database_dir \
+            &gt; $output_summary_matches
+    </command>
+  <inputs>
+    <param name="input_isolate" type="data" format="txt" label="Input isolate file" />
+    <param name="database_dir" type="select" label="Database directory">
+      <option value="/path/to/database">Default database</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="summary_matches" format="txt" label="Summary matches" />
+    <data name="summary_partials" format="txt" label="Summary partials" />
+    <data name="amrfinder_out" format="txt" label="AMRFinderPlus output" />
+    <data name="run_log" format="txt" label="Run log" />
+  </outputs>
+  <tests>
+    <test expect_num_outputs="4">
+      <param name="input_isolate" value="test_isolate.txt" />
+      <param name="database_dir" value="/path/to/database" />
+      <output name="summary_matches" file="summary_matches.txt">
+        <has_text>Expected match content</has_text>
+      </output>
+      <output name="summary_partials" file="summary_partials.txt">
+        <has_text>Expected partial content</has_text>
+      </output>
+      <output name="amrfinder_out" file="amrfinder.out">
+        <has_text>AMRFinderPlus output</has_text>
+      </output>
+      <output name="run_log" file="run_log.txt">
+        <has_text>Run log content</has_text>
+      </output>
+    </test>
+  </tests>
+  <help format="markdown">
+        # abriTAMR AMR Gene Detection Pipeline
+        
+        abriTAMR is a pipeline for detecting antimicrobial resistance (AMR) genes using AMRFinderPlus. It processes input isolates and generates structured outputs for easier analysis.
+        
+        ## Outputs
+        
+        - `summary_matches.txt`: Tab-delimited file with AMR gene matches.
+        - `summary_partials.txt`: Tab-delimited file with partial matches.
+        - `amrfinder.out`: Raw AMRFinderPlus output.
+        - `run_log.txt`: Execution log for troubleshooting.
+    </help>
+  <citations>
+    <citation type="bibtex">@misc{galaxy_toolsmith,
+  title = {Galaxy Toolsmith},
+  howpublished = {\url{https://github.com/BlankenbergLab/galaxy-toolsmith}},
+  url = {https://github.com/BlankenbergLab/galaxy-toolsmith}
+}</citation>
+  </citations>
+</tool>
